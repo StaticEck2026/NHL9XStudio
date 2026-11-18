@@ -409,9 +409,9 @@ assert.strictEqual(snes94frame.pixels[0], 1);
 
 assert.strictEqual(APP_NAME, 'NHL9X Studio');
 
-assert.strictEqual(GAMES.length, 10);
+assert.strictEqual(GAMES.length, 11);
 const staticManifest = buildManifest();
-assert.strictEqual(staticManifest.length, 10);
+assert.strictEqual(staticManifest.length, 11);
 assert.strictEqual(staticManifest.find((game) => game.id === 'nhl92').pixels, true);
 assert.strictEqual(staticManifest.find((game) => game.id === 'nhl94').pixels, false);
 // The static site has no sibling ANIM-To-BMP checkouts: every Genesis game lists its team palettes from data/pals, each a 32-byte CRAM line.
@@ -516,10 +516,10 @@ assert.strictEqual(g96.palettes, '96');
 assert.strictEqual(pa93.sheet.sprites, 0x03a37c - 4);
 assert.ok(g94.banks.some((bank) => bank.id === 'StanleyCup.anim'));
 assert.strictEqual(g94.banks.filter((bank) => bank.kind === 'frames').length, 4);
-assert.ok(g94.images.some((image) => image.id === 'logoBOS.map.jim' && image.paletteAt === 0xFF482));
+assert.ok(g94.images.some((image) => image.id === 'TeamLogoBOS.map.jim' && image.paletteAt === 0xFF482));
 assert.ok(g94.images.some((image) => image.id === 'CardMarioLemieux.map.jim' && image.paletteAt === 0xC6762));
-assert.ok(g95.images.some((image) => image.id === 'CardGuyHebert.bin' && image.paletteAt));
-assert.ok(g95.images.some((image) => image.id === 'logoANA.map.jim'));
+assert.ok(g95.images.some((image) => image.id === 'CardGuyHebert.map.jim' && image.paletteAt));
+assert.ok(g95.images.some((image) => image.id === 'TeamLogoANH.map.jim'));
 assert.ok(g95.images.some((image) => image.id === 'Crowd.anim' && image.kind === 'frames'));
 const g95Arenas = g95.images.filter((image) => /^ArenaGfx/.test(image.id));
 assert.strictEqual(g95Arenas.length, 27);
@@ -606,7 +606,7 @@ if (genesis93) {
 }
 const genesis94 = upstreamRom('/tmp/disasm/NHL94Genesis', 'nhl94', '/tmp/disasm/NHL94Genesis/lst/nhl94.bin');
 if (genesis94) {
-  const boston = g94.images.find((image) => image.id === 'logoBOS.map.jim');
+  const boston = g94.images.find((image) => image.id === 'TeamLogoBOS.map.jim');
   const logo = decodeJim(
     genesis94.subarray(boston.start, boston.end),
     genesis94.subarray(boston.paletteAt, boston.paletteAt + 32)
@@ -634,7 +634,7 @@ if (genesis94) {
 }
 const genesis95 = upstreamRom('/tmp/disasm/NHL95Genesis', 'nhl95', '/tmp/disasm/NHL95Genesis/lst/nhl95.bin');
 if (genesis95) {
-  const logo = g95.images.find((image) => image.id === 'logoANA.map.jim');
+  const logo = g95.images.find((image) => image.id === 'TeamLogoANH.map.jim');
   const drawn = decodeJim(genesis95.subarray(logo.start, logo.end));
   assert.ok(inkCount(drawn.renderFrame(1)) > 20);
   const card = g95.images.find((image) => image.group === 'Players' && image.paletteAt);

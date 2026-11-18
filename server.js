@@ -107,8 +107,13 @@ function nhl95RomPalettes() {
 }
 
 function findRom(game) {
-  if (!game.romNames.length) return null;
   if (!fs.existsSync(ROM_DIR)) return null;
+  if (game.disc) {
+    const wantedIso = new Set(game.disc.names);
+    const hit = fs.readdirSync(ROM_DIR).find((name) => wantedIso.has(name.toLowerCase()));
+    return hit ? path.join(ROM_DIR, hit) : null;
+  }
+  if (!game.romNames.length) return null;
   const wanted = new Set(game.romNames.map((name) => name.toLowerCase()));
   const names = fs.readdirSync(ROM_DIR);
   const named = names.find((name) => wanted.has(name.toLowerCase()));
@@ -116,7 +121,21 @@ function findRom(game) {
   return null;
 }
 
+// A game that reads one file out of a disc image (Sega CD: GRAPH2.BIN from the ISO).
+function readDiscFile(file, game) {
+  const iso = iso9660.openFile(file);
+  if (!iso) throw new Error('Not an ISO 9660 image: ' + path.basename(file));
+  try {
+    const bytes = iso.read(game.disc.file);
+    if (!bytes) throw new Error(game.disc.file + ' is not on ' + path.basename(file));
+    return Buffer.from(bytes.buffer, bytes.byteOffset, bytes.length);
+  } finally {
+    if (iso.close) iso.close();
+  }
+}
+
 function readRom(file, game) {
+  if (game && game.disc) return readDiscFile(file, game);
   let buf = fs.readFileSync(file);
   if (game && game.platform === 'snes' && buf.length % 1024 === 512) {
     buf = buf.subarray(512);
@@ -360,7 +379,7 @@ function gameStatus(game) {
       ? { images: game.images || [], sheet: game.sheet || null, banks: game.kind === 'sheet' ? sheetGameBanks(game.images || []) : game.banks }
       : null,
     snes: game.snes || null,
-    romHint: game.kind === 'pc95' ? 'pc95/ or roms/nhl95.iso' : (game.kind === 'pc94' ? 'pc94/' : (game.kind === 'pc96' ? 'pc96/ or roms/nhl96.iso' : (game.romNames.length ? 'roms/' + game.romNames[0] : null))),
+    romHint: game.kind === 'pc95' ? 'pc95/ or roms/nhl95.iso' : (game.kind === 'pc94' ? 'pc94/' : (game.kind === 'pc96' ? 'pc96/ or roms/nhl96.iso' : (game.disc ? 'roms/' + game.disc.names[0] : (game.romNames.length ? 'roms/' + game.romNames[0] : null)))),
     pcAudio: pc && pc.audio ? pc.audio : undefined
   };
 }
