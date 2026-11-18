@@ -1,6 +1,14 @@
 {
   "releases": [
     {
+      "version": "1.33.0",
+      "date": "2026-11-18",
+      "changes": [
+        "NHL 94 Sega CD is in the Game menu. It reads GRAPH2.BIN straight out of roms/NHL94CD.iso (a data-track ISO of the disc) and lists its 181 pictures: screens, logos, cards, fonts and the rink",
+        "Asset ids follow the disassembly renames: TeamLogo<TEAM> (Anaheim is TeamLogoANH), HiScoreImg, NoPic* and Card* as .map.jim, SmallFont.map.jim, EASportsSplash in NHL 96"
+      ]
+    },
+    {
       "version": "1.32.3",
       "date": "2026-11-11",
       "changes": [
