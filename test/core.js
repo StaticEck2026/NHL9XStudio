@@ -1183,12 +1183,13 @@ for (const spf of pcCatalog.spfs) {
   cursor = spf.end + 1;
 }
 assert.strictEqual(cursor, 1135);
-assert.strictEqual(pcCatalog.spfs[0].name, 'SPFskaters');
-assert.strictEqual(pcCatalog.spfs[0].end, 352);
+assert.strictEqual(pcCatalog.spfs[0].name, 'SPFskatewp');
+assert.strictEqual(pcCatalog.spfs[0].end, 40);
+assert.strictEqual(pcCatalog.spfs.find((spf) => spf.name === 'SPFHold').end, 352);
 assert.strictEqual(pcCatalog.spfs.find((spf) => spf.name === 'SPFref95').start, 1129);
 assert.strictEqual(pcCatalog.spfs.find((spf) => spf.name === 'SPFbenchcheck').group, 'Players');
 assert.strictEqual(pcCatalog.spfs.find((spf) => spf.name === 'SPFref').group, 'Other');
-assert.ok(pcCatalog.spfs.find((spf) => spf.name === 'SPFskaters').blurb.includes('000-351'));
+assert.ok(pcCatalog.spfs.find((spf) => spf.name === 'SPFskate').blurb.includes('stick raised'));
 
 assert.ok(GAMES.findIndex((game) => game.id === 'nhl94pc') < GAMES.findIndex((game) => game.id === 'nhl95pc'), '94 PC before 95 PC');
 assert.ok(GAMES.findIndex((game) => game.id === 'nhl95pc') < GAMES.findIndex((game) => game.id === 'nhl96pc'), '95 PC before 96 PC');
@@ -1200,8 +1201,8 @@ const pc94Game = GAMES.find((game) => game.id === 'nhl94pc');
 assert.strictEqual(pc94Game.kind, 'pc94');
 assert.strictEqual(pc94Game.frames, 'frames94pc.asm');
 const pc94Catalog = parseFrames(fs.readFileSync(path.join(root, 'data', 'frames94pc.asm'), 'utf8'));
-assert.strictEqual(pc94Catalog.spfs[0].name, 'SPFskaters');
-assert.strictEqual(pc94Catalog.spfs[0].end, 352);
+assert.strictEqual(pc94Catalog.spfs[0].name, 'SPFskatewp');
+assert.strictEqual(pc94Catalog.spfs.find((spf) => spf.name === 'SPFHold').end, 352);
 assert.ok(pc94Catalog.spfs.some((spf) => spf.name === 'SPFref'));
 assert.ok(pc94Catalog.spfs.some((spf) => spf.name === 'SPFfaceoff'));
 assert.ok(!pc94Catalog.spfs.some((spf) => spf.name === 'SPFbenchcheck'));

@@ -1,6 +1,13 @@
 {
   "releases": [
     {
+      "version": "1.33.1",
+      "date": "2026-11-18",
+      "changes": [
+        "NHL 94 PC and NHL 95 PC list the player frames as 94 Genesis's groups (SPFskatewp, SPFskate, SPFturnl and so on, same numbers) instead of one SPFskaters run; the hold sequences are spelled SPAHold and SPAHold2 like 94G"
+      ]
+    },
+    {
       "version": "1.33.0",
       "date": "2026-11-18",
       "changes": [
