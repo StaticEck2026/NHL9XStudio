@@ -1,6 +1,13 @@
 {
   "releases": [
     {
+      "version": "1.33.2",
+      "date": "2026-11-18",
+      "changes": [
+        "NHL 94 SNES: all 71 animation sequences use the names from the NHL94SNES source (SPAgready, SPAgdive, SPAfaceoff, SPAflip and so on). The SPAextra placeholders are gone"
+      ]
+    },
+    {
       "version": "1.33.1",
       "date": "2026-11-18",
       "changes": [

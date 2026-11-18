@@ -2,7 +2,7 @@
 ; Frame and time words are from LoROM bank $9D (file 0xEE0FE) of the retail
 ; ROM, read from McMarkis' NHL94SNES branch segment/bank96_9000.
 ; A sequence keeps its NHLPA 93 SNES name when the eight vblank lists match.
-; SPAextraN is a sequence that list does not have. Player SPF bases are the
+; Sequence names are the NHL94SNES source names, by position. Player SPF bases are the
 ; 93 SNES bases before SPFgoalie. SPFlater is everything after that.
 
 SPFskatewp	= 1
@@ -37,7 +37,7 @@ SPFlater	= 406
 SPAList:
 	dc.w	0
 
-SPAextra1	= *-SPAList	; SNES 94 sequence
+SPAgready	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra1)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	1
@@ -50,7 +50,7 @@ SPAextra1	= *-SPAList	; SNES 94 sequence
 .6	dc.w	552,120,658,20,659,20,658,10,552,-10
 .7	dc.w	555,180,660,20,661,20,555,1,555,-9
 
-SPAextra2	= *-SPAList	; SNES 94 sequence
+SPAgready2	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra2)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -63,7 +63,7 @@ SPAextra2	= *-SPAList	; SNES 94 sequence
 .6	dc.w	552,-30
 .7	dc.w	555,-30
 
-SPAextra3	= *-SPAList	; SNES 94 sequence
+SPAgglover	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra3)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -76,7 +76,7 @@ SPAextra3	= *-SPAList	; SNES 94 sequence
 .6	dc.w	553,-32
 .7	dc.w	556,-32
 
-SPAextra4	= *-SPAList	; SNES 94 sequence
+SPAgglovel	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra4)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -89,7 +89,7 @@ SPAextra4	= *-SPAList	; SNES 94 sequence
 .6	dc.w	554,-32
 .7	dc.w	557,-32
 
-SPAextra5	= *-SPAList	; SNES 94 sequence
+SPAgstickr	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra5)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -102,7 +102,7 @@ SPAextra5	= *-SPAList	; SNES 94 sequence
 .6	dc.w	610,-32
 .7	dc.w	612,-32
 
-SPAextra6	= *-SPAList	; SNES 94 sequence
+SPAgstickl	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra6)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -115,7 +115,7 @@ SPAextra6	= *-SPAList	; SNES 94 sequence
 .6	dc.w	611,-32
 .7	dc.w	613,-32
 
-SPAextra7	= *-SPAList	; SNES 94 sequence
+SPAgstackr	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra7)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -128,7 +128,7 @@ SPAextra7	= *-SPAList	; SNES 94 sequence
 .6	dc.w	582,8,583,-20
 .7	dc.w	584,8,585,-20
 
-SPAextra8	= *-SPAList	; SNES 94 sequence
+SPAgstackl	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra8)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -141,7 +141,7 @@ SPAextra8	= *-SPAList	; SNES 94 sequence
 .6	dc.w	594,8,595,-20
 .7	dc.w	596,8,597,-20
 
-SPAextra9	= *-SPAList	; SNES 94 sequence
+SPAgswing	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra9)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -154,7 +154,7 @@ SPAextra9	= *-SPAList	; SNES 94 sequence
 .6	dc.w	570,5,571,8,570,-16
 .7	dc.w	572,5,573,8,572,-16
 
-SPAextra10	= *-SPAList	; SNES 94 sequence
+SPAgskate	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra10)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	1
@@ -167,7 +167,7 @@ SPAextra10	= *-SPAList	; SNES 94 sequence
 .6	dc.w	638,10,639,10,640,10,641,-15
 .7	dc.w	642,10,643,10,644,10,645,-15
 
-SPAextra11	= *-SPAList	; SNES 94 sequence
+SPAgwallright	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra11)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,$8000
 	dc.w	0
@@ -179,7 +179,7 @@ SPAextra11	= *-SPAList	; SNES 94 sequence
 .5	dc.w	373,8,372,8,371,8,370,-8
 .6	dc.w	373,8,372,8,371,8,370,-8
 
-SPAextra12	= *-SPAList	; SNES 94 sequence
+SPAgwallleft	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra12)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,$8000
 	dc.w	0
@@ -191,7 +191,7 @@ SPAextra12	= *-SPAList	; SNES 94 sequence
 .5	dc.w	370,8,371,8,372,8,373,-8
 .6	dc.w	370,8,371,8,372,8,373,-8
 
-SPAextra13	= *-SPAList	; SNES 94 sequence
+SPAgdive	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra13)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -204,7 +204,7 @@ SPAextra13	= *-SPAList	; SNES 94 sequence
 .6	dc.w	674,8,675,48,674,-8
 .7	dc.w	676,8,677,48,676,-8
 
-SPAextra14	= *-SPAList	; SNES 94 sequence
+SPAgpoke	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra14)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -217,7 +217,7 @@ SPAextra14	= *-SPAList	; SNES 94 sequence
 .6	dc.w	690,4,691,15,690,-6
 .7	dc.w	692,4,693,15,692,-6
 
-SPAextra15	= *-SPAList	; SNES 94 sequence
+SPAgcover2	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra15)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -230,7 +230,7 @@ SPAextra15	= *-SPAList	; SNES 94 sequence
 .6	dc.w	712,6,713,6,714,20,713,6,712,6,658,-8
 .7	dc.w	715,6,716,6,717,20,716,6,715,6,660,-8
 
-SPAextra16	= *-SPAList	; SNES 94 sequence
+SPAgcover	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra16)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -243,7 +243,7 @@ SPAextra16	= *-SPAList	; SNES 94 sequence
 .6	dc.w	712,6,713,6,714,90,713,6,712,6,658,-4
 .7	dc.w	715,6,716,6,717,90,716,6,715,6,660,-4
 
-SPAextra17	= *-SPAList	; SNES 94 sequence
+SPAgbutterfly	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra17)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -256,7 +256,7 @@ SPAextra17	= *-SPAList	; SNES 94 sequence
 .6	dc.w	736,6,737,6,738,20,658,-4
 .7	dc.w	739,6,740,6,741,20,660,-4
 
-SPAextra18	= *-SPAList	; SNES 94 sequence
+SPAgsprawll	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra18)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -269,7 +269,7 @@ SPAextra18	= *-SPAList	; SNES 94 sequence
 .6	dc.w	760,4,761,4,762,20,658,-4
 .7	dc.w	763,4,764,4,765,20,660,-4
 
-SPAextra19	= *-SPAList	; SNES 94 sequence
+SPAgsprawlr	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra19)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -282,7 +282,7 @@ SPAextra19	= *-SPAList	; SNES 94 sequence
 .6	dc.w	784,4,785,4,786,20,658,-4
 .7	dc.w	787,4,788,4,789,20,660,-4
 
-SPAextra20	= *-SPAList	; SNES 94 sequence
+SPAwallright	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra20)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,$8000
 	dc.w	0
@@ -294,7 +294,7 @@ SPAextra20	= *-SPAList	; SNES 94 sequence
 .5	dc.w	364,8,363,8,362,8,361,-8
 .6	dc.w	364,8,363,8,362,8,361,-8
 
-SPAextra21	= *-SPAList	; SNES 94 sequence
+SPAwallleft	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra21)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,$8000
 	dc.w	0
@@ -358,7 +358,7 @@ SPAskate	= *-SPAList	; (93G $5F0)
 .6	dc.w	72,10,73,10,74,10,75,10,71,-15
 .7	dc.w	77,10,78,10,79,10,80,10,76,-15
 
-SPAextra22	= *-SPAList	; SNES 94 sequence
+SPAturnl	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra22)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -371,7 +371,7 @@ SPAextra22	= *-SPAList	; SNES 94 sequence
 .6	dc.w	87,-12
 .7	dc.w	88,-12
 
-SPAextra23	= *-SPAList	; SNES 94 sequence
+SPAturnr	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra23)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -449,7 +449,7 @@ SPAshotb	= *-SPAList	; backhand shot (93G $94E)
 .6	dc.w	136,4,137,4,138,4,138,4,137,0,136,0,135,0,134,-20
 .7	dc.w	142,4,143,4,144,4,144,4,143,0,142,0,141,0,140,-20
 
-SPAextra24	= *-SPAList	; SNES 94 sequence
+SPAonetimerf	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra24)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -462,7 +462,7 @@ SPAextra24	= *-SPAList	; SNES 94 sequence
 .6	dc.w	134,55,135,2,136,2,137,2,138,-20
 .7	dc.w	140,55,141,2,142,2,143,2,144,-20
 
-SPAextra25	= *-SPAList	; SNES 94 sequence
+SPAonetimerb	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra25)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -488,7 +488,7 @@ SPAglideback	= *-SPAList	; (93G $A80)
 .6	dc.w	179,-8
 .7	dc.w	182,-8
 
-SPAextra26	= *-SPAList	; SNES 94 sequence
+SPAskateback	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra26)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -501,7 +501,7 @@ SPAextra26	= *-SPAList	; SNES 94 sequence
 .6	dc.w	179,8,180,8,179,8,181,-8
 .7	dc.w	182,8,183,8,182,8,184,-8
 
-SPAextra27	= *-SPAList	; SNES 94 sequence
+SPAcrosscheck	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra27)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -605,7 +605,7 @@ SPAHold	= *-SPAList	; hold (93G $CB0)
 .6	dc.w	359,-30
 .7	dc.w	360,-30
 
-SPAextra28	= *-SPAList	; SNES 94 sequence
+SPAHold2	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra28)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -618,7 +618,7 @@ SPAextra28	= *-SPAList	; SNES 94 sequence
 .6	dc.w	359,-72
 .7	dc.w	360,-72
 
-SPAextra29	= *-SPAList	; SNES 94 sequence
+SPAhook2	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra29)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -631,7 +631,7 @@ SPAextra29	= *-SPAList	; SNES 94 sequence
 .6	dc.w	493,18,494,18,493,18,494,-18
 .7	dc.w	495,18,496,18,495,18,496,-18
 
-SPAextra30	= *-SPAList	; SNES 94 sequence
+SPAflail	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra30)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -644,7 +644,7 @@ SPAextra30	= *-SPAList	; SNES 94 sequence
 .6	dc.w	71,-90
 .7	dc.w	76,-90
 
-SPAfallback	= *-SPAList	; (93G $DF8)
+SPAfallfwd	= *-SPAList	; named as in the NHL94SNES source (was SPAfallback)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -657,7 +657,7 @@ SPAfallback	= *-SPAList	; (93G $DF8)
 .6	dc.w	337,6,338,6,339,100,340,8,351,-8
 .7	dc.w	341,6,342,6,343,100,344,8,352,-8
 
-SPAextra31	= *-SPAList	; SNES 94 sequence
+SPAfallback	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra31)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -670,7 +670,7 @@ SPAextra31	= *-SPAList	; SNES 94 sequence
 .6	dc.w	305,6,306,6,307,100,308,8,351,-8
 .7	dc.w	309,6,310,6,311,100,312,8,352,-8
 
-SPAextra32	= *-SPAList	; SNES 94 sequence
+SPAfaceoff	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra32)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -683,7 +683,7 @@ SPAextra32	= *-SPAList	; SNES 94 sequence
 .6	dc.w	21,2,274,10,273,-6
 .7	dc.w	21,2,274,10,273,-6
 
-SPAextra33	= *-SPAList	; SNES 94 sequence
+SPAfaceoffr	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra33)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -696,7 +696,7 @@ SPAextra33	= *-SPAList	; SNES 94 sequence
 .6	dc.w	21,-5
 .7	dc.w	21,-5
 
-SPAextra34	= *-SPAList	; SNES 94 sequence
+SPAsiren	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra34)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	1
@@ -709,7 +709,7 @@ SPAextra34	= *-SPAList	; SNES 94 sequence
 .6	dc.w	409,3,410,3,411,3,412,3,413,3,414,3,415,3,416,3,417,3,418,3,419,3,420,3,421,3,422,-3
 .7	dc.w	409,3,410,3,411,3,412,3,413,3,414,3,415,3,416,3,417,3,418,3,419,3,420,3,421,3,422,-3
 
-SPAextra35	= *-SPAList	; SNES 94 sequence
+SPAstanley	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra35)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	1
@@ -722,7 +722,7 @@ SPAextra35	= *-SPAList	; SNES 94 sequence
 .6	dc.w	223,-30
 .7	dc.w	224,-30
 
-SPAextra36	= *-SPAList	; SNES 94 sequence
+SPAflip	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra36)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -735,7 +735,7 @@ SPAextra36	= *-SPAList	; SNES 94 sequence
 .6	dc.w	453,6,454,6,455,6,456,6,307,100,308,8,351,-8
 .7	dc.w	449,6,450,6,451,6,452,6,311,100,312,8,352,-8
 
-SPAextra37	= *-SPAList	; SNES 94 sequence
+SPAstumble	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra37)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -748,7 +748,7 @@ SPAextra37	= *-SPAList	; SNES 94 sequence
 .6	dc.w	475,6,476,6,477,8,476,6,475,-6
 .7	dc.w	478,6,479,6,480,8,479,6,478,-6
 
-SPAextra38	= *-SPAList	; SNES 94 sequence
+SPAhook	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra38)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -761,7 +761,7 @@ SPAextra38	= *-SPAList	; SNES 94 sequence
 .6	dc.w	493,-30
 .7	dc.w	495,-30
 
-SPAextra39	= *-SPAList	; SNES 94 sequence
+SPAcatch	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra39)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -774,7 +774,7 @@ SPAextra39	= *-SPAList	; SNES 94 sequence
 .6	dc.w	509,6,510,-6
 .7	dc.w	511,6,512,-6
 
-SPAextra40	= *-SPAList	; SNES 94 sequence
+SPAbglass	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra40)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -787,7 +787,7 @@ SPAextra40	= *-SPAList	; SNES 94 sequence
 .6	dc.w	513,8,514,8,515,8,516,8,517,-1000
 .7	dc.w	513,8,514,8,515,8,516,8,517,-1000
 
-SPAextra41	= *-SPAList	; SNES 94 sequence
+SPAinjury1	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra41)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -826,7 +826,7 @@ SPApump	= *-SPAList	; Scorer pump (93 SNES SPApump vblank list; was SPAextra43)
 .6	dc.w	213,8,214,8,213,-8
 .7	dc.w	215,8,216,8,215,-8
 
-SPAextra44	= *-SPAList	; SNES 94 sequence
+SPApump2	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra44)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -839,7 +839,7 @@ SPAextra44	= *-SPAList	; SNES 94 sequence
 .6	dc.w	197,5,198,20,197,5,813,5,814,10,815,5,816,5,814,5,815,5,816,5,814,5,815,5,816,5,813,5,31,-5
 .7	dc.w	215,5,199,5,200,15,199,5,817,5,818,15,819,5,820,5,818,10,817,5,215,5,36,1,36,1,36,1,36,-2
 
-SPAextra45	= *-SPAList	; SNES 94 sequence
+SPAboardfront	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra45)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -852,7 +852,7 @@ SPAextra45	= *-SPAList	; SNES 94 sequence
 .6	dc.w	844,6,845,6,846,6,847,75,340,-6
 .7	dc.w	844,6,845,6,846,6,847,75,340,-6
 
-SPAextra46	= *-SPAList	; SNES 94 sequence
+SPAboardback	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra46)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -865,7 +865,7 @@ SPAextra46	= *-SPAList	; SNES 94 sequence
 .6	dc.w	876,6,877,6,878,6,879,75,308,-6
 .7	dc.w	876,6,877,6,878,6,879,75,308,-6
 
-SPAextra47	= *-SPAList	; SNES 94 sequence
+SPAboardright	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra47)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -878,7 +878,7 @@ SPAextra47	= *-SPAList	; SNES 94 sequence
 .6	dc.w	860,6,861,6,862,6,863,75,312,-6
 .7	dc.w	860,6,861,6,862,6,863,75,312,-6
 
-SPAextra48	= *-SPAList	; SNES 94 sequence
+SPAboardleft	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra48)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -891,7 +891,7 @@ SPAextra48	= *-SPAList	; SNES 94 sequence
 .6	dc.w	892,6,893,6,894,6,895,75,336,-6
 .7	dc.w	892,6,893,6,894,6,895,75,336,-6
 
-SPAextra49	= *-SPAList	; SNES 94 sequence
+SPAbenchcheckr	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra49)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -904,7 +904,7 @@ SPAextra49	= *-SPAList	; SNES 94 sequence
 .6	dc.w	911,10,912,10,915,10,915,90,916,-20
 .7	dc.w	911,10,912,10,915,10,915,90,916,-20
 
-SPAextra50	= *-SPAList	; SNES 94 sequence
+SPAbenchcheckl	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra50)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -917,7 +917,7 @@ SPAextra50	= *-SPAList	; SNES 94 sequence
 .6	dc.w	913,10,914,10,915,10,915,90,916,-20
 .7	dc.w	913,10,914,10,915,10,915,90,916,-20
 
-SPAextra51	= *-SPAList	; SNES 94 sequence
+SPAunused1	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra51)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -930,7 +930,7 @@ SPAextra51	= *-SPAList	; SNES 94 sequence
 .6	dc.w	179,6,824,6,825,15,826,6,824,6,31,-6
 .7	dc.w	179,6,824,6,825,15,826,6,824,6,31,-6
 
-SPAextra52	= *-SPAList	; SNES 94 sequence
+SPAunused2	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra52)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
@@ -943,7 +943,7 @@ SPAextra52	= *-SPAList	; SNES 94 sequence
 .6	dc.w	179,6,824,15,830,15,831,15,830,15,831,15,824,10,179,-6
 .7	dc.w	179,6,824,15,830,15,831,15,830,15,831,15,824,10,179,-6
 
-SPAextra53	= *-SPAList	; SNES 94 sequence
+SPAunused3	= *-SPAList	; SNES 94 sequence, named as in the NHL94SNES source (was SPAextra53)
 .t
 	dc.w	.0-.t,.1-.t,.2-.t,.3-.t,.4-.t,.5-.t,.6-.t,.7-.t
 	dc.w	0
