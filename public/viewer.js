@@ -1002,7 +1002,7 @@ function renderImageList(box, q) {
     ? [{ label: '', items: visible }]
     : IMAGE_ORDER.concat(extra).filter((group) => groups.has(group)).map((group) => ({ label: group, items: groups.get(group) }));
   openSelectedGroup(sections, (image) => image.id === state.image);
-  const nested96 = gameInfo && gameInfo.id === 'nhl96pc' && state.sort !== 'file';
+  const nested96 = gameInfo && (gameInfo.id === 'nhl96pc' || gameInfo.id === 'nhl97pc') && state.sort !== 'file';
   const packKeyOf = (image) => (image.group || '') + '\x1f' + (image.pack || '');
   if (nested96) {
     const sel = visible.find((image) => image.id === state.image);
