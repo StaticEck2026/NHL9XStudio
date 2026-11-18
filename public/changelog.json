@@ -1,6 +1,13 @@
 {
   "releases": [
     {
+      "version": "1.40.0",
+      "date": "2026-11-18",
+      "changes": [
+        "NHL 95 (Genesis): the two Game Set Up pictures are named and labelled like NHL 94 (GameSetUp95-1 and GameSetUp95-2, labels Game Set Up 1 and 2). The NHL95Genesis extracted files use the same names"
+      ]
+    },
+    {
       "version": "1.39.0",
       "date": "2026-11-18",
       "changes": [
