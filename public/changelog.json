@@ -1,6 +1,13 @@
 {
   "releases": [
     {
+      "version": "1.34.0",
+      "date": "2026-11-18",
+      "changes": [
+        "NHL 95 (SNES) is in the Game menu: open nhl95snes.sfc to see its player frames, with the game's own SPF groups and its 59 SPA sequences (named as in the NHL95SNES source), the goalies, the puck flip, and every team's home and away jersey read from the ROM"
+      ]
+    },
+    {
       "version": "1.33.2",
       "date": "2026-11-18",
       "changes": [

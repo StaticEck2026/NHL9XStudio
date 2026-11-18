@@ -277,6 +277,7 @@ assert.strictEqual(paletteParts('NYIh.snespal', 'nhl94snes').label, 'New York I 
 assert.strictEqual(paletteParts('NYRv.snespal', 'nhl94snes').label, 'New York R · away');
 assert.strictEqual(paletteParts('FLAh.snespal', 'nhl94snes').label, 'Florida · home');
 assert.strictEqual(paletteParts('ANHv.snespal', 'nhl94snes').label, 'Anaheim · away');
+assert.strictEqual(paletteParts('NYRh.snespal', 'nhl95snes').label, 'New York R · home');
 assert.strictEqual(paletteParts('islandersh.pal', 'nhl95').label, 'Long Island · home');
 assert.strictEqual(paletteLabel('ASEh.snespal'), 'All-Star East · home');
 assert.strictEqual(defaultPaletteFile(['bruinsv.pal', 'sabresv.pal', 'sabresh.pal']), 'sabresh.pal');
@@ -409,9 +410,9 @@ assert.strictEqual(snes94frame.pixels[0], 1);
 
 assert.strictEqual(APP_NAME, 'NHL9X Studio');
 
-assert.strictEqual(GAMES.length, 11);
+assert.strictEqual(GAMES.length, 12);
 const staticManifest = buildManifest();
-assert.strictEqual(staticManifest.length, 11);
+assert.strictEqual(staticManifest.length, 12);
 assert.strictEqual(staticManifest.find((game) => game.id === 'nhl92').pixels, true);
 assert.strictEqual(staticManifest.find((game) => game.id === 'nhl94').pixels, false);
 // The static site has no sibling ANIM-To-BMP checkouts: every Genesis game lists its team palettes from data/pals, each a 32-byte CRAM line.
@@ -446,6 +447,10 @@ for (const id of ['title', 'titlegoalie', 'titlepuck', 'easports', 'eabackdrop',
 const snes94game = GAMES.find((game) => game.id === 'nhl94snes');
 assert.ok(snes94game.images.some((image) => image.id === 'scout' && image.map === snes94game.images.find((image) => image.id === 'eabackdrop').map));
 assert.strictEqual(snes94game.images.find((image) => image.id === 'title').palette, 0x9AE0D5);
+
+const snes95game = GAMES.find((game) => game.id === 'nhl95snes');
+assert.ok(snes95game && snes95game.kind === 'snes95' && snes95game.platform === 'snes' && snes95game.source === 'NHL95SNES');
+assert.strictEqual(snes95game.romBytes, 0x100000);
 
 const pa93 = GAMES.find((game) => game.id === 'nhlpa93');
 const g94 = GAMES.find((game) => game.id === 'nhl94');
@@ -991,6 +996,8 @@ const romDetectBuf93 = Buffer.alloc(0x80000, 0);
 romDetectBuf93.write('SEGA', 0x100);
 assert.strictEqual(romDetect.detect('NHLPA93.bin', romDetectBuf93).id, 'nhlpa93');
 assert.strictEqual(romDetect.detect('NHL94.sfc', Buffer.alloc(0x100000, 0)).id, 'nhl94snes');
+assert.strictEqual(romDetect.detect('NHL95.sfc', Buffer.alloc(0x100000, 0)).id, 'nhl95snes');
+assert.strictEqual(romDetect.detect('nhl95snes.sfc', Buffer.alloc(0x100000, 0)).id, 'nhl95snes');
 const romDetectBuf95 = Buffer.alloc(0x200000, 0);
 romDetectBuf95.write('SEGA', 0x100);
 romDetectBuf95.write('1994.JUL', 0x118);
