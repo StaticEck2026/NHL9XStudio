@@ -33,11 +33,12 @@ const PC_DIRS = {
   // NHL_PC95_DIR / NHL_PC94_DIR / NHL_PC96_DIR point at an installed game folder instead of pc95/ / pc94/ / pc96/ here.
   pc95: process.env.NHL_PC95_DIR ? path.resolve(process.env.NHL_PC95_DIR) : path.join(ROOT, 'pc95'),
   pc94: process.env.NHL_PC94_DIR ? path.resolve(process.env.NHL_PC94_DIR) : path.join(ROOT, 'pc94'),
-  pc96: process.env.NHL_PC96_DIR ? path.resolve(process.env.NHL_PC96_DIR) : path.join(ROOT, 'pc96')
+  pc96: process.env.NHL_PC96_DIR ? path.resolve(process.env.NHL_PC96_DIR) : path.join(ROOT, 'pc96'),
+  pc97: process.env.NHL_PC97_DIR ? path.resolve(process.env.NHL_PC97_DIR) : path.join(ROOT, 'pc97')
 };
 
 function isPcKind(kind) {
-  return kind === 'pc95' || kind === 'pc94' || kind === 'pc96';
+  return kind === 'pc95' || kind === 'pc94' || kind === 'pc96' || kind === 'pc97';
 }
 const BANKS = new Set(['Sprites.anim', 'Puck.anim', 'Crowd.anim', 'Zam.anim']);
 
@@ -146,12 +147,13 @@ function readRom(file, game) {
   return buf;
 }
 
-const pcCatalogCache = { pc95: null, pc94: null, pc96: null };
-const pcStampCache = { pc95: '', pc94: '', pc96: '' };
-const pcIsoCache = { pc95: null, pc96: null };
-const pcIsoStamp = { pc95: '', pc96: '' };
+const pcCatalogCache = { pc95: null, pc94: null, pc96: null, pc97: null };
+const pcStampCache = { pc95: '', pc94: '', pc96: '', pc97: '' };
+const pcIsoCache = { pc95: null, pc96: null, pc97: null };
+const pcIsoStamp = { pc95: '', pc96: '', pc97: '' };
 const PC_ISO_NAMES = {
   pc96: ['nhl96pc.iso', 'nhl96pc.img', 'nhl96.iso', 'nhl96.img'],
+  pc97: ['nhl97pc.iso', 'nhl97pc.img', 'nhl97.iso', 'nhl97.img'],
   pc95: ['nhl95pc.iso', 'nhl95pc.img', 'nhl95.iso', 'nhl95.img']
 };
 
@@ -168,7 +170,7 @@ function isoYear(iso) {
   if (!iso || !pc95.pcYearOf) return 0;
   const names = iso.names();
   const year = pc95.pcYearOf(names);
-  if (year === 96 && names.some((rel) => /\.(fsh|asf|vsh|qvs|viv)$/i.test(rel))) return 96;
+  if (year === 96 && names.some((rel) => /\.(fsh|asf|vsh|qvs|viv)$/i.test(rel))) return pc95.isNhl97 && pc95.isNhl97(names) ? 97 : 96;
   if (year === 95 && names.some((rel) => /\.(ppv|qfs|kms)$/i.test(rel) || /homepals/i.test(rel))) return 95;
   if (year === 94 && names.some((rel) => /\.qpp$/i.test(rel))) return 94;
   return 0;
@@ -182,7 +184,7 @@ function findPcIso(kind) {
     const hit = names.find((name) => name.toLowerCase() === want);
     if (hit) return path.join(ROM_DIR, hit);
   }
-  const wantYear = kind === 'pc96' ? 96 : (kind === 'pc95' ? 95 : 0);
+  const wantYear = kind === 'pc97' ? 97 : (kind === 'pc96' ? 96 : (kind === 'pc95' ? 95 : 0));
   if (!wantYear) return null;
   for (const name of names) {
     if (!/\.(iso|img)$/i.test(name)) continue;
@@ -198,7 +200,7 @@ function findPcIso(kind) {
 }
 
 function openPcIso(kind) {
-  if (kind !== 'pc95' && kind !== 'pc96') return null;
+  if (kind !== 'pc95' && kind !== 'pc96' && kind !== 'pc97') return null;
   const file = findPcIso(kind);
   if (!file) return null;
   const stat = fs.statSync(file);
@@ -379,7 +381,7 @@ function gameStatus(game) {
       ? { images: game.images || [], sheet: game.sheet || null, banks: game.kind === 'sheet' ? sheetGameBanks(game.images || []) : game.banks }
       : null,
     snes: game.snes || null,
-    romHint: game.kind === 'pc95' ? 'pc95/ or roms/nhl95.iso' : (game.kind === 'pc94' ? 'pc94/' : (game.kind === 'pc96' ? 'pc96/ or roms/nhl96.iso' : (game.disc ? 'roms/' + game.disc.names[0] : (game.romNames.length ? 'roms/' + game.romNames[0] : null)))),
+    romHint: game.kind === 'pc95' ? 'pc95/ or roms/nhl95.iso' : (game.kind === 'pc94' ? 'pc94/' : (game.kind === 'pc96' ? 'pc96/ or roms/nhl96.iso' : (game.kind === 'pc97' ? 'pc97/ or roms/nhl97.iso' : (game.disc ? 'roms/' + game.disc.names[0] : (game.romNames.length ? 'roms/' + game.romNames[0] : null))))),
     pcAudio: pc && pc.audio ? pc.audio : undefined
   };
 }
