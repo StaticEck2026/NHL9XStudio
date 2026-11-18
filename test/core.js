@@ -409,9 +409,9 @@ assert.strictEqual(snes94frame.pixels[0], 1);
 
 assert.strictEqual(APP_NAME, 'NHL9X Studio');
 
-assert.strictEqual(GAMES.length, 10);
+assert.strictEqual(GAMES.length, 11);
 const staticManifest = buildManifest();
-assert.strictEqual(staticManifest.length, 10);
+assert.strictEqual(staticManifest.length, 11);
 assert.strictEqual(staticManifest.find((game) => game.id === 'nhl92').pixels, true);
 assert.strictEqual(staticManifest.find((game) => game.id === 'nhl94').pixels, false);
 // The static site has no sibling ANIM-To-BMP checkouts: every Genesis game lists its team palettes from data/pals, each a 32-byte CRAM line.
