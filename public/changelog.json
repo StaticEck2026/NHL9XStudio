@@ -1,6 +1,14 @@
 {
   "releases": [
     {
+      "version": "1.39.0",
+      "date": "2026-11-18",
+      "changes": [
+        "NHL 95 and NHL 96 (Genesis): pictures that do the same job as in NHL 94 now have the same name and label, for example Ice Rink (IceRink95, IceRink96), Refs, Hot, Cold, Crowd, Face Off, Framer, Energy Bar, Ron Barr, Team Blocks, Arrows, Big Font, Small Font and Title. The NHL95Genesis and NHL96Genesis extracted files use the same names",
+        "NHL 94 (Genesis): the picture once labelled Mark Lesser is labelled Hi Score Img"
+      ]
+    },
+    {
       "version": "1.38.0",
       "date": "2026-11-18",
       "changes": [
@@ -26,13 +34,15 @@
         "NHL 97 (PC) is in the Game menu: put the disc at roms/nhl97.iso (or an install in pc97/, or drop the folder) to browse its pictures, the SHPI FSH files in the DATA and GAMEDATA VIV packs: menu art, logos, trophies, faces, masks, arena and the per-team uniform packs. Shapes that carry their own palette now show it",
         "The players in NHL 97 are polygon models, so there are no sprite frames or SPA sequences to show"
       ]
-    },    {
+    },
+    {
       "version": "1.35.0",
       "date": "2026-11-18",
       "changes": [
         "NHL 95 (SNES): the Images tab lists 22 pictures read from the ROM, named as in the NHL95SNES source: the eight award trophies, the title screens, the pause screen, the playoff bracket and team name bars, the referees, the ice rink, the Stanley Cup and the developer credits"
       ]
-    },    {
+    },
+    {
       "version": "1.34.0",
       "date": "2026-11-18",
       "changes": [

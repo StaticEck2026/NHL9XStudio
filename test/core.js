@@ -496,7 +496,7 @@ for (const slice of EXTRACT95_RETAIL) {
 const EXTRACT96_RETAIL = [
   { id: 'Crowd.anim', start: 1288854, end: 1293488 },
   { id: 'FaceOff.anim', start: 1293488, end: 1299088 },
-  { id: 'TitleScreenImg.map.jim', start: 559640, end: 586438 },
+  { id: 'Title96-1.map.jim', start: 559640, end: 586438 },
   { id: 'TeamLogoANH.map.jim', start: 1374624, end: 1378958 }
 ];
 for (const slice of EXTRACT96_RETAIL) {
@@ -514,7 +514,7 @@ assert.ok(g96.images.some((image) => image.id === 'MainMenuSprites.map.jim' && i
 assert.ok(g96.images.some((image) => image.id === 'TeamLogoANH.map.jim' && image.paletteAt === 0x1D93C8));
 assert.ok(g96.images.some((image) => image.id === 'SmallLogoANH.map.jim' && image.paletteAt === 0x1D93C8));
 assert.ok(g96.images.some((image) => image.id === 'PuckAnimMap.map.jim' && image.stripHeight === 56));
-assert.ok(g96.images.some((image) => image.id === 'RevRinkTilelist.bin' && image.tilesFrom === 'Rinktilelist.map.jim'));
+assert.ok(g96.images.some((image) => image.id === 'IceRink96Reverse.map.jim' && image.tilesFrom === 'IceRink96.map.jim'));
 assert.ok(!g96.images.some((image) => /revframetbl/i.test(image.id)));
 assert.strictEqual(g96.sheet.sprites, 0x9aa9e);
 assert.strictEqual(g96.palettes, '96');
@@ -724,8 +724,8 @@ if (genesis96) {
   assert.strictEqual(puck.numFrames, 8);
   assert.strictEqual(puck.renderFrame(1).width, 56);
   assert.strictEqual(puck.renderFrame(1).height, 56);
-  const revSpec = g96.images.find((image) => image.id === 'RevRinkTilelist.bin');
-  const iceSpec = g96.images.find((image) => image.id === 'Rinktilelist.map.jim');
+  const revSpec = g96.images.find((image) => image.id === 'IceRink96Reverse.map.jim');
+  const iceSpec = g96.images.find((image) => image.id === 'IceRink96.map.jim');
   const rev = decodeTileMap(
     genesis96.subarray(revSpec.start, revSpec.end),
     genesis96.subarray(iceSpec.start, iceSpec.end)

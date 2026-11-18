@@ -2300,7 +2300,7 @@ const icePalettes = new Map();
 async function icePaletteBytes() {
   if (!gameInfo) return null;
   if (icePalettes.has(gameInfo.id)) return icePalettes.get(gameInfo.id);
-  const image = (gameInfo.images || []).find((item) => item.kind === 'jim' && /^(IceRink|Rinktilelist)/i.test(item.id));
+  const image = (gameInfo.images || []).find((item) => item.kind === 'jim' && /^IceRink/i.test(item.id));
   if (!image) {
     icePalettes.set(gameInfo.id, null);
     return null;
