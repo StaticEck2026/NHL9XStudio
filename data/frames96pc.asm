@@ -854,7 +854,7 @@ SPAboxsitep	=	*-SPAlist	; 9 step, EXE spa 0x441, flags 0x0
 	dc.w	6,2295,-6,16,8,2240,6,2248,6,2256,6,2264
 	dc.w	6,2272,6,2280,6,2288,6,2296,-6
 
-SPAskateback	=	*-SPAlist	; 8-facing cycle, EXE spa 0x455, flags 0x0
+SPAskatebox	=	*-SPAlist	; player skating to the penalty box after a fight, 8-facing cycle, EXE spa 0x455, flags 0x0
 	dc.w	18,50,82,114,146,178,210,242,0,2830,4,2838
 	dc.w	4,2846,4,2854,4,2862,4,2870,4,2878,4,2886
 	dc.w	-4,2831,4,2839,4,2847,4,2855,4,2863,4,2871
@@ -868,7 +868,7 @@ SPAskateback	=	*-SPAlist	; 8-facing cycle, EXE spa 0x455, flags 0x0
 	dc.w	-4,2837,4,2845,4,2853,4,2861,4,2869,4,2877
 	dc.w	4,2885,4,2893,-4
 
-SPAglideback	=	*-SPAlist	; held pose, EXE spa 0x467, flags 0x0
+SPAglidebox	=	*-SPAlist	; the same skate to the box as one held frame, EXE spa 0x467, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,2830,-4,2831
 	dc.w	-4,2832,-4,2833,-4,2834,-4,2835,-4,2836,-4,2837
 	dc.w	-4

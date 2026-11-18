@@ -34,7 +34,7 @@ function soundTestViewFor(info) {
  * games. NHL 92's audio is the Sound test (the retail driver chain).
  */
 function hasAudioTab(info) {
-  return !!(info && info.platform === 'genesis' && info.id !== 'nhl92' && info.id !== 'nhlpa93' && info.id !== 'nhl94' && info.id !== 'nhl95' && info.id !== 'nhl96');
+  return !!(info && info.platform === 'genesis' && info.id !== 'nhl92' && info.id !== 'nhlpa93' && info.id !== 'nhl94' && info.id !== 'nhl95' && info.id !== 'nhl96' && info.id !== 'nhl94cd');
 }
 
 /** The Sound test panel replaces the sprite stage: its view module and selection key in state. */
