@@ -52,3 +52,22 @@ console.log('pc97 ok');
   const out = pcm.decode(Uint8Array.from([0x80, 0x85, 0x05, 0xff, 0x90]));
   assert.deepStrictEqual(Array.from(out), [0, 5, 251], 'Sega CD PCM decode');
 }
+
+// NHL 97 .KSF speech banks: offset table, then streams of bare IMA ADPCM.
+{
+  const asf = require('../lib/audio/pc96-asf');
+  const stream = (channels, frames, dataBytes) => {
+    const b = Buffer.alloc(0x60 + dataBytes);
+    b.write('PATl', 4); b.write('TMpl', 60); b[66] = channels; b.writeUInt16LE(22050, 70); b.writeUInt32LE(frames, 72);
+    return b;
+  };
+  const a = stream(2, 100, 100), m = stream(1, 100, 50);
+  const head = Buffer.alloc(4 + 3 * 4);
+  head.writeUInt32LE(3, 0); head.writeUInt32LE(16, 4); head.writeUInt32LE(16 + a.length, 8); head.writeUInt32LE(16 + a.length + m.length, 12);
+  const file = new Uint8Array(Buffer.concat([head, a, m]));
+  const list = asf.ksfStreams(file);
+  assert.strictEqual(list.length, 2, 'KSF stream count');
+  assert.deepStrictEqual([list[0].channels, list[1].channels, list[0].frames], [2, 1, 100]);
+  assert.strictEqual(asf.parseKsfStream(file, list[0]).pcm.length, 400, 'stereo KSF stream');
+  assert.strictEqual(asf.parseKsfStream(file, list[1]).pcm.length, 200, 'mono KSF stream');
+}

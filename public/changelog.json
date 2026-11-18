@@ -1,6 +1,14 @@
 {
   "releases": [
     {
+      "version": "1.39.0",
+      "date": "2026-11-18",
+      "changes": [
+        "NHL 97 (PC) Audio tab now has the announcer speech: the AUDSPK1, AUDSPK2 and AUDSPK3 banks (and the German G banks), one entry per line, played or saved as WAV. The sound effects (AUDSFX.VIV) and the play-by-play packs (AUDPBP1 and 2) are not decoded yet",
+        "NHL 97 (PC) song names now read Ditty, Menu song, Goal horn, and the Audio tab lists them by group"
+      ]
+    },
+    {
       "version": "1.38.0",
       "date": "2026-11-18",
       "changes": [

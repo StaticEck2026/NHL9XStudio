@@ -124,6 +124,51 @@
     return buf;
   }
 
+  /** Speech clips whose bytes are fetched on first use: Sega CD .PCM files and NHL 97 .KSF streams. */
+  async function loadLazyClip(rec) {
+    if (!rec || rec.clip) return rec && rec.clip;
+    const host = filesHost();
+    const base = (host && host.baseUrl) || '';
+    if (rec.pcmName) {
+      const res = await fetch(base + '/api/games/' + gameOf() + '/pcm?name=' + encodeURIComponent(rec.pcmName));
+      if (!res.ok) throw new Error(rec.pcmName + ' not on the disc');
+      rec.clip = { pcm: new Uint8Array(await res.arrayBuffer()), rate: rec.rate, vol: 0x7F, length: 0, name: rec.pcmName };
+    } else if (rec.ksf) {
+      let bytes = null;
+      let info = rec.ksf.info;
+      if (host && host.map && host.map.has(rec.ksf.rel)) {
+        bytes = await readRel(rec.ksf.rel);
+      } else {
+        const res = await fetch(base + '/api/games/' + gameOf() + '/ksf?path=' + encodeURIComponent(rec.ksf.rel) + '&n=' + info.index);
+        if (!res.ok) throw new Error(rec.name + ' not found');
+        bytes = new Uint8Array(await res.arrayBuffer());
+        info = Object.assign({}, info, { start: 0, end: bytes.length });
+      }
+      if (!bytes || !root.NhlPc96Asf) throw new Error('KSF decoder missing');
+      const parsed = root.NhlPc96Asf.parseKsfStream(bytes, info);
+      const f = root.NhlPc96Asf.toPlaybackFloat32(parsed, 1);
+      const pcm = new Int16Array(f.length);
+      for (let i = 0; i < f.length; i++) pcm[i] = Math.round(Math.max(-1, Math.min(1, f[i])) * 32767);
+      rec.clip = { pcm, rate: parsed.rate, vol: 0x7F, length: pcm.length, name: rec.name };
+    }
+    return rec.clip;
+  }
+
+  /** The stream table of a KSF bank: from the folder the page holds, else from the server (a bank can be 100 MB). */
+  async function listKsf(rel) {
+    const host = filesHost();
+    if (host && host.map && host.map.has(rel)) {
+      const buf = await readRel(rel);
+      return buf && root.NhlPc96Asf ? root.NhlPc96Asf.ksfStreams(buf) : [];
+    }
+    try {
+      const res = await fetch(((host && host.baseUrl) || '') + '/api/games/' + gameOf() + '/ksf?path=' + encodeURIComponent(rel));
+      return res.ok ? await res.json() : [];
+    } catch (err) {
+      return [];
+    }
+  }
+
   async function ensure() {
     if (catalog && (catalog.songs.length || catalog.samples.length || (catalog.speech && catalog.speech.length) || (catalog.digital && catalog.digital.length))) return true;
     if (loading) return loading;
@@ -158,7 +203,7 @@
         group: groupOf(s.stem),
         label: labelOf(s.stem),
         sub: s.asf
-          ? s.stem + '.ASF · 1SN PCM'
+          ? s.stem + '.ASF · ' + (is97() ? 'EA ADPCM' : '1SN PCM')
           : s.stem + '.KMS' + (/^MT/.test(s.stem) ? ' · MT-32' : ' · AdLib')
       })), CAT().songs);
       let samples = [];
@@ -179,6 +224,25 @@
       }
       const speech = [];
       const digital = [];
+      if (is97()) {
+        for (const rel of (audio.extra || []).filter((r) => /\.ksf$/i.test(r))) {
+          const bank = String(rel).split(/[\\/]/).pop().replace(/\.[^.]+$/, '');
+          const german = /G$/.test(bank);
+          for (const info of await listKsf(rel)) {
+            const name = bank + '-' + String(info.index + 1).padStart(3, '0');
+            const secs = info.frames && info.rate ? (info.frames / info.rate) : 0;
+            speech.push({
+              id: 'speech-' + name,
+              group: 'Speech ' + bank + (german ? ' (German)' : ''),
+              subgroup: '',
+              name: name,
+              label: 'Line ' + (info.index + 1),
+              sub: bank + '.KSF · ' + (info.channels === 1 ? 'mono' : 'stereo') + ' · ' + info.rate + ' Hz · ' + secs.toFixed(1) + ' s',
+              ksf: { rel, info }
+            });
+          }
+        }
+      }
       for (const e of audio.segaCdPcm || []) {
         const stem = e.name.replace(/\.[^.]+$/, '');
         speech.push({
@@ -194,7 +258,7 @@
       }
       if (root.NhlViv && audio.extra && audio.extra.length) {
         for (const rel of audio.extra) {
-          if (!/\.viv$/i.test(rel)) continue;
+          if (!/\.viv$/i.test(rel) || is97()) continue;
           const buf = await readRel(rel);
           if (!buf) continue;
           const packName = String(rel).split(/[\\/]/).pop();
@@ -606,12 +670,7 @@
     await ensure();
     if (id.startsWith('speech-') || id.startsWith('iff-')) {
       const rec = (catalog.speech || []).concat(catalog.digital || []).find((s) => s.id === id);
-      if (rec && rec.pcmName && !rec.clip) {
-        const host = filesHost();
-        const res = await fetch(((host && host.baseUrl) || '') + '/api/games/' + gameOf() + '/pcm?name=' + encodeURIComponent(rec.pcmName));
-        if (!res.ok) throw new Error(rec.pcmName + ' not on the disc');
-        rec.clip = { pcm: new Uint8Array(await res.arrayBuffer()), rate: rec.rate, vol: 0x7F, length: 0 };
-      }
+      if (rec && !rec.clip) await loadLazyClip(rec);
       if (!rec || !rec.clip) throw new Error('Unknown clip');
       const part = (opts && opts.part) || (id.startsWith('iff-') && rec.clip.repeat ? 'song' : 'once');
       const slice = id.startsWith('iff-') && root.NhlViv.iffSlice
@@ -833,13 +892,15 @@
       box.appendChild(make('p', 'st-note', 'This file is the Roland MT-32 version. Play still uses the AdLib (YM3812) path, so it will not match the MT-32.'));
     }
     box.appendChild(make('p', 'st-note', rec && rec.asf && is97()
-      ? 'EA ASF: an SCHl header (PATl and TMpl, the rate is at TMpl+10) then SCDl chunks. Each chunk is a count, then predictor and step index for left and right (16-bit each), then one byte per stereo frame (high nibble left, low nibble right) of standard IMA ADPCM; the next chunk starts from the previous one\'s end state. Speech (.KSF) and sound effects (.VIV) are not decoded yet.'
+      ? 'EA ASF: an SCHl header (PATl and TMpl, the rate is at TMpl+10) then SCDl chunks. Each chunk is a count, then predictor and step index for left and right (16-bit each), then one byte per stereo frame (high nibble left, low nibble right) of standard IMA ADPCM; the next chunk starts from the previous one\'s end state. Speech lines come from the .KSF banks.'
       : rec && rec.asf
       ? 'NHL96PC locateshape music: EA 1SNh / 1SNd chunks (HOCKEY.EXE four-byte ids). EACS+0x0A==2 is EA IMA ADPCM with a 20-byte block header per chunk (idx/pred reset); EACS+8 is bits, EACS+9 is channels. Codec 0 is signed 8-bit PCM (no IMA header). 1SNl loops. Not the 94/95 EACSNDF .KMS path. .BNK banks stay listed, not played.'
       : id.startsWith('iff-')
       ? 'NHL95PC sub_8F98F load + sub_8FB8E play. FORM 8SVX BODY is word_D7414 4-bit Fibonacci deltas (two samples per byte, acc starts 0) at the VHDR rate, volume 0x4C from MainDeskLoop. VHDR oneShotHiSamples then repeatHiSamples is an intro plus a looping tail (mixer loc_A92E6 when flag 1) — not verse/chorus branches. Play uses that loop the way the desk does. RIFF WAVE XOR 80h, then 8-bit unless the fmt bits field is 16. 94 PC has no IFF. Desk music, not announcer speech.'
       : id.startsWith('speech-')
-        ? (isCd()
+        ? (is97()
+          ? 'NHL 97 .KSF speech bank: a table of streams, each a PATl/TMpl header then bare IMA ADPCM from state zero (no chunk headers). Stereo is one byte per frame (high nibble left, low nibble right), mono is two samples per byte. Played as mono at the TMpl rate.'
+          : isCd()
           ? 'A .PCM file at the root of the disc: RF5C164 8-bit sign-magnitude (bit 7 set is positive, low 7 bits the size, FF ends the sample), mono, about 16.3 kHz. Team names, All-Star calls and Ron Barr speech. The CD music tracks are audio tracks and are not on the data track.'
           : is95()
           ? 'OpenSpeechBank / OpenAnnouncerBank on XBRUCE2.VIV (C0 FB like 94; count at +4). 47 FB (G) clips: ReadSpeechSample unpack + DPCM, mixer flag 0. Other clips (.NUM / .COR / .TEA / .PEN / .FRM rink calls): PlaceSpeechSlot + mixer flag 1 (loc_A91DA D7414, two samples per byte). Played at 11025 Hz. 95 has no XRBARR pack; NUM, COR, TEA, PEN, FRM, HOM, BAR, INT, … are subgroups of this file.'
@@ -912,7 +973,7 @@
           downloadBytes(safeName(rec.label) + '.wav', root.NhlWav.encode16(rendered.pcm, rendered.rate, 2), 'audio/wav');
           return safeName(rec.label) + '.wav';
         }
-        return exportClip(rec, 'once', 'wav');
+        return loadLazyClip(rec).then(() => exportClip(rec, 'once', 'wav'));
       });
     } else if (id.startsWith('song-') && rec && rec.asf) {
       addEx('Export WAV', '1SN signed 8-bit PCM as 16-bit WAV', () => exportSongWav(id).then(() => safeName(rec.stem) + '.wav'));
@@ -958,6 +1019,13 @@
   function metaRows(id) {
     const rec = entries().find((e) => e.id === id);
     const rows = [['Plays', rec ? rec.label : id]];
+    if (rec && rec.ksf) {
+      rows.push(['File', rec.ksf.rel.split('/').pop() + ' · stream ' + (rec.ksf.info.index + 1)]);
+      rows.push(['Rate', rec.ksf.info.rate + ' Hz, ' + (rec.ksf.info.channels === 1 ? 'mono' : 'stereo')]);
+      rows.push(['Path', '.KSF stream table → bare IMA ADPCM from state zero']);
+      rows.push(['Source', 'NHL 97 PC GAMEDATA']);
+      return rows;
+    }
     if (isCd() && rec && rec.pcmName) {
       rows.push(['File', rec.pcmName]);
       rows.push(['Rate', rec.rate + ' Hz']);
