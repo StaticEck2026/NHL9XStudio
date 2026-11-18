@@ -2399,7 +2399,7 @@ function handOffJim(payload) {
 
 function editorPlatform() {
   const kind = gameInfo && gameInfo.kind;
-  if (kind === 'snes93' || kind === 'snes94') return 'snes';
+  if (kind === 'snes93' || kind === 'snes94' || kind === 'snes95') return 'snes';
   return 'genesis';
 }
 
@@ -2607,14 +2607,18 @@ async function ensureBank(name) {
       bundle = new Uint8Array(await response.arrayBuffer());
     }
     parsed = Nhl95Pc.openSpriteBundle(bundle, gameInfo.id);
-  } else if (gameInfo.kind === 'snes93' || gameInfo.kind === 'snes94') {
+  } else if (gameInfo.kind === 'snes93' || gameInfo.kind === 'snes94' || gameInfo.kind === 'snes95') {
     if (!gameInfo.pixels) return null;
     const rom = await ensureRom();
     if (!rom) throw new Error('Could not load the ' + gameInfo.title + ' ROM');
-    const rink = await ensureRink();
-    parsed = gameInfo.kind === 'snes93'
-      ? Nhl92Snes.parse93(rom, gameInfo.snes, rink)
-      : Nhl92Snes.parse94(rom, gameInfo.snes, rink);
+    if (gameInfo.kind === 'snes95') {
+      parsed = Nhl95Snes.parse95(rom);
+    } else {
+      const rink = await ensureRink();
+      parsed = gameInfo.kind === 'snes93'
+        ? Nhl92Snes.parse93(rom, gameInfo.snes, rink)
+        : Nhl92Snes.parse94(rom, gameInfo.snes, rink);
+    }
   } else {
     return null;
   }
@@ -2888,6 +2892,16 @@ async function loadGame(id, keepSelection) {
     let rom94 = roms.get('nhl94snes');
     if (!rom94 && useApi) rom94 = await ensureRom();
     const fromRom = rom94 && Nhl92Snes.uniformPalettes(rom94);
+    if (fromRom && fromRom.length) {
+      for (const p of fromRom) paletteFiles.set(p.name, p.colors);
+      pals = fromRom.map((p) => p.name);
+    }
+  }
+  // 95 keeps its jerseys in the ROM too (AwayUniformPalettes / HomeUniformPalettes, 64 bytes a team).
+  if (info.id === 'nhl95snes' && typeof Nhl95Snes !== 'undefined') {
+    let rom95s = roms.get('nhl95snes');
+    if (!rom95s && useApi) rom95s = await ensureRom();
+    const fromRom = rom95s && Nhl95Snes.uniformPalettes(rom95s);
     if (fromRom && fromRom.length) {
       for (const p of fromRom) paletteFiles.set(p.name, p.colors);
       pals = fromRom.map((p) => p.name);
