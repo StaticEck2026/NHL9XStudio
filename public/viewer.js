@@ -10,7 +10,7 @@ const AUDIO_ORDER = ['Music', 'Music — Team', 'Music — Shared', 'SFX', 'Samp
 
 const el = (id) => document.getElementById(id);
 function isPcGame(kind) {
-  return kind === 'pc95' || kind === 'pc94' || kind === 'pc96';
+  return kind === 'pc95' || kind === 'pc94' || kind === 'pc96' || kind === 'pc97';
 }
 /** The frame number shown to the user: PC sprite frames are 0-based like the game's own index (GetHot), others 1-based. */
 function shownFrame(n) {
@@ -3110,8 +3110,8 @@ async function ingestDroppedFiles(fileList) {
     const paths = [...map.keys()];
     clientPc = { map, catalog: Nhl95Pc.catalogFromPaths(paths, (rel) => map.get(rel)) };
     const year = Nhl95Pc.pcYearOf ? Nhl95Pc.pcYearOf(paths) : 95;
-    const pcId = year === 94 ? 'nhl94pc' : (year === 96 ? 'nhl96pc' : 'nhl95pc');
-    const pcKind = pcId === 'nhl94pc' ? 'pc94' : (pcId === 'nhl96pc' ? 'pc96' : 'pc95');
+    const pcId = Nhl95Pc.isNhl97 && Nhl95Pc.isNhl97(paths) ? 'nhl97pc' : (year === 94 ? 'nhl94pc' : (year === 96 ? 'nhl96pc' : 'nhl95pc'));
+    const pcKind = pcId === 'nhl97pc' ? 'pc97' : (pcId === 'nhl94pc' ? 'pc94' : (pcId === 'nhl96pc' ? 'pc96' : 'pc95'));
     let entry = games.find((game) => game.id === pcId) || { id: pcId, kind: pcKind };
     entry = Object.assign({}, entry, {
       pixels: clientPc.catalog.spriteFiles.length > 0 || clientPc.catalog.images.length > 0,
@@ -3154,8 +3154,8 @@ async function ingestDroppedFiles(fileList) {
     };
     clientPc = { map, catalog: Nhl95Pc.catalogFromPaths(names, (rel) => iso.read(rel)) };
     const year = Nhl95Pc.pcYearOf ? Nhl95Pc.pcYearOf(names) : 95;
-    const pcId = year === 94 ? 'nhl94pc' : (year === 96 ? 'nhl96pc' : 'nhl95pc');
-    const pcKind = pcId === 'nhl94pc' ? 'pc94' : (pcId === 'nhl96pc' ? 'pc96' : 'pc95');
+    const pcId = Nhl95Pc.isNhl97 && Nhl95Pc.isNhl97(names) ? 'nhl97pc' : (year === 94 ? 'nhl94pc' : (year === 96 ? 'nhl96pc' : 'nhl95pc'));
+    const pcKind = pcId === 'nhl97pc' ? 'pc97' : (pcId === 'nhl94pc' ? 'pc94' : (pcId === 'nhl96pc' ? 'pc96' : 'pc95'));
     let entry = games.find((game) => game.id === pcId) || { id: pcId, kind: pcKind };
     entry = Object.assign({}, entry, {
       pixels: clientPc.catalog.spriteFiles.length > 0 || clientPc.catalog.images.length > 0,
