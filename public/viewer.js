@@ -2730,6 +2730,8 @@ async function ensureImage(id) {
           return frame ? Object.assign({}, frame, { frame: n, index: n - 1 }) : null;
         }
       };
+    } else if (image.kind === 'snes95-set') {
+      parsed = Nhl95Snes.renderMapSet(rom, image.addr);
     } else {
       parsed = Nhl92Snes.openImage(rom, image, gameInfo.snes, await ensureRink());
     }

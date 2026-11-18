@@ -72,5 +72,17 @@ if (!romPath) {
   }
   assert.strictEqual(missing.size, 0, 'every frame the sequences use draws: ' + [...missing]);
   console.log('snes95: ' + count + ' frames draw; ' + missing.size + ' frames of the sequences do not (empty slots or code-drawn)');
+  // Map sets (pictures): the LZSS decoder, 22 sets by the source's names; each renders, and the palette picks rows from the first used.
+  const images = require('../lib/snes95-images');
+  assert.strictEqual(images.length, 22);
+  assert.ok(images.some((p) => p.id === 'HighScoreMap') && images.some((p) => p.label === 'Hart Memorial Trophy'));
+  for (const im of images) {
+    const set = S.readMapSet(rom, im.addr);
+    assert.strictEqual(set.map.length, set.width * set.height * 2, im.id);
+    const pic = S.renderMapSet(rom, im.addr).renderFrame(1);
+    assert.strictEqual(pic.width, set.width * 8, im.id);
+    assert.ok(pic.pixels.some((v) => v !== 0), im.id);
+  }
+  assert.strictEqual(S.readMapSet(rom, images.find((p) => p.id === 'HighScoreMap').addr).tiles.length, 0x1320);
 }
 console.log('snes95 ok');
