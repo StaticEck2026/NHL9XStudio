@@ -14,12 +14,12 @@ SPFlimit	=	3681
 SPAlist
 	dc.w	0
 
-SPA0001	=	*-SPAlist	; held pose, EXE spa 0x1, flags 0x0
+SPAstand	=	*-SPAlist	; held pose, EXE spa 0x1, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,1,-10,2
 	dc.w	-10,3,-10,4,-10,5,-10,6,-10,7,-10,8
 	dc.w	-10
 
-SPA0005	=	*-SPAlist	; held pose, EXE spa 0x5, flags 0x0
+SPAcoast	=	*-SPAlist	; held pose, EXE spa 0x5, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,9,-10,10
 	dc.w	-10,11,-10,12,-10,13,-10,14,-10,15,-10,16
 	dc.w	-10
@@ -52,7 +52,7 @@ SPAskatewp	=	*-SPAlist	; 8-facing cycle, EXE spa 0x1b, flags 0x0
 	dc.w	-4,88,4,96,4,104,4,112,4,120,4,128
 	dc.w	4,136,4,144,-4
 
-SPA002D	=	*-SPAlist	; 8-facing cycle, EXE spa 0x2d, flags 0x0
+SPAskatewp2	=	*-SPAlist	; 8-facing cycle, EXE spa 0x2d, flags 0x0
 	dc.w	18,50,82,114,146,178,210,242,0,145,4,153
 	dc.w	4,161,4,169,4,177,4,185,4,193,4,201
 	dc.w	-4,146,4,154,4,162,4,170,4,178,4,186
@@ -88,62 +88,62 @@ SPAstopwphold	=	*-SPAlist	; held pose, loops, EXE spa 0x4f, flags 0x1
 	dc.w	-16,219,-16,220,-16,221,-16,222,-16,223,-16,224
 	dc.w	-16
 
-SPA0053	=	*-SPAlist	; facing-stride cycle, EXE spa 0x53, flags 0x0
+SPAstopfast	=	*-SPAlist	; facing-stride cycle, EXE spa 0x53, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,961,8,969
 	dc.w	-28,962,8,970,-28,963,8,971,-28,964,8,972
 	dc.w	-28,965,8,973,-28,966,8,974,-28,967,8,975
 	dc.w	-28,968,8,976,-28
 
-SPA0059	=	*-SPAlist	; held pose, loops, EXE spa 0x59, flags 0x1
+SPAstopfasthold	=	*-SPAlist	; held pose, loops, EXE spa 0x59, flags 0x1
 	dc.w	18,22,26,30,34,38,42,46,1,969,-16,970
 	dc.w	-16,971,-16,972,-16,973,-16,974,-16,975,-16,976
 	dc.w	-16
 
-SPA005D	=	*-SPAlist	; held pose, EXE spa 0x5d, flags 0x0
+SPAturnlwp	=	*-SPAlist	; held pose, EXE spa 0x5d, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,249,-8,250
 	dc.w	-8,251,-8,252,-8,253,-8,254,-8,255,-8,256
 	dc.w	-8
 
-SPA0061	=	*-SPAlist	; held pose, EXE spa 0x61, flags 0x0
+SPAturnl	=	*-SPAlist	; held pose, EXE spa 0x61, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,1001,-8,1002
 	dc.w	-8,1003,-8,1004,-8,1005,-8,1006,-8,1007,-8,1008
 	dc.w	-8
 
-SPA0065	=	*-SPAlist	; facing-stride cycle, EXE spa 0x65, flags 0x0
+SPAturnlwpin	=	*-SPAlist	; facing-stride cycle, EXE spa 0x65, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,241,8,249
 	dc.w	-8,242,8,250,-8,243,8,251,-8,244,8,252
 	dc.w	-8,245,8,253,-8,246,8,254,-8,247,8,255
 	dc.w	-8,248,8,256,-8
 
-SPA006B	=	*-SPAlist	; facing-stride cycle, EXE spa 0x6b, flags 0x0
+SPAturnlin	=	*-SPAlist	; facing-stride cycle, EXE spa 0x6b, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,993,8,1001
 	dc.w	-8,994,8,1002,-8,995,8,1003,-8,996,8,1004
 	dc.w	-8,997,8,1005,-8,998,8,1006,-8,999,8,1007
 	dc.w	-8,1000,8,1008,-8
 
-SPA0071	=	*-SPAlist	; held pose, EXE spa 0x71, flags 0x0
+SPAturnrwp	=	*-SPAlist	; held pose, EXE spa 0x71, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,233,-8,234
 	dc.w	-8,235,-8,236,-8,237,-8,238,-8,239,-8,240
 	dc.w	-8
 
-SPA0075	=	*-SPAlist	; held pose, EXE spa 0x75, flags 0x0
+SPAturnr	=	*-SPAlist	; held pose, EXE spa 0x75, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,985,-8,986
 	dc.w	-8,987,-8,988,-8,989,-8,990,-8,991,-8,992
 	dc.w	-8
 
-SPA0079	=	*-SPAlist	; facing-stride cycle, EXE spa 0x79, flags 0x0
+SPAturnrwpin	=	*-SPAlist	; facing-stride cycle, EXE spa 0x79, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,225,8,233
 	dc.w	-8,226,8,234,-8,227,8,235,-8,228,8,236
 	dc.w	-8,229,8,237,-8,230,8,238,-8,231,8,239
 	dc.w	-8,232,8,240,-8
 
-SPA007F	=	*-SPAlist	; facing-stride cycle, EXE spa 0x7f, flags 0x0
+SPAturnrin	=	*-SPAlist	; facing-stride cycle, EXE spa 0x7f, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,977,8,985
 	dc.w	-8,978,8,986,-8,979,8,987,-8,980,8,988
 	dc.w	-8,981,8,989,-8,982,8,990,-8,983,8,991
 	dc.w	-8,984,8,992,-8
 
-SPA0085	=	*-SPAlist	; facing-stride cycle, EXE spa 0x85, flags 0x0
+SPAcheckswingl	=	*-SPAlist	; facing-stride cycle, EXE spa 0x85, flags 0x0
 	dc.w	18,34,50,66,82,98,114,130,0,529,8,537
 	dc.w	8,545,8,553,-8,530,8,538,8,546,8,554
 	dc.w	-8,531,8,539,8,547,8,555,-8,532,8,540
@@ -152,7 +152,7 @@ SPA0085	=	*-SPAlist	; facing-stride cycle, EXE spa 0x85, flags 0x0
 	dc.w	8,551,8,559,-8,536,8,544,8,552,8,560
 	dc.w	-8
 
-SPA008F	=	*-SPAlist	; facing-stride cycle, EXE spa 0x8f, flags 0x0
+SPAcheckswingr	=	*-SPAlist	; facing-stride cycle, EXE spa 0x8f, flags 0x0
 	dc.w	18,34,50,66,82,98,114,130,0,497,8,505
 	dc.w	8,513,8,521,-8,498,8,506,8,514,8,522
 	dc.w	-8,499,8,507,8,515,8,523,-8,500,8,508
@@ -161,7 +161,7 @@ SPA008F	=	*-SPAlist	; facing-stride cycle, EXE spa 0x8f, flags 0x0
 	dc.w	8,519,8,527,-8,504,8,512,8,520,8,528
 	dc.w	-8
 
-SPA0099	=	*-SPAlist	; 4 step, EXE spa 0x99, flags 0x0
+SPAskatefast	=	*-SPAlist	; 4 step, EXE spa 0x99, flags 0x0
 	dc.w	18,34,50,66,82,98,114,130,0,369,10,345
 	dc.w	10,353,10,361,-10,370,10,346,10,354,10,362
 	dc.w	-10,371,10,347,10,355,10,363,-10,372,10,348
@@ -170,13 +170,13 @@ SPA0099	=	*-SPAlist	; 4 step, EXE spa 0x99, flags 0x0
 	dc.w	10,359,10,367,-10,376,10,352,10,360,10,368
 	dc.w	-10
 
-SPA00A3	=	*-SPAlist	; facing-stride cycle, EXE spa 0xa3, flags 0x0
+SPAcoastl	=	*-SPAlist	; facing-stride cycle, EXE spa 0xa3, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,345,28,353
 	dc.w	-28,346,28,354,-28,347,28,355,-28,348,28,356
 	dc.w	-28,349,28,357,-28,350,28,358,-28,351,28,359
 	dc.w	-28,352,28,360,-28
 
-SPA00A9	=	*-SPAlist	; facing-stride cycle, EXE spa 0xa9, flags 0x0
+SPAcoastr	=	*-SPAlist	; facing-stride cycle, EXE spa 0xa9, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,361,28,369
 	dc.w	-28,362,28,370,-28,363,28,371,-28,364,28,372
 	dc.w	-28,365,28,373,-28,366,28,374,-28,367,28,375
@@ -208,7 +208,7 @@ SPAshotf	=	*-SPAlist	; facing-stride cycle, EXE spa 0xbd, flags 0x0
 	dc.w	4,288,4,296,4,304,4,312,4,336,4,344
 	dc.w	-20
 
-SPA00CD	=	*-SPAlist	; facing-stride cycle, EXE spa 0xcd, flags 0x0
+SPAshotfquick	=	*-SPAlist	; facing-stride cycle, EXE spa 0xcd, flags 0x0
 	dc.w	18,46,74,102,130,158,186,214,0,273,4,281
 	dc.w	4,289,4,297,4,305,4,313,4,321,-20,274
 	dc.w	4,282,4,290,4,298,4,306,4,314,4,322
@@ -292,7 +292,7 @@ SPAfakeonetimeb	=	*-SPAlist	; 3 step, EXE spa 0x129, flags 0x0
 	dc.w	4,1221,-4,1238,24,1230,4,1222,-4,1239,24,1231
 	dc.w	4,1223,-4,1240,24,1232,4,1224,-4
 
-SPA0131	=	*-SPAlist	; facing-stride cycle, EXE spa 0x131, flags 0x20
+SPAboardback	=	*-SPAlist	; facing-stride cycle, EXE spa 0x131, flags 0x20
 	dc.w	18,66,114,162,210,258,306,354,0,1521,6,1529
 	dc.w	6,1537,6,1545,6,1553,6,1561,6,1473,20,1777
 	dc.w	8,1785,8,1793,8,1801,8,1809,-8,1522,6,1530
@@ -311,7 +311,7 @@ SPA0131	=	*-SPAlist	; facing-stride cycle, EXE spa 0x131, flags 0x20
 	dc.w	6,1544,6,1552,6,1560,6,1568,6,1480,20,1784
 	dc.w	8,1792,8,1800,8,1808,8,1816,-8
 
-SPA014B	=	*-SPAlist	; facing-stride cycle, EXE spa 0x14b, flags 0x20
+SPAboardfront	=	*-SPAlist	; facing-stride cycle, EXE spa 0x14b, flags 0x20
 	dc.w	18,66,114,162,210,258,306,354,0,1569,6,1577
 	dc.w	6,1585,6,1593,6,1601,6,1609,6,1417,20,1817
 	dc.w	8,1825,8,1833,8,1841,8,1849,-8,1570,6,1578
@@ -330,7 +330,7 @@ SPA014B	=	*-SPAlist	; facing-stride cycle, EXE spa 0x14b, flags 0x20
 	dc.w	6,1592,6,1600,6,1608,6,1616,6,1424,20,1824
 	dc.w	8,1832,8,1840,8,1848,8,1856,-8
 
-SPA0165	=	*-SPAlist	; facing-stride cycle, EXE spa 0x165, flags 0x28
+SPAboardleft	=	*-SPAlist	; facing-stride cycle, EXE spa 0x165, flags 0x28
 	dc.w	18,66,114,162,210,258,306,354,0,1665,6,1673
 	dc.w	6,1681,6,1689,6,1697,6,1705,6,1473,20,1777
 	dc.w	8,1785,8,1793,8,1801,8,1809,-8,1666,6,1674
@@ -349,7 +349,7 @@ SPA0165	=	*-SPAlist	; facing-stride cycle, EXE spa 0x165, flags 0x28
 	dc.w	6,1688,6,1696,6,1704,6,1712,6,1480,20,1784
 	dc.w	8,1792,8,1800,8,1808,8,1816,-8
 
-SPA017F	=	*-SPAlist	; facing-stride cycle, EXE spa 0x17f, flags 0x28
+SPAboardright	=	*-SPAlist	; facing-stride cycle, EXE spa 0x17f, flags 0x28
 	dc.w	18,66,114,162,210,258,306,354,0,1617,6,1625
 	dc.w	6,1633,6,1641,6,1649,6,1657,6,1417,20,1817
 	dc.w	8,1825,8,1833,8,1841,8,1849,-8,1618,6,1626
@@ -368,7 +368,7 @@ SPA017F	=	*-SPAlist	; facing-stride cycle, EXE spa 0x17f, flags 0x28
 	dc.w	6,1640,6,1648,6,1656,6,1664,6,1424,20,1824
 	dc.w	8,1832,8,1840,8,1848,8,1856,-8
 
-SPA0199	=	*-SPAlist	; 8-facing cycle, loops, EXE spa 0x199, flags 0x18
+SPAboardbackglass	=	*-SPAlist	; 8-facing cycle, loops, EXE spa 0x199, flags 0x18
 	dc.w	18,50,82,114,146,178,210,242,1,1713,6,1721
 	dc.w	6,1729,6,1737,6,1785,28,1793,8,1801,8,1809
 	dc.w	-8,1714,6,1722,6,1730,6,1738,6,1786,28,1794
@@ -382,7 +382,7 @@ SPA0199	=	*-SPAlist	; 8-facing cycle, loops, EXE spa 0x199, flags 0x18
 	dc.w	-8,1720,6,1728,6,1736,6,1744,6,1792,28,1800
 	dc.w	8,1808,8,1816,-8
 
-SPA01AB	=	*-SPAlist	; 8-facing cycle, loops, EXE spa 0x1ab, flags 0x18
+SPAboardfrontglass	=	*-SPAlist	; 8-facing cycle, loops, EXE spa 0x1ab, flags 0x18
 	dc.w	18,50,82,114,146,178,210,242,1,1745,6,1753
 	dc.w	6,1761,6,1769,6,1785,28,1793,8,1801,8,1809
 	dc.w	-8,1746,6,1754,6,1762,6,1770,6,1786,28,1794
@@ -396,7 +396,7 @@ SPA01AB	=	*-SPAlist	; 8-facing cycle, loops, EXE spa 0x1ab, flags 0x18
 	dc.w	-8,1752,6,1760,6,1768,6,1776,6,1792,28,1800
 	dc.w	8,1808,8,1816,-8
 
-SPA01BD	=	*-SPAlist	; facing-stride cycle, EXE spa 0x1bd, flags 0x20
+SPAfallback	=	*-SPAlist	; facing-stride cycle, EXE spa 0x1bd, flags 0x20
 	dc.w	18,62,106,150,194,238,282,326,0,1377,6,1385
 	dc.w	6,1393,6,1401,6,1409,6,1417,20,1817,8,1825
 	dc.w	8,1833,8,1841,8,1849,-8,1378,6,1386,6,1394
@@ -414,7 +414,7 @@ SPA01BD	=	*-SPAlist	; facing-stride cycle, EXE spa 0x1bd, flags 0x20
 	dc.w	6,1408,6,1416,6,1424,20,1824,8,1832,8,1840
 	dc.w	8,1848,8,1856,-8
 
-SPA01D5	=	*-SPAlist	; facing-stride cycle, EXE spa 0x1d5, flags 0x20
+SPAfallfwd	=	*-SPAlist	; facing-stride cycle, EXE spa 0x1d5, flags 0x20
 	dc.w	18,66,114,162,210,258,306,354,0,1425,6,1433
 	dc.w	6,1441,6,1449,6,1457,6,1465,6,1473,20,1777
 	dc.w	8,1785,8,1793,8,1801,8,1809,-8,1426,6,1434
@@ -433,7 +433,7 @@ SPA01D5	=	*-SPAlist	; facing-stride cycle, EXE spa 0x1d5, flags 0x20
 	dc.w	6,1448,6,1456,6,1464,6,1472,6,1480,20,1784
 	dc.w	8,1792,8,1800,8,1808,8,1816,-8
 
-SPA01EF	=	*-SPAlist	; facing-stride cycle, EXE spa 0x1ef, flags 0x20
+SPAflip	=	*-SPAlist	; facing-stride cycle, EXE spa 0x1ef, flags 0x20
 	dc.w	18,74,130,186,242,298,354,410,0,1881,6,1889
 	dc.w	6,1897,6,1905,6,1913,6,1921,6,1929,6,1937
 	dc.w	6,1417,20,1817,8,1825,8,1833,8,1841,8,1849
@@ -455,7 +455,7 @@ SPA01EF	=	*-SPAlist	; facing-stride cycle, EXE spa 0x1ef, flags 0x20
 	dc.w	6,1936,6,1944,6,1424,20,1824,8,1832,8,1840
 	dc.w	8,1848,8,1856,-8
 
-SPA020D	=	*-SPAlist	; facing-stride cycle, EXE spa 0x20d, flags 0x20
+SPAflipfwd	=	*-SPAlist	; facing-stride cycle, EXE spa 0x20d, flags 0x20
 	dc.w	18,74,130,186,242,298,354,410,0,1945,6,1953
 	dc.w	6,1961,6,1969,6,1977,6,1985,6,1993,6,2001
 	dc.w	6,1473,20,1777,8,1785,8,1793,8,1801,8,1809
@@ -477,7 +477,7 @@ SPA020D	=	*-SPAlist	; facing-stride cycle, EXE spa 0x20d, flags 0x20
 	dc.w	6,2000,6,2008,6,1480,20,1784,8,1792,8,1800
 	dc.w	8,1808,8,1816,-8
 
-SPA0299	=	*-SPAlist	; facing-stride cycle, EXE spa 0x299, flags 0x0
+SPAstumble	=	*-SPAlist	; facing-stride cycle, EXE spa 0x299, flags 0x0
 	dc.w	18,34,50,66,82,98,114,130,0,609,7,617
 	dc.w	7,625,7,633,-7,610,7,618,7,626,7,634
 	dc.w	-7,611,7,619,7,627,7,635,-7,612,7,620
@@ -486,7 +486,7 @@ SPA0299	=	*-SPAlist	; facing-stride cycle, EXE spa 0x299, flags 0x0
 	dc.w	7,631,7,639,-7,616,7,624,7,632,7,640
 	dc.w	-7
 
-SPA02A3	=	*-SPAlist	; facing-stride cycle, EXE spa 0x2a3, flags 0x0
+SPAblockleft	=	*-SPAlist	; facing-stride cycle, EXE spa 0x2a3, flags 0x0
 	dc.w	18,38,58,78,98,118,138,158,0,593,8,601
 	dc.w	20,1793,8,1801,8,1809,-8,594,8,602,20,1794
 	dc.w	8,1802,8,1810,-8,595,8,603,20,1795,8,1803
@@ -496,7 +496,7 @@ SPA02A3	=	*-SPAlist	; facing-stride cycle, EXE spa 0x2a3, flags 0x0
 	dc.w	20,1799,8,1807,8,1815,-8,600,8,608,20,1800
 	dc.w	8,1808,8,1816,-8
 
-SPA02AF	=	*-SPAlist	; facing-stride cycle, EXE spa 0x2af, flags 0x0
+SPAblockright	=	*-SPAlist	; facing-stride cycle, EXE spa 0x2af, flags 0x0
 	dc.w	18,38,58,78,98,118,138,158,0,577,8,585
 	dc.w	20,1793,8,1801,8,1809,-8,578,8,586,20,1794
 	dc.w	8,1802,8,1810,-8,579,8,587,20,1795,8,1803
@@ -506,12 +506,12 @@ SPA02AF	=	*-SPAlist	; facing-stride cycle, EXE spa 0x2af, flags 0x0
 	dc.w	20,1799,8,1807,8,1815,-8,584,8,592,20,1800
 	dc.w	8,1808,8,1816,-8
 
-SPA02BB	=	*-SPAlist	; held pose, EXE spa 0x2bb, flags 0x0
+SPAblockfront	=	*-SPAlist	; held pose, EXE spa 0x2bb, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,561,-20,562
 	dc.w	-20,563,-20,564,-20,565,-20,566,-20,567,-20,568
 	dc.w	-20
 
-SPA02BF	=	*-SPAlist	; held pose, EXE spa 0x2bf, flags 0x0
+SPAblockknee	=	*-SPAlist	; held pose, EXE spa 0x2bf, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,569,-20,570
 	dc.w	-20,571,-20,572,-20,573,-20,574,-20,575,-20,576
 	dc.w	-20
@@ -536,7 +536,7 @@ SPAcrosscheck	=	*-SPAlist	; facing-stride cycle, EXE spa 0x2d5, flags 0x0
 	dc.w	-10,1509,6,1517,-10,1510,6,1518,-10,1511,6,1519
 	dc.w	-10,1512,6,1520,-10
 
-SPA02DB	=	*-SPAlist	; facing-stride cycle, EXE spa 0x2db, flags 0x0
+SPAsweepchk	=	*-SPAlist	; facing-stride cycle, EXE spa 0x2db, flags 0x0
 	dc.w	18,30,42,54,66,78,90,102,0,257,6,265
 	dc.w	10,257,-6,258,6,266,10,258,-6,259,6,267
 	dc.w	10,259,-6,260,6,268,10,260,-6,261,6,269
@@ -550,7 +550,7 @@ SPAhook	=	*-SPAlist	; facing-stride cycle, EXE spa 0x2e3, flags 0x0
 	dc.w	20,1877,-4,1862,4,1870,20,1878,-4,1863,4,1871
 	dc.w	20,1879,-4,1864,4,1872,20,1880,-4
 
-SPA02EB	=	*-SPAlist	; facing-stride cycle, EXE spa 0x2eb, flags 0x0
+SPAhook2	=	*-SPAlist	; facing-stride cycle, EXE spa 0x2eb, flags 0x0
 	dc.w	18,42,66,90,114,138,162,186,0,1857,8,1865
 	dc.w	8,1873,8,1857,8,1865,8,1873,-8,1858,8,1866
 	dc.w	8,1874,8,1858,8,1866,8,1874,-8,1859,8,1867
@@ -561,59 +561,59 @@ SPA02EB	=	*-SPAlist	; facing-stride cycle, EXE spa 0x2eb, flags 0x0
 	dc.w	8,1879,8,1863,8,1871,8,1879,-8,1864,8,1872
 	dc.w	8,1880,8,1864,8,1872,8,1880,-8
 
-SPA02F9	=	*-SPAlist	; held pose, EXE spa 0x2f9, flags 0x0
+SPAHold	=	*-SPAlist	; held pose, EXE spa 0x2f9, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,2009,-30,2010
 	dc.w	-30,2011,-30,2012,-30,2013,-30,2014,-30,2015,-30,2016
 	dc.w	-30
 
-SPA02FD	=	*-SPAlist	; held pose, EXE spa 0x2fd, flags 0x0
+SPAHold2	=	*-SPAlist	; held pose, EXE spa 0x2fd, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,2009,-30,2010
 	dc.w	-30,2011,-30,2012,-30,2013,-30,2014,-30,2015,-30,2016
 	dc.w	-30
 
-SPA0301	=	*-SPAlist	; facing-stride cycle, EXE spa 0x301, flags 0x0
+SPAshoulderchkr	=	*-SPAlist	; facing-stride cycle, EXE spa 0x301, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,481,8,489
 	dc.w	-16,482,8,490,-16,483,8,491,-16,484,8,492
 	dc.w	-16,485,8,493,-16,486,8,494,-16,487,8,495
 	dc.w	-16,488,8,496,-16
 
-SPA0307	=	*-SPAlist	; facing-stride cycle, EXE spa 0x307, flags 0x0
+SPAshoulderchkl	=	*-SPAlist	; facing-stride cycle, EXE spa 0x307, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,465,8,473
 	dc.w	-16,466,8,474,-16,467,8,475,-16,468,8,476
 	dc.w	-16,469,8,477,-16,470,8,478,-16,471,8,479
 	dc.w	-16,472,8,480,-16
 
-SPA030D	=	*-SPAlist	; facing-stride cycle, EXE spa 0x30d, flags 0x0
+SPAhipchkr	=	*-SPAlist	; facing-stride cycle, EXE spa 0x30d, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,449,8,457
 	dc.w	-16,450,8,458,-16,451,8,459,-16,452,8,460
 	dc.w	-16,453,8,461,-16,454,8,462,-16,455,8,463
 	dc.w	-16,456,8,464,-16
 
-SPA0313	=	*-SPAlist	; facing-stride cycle, EXE spa 0x313, flags 0x0
+SPAhipchkl	=	*-SPAlist	; facing-stride cycle, EXE spa 0x313, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,433,8,441
 	dc.w	-16,434,8,442,-16,435,8,443,-16,436,8,444
 	dc.w	-16,437,8,445,-16,438,8,446,-16,439,8,447
 	dc.w	-16,440,8,448,-16
 
-SPA0319	=	*-SPAlist	; facing-stride cycle, EXE spa 0x319, flags 0x0
+SPAchecktarget	=	*-SPAlist	; facing-stride cycle, EXE spa 0x319, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,1081,8,1089
 	dc.w	-16,1082,8,1090,-16,1083,8,1091,-16,1084,8,1092
 	dc.w	-16,1085,8,1093,-16,1086,8,1094,-16,1087,8,1095
 	dc.w	-16,1088,8,1096,-16
 
-SPA031F	=	*-SPAlist	; facing-stride cycle, EXE spa 0x31f, flags 0x0
+SPAchecktargetl	=	*-SPAlist	; facing-stride cycle, EXE spa 0x31f, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,1113,8,1121
 	dc.w	-16,1114,8,1122,-16,1115,8,1123,-16,1116,8,1124
 	dc.w	-16,1117,8,1125,-16,1118,8,1126,-16,1119,8,1127
 	dc.w	-16,1120,8,1128,-16
 
-SPA0325	=	*-SPAlist	; facing-stride cycle, EXE spa 0x325, flags 0x0
+SPAchecktargetr	=	*-SPAlist	; facing-stride cycle, EXE spa 0x325, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,1097,8,1105
 	dc.w	-16,1098,8,1106,-16,1099,8,1107,-16,1100,8,1108
 	dc.w	-16,1101,8,1109,-16,1102,8,1110,-16,1103,8,1111
 	dc.w	-16,1104,8,1112,-16
 
-SPA032B	=	*-SPAlist	; facing-stride cycle, EXE spa 0x32b, flags 0x0
+SPAcheckslidel	=	*-SPAlist	; facing-stride cycle, EXE spa 0x32b, flags 0x0
 	dc.w	18,38,58,78,98,118,138,158,0,1281,10,1289
 	dc.w	10,1297,10,1289,10,1281,-10,1282,10,1290,10,1298
 	dc.w	10,1290,10,1282,-10,1283,10,1291,10,1299,10,1291
@@ -623,7 +623,7 @@ SPA032B	=	*-SPAlist	; facing-stride cycle, EXE spa 0x32b, flags 0x0
 	dc.w	10,1303,10,1295,10,1287,-10,1288,10,1296,10,1304
 	dc.w	10,1296,10,1288,-10
 
-SPA0337	=	*-SPAlist	; facing-stride cycle, EXE spa 0x337, flags 0x0
+SPAcheckslider	=	*-SPAlist	; facing-stride cycle, EXE spa 0x337, flags 0x0
 	dc.w	18,38,58,78,98,118,138,158,0,1257,10,1265
 	dc.w	10,1273,10,1265,10,1257,-10,1258,10,1266,10,1274
 	dc.w	10,1266,10,1258,-10,1259,10,1267,10,1275,10,1267
@@ -633,7 +633,7 @@ SPA0337	=	*-SPAlist	; facing-stride cycle, EXE spa 0x337, flags 0x0
 	dc.w	10,1279,10,1271,10,1263,-10,1264,10,1272,10,1280
 	dc.w	10,1272,10,1264,-10
 
-SPA0343	=	*-SPAlist	; 8-facing cycle, EXE spa 0x343, flags 0x0
+SPAcheckskate	=	*-SPAlist	; 8-facing cycle, EXE spa 0x343, flags 0x0
 	dc.w	18,50,82,114,146,178,210,242,0,17,4,25
 	dc.w	4,33,4,41,4,49,4,57,4,65,4,73
 	dc.w	-4,18,4,26,4,34,4,42,4,50,4,58
@@ -647,7 +647,7 @@ SPA0343	=	*-SPAlist	; 8-facing cycle, EXE spa 0x343, flags 0x0
 	dc.w	-4,24,4,32,4,40,4,48,4,56,4,64
 	dc.w	4,72,4,80,-4
 
-SPA0355	=	*-SPAlist	; facing-stride cycle, EXE spa 0x355, flags 0x0
+SPAcheckmissl	=	*-SPAlist	; facing-stride cycle, EXE spa 0x355, flags 0x0
 	dc.w	18,34,50,66,82,98,114,130,0,529,8,537
 	dc.w	8,545,8,553,-8,530,8,538,8,546,8,554
 	dc.w	-8,531,8,539,8,547,8,555,-8,532,8,540
@@ -656,7 +656,7 @@ SPA0355	=	*-SPAlist	; facing-stride cycle, EXE spa 0x355, flags 0x0
 	dc.w	8,551,8,559,-8,536,8,544,8,552,8,560
 	dc.w	-8
 
-SPA035F	=	*-SPAlist	; facing-stride cycle, EXE spa 0x35f, flags 0x0
+SPAcheckmissr	=	*-SPAlist	; facing-stride cycle, EXE spa 0x35f, flags 0x0
 	dc.w	18,34,50,66,82,98,114,130,0,497,8,505
 	dc.w	8,513,8,521,-8,498,8,506,8,514,8,522
 	dc.w	-8,499,8,507,8,515,8,523,-8,500,8,508
@@ -665,19 +665,19 @@ SPA035F	=	*-SPAlist	; facing-stride cycle, EXE spa 0x35f, flags 0x0
 	dc.w	8,519,8,527,-8,504,8,512,8,520,8,528
 	dc.w	-8
 
-SPA0369	=	*-SPAlist	; facing-stride cycle, EXE spa 0x369, flags 0x0
+SPAcheckburstl	=	*-SPAlist	; facing-stride cycle, EXE spa 0x369, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,449,8,457
 	dc.w	-16,450,8,458,-16,451,8,459,-16,452,8,460
 	dc.w	-16,453,8,461,-16,454,8,462,-16,455,8,463
 	dc.w	-16,456,8,464,-16
 
-SPA036F	=	*-SPAlist	; facing-stride cycle, EXE spa 0x36f, flags 0x0
+SPAcheckburstr	=	*-SPAlist	; facing-stride cycle, EXE spa 0x36f, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,433,8,441
 	dc.w	-16,434,8,442,-16,435,8,443,-16,436,8,444
 	dc.w	-16,437,8,445,-16,438,8,446,-16,439,8,447
 	dc.w	-16,440,8,448,-16
 
-SPA0375	=	*-SPAlist	; 8-facing cycle, EXE spa 0x375, flags 0x0
+SPAcheckskatewp	=	*-SPAlist	; 8-facing cycle, EXE spa 0x375, flags 0x0
 	dc.w	18,50,82,114,146,178,210,242,0,81,4,89
 	dc.w	4,97,4,105,4,113,4,121,4,129,4,137
 	dc.w	-4,82,4,90,4,98,4,106,4,114,4,122
@@ -691,44 +691,44 @@ SPA0375	=	*-SPAlist	; 8-facing cycle, EXE spa 0x375, flags 0x0
 	dc.w	-4,88,4,96,4,104,4,112,4,120,4,128
 	dc.w	4,136,4,144,-4
 
-SPA0387	=	*-SPAlist	; held pose, EXE spa 0x387, flags 0x0
+SPAfaceoff	=	*-SPAlist	; held pose, EXE spa 0x387, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,377,-8,378
 	dc.w	-8,379,-8,380,-8,381,-8,382,-8,383,-8,384
 	dc.w	-8
 
-SPA038B	=	*-SPAlist	; held pose, EXE spa 0x38b, flags 0x0
+SPAfaceoffr	=	*-SPAlist	; held pose, EXE spa 0x38b, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,385,-5,386
 	dc.w	-5,387,-5,388,-5,389,-5,390,-5,391,-5,392
 	dc.w	-5
 
-SPA038F	=	*-SPAlist	; facing-stride cycle, EXE spa 0x38f, flags 0x0
+SPAfaceoffpokel	=	*-SPAlist	; facing-stride cycle, EXE spa 0x38f, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,393,8,401
 	dc.w	-8,394,8,402,-8,395,8,403,-8,396,8,404
 	dc.w	-8,397,8,405,-8,398,8,406,-8,399,8,407
 	dc.w	-8,400,8,408,-8
 
-SPA0395	=	*-SPAlist	; held pose, EXE spa 0x395, flags 0x0
+SPAfaceoffpokelhold	=	*-SPAlist	; held pose, EXE spa 0x395, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,393,-8,394
 	dc.w	-8,395,-8,396,-8,397,-8,398,-8,399,-8,400
 	dc.w	-8
 
-SPA0399	=	*-SPAlist	; facing-stride cycle, EXE spa 0x399, flags 0x0
+SPAfaceoffpoker	=	*-SPAlist	; facing-stride cycle, EXE spa 0x399, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,409,8,417
 	dc.w	-8,410,8,418,-8,411,8,419,-8,412,8,420
 	dc.w	-8,413,8,421,-8,414,8,422,-8,415,8,423
 	dc.w	-8,416,8,424,-8
 
-SPA039F	=	*-SPAlist	; held pose, EXE spa 0x39f, flags 0x0
+SPAfaceoffpokerhold	=	*-SPAlist	; held pose, EXE spa 0x39f, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,409,-8,410
 	dc.w	-8,411,-8,412,-8,413,-8,414,-8,415,-8,416
 	dc.w	-8
 
-SPA03A3	=	*-SPAlist	; held pose, EXE spa 0x3a3, flags 0x0
+SPAfaceoffpokeend	=	*-SPAlist	; held pose, EXE spa 0x3a3, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,425,-8,426
 	dc.w	-8,427,-8,428,-8,429,-8,430,-8,431,-8,432
 	dc.w	-8
 
-SPA03A7	=	*-SPAlist	; facing-stride cycle, EXE spa 0x3a7, flags 0x0
+SPApuckhit	=	*-SPAlist	; facing-stride cycle, EXE spa 0x3a7, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,2017,8,2025
 	dc.w	-8,2018,8,2026,-8,2019,8,2027,-8,2020,8,2028
 	dc.w	-8,2021,8,2029,-8,2022,8,2030,-8,2023,8,2031
@@ -767,12 +767,12 @@ SPAglide	=	*-SPAlist	; held pose, EXE spa 0x3d1, flags 0x0
 	dc.w	-10,1307,-10,1308,-10,1309,-10,1310,-10,1311,-10,1312
 	dc.w	-10
 
-SPA03D5	=	*-SPAlist	; held pose, EXE spa 0x3d5, flags 0x0
+SPAstandrest	=	*-SPAlist	; held pose, EXE spa 0x3d5, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,1305,-10,1306
 	dc.w	-10,1307,-10,1308,-10,1309,-10,1310,-10,1311,-10,1312
 	dc.w	-10
 
-SPA03D9	=	*-SPAlist	; facing-stride cycle, EXE spa 0x3d9, flags 0x0
+SPAcelebrate	=	*-SPAlist	; facing-stride cycle, EXE spa 0x3d9, flags 0x0
 	dc.w	18,34,50,66,82,98,114,130,0,2129,8,2137
 	dc.w	8,2145,28,2129,-5,2130,8,2138,8,2146,28,2130
 	dc.w	-5,2131,8,2139,8,2147,28,2131,-5,2132,8,2140
@@ -781,7 +781,7 @@ SPA03D9	=	*-SPAlist	; facing-stride cycle, EXE spa 0x3d9, flags 0x0
 	dc.w	8,2151,28,2135,-5,2136,8,2144,8,2152,28,2136
 	dc.w	-5
 
-SPA03E3	=	*-SPAlist	; facing-stride cycle, EXE spa 0x3e3, flags 0x0
+SPAcelebrate2	=	*-SPAlist	; facing-stride cycle, EXE spa 0x3e3, flags 0x0
 	dc.w	18,42,66,90,114,138,162,186,0,2129,8,2137
 	dc.w	8,2145,24,2137,8,2145,28,2129,-5,2130,8,2138
 	dc.w	8,2146,24,2138,8,2146,28,2130,-5,2131,8,2139
@@ -792,14 +792,14 @@ SPA03E3	=	*-SPAlist	; facing-stride cycle, EXE spa 0x3e3, flags 0x0
 	dc.w	8,2151,24,2143,8,2151,28,2135,-5,2136,8,2144
 	dc.w	8,2152,24,2144,8,2152,28,2136,-5
 
-SPA03F1	=	*-SPAlist	; facing-stride cycle, EXE spa 0x3f1, flags 0x0
+SPApump	=	*-SPAlist	; facing-stride cycle, EXE spa 0x3f1, flags 0x0
 	dc.w	18,30,42,54,66,78,90,102,0,2153,8,2161
 	dc.w	28,2153,-5,2154,8,2162,28,2154,-5,2155,8,2163
 	dc.w	28,2155,-5,2156,8,2164,28,2156,-5,2157,8,2165
 	dc.w	28,2157,-5,2158,8,2166,28,2158,-5,2159,8,2167
 	dc.w	28,2159,-5,2160,8,2168,28,2160,-5
 
-SPA03F9	=	*-SPAlist	; facing-stride cycle, EXE spa 0x3f9, flags 0x0
+SPApump2	=	*-SPAlist	; facing-stride cycle, EXE spa 0x3f9, flags 0x0
 	dc.w	18,38,58,78,98,118,138,158,0,2153,8,2161
 	dc.w	24,2153,8,2161,28,2153,-5,2154,8,2162,24,2154
 	dc.w	8,2162,28,2154,-5,2155,8,2163,24,2155,8,2163
@@ -809,7 +809,7 @@ SPA03F9	=	*-SPAlist	; facing-stride cycle, EXE spa 0x3f9, flags 0x0
 	dc.w	24,2159,8,2167,28,2159,-5,2160,8,2168,24,2160
 	dc.w	8,2168,28,2160,-5
 
-SPA0405	=	*-SPAlist	; facing-stride cycle, EXE spa 0x405, flags 0x0
+SPAcelebratevis	=	*-SPAlist	; facing-stride cycle, EXE spa 0x405, flags 0x0
 	dc.w	18,42,66,90,114,138,162,186,0,2097,8,2105
 	dc.w	16,2113,8,2121,20,2113,8,2097,-5,2098,8,2106
 	dc.w	16,2114,8,2122,20,2114,8,2098,-5,2099,8,2107
@@ -820,7 +820,7 @@ SPA0405	=	*-SPAlist	; facing-stride cycle, EXE spa 0x405, flags 0x0
 	dc.w	16,2119,8,2127,20,2119,8,2103,-5,2104,8,2112
 	dc.w	16,2120,8,2128,20,2120,8,2104,-5
 
-SPA0413	=	*-SPAlist	; 8-facing cycle, EXE spa 0x413, flags 0x0
+SPAcelebratevis2	=	*-SPAlist	; 8-facing cycle, EXE spa 0x413, flags 0x0
 	dc.w	18,50,82,114,146,178,210,242,0,2097,8,2105
 	dc.w	16,2113,8,2121,20,2113,8,2121,20,2113,8,2097
 	dc.w	-5,2098,8,2106,16,2114,8,2122,20,2114,8,2122
@@ -834,12 +834,12 @@ SPA0413	=	*-SPAlist	; 8-facing cycle, EXE spa 0x413, flags 0x0
 	dc.w	-5,2104,8,2112,16,2120,8,2128,20,2120,8,2128
 	dc.w	20,2120,8,2104,-5
 
-SPA0425	=	*-SPAlist	; facing-stride cycle, no facing, EXE spa 0x425, flags 0x2
+SPAboxsit	=	*-SPAlist	; facing-stride cycle, no facing, EXE spa 0x425, flags 0x2
 	dc.w	18,18,18,18,18,18,18,18,0,2233,6,2241
 	dc.w	6,2249,6,2257,6,2265,6,2273,6,2281,6,2289
 	dc.w	6,9,8,10,8,11,8,12,8,13,-8
 
-SPA0441	=	*-SPAlist	; 9 step, EXE spa 0x441, flags 0x0
+SPAboxsitep	=	*-SPAlist	; 9 step, EXE spa 0x441, flags 0x0
 	dc.w	18,54,90,126,162,198,234,270,0,9,8,2233
 	dc.w	6,2241,6,2249,6,2257,6,2265,6,2273,6,2281
 	dc.w	6,2289,-6,10,8,2234,6,2242,6,2250,6,2258
@@ -854,7 +854,7 @@ SPA0441	=	*-SPAlist	; 9 step, EXE spa 0x441, flags 0x0
 	dc.w	6,2295,-6,16,8,2240,6,2248,6,2256,6,2264
 	dc.w	6,2272,6,2280,6,2288,6,2296,-6
 
-SPA0455	=	*-SPAlist	; 8-facing cycle, EXE spa 0x455, flags 0x0
+SPAskateback	=	*-SPAlist	; 8-facing cycle, EXE spa 0x455, flags 0x0
 	dc.w	18,50,82,114,146,178,210,242,0,2830,4,2838
 	dc.w	4,2846,4,2854,4,2862,4,2870,4,2878,4,2886
 	dc.w	-4,2831,4,2839,4,2847,4,2855,4,2863,4,2871
@@ -868,56 +868,56 @@ SPA0455	=	*-SPAlist	; 8-facing cycle, EXE spa 0x455, flags 0x0
 	dc.w	-4,2837,4,2845,4,2853,4,2861,4,2869,4,2877
 	dc.w	4,2885,4,2893,-4
 
-SPA0467	=	*-SPAlist	; held pose, EXE spa 0x467, flags 0x0
+SPAglideback	=	*-SPAlist	; held pose, EXE spa 0x467, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,2830,-4,2831
 	dc.w	-4,2832,-4,2833,-4,2834,-4,2835,-4,2836,-4,2837
 	dc.w	-4
 
-SPA046B	=	*-SPAlist	; 9 step, two facings, EXE spa 0x46b, flags 0xc
+SPAfightdrop	=	*-SPAlist	; 9 step, two facings, EXE spa 0x46b, flags 0xc
 	dc.w	18,18,18,18,54,54,54,54,0,2894,26,2896
 	dc.w	6,2898,6,2900,6,2902,6,2904,6,2906,6,2908
 	dc.w	6,2910,-6,2895,26,2897,6,2899,6,2901,6,2903
 	dc.w	6,2905,6,2907,6,2909,6,2911,-6
 
-SPA047F	=	*-SPAlist	; held pose, two facings, EXE spa 0x47f, flags 0x4
+SPAfight	=	*-SPAlist	; held pose, two facings, EXE spa 0x47f, flags 0x4
 	dc.w	18,18,18,18,22,22,22,22,0,2916,-6,2917
 	dc.w	-6
 
-SPA0483	=	*-SPAlist	; 8 step, loops, two facings, EXE spa 0x483, flags 0x5
+SPAfightstance	=	*-SPAlist	; 8 step, loops, two facings, EXE spa 0x483, flags 0x5
 	dc.w	18,18,18,18,50,50,50,50,1,2916,4,2918
 	dc.w	4,2920,4,2922,4,2924,4,2926,4,2928,4,2930
 	dc.w	-4,2917,4,2919,4,2921,4,2923,4,2925,4,2927
 	dc.w	4,2929,4,2931,-4
 
-SPA0495	=	*-SPAlist	; 6 step, two facings, EXE spa 0x495, flags 0x4
+SPAfightweavel	=	*-SPAlist	; 6 step, two facings, EXE spa 0x495, flags 0x4
 	dc.w	18,18,18,18,42,42,42,42,0,2932,4,2934
 	dc.w	4,2936,4,2938,4,2940,4,2942,-4,2933,4,2935
 	dc.w	4,2937,4,2939,4,2941,4,2943,-4
 
-SPA04A3	=	*-SPAlist	; 6 step, two facings, EXE spa 0x4a3, flags 0x4
+SPAfightweaver	=	*-SPAlist	; 6 step, two facings, EXE spa 0x4a3, flags 0x4
 	dc.w	18,18,18,18,42,42,42,42,0,2944,4,2946
 	dc.w	4,2948,4,2950,4,2952,4,2954,-4,2945,4,2947
 	dc.w	4,2949,4,2951,4,2953,4,2955,-4
 
-SPA04B1	=	*-SPAlist	; 6 step, two facings, EXE spa 0x4b1, flags 0x4
+SPAfhigh	=	*-SPAlist	; 6 step, two facings, EXE spa 0x4b1, flags 0x4
 	dc.w	18,18,18,18,42,42,42,42,0,2956,6,2958
 	dc.w	6,2960,6,2962,6,2964,6,2966,-6,2957,6,2959
 	dc.w	6,2961,6,2963,6,2965,6,2967,-6
 
-SPA04BF	=	*-SPAlist	; 5 step, two facings, EXE spa 0x4bf, flags 0x4
+SPAfhith	=	*-SPAlist	; 5 step, two facings, EXE spa 0x4bf, flags 0x4
 	dc.w	18,18,18,18,38,38,38,38,0,2968,6,2970
 	dc.w	6,2972,6,2974,6,2976,-6,2969,6,2971,6,2973
 	dc.w	6,2975,6,2977,-6
 
-SPA04CB	=	*-SPAlist	; 3 step, two facings, EXE spa 0x4cb, flags 0x4
+SPAflow	=	*-SPAlist	; 3 step, two facings, EXE spa 0x4cb, flags 0x4
 	dc.w	18,18,18,18,30,30,30,30,0,2978,8,2980
 	dc.w	8,2982,-8,2979,8,2981,8,2983,-8
 
-SPA04D3	=	*-SPAlist	; 2 step, two facings, EXE spa 0x4d3, flags 0x4
+SPAfhitl	=	*-SPAlist	; 2 step, two facings, EXE spa 0x4d3, flags 0x4
 	dc.w	18,18,18,18,26,26,26,26,0,2984,6,2986
 	dc.w	-6,2985,6,2987,-6
 
-SPA04D9	=	*-SPAlist	; 14 step, two facings, EXE spa 0x4d9, flags 0x24
+SPAffall	=	*-SPAlist	; 14 step, two facings, EXE spa 0x4d9, flags 0x24
 	dc.w	18,18,18,18,74,74,74,74,0,3006,6,3008
 	dc.w	6,3010,6,3012,6,3014,6,3016,6,3018,6,3020
 	dc.w	6,3022,30,3024,6,3026,6,3028,6,3030,6,3032
@@ -925,7 +925,7 @@ SPA04D9	=	*-SPAlist	; 14 step, two facings, EXE spa 0x4d9, flags 0x24
 	dc.w	6,3019,6,3021,6,3023,30,3025,6,3027,6,3029
 	dc.w	6,3031,6,3033,-6
 
-SPA04F7	=	*-SPAlist	; 15 step, two facings, EXE spa 0x4f7, flags 0x2c
+SPAffall2	=	*-SPAlist	; 15 step, two facings, EXE spa 0x4f7, flags 0x2c
 	dc.w	18,18,18,18,78,78,78,78,0,2988,6,2990
 	dc.w	6,2992,6,2994,6,2996,6,2998,6,3000,6,3002
 	dc.w	6,3004,30,3034,6,3036,6,3038,6,3040,6,3042
@@ -933,7 +933,7 @@ SPA04F7	=	*-SPAlist	; 15 step, two facings, EXE spa 0x4f7, flags 0x2c
 	dc.w	6,2999,6,3001,6,3003,6,3005,30,3035,6,3037
 	dc.w	6,3039,6,3041,6,3043,6,3045,-6
 
-SPA0517	=	*-SPAlist	; 14 step, two facings, EXE spa 0x517, flags 0x24
+SPAfinjury	=	*-SPAlist	; 14 step, two facings, EXE spa 0x517, flags 0x24
 	dc.w	18,18,18,18,74,74,74,74,0,3006,6,3008
 	dc.w	6,3010,6,3012,6,3014,6,3016,6,3018,6,3020
 	dc.w	6,3022,200,3024,6,3026,6,3028,6,3030,6,3032
@@ -941,7 +941,7 @@ SPA0517	=	*-SPAlist	; 14 step, two facings, EXE spa 0x517, flags 0x24
 	dc.w	6,3019,6,3021,6,3023,200,3025,6,3027,6,3029
 	dc.w	6,3031,6,3033,-6
 
-SPA0535	=	*-SPAlist	; 15 step, two facings, EXE spa 0x535, flags 0x2c
+SPAfinjury2	=	*-SPAlist	; 15 step, two facings, EXE spa 0x535, flags 0x2c
 	dc.w	18,18,18,18,78,78,78,78,0,2988,6,2990
 	dc.w	6,2992,6,2994,6,2996,6,2998,6,3000,6,3002
 	dc.w	6,3004,200,3034,6,3036,6,3038,6,3040,6,3042
@@ -949,76 +949,76 @@ SPA0535	=	*-SPAlist	; 15 step, two facings, EXE spa 0x535, flags 0x2c
 	dc.w	6,2999,6,3001,6,3003,6,3005,200,3035,6,3037
 	dc.w	6,3039,6,3041,6,3043,6,3045,-6
 
-SPA0555	=	*-SPAlist	; 2 step, two facings, EXE spa 0x555, flags 0x4
+SPAfwin	=	*-SPAlist	; 2 step, two facings, EXE spa 0x555, flags 0x4
 	dc.w	18,18,18,18,26,26,26,26,0,3058,6,2916
 	dc.w	-6,3059,6,2917,-6
 
-SPA055B	=	*-SPAlist	; 8 step, two facings, EXE spa 0x55b, flags 0x4
+SPAfswing	=	*-SPAlist	; 8 step, two facings, EXE spa 0x55b, flags 0x4
 	dc.w	18,18,18,18,50,50,50,50,0,3046,6,3062
 	dc.w	6,3064,6,3066,6,3068,6,3070,6,3072,6,3074
 	dc.w	-6,3047,6,3063,6,3065,6,3067,6,3069,6,3071
 	dc.w	6,3073,6,3075,-6
 
-SPA056D	=	*-SPAlist	; 8 step, two facings, EXE spa 0x56d, flags 0x4
+SPAfswinghit	=	*-SPAlist	; 8 step, two facings, EXE spa 0x56d, flags 0x4
 	dc.w	18,18,18,18,50,50,50,50,0,3100,6,3102
 	dc.w	6,3104,6,3106,6,3108,6,3110,6,3112,6,3048
 	dc.w	-6,3101,6,3103,6,3105,6,3107,6,3109,6,3111
 	dc.w	6,3113,6,3049,-6
 
-SPA057F	=	*-SPAlist	; 4 step, two facings, EXE spa 0x57f, flags 0x4
+SPAfgrab	=	*-SPAlist	; 4 step, two facings, EXE spa 0x57f, flags 0x4
 	dc.w	18,18,18,18,34,34,34,34,0,3050,8,3052
 	dc.w	8,3076,8,3078,-8,3051,8,3053,8,3077,8,3079
 	dc.w	-8
 
-SPA0589	=	*-SPAlist	; 5 step, two facings, EXE spa 0x589, flags 0x4
+SPAfgrabend	=	*-SPAlist	; 5 step, two facings, EXE spa 0x589, flags 0x4
 	dc.w	18,18,18,18,38,38,38,38,0,3050,8,3052
 	dc.w	8,3054,8,3056,8,3058,-8,3051,8,3053,8,3055
 	dc.w	8,3057,8,3059,-8
 
-SPA0595	=	*-SPAlist	; 2 step, two facings, EXE spa 0x595, flags 0x4
+SPAfheld	=	*-SPAlist	; 2 step, two facings, EXE spa 0x595, flags 0x4
 	dc.w	18,18,18,18,26,26,26,26,0,3114,8,3116
 	dc.w	-8,3115,8,3117,-8
 
-SPA059B	=	*-SPAlist	; held pose, two facings, EXE spa 0x59b, flags 0x4
+SPAfhighwaitl	=	*-SPAlist	; held pose, two facings, EXE spa 0x59b, flags 0x4
 	dc.w	18,18,18,18,22,22,22,22,0,3078,-12,3079
 	dc.w	-12
 
-SPA059F	=	*-SPAlist	; held pose, two facings, EXE spa 0x59f, flags 0x4
+SPAfhighwaitr	=	*-SPAlist	; held pose, two facings, EXE spa 0x59f, flags 0x4
 	dc.w	18,18,18,18,22,22,22,22,0,3116,-12,3117
 	dc.w	-12
 
-SPA05A3	=	*-SPAlist	; 4 step, two facings, EXE spa 0x5a3, flags 0x4
+SPAfhighl	=	*-SPAlist	; 4 step, two facings, EXE spa 0x5a3, flags 0x4
 	dc.w	18,18,18,18,34,34,34,34,0,3080,7,3082
 	dc.w	7,3084,7,3086,-7,3081,7,3083,7,3085,7,3087
 	dc.w	-7
 
-SPA05AD	=	*-SPAlist	; 4 step, two facings, EXE spa 0x5ad, flags 0x4
+SPAfhighr	=	*-SPAlist	; 4 step, two facings, EXE spa 0x5ad, flags 0x4
 	dc.w	18,18,18,18,34,34,34,34,0,3118,7,3120
 	dc.w	7,3122,7,3124,-7,3119,7,3121,7,3123,7,3125
 	dc.w	-7
 
-SPA05B7	=	*-SPAlist	; 3 step, two facings, EXE spa 0x5b7, flags 0x4
+SPAfgrab2	=	*-SPAlist	; 3 step, two facings, EXE spa 0x5b7, flags 0x4
 	dc.w	18,18,18,18,30,30,30,30,0,3050,8,3052
 	dc.w	8,3088,-8,3051,8,3053,8,3089,-8
 
-SPA05BF	=	*-SPAlist	; held pose, two facings, EXE spa 0x5bf, flags 0x4
+SPAfheld2	=	*-SPAlist	; held pose, two facings, EXE spa 0x5bf, flags 0x4
 	dc.w	18,18,18,18,22,22,22,22,0,3126,-8,3127
 	dc.w	-8
 
-SPA05C3	=	*-SPAlist	; held pose, two facings, EXE spa 0x5c3, flags 0x4
+SPAflowwaitl	=	*-SPAlist	; held pose, two facings, EXE spa 0x5c3, flags 0x4
 	dc.w	18,18,18,18,22,22,22,22,0,3088,-12,3089
 	dc.w	-12
 
-SPA05C7	=	*-SPAlist	; held pose, two facings, EXE spa 0x5c7, flags 0x4
+SPAflowwaitr	=	*-SPAlist	; held pose, two facings, EXE spa 0x5c7, flags 0x4
 	dc.w	18,18,18,18,22,22,22,22,0,3126,-12,3127
 	dc.w	-12
 
-SPA05CB	=	*-SPAlist	; 5 step, two facings, EXE spa 0x5cb, flags 0x4
+SPAflowl	=	*-SPAlist	; 5 step, two facings, EXE spa 0x5cb, flags 0x4
 	dc.w	18,18,18,18,38,38,38,38,0,3090,6,3092
 	dc.w	6,3094,6,3096,6,3098,-6,3091,6,3093,6,3095
 	dc.w	6,3097,6,3099,-6
 
-SPA05D7	=	*-SPAlist	; 5 step, two facings, EXE spa 0x5d7, flags 0x4
+SPAflowr	=	*-SPAlist	; 5 step, two facings, EXE spa 0x5d7, flags 0x4
 	dc.w	18,18,18,18,38,38,38,38,0,3128,6,3130
 	dc.w	6,3132,6,3134,6,3136,-6,3129,6,3131,6,3133
 	dc.w	6,3135,6,3137,-6
@@ -1028,13 +1028,13 @@ SPAgready2	=	*-SPAlist	; held pose, EXE spa 0x5e3, flags 0x0
 	dc.w	-30,643,-30,644,-30,645,-30,646,-30,647,-30,648
 	dc.w	-30
 
-SPAgglovel	=	*-SPAlist	; facing-stride cycle, EXE spa 0x5e7, flags 0x0
+SPAgglover	=	*-SPAlist	; facing-stride cycle, EXE spa 0x5e7, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,681,8,689
 	dc.w	-20,682,8,690,-20,683,8,691,-20,684,8,692
 	dc.w	-20,685,8,693,-20,686,8,694,-20,687,8,695
 	dc.w	-20,688,8,696,-20
 
-SPAgglover	=	*-SPAlist	; facing-stride cycle, EXE spa 0x5ed, flags 0x0
+SPAgglovel	=	*-SPAlist	; facing-stride cycle, EXE spa 0x5ed, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,697,8,705
 	dc.w	-20,698,8,706,-20,699,8,707,-20,700,8,708
 	dc.w	-20,701,8,709,-20,702,8,710,-20,703,8,711
@@ -1052,7 +1052,7 @@ SPAgstickl	=	*-SPAlist	; facing-stride cycle, EXE spa 0x5f9, flags 0x0
 	dc.w	-20,653,8,661,-20,654,8,662,-20,655,8,663
 	dc.w	-20,656,8,664,-20
 
-SPA05FF	=	*-SPAlist	; 8-facing cycle, EXE spa 0x5ff, flags 0x0
+SPAgstackr	=	*-SPAlist	; 8-facing cycle, EXE spa 0x5ff, flags 0x0
 	dc.w	18,50,82,114,146,178,210,242,0,737,8,745
 	dc.w	8,753,30,1169,7,1177,7,1145,7,1153,7,1161
 	dc.w	-7,738,8,746,8,754,30,1170,7,1178,7,1146
@@ -1066,7 +1066,7 @@ SPA05FF	=	*-SPAlist	; 8-facing cycle, EXE spa 0x5ff, flags 0x0
 	dc.w	-7,744,8,752,8,760,30,1176,7,1184,7,1152
 	dc.w	7,1160,7,1168,-7
 
-SPA0611	=	*-SPAlist	; 8-facing cycle, EXE spa 0x611, flags 0x0
+SPAgstackl	=	*-SPAlist	; 8-facing cycle, EXE spa 0x611, flags 0x0
 	dc.w	18,50,82,114,146,178,210,242,0,713,8,721
 	dc.w	8,729,30,1185,7,1193,7,1145,7,1153,7,1161
 	dc.w	-7,714,8,722,8,730,30,1186,7,1194,7,1146
@@ -1080,7 +1080,7 @@ SPA0611	=	*-SPAlist	; 8-facing cycle, EXE spa 0x611, flags 0x0
 	dc.w	-7,720,8,728,8,736,30,1192,7,1200,7,1152
 	dc.w	7,1160,7,1168,-7
 
-SPA0623	=	*-SPAlist	; 8-facing cycle, EXE spa 0x623, flags 0x20
+SPAgdive	=	*-SPAlist	; 8-facing cycle, EXE spa 0x623, flags 0x20
 	dc.w	18,50,82,114,146,178,210,242,0,761,8,769
 	dc.w	8,777,40,1129,7,1137,7,1145,7,1153,7,1161
 	dc.w	-7,762,8,770,8,778,40,1130,7,1138,7,1146
@@ -1094,7 +1094,7 @@ SPA0623	=	*-SPAlist	; 8-facing cycle, EXE spa 0x623, flags 0x20
 	dc.w	-7,768,8,776,8,784,40,1136,7,1144,7,1152
 	dc.w	7,1160,7,1168,-7
 
-SPA0635	=	*-SPAlist	; facing-stride cycle, EXE spa 0x635, flags 0x0
+SPAgoalieknee	=	*-SPAlist	; facing-stride cycle, EXE spa 0x635, flags 0x0
 	dc.w	18,38,58,78,98,118,138,158,0,1009,8,1017
 	dc.w	30,1145,7,1153,7,1161,-7,1010,8,1018,30,1146
 	dc.w	7,1154,7,1162,-7,1011,8,1019,30,1147,7,1155
@@ -1104,7 +1104,7 @@ SPA0635	=	*-SPAlist	; facing-stride cycle, EXE spa 0x635, flags 0x0
 	dc.w	30,1151,7,1159,7,1167,-7,1016,8,1024,30,1152
 	dc.w	7,1160,7,1168,-7
 
-SPA0641	=	*-SPAlist	; facing-stride cycle, EXE spa 0x641, flags 0x0
+SPAgokneehold	=	*-SPAlist	; facing-stride cycle, EXE spa 0x641, flags 0x0
 	dc.w	18,38,58,78,98,118,138,158,0,1009,8,1017
 	dc.w	90,1145,7,1153,7,1161,-7,1010,8,1018,90,1146
 	dc.w	7,1154,7,1162,-7,1011,8,1019,90,1147,7,1155
@@ -1142,14 +1142,14 @@ SPAgofallstick	=	*-SPAlist	; 8-facing cycle, EXE spa 0x65f, flags 0x20
 	dc.w	-7,840,8,848,8,856,20,1192,7,1200,7,1152
 	dc.w	7,1160,7,1168,-7
 
-SPA0671	=	*-SPAlist	; facing-stride cycle, EXE spa 0x671, flags 0x0
+SPAgoaliepoke	=	*-SPAlist	; facing-stride cycle, EXE spa 0x671, flags 0x0
 	dc.w	18,30,42,54,66,78,90,102,0,865,4,873
 	dc.w	15,865,-6,866,4,874,15,866,-6,867,4,875
 	dc.w	15,867,-6,868,4,876,15,868,-6,869,4,877
 	dc.w	15,869,-6,870,4,878,15,870,-6,871,4,879
 	dc.w	15,871,-6,872,4,880,15,872,-6
 
-SPA0679	=	*-SPAlist	; 8-facing cycle, EXE spa 0x679, flags 0x0
+SPAgskate	=	*-SPAlist	; 8-facing cycle, EXE spa 0x679, flags 0x0
 	dc.w	18,50,82,114,146,178,210,242,0,881,4,889
 	dc.w	4,897,4,905,4,913,4,921,4,929,4,937
 	dc.w	-4,882,4,890,4,898,4,906,4,914,4,922
@@ -1163,19 +1163,19 @@ SPA0679	=	*-SPAlist	; 8-facing cycle, EXE spa 0x679, flags 0x0
 	dc.w	-4,888,4,896,4,904,4,912,4,920,4,928
 	dc.w	4,936,4,944,-4
 
-SPA068B	=	*-SPAlist	; 2 step, EXE spa 0x68b, flags 0x0
+SPAgshufflel	=	*-SPAlist	; 2 step, EXE spa 0x68b, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,945,8,641
 	dc.w	-8,946,8,642,-8,947,8,643,-8,948,8,644
 	dc.w	-8,949,8,645,-8,950,8,646,-8,951,8,647
 	dc.w	-8,952,8,648,-8
 
-SPA0691	=	*-SPAlist	; 2 step, EXE spa 0x691, flags 0x0
+SPAgshuffler	=	*-SPAlist	; 2 step, EXE spa 0x691, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,953,8,641
 	dc.w	-8,954,8,642,-8,955,8,643,-8,956,8,644
 	dc.w	-8,957,8,645,-8,958,8,646,-8,959,8,647
 	dc.w	-8,960,8,648,-8
 
-SPA0697	=	*-SPAlist	; facing-stride cycle, EXE spa 0x697, flags 0x0
+SPAgsavetoe	=	*-SPAlist	; facing-stride cycle, EXE spa 0x697, flags 0x0
 	dc.w	18,34,50,66,82,98,114,130,0,785,8,793
 	dc.w	20,1153,7,1161,-7,786,8,794,20,1154,7,1162
 	dc.w	-7,787,8,795,20,1155,7,1163,-7,788,8,796
@@ -1184,18 +1184,18 @@ SPA0697	=	*-SPAlist	; facing-stride cycle, EXE spa 0x697, flags 0x0
 	dc.w	20,1159,7,1167,-7,792,8,800,20,1160,7,1168
 	dc.w	-7
 
-SPA06A1	=	*-SPAlist	; facing-stride cycle, EXE spa 0x6a1, flags 0x0
+SPAgswing	=	*-SPAlist	; facing-stride cycle, EXE spa 0x6a1, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,1025,5,1033
 	dc.w	-16,1026,5,1034,-16,1027,5,1035,-16,1028,5,1036
 	dc.w	-16,1029,5,1037,-16,1030,5,1038,-16,1031,5,1039
 	dc.w	-16,1032,5,1040,-16
 
-SPA06A7	=	*-SPAlist	; held pose, EXE spa 0x6a7, flags 0x0
+SPAgsavekick	=	*-SPAlist	; held pose, EXE spa 0x6a7, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,1041,-20,1042
 	dc.w	-20,1043,-20,1044,-20,1045,-20,1046,-20,1047,-20,1048
 	dc.w	-20
 
-SPA06AB	=	*-SPAlist	; facing-stride cycle, EXE spa 0x6ab, flags 0x0
+SPAgofallback	=	*-SPAlist	; facing-stride cycle, EXE spa 0x6ab, flags 0x0
 	dc.w	18,34,50,66,82,98,114,130,0,1049,8,1057
 	dc.w	30,1153,7,1161,-7,1050,8,1058,30,1154,7,1162
 	dc.w	-7,1051,8,1059,30,1155,7,1163,-7,1052,8,1060
@@ -1232,7 +1232,7 @@ SPAgwallright	=	*-SPAlist	; 8-facing cycle, loops, EXE spa 0x6c7, flags 0x18
 	dc.w	-4,2176,4,2184,4,2192,4,2200,4,2208,4,2216
 	dc.w	4,2224,4,2232,-4
 
-SPA06D9	=	*-SPAlist	; facing-stride cycle, EXE spa 0x6d9, flags 0x0
+SPAgreadybob	=	*-SPAlist	; facing-stride cycle, EXE spa 0x6d9, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,1065,8,1073
 	dc.w	-12,1066,8,1074,-12,1067,8,1075,-12,1068,8,1076
 	dc.w	-12,1069,8,1077,-12,1070,8,1078,-12,1071,8,1079
@@ -1256,60 +1256,60 @@ SPAgready	=	*-SPAlist	; 11 step, EXE spa 0x6df, flags 0x0
 	dc.w	10,1072,8,1080,10,648,107,1072,8,1080,10,1072
 	dc.w	8,1080,10,648,-10
 
-SPA070F	=	*-SPAlist	; held pose, EXE spa 0x70f, flags 0x0
+SPAstandwait	=	*-SPAlist	; held pose, EXE spa 0x70f, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,9,-68,10
 	dc.w	-68,11,-68,12,-68,13,-68,14,-68,15,-68,16
 	dc.w	-68
 
-SPA0713	=	*-SPAlist	; held pose, EXE spa 0x713, flags 0x0
+SPAstandwait2	=	*-SPAlist	; held pose, EXE spa 0x713, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,1,-47,2
 	dc.w	-47,3,-47,4,-47,5,-47,6,-47,7,-47,8
 	dc.w	-47
 
-SPA0717	=	*-SPAlist	; held pose, EXE spa 0x717, flags 0x0
+SPAfaceoffwait	=	*-SPAlist	; held pose, EXE spa 0x717, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,377,-53,378
 	dc.w	-53,379,-53,380,-53,381,-53,382,-53,383,-53,384
 	dc.w	-53
 
-SPA071B	=	*-SPAlist	; held pose, EXE spa 0x71b, flags 0x0
+SPAbenchidle1	=	*-SPAlist	; held pose, EXE spa 0x71b, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,2297,-8,2298
 	dc.w	-8,2299,-8,2300,-8,2301,-8,2302,-8,2303,-8,2304
 	dc.w	-8
 
-SPA071F	=	*-SPAlist	; held pose, EXE spa 0x71f, flags 0x0
+SPAbenchidle2	=	*-SPAlist	; held pose, EXE spa 0x71f, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,2305,-8,2306
 	dc.w	-8,2307,-8,2308,-8,2309,-8,2310,-8,2311,-8,2312
 	dc.w	-8
 
-SPA0723	=	*-SPAlist	; held pose, EXE spa 0x723, flags 0x0
+SPAbenchidle3	=	*-SPAlist	; held pose, EXE spa 0x723, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,2313,-8,2314
 	dc.w	-8,2315,-8,2316,-8,2317,-8,2318,-8,2319,-8,2320
 	dc.w	-8
 
-SPA0727	=	*-SPAlist	; facing-stride cycle, EXE spa 0x727, flags 0x0
+SPAbenchreact	=	*-SPAlist	; facing-stride cycle, EXE spa 0x727, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,2321,10,2329
 	dc.w	-20,2322,10,2330,-20,2323,10,2331,-20,2324,10,2332
 	dc.w	-20,2325,10,2333,-20,2326,10,2334,-20,2327,10,2335
 	dc.w	-20,2328,10,2336,-20
 
-SPA072D	=	*-SPAlist	; held pose, EXE spa 0x72d, flags 0x0
+SPAbenchwatch1	=	*-SPAlist	; held pose, EXE spa 0x72d, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,2345,-45,2346
 	dc.w	-45,2347,-45,2348,-45,2349,-45,2350,-45,2351,-45,2352
 	dc.w	-45
 
-SPA0731	=	*-SPAlist	; held pose, EXE spa 0x731, flags 0x0
+SPAbenchwatch2	=	*-SPAlist	; held pose, EXE spa 0x731, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,2337,-45,2338
 	dc.w	-45,2339,-45,2340,-45,2341,-45,2342,-45,2343,-45,2344
 	dc.w	-45
 
-SPA0735	=	*-SPAlist	; facing-stride cycle, EXE spa 0x735, flags 0x0
+SPAbenchlook	=	*-SPAlist	; facing-stride cycle, EXE spa 0x735, flags 0x0
 	dc.w	18,30,42,54,66,78,90,102,0,2353,10,2361
 	dc.w	60,2353,-8,2354,10,2362,60,2354,-8,2355,10,2363
 	dc.w	60,2355,-8,2356,10,2364,60,2356,-8,2357,10,2365
 	dc.w	60,2357,-8,2358,10,2366,60,2358,-8,2359,10,2367
 	dc.w	60,2359,-8,2360,10,2368,60,2360,-8
 
-SPA073D	=	*-SPAlist	; facing-stride cycle, EXE spa 0x73d, flags 0x0
+SPAbenchcheer	=	*-SPAlist	; facing-stride cycle, EXE spa 0x73d, flags 0x0
 	dc.w	18,54,90,126,162,198,234,270,0,2369,10,2377
 	dc.w	12,2369,14,2377,15,2369,16,2377,17,2369,18,2377
 	dc.w	20,2369,-8,2370,10,2378,12,2370,14,2378,15,2370
@@ -1408,45 +1408,45 @@ SPAreffowait	=	*-SPAlist	; held pose, EXE spa 0x7a7, flags 0x0
 	dc.w	-8,2547,-8,2548,-8,2549,-8,2550,-8,2551,-8,2552
 	dc.w	-8
 
-SPA07AB	=	*-SPAlist	; held pose, EXE spa 0x7ab, flags 0x0
+SPArefturnl	=	*-SPAlist	; held pose, EXE spa 0x7ab, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,2593,-8,2594
 	dc.w	-8,2595,-8,2596,-8,2597,-8,2598,-8,2599,-8,2600
 	dc.w	-8
 
-SPA07AF	=	*-SPAlist	; held pose, EXE spa 0x7af, flags 0x0
+SPAarmupturnl	=	*-SPAlist	; held pose, EXE spa 0x7af, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,2625,-8,2626
 	dc.w	-8,2627,-8,2628,-8,2629,-8,2630,-8,2631,-8,2632
 	dc.w	-8
 
-SPA07B3	=	*-SPAlist	; facing-stride cycle, EXE spa 0x7b3, flags 0x0
+SPArefturnlin	=	*-SPAlist	; facing-stride cycle, EXE spa 0x7b3, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,2585,8,2593
 	dc.w	-8,2586,8,2594,-8,2587,8,2595,-8,2588,8,2596
 	dc.w	-8,2589,8,2597,-8,2590,8,2598,-8,2591,8,2599
 	dc.w	-8,2592,8,2600,-8
 
-SPA07B9	=	*-SPAlist	; facing-stride cycle, EXE spa 0x7b9, flags 0x0
+SPAarmupturnlin	=	*-SPAlist	; facing-stride cycle, EXE spa 0x7b9, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,2617,8,2625
 	dc.w	-8,2618,8,2626,-8,2619,8,2627,-8,2620,8,2628
 	dc.w	-8,2621,8,2629,-8,2622,8,2630,-8,2623,8,2631
 	dc.w	-8,2624,8,2632,-8
 
-SPA07BF	=	*-SPAlist	; held pose, EXE spa 0x7bf, flags 0x0
+SPArefturnr	=	*-SPAlist	; held pose, EXE spa 0x7bf, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,2609,-8,2610
 	dc.w	-8,2611,-8,2612,-8,2613,-8,2614,-8,2615,-8,2616
 	dc.w	-8
 
-SPA07C3	=	*-SPAlist	; held pose, EXE spa 0x7c3, flags 0x0
+SPAarmupturnr	=	*-SPAlist	; held pose, EXE spa 0x7c3, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,2641,-8,2642
 	dc.w	-8,2643,-8,2644,-8,2645,-8,2646,-8,2647,-8,2648
 	dc.w	-8
 
-SPA07C7	=	*-SPAlist	; facing-stride cycle, EXE spa 0x7c7, flags 0x0
+SPArefturnrin	=	*-SPAlist	; facing-stride cycle, EXE spa 0x7c7, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,2601,8,2609
 	dc.w	-8,2602,8,2610,-8,2603,8,2611,-8,2604,8,2612
 	dc.w	-8,2605,8,2613,-8,2606,8,2614,-8,2607,8,2615
 	dc.w	-8,2608,8,2616,-8
 
-SPA07CD	=	*-SPAlist	; facing-stride cycle, EXE spa 0x7cd, flags 0x0
+SPAarmupturnrin	=	*-SPAlist	; facing-stride cycle, EXE spa 0x7cd, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,2633,8,2641
 	dc.w	-8,2634,8,2642,-8,2635,8,2643,-8,2636,8,2644
 	dc.w	-8,2637,8,2645,-8,2638,8,2646,-8,2639,8,2647
@@ -1466,7 +1466,7 @@ SPAreffallback	=	*-SPAlist	; 8-facing cycle, EXE spa 0x7d3, flags 0x20
 	dc.w	-8,2656,5,2664,5,2672,5,2680,5,2688,5,2696
 	dc.w	40,2760,8,2768,-8
 
-SPA07E5	=	*-SPAlist	; facing-stride cycle, EXE spa 0x7e5, flags 0x0
+SPApuckdrop	=	*-SPAlist	; facing-stride cycle, EXE spa 0x7e5, flags 0x0
 	dc.w	18,30,42,54,66,78,90,102,0,2697,8,2705
 	dc.w	20,2697,-8,2698,8,2706,20,2698,-8,2699,8,2707
 	dc.w	20,2699,-8,2700,8,2708,20,2700,-8,2701,8,2709
@@ -1483,7 +1483,7 @@ SPArefpointgoa	=	*-SPAlist	; facing-stride cycle, EXE spa 0x7ed, flags 0x0
 	dc.w	6,2743,24,2727,4,2719,-5,2728,6,2736,6,2744
 	dc.w	24,2728,4,2720,-5
 
-SPA07F9	=	*-SPAlist	; facing-stride cycle, EXE spa 0x7f9, flags 0x0
+SPArefpointgoallong	=	*-SPAlist	; facing-stride cycle, EXE spa 0x7f9, flags 0x0
 	dc.w	18,38,58,78,98,118,138,158,0,2721,6,2729
 	dc.w	6,2737,24,2721,4,2713,-485,2722,6,2730,6,2738
 	dc.w	24,2722,4,2714,-485,2723,6,2731,6,2739,24,2723
@@ -1493,7 +1493,7 @@ SPA07F9	=	*-SPAlist	; facing-stride cycle, EXE spa 0x7f9, flags 0x0
 	dc.w	6,2743,24,2727,4,2719,-485,2728,6,2736,6,2744
 	dc.w	24,2728,4,2720,-485
 
-SPA0805	=	*-SPAlist	; facing-stride cycle, EXE spa 0x805, flags 0x0
+SPArefpointgoalshort	=	*-SPAlist	; facing-stride cycle, EXE spa 0x805, flags 0x0
 	dc.w	18,38,58,78,98,118,138,158,0,2721,6,2729
 	dc.w	6,2737,24,2721,4,2713,-285,2722,6,2730,6,2738
 	dc.w	24,2722,4,2714,-285,2723,6,2731,6,2739,24,2723
@@ -1503,83 +1503,83 @@ SPA0805	=	*-SPAlist	; facing-stride cycle, EXE spa 0x805, flags 0x0
 	dc.w	6,2743,24,2727,4,2719,-285,2728,6,2736,6,2744
 	dc.w	24,2728,4,2720,-285
 
-SPA0811	=	*-SPAlist	; 4 step, no facing, EXE spa 0x811, flags 0x2
+SPArefrough	=	*-SPAlist	; 4 step, no facing, EXE spa 0x811, flags 0x2
 	dc.w	18,18,18,18,18,18,18,18,0,2717,8,2818
 	dc.w	9,2819,24,2717,-8
 
-SPA081B	=	*-SPAlist	; 10 step, no facing, EXE spa 0x81b, flags 0x2
+SPArefcharge	=	*-SPAlist	; 10 step, no facing, EXE spa 0x81b, flags 0x2
 	dc.w	18,18,18,18,18,18,18,18,0,2717,8,2803
 	dc.w	8,2804,8,2805,8,2806,8,2803,8,2804,8,2805
 	dc.w	8,2806,8,2717,-8
 
-SPA0831	=	*-SPAlist	; 6 step, no facing, EXE spa 0x831, flags 0x2
+SPArefslash	=	*-SPAlist	; 6 step, no facing, EXE spa 0x831, flags 0x2
 	dc.w	18,18,18,18,18,18,18,18,0,2716,8,2820
 	dc.w	8,2821,8,2822,16,2820,7,2716,-8
 
-SPA083F	=	*-SPAlist	; 5 step, no facing, EXE spa 0x83f, flags 0x2
+SPArefxcheck	=	*-SPAlist	; 5 step, no facing, EXE spa 0x83f, flags 0x2
 	dc.w	18,18,18,18,18,18,18,18,0,2716,8,2823
 	dc.w	10,2824,24,2823,6,2716,-8
 
-SPA084B	=	*-SPAlist	; 5 step, no facing, EXE spa 0x84b, flags 0x2
+SPArefhook	=	*-SPAlist	; 5 step, no facing, EXE spa 0x84b, flags 0x2
 	dc.w	18,18,18,18,18,18,18,18,0,2716,8,2810
 	dc.w	10,2811,10,2810,24,2716,-8
 
-SPA0857	=	*-SPAlist	; 6 step, no facing, EXE spa 0x857, flags 0x2
+SPAreftrip	=	*-SPAlist	; 6 step, no facing, EXE spa 0x857, flags 0x2
 	dc.w	18,18,18,18,18,18,18,18,0,2717,8,2825
 	dc.w	10,2826,10,2827,16,2825,7,2717,-8
 
-SPA0865	=	*-SPAlist	; 6 step, no facing, EXE spa 0x865, flags 0x2
+SPArefhold	=	*-SPAlist	; 6 step, no facing, EXE spa 0x865, flags 0x2
 	dc.w	18,18,18,18,18,18,18,18,0,2716,8,2812
 	dc.w	10,2813,10,2814,36,2812,6,2716,-8
 
-SPA0873	=	*-SPAlist	; 5 step, no facing, EXE spa 0x873, flags 0x2
+SPArefbehind	=	*-SPAlist	; 5 step, no facing, EXE spa 0x873, flags 0x2
 	dc.w	18,18,18,18,18,18,18,18,0,2717,8,2801
 	dc.w	10,2802,24,2801,6,2717,-8
 
-SPA087F	=	*-SPAlist	; facing-stride cycle, no facing, EXE spa 0x87f, flags 0x2
+SPArefpenshot	=	*-SPAlist	; facing-stride cycle, no facing, EXE spa 0x87f, flags 0x2
 	dc.w	18,18,18,18,18,18,18,18,0,2717,8,2725
 	dc.w	6,2733,6,2741,24,2725,4,2717,-5
 
-SPA088D	=	*-SPAlist	; 6 step, no facing, EXE spa 0x88d, flags 0x2
+SPArefelbow	=	*-SPAlist	; 6 step, no facing, EXE spa 0x88d, flags 0x2
 	dc.w	18,18,18,18,18,18,18,18,0,2716,8,2807
 	dc.w	8,2808,8,2809,24,2807,6,2716,-8
 
-SPA089B	=	*-SPAlist	; 6 step, no facing, EXE spa 0x89b, flags 0x2
+SPArefelbow2	=	*-SPAlist	; 6 step, no facing, EXE spa 0x89b, flags 0x2
 	dc.w	18,18,18,18,18,18,18,18,0,2716,8,2815
 	dc.w	8,2816,8,2817,24,2815,6,2716,-8
 
-SPA08A9	=	*-SPAlist	; 5 step, no facing, EXE spa 0x8a9, flags 0x2
+SPArefinterfer	=	*-SPAlist	; 5 step, no facing, EXE spa 0x8a9, flags 0x2
 	dc.w	18,18,18,18,18,18,18,18,0,2716,8,2828
 	dc.w	10,2829,24,2828,6,2716,-8
 
-SPA08B5	=	*-SPAlist	; 5 step, no facing, EXE spa 0x8b5, flags 0x2
+SPArefsignalend	=	*-SPAlist	; 5 step, no facing, EXE spa 0x8b5, flags 0x2
 	dc.w	18,18,18,18,18,18,18,18,0,2717,8,2701
 	dc.w	10,2709,24,2701,6,2717,-8
 
-SPA08C1	=	*-SPAlist	; held pose, no facing, EXE spa 0x8c1, flags 0x2
+SPAbrcup	=	*-SPAlist	; held pose, no facing, EXE spa 0x8c1, flags 0x2
 	dc.w	18,18,18,18,18,18,18,18,0,3146,-8
 
-SPA08C5	=	*-SPAlist	; 8 step, no facing, EXE spa 0x8c5, flags 0x2
+SPAclap	=	*-SPAlist	; 8 step, no facing, EXE spa 0x8c5, flags 0x2
 	dc.w	18,18,18,18,18,18,18,18,0,3138,6,3139
 	dc.w	6,3140,6,3141,6,3142,6,3143,6,3144,6,3145
 	dc.w	-6
 
-SPA08D7	=	*-SPAlist	; 12 step, no facing, EXE spa 0x8d7, flags 0x2
+SPAboxdooropen	=	*-SPAlist	; 12 step, no facing, EXE spa 0x8d7, flags 0x2
 	dc.w	18,18,18,18,18,18,18,18,0,3146,6,3147
 	dc.w	6,3148,6,3149,6,3150,6,3151,6,3152,6,3153
 	dc.w	6,3154,6,3155,6,3156,6,3157,-6
 
-SPA08F1	=	*-SPAlist	; 9 step, no facing, EXE spa 0x8f1, flags 0x2
+SPAgvcup	=	*-SPAlist	; 9 step, no facing, EXE spa 0x8f1, flags 0x2
 	dc.w	18,18,18,18,18,18,18,18,0,3158,6,3159
 	dc.w	6,3160,6,3161,6,3162,6,3163,6,3164,6,3165
 	dc.w	6,3166,-6
 
-SPA0905	=	*-SPAlist	; held pose, EXE spa 0x905, flags 0x0
+SPAbenchstand	=	*-SPAlist	; held pose, EXE spa 0x905, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,3168,-8,3169
 	dc.w	-8,3170,-8,3171,-8,3172,-8,3173,-8,3174,-8,3175
 	dc.w	-8
 
-SPA0909	=	*-SPAlist	; 8-facing cycle, EXE spa 0x909, flags 0x0
+SPAstansk	=	*-SPAlist	; 8-facing cycle, EXE spa 0x909, flags 0x0
 	dc.w	18,50,82,114,146,178,210,242,0,3569,8,3577
 	dc.w	8,3585,8,3593,8,3601,8,3609,8,3617,8,3625
 	dc.w	-8,3570,8,3578,8,3586,8,3594,8,3602,8,3610
@@ -1593,7 +1593,7 @@ SPA0909	=	*-SPAlist	; 8-facing cycle, EXE spa 0x909, flags 0x0
 	dc.w	-8,3576,8,3584,8,3592,8,3600,8,3608,8,3616
 	dc.w	8,3624,8,3632,-8
 
-SPA091B	=	*-SPAlist	; facing-stride cycle, EXE spa 0x91b, flags 0x0
+SPAstanley	=	*-SPAlist	; facing-stride cycle, EXE spa 0x91b, flags 0x0
 	dc.w	18,34,50,66,82,98,114,130,0,3633,12,3641
 	dc.w	12,3649,12,3657,-12,3634,12,3642,12,3650,12,3658
 	dc.w	-12,3635,12,3643,12,3651,12,3659,-12,3636,12,3644
@@ -1602,17 +1602,17 @@ SPA091B	=	*-SPAlist	; facing-stride cycle, EXE spa 0x91b, flags 0x0
 	dc.w	12,3655,12,3663,-12,3640,12,3648,12,3656,12,3664
 	dc.w	-12
 
-SPA0925	=	*-SPAlist	; held pose, EXE spa 0x925, flags 0x0
+SPAcupwaitl	=	*-SPAlist	; held pose, EXE spa 0x925, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,3176,-8,3177
 	dc.w	-8,3178,-8,3179,-8,3180,-8,3181,-8,3182,-8,3183
 	dc.w	-8
 
-SPA0929	=	*-SPAlist	; held pose, EXE spa 0x929, flags 0x0
+SPAcupwaitr	=	*-SPAlist	; held pose, EXE spa 0x929, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,3184,-8,3185
 	dc.w	-8,3186,-8,3187,-8,3188,-8,3189,-8,3190,-8,3191
 	dc.w	-8
 
-SPA092D	=	*-SPAlist	; 8-facing cycle, EXE spa 0x92d, flags 0x0
+SPAcupskate	=	*-SPAlist	; 8-facing cycle, EXE spa 0x92d, flags 0x0
 	dc.w	18,50,82,114,146,178,210,242,0,3192,8,3200
 	dc.w	8,3208,8,3216,8,3224,8,3232,8,3240,8,3248
 	dc.w	-8,3193,8,3201,8,3209,8,3217,8,3225,8,3233
@@ -1626,7 +1626,7 @@ SPA092D	=	*-SPAlist	; 8-facing cycle, EXE spa 0x92d, flags 0x0
 	dc.w	-8,3199,8,3207,8,3215,8,3223,8,3231,8,3239
 	dc.w	8,3247,8,3255,-8
 
-SPA093F	=	*-SPAlist	; facing-stride cycle, EXE spa 0x93f, flags 0x0
+SPAcupturn	=	*-SPAlist	; facing-stride cycle, EXE spa 0x93f, flags 0x0
 	dc.w	18,54,90,126,162,198,234,270,0,3256,4,3264
 	dc.w	4,3272,4,3280,4,3288,4,3296,4,3304,4,3312
 	dc.w	4,3320,-4,3257,4,3265,4,3273,4,3281,4,3289
@@ -1641,18 +1641,18 @@ SPA093F	=	*-SPAlist	; facing-stride cycle, EXE spa 0x93f, flags 0x0
 	dc.w	4,3326,-4,3263,4,3271,4,3279,4,3287,4,3295
 	dc.w	4,3303,4,3311,4,3319,4,3327,-4
 
-SPA0953	=	*-SPAlist	; facing-stride cycle, EXE spa 0x953, flags 0x0
+SPAcupturnend	=	*-SPAlist	; facing-stride cycle, EXE spa 0x953, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,3312,8,3320
 	dc.w	-8,3313,8,3321,-8,3314,8,3322,-8,3315,8,3323
 	dc.w	-8,3316,8,3324,-8,3317,8,3325,-8,3318,8,3326
 	dc.w	-8,3319,8,3327,-8
 
-SPA0959	=	*-SPAlist	; held pose, EXE spa 0x959, flags 0x0
+SPAcupturnhold	=	*-SPAlist	; held pose, EXE spa 0x959, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,3320,-8,3321
 	dc.w	-8,3322,-8,3323,-8,3324,-8,3325,-8,3326,-8,3327
 	dc.w	-8
 
-SPA095D	=	*-SPAlist	; facing-stride cycle, EXE spa 0x95d, flags 0x0
+SPAcuptake	=	*-SPAlist	; facing-stride cycle, EXE spa 0x95d, flags 0x0
 	dc.w	18,54,90,126,162,198,234,270,0,3464,4,3472
 	dc.w	4,3480,4,3488,4,3496,4,3504,4,3512,4,3520
 	dc.w	4,3528,-4,3465,4,3473,4,3481,4,3489,4,3497
@@ -1667,7 +1667,7 @@ SPA095D	=	*-SPAlist	; facing-stride cycle, EXE spa 0x95d, flags 0x0
 	dc.w	4,3534,-4,3471,4,3479,4,3487,4,3495,4,3503
 	dc.w	4,3511,4,3519,4,3527,4,3535,-4
 
-SPA0971	=	*-SPAlist	; 8-facing cycle, EXE spa 0x971, flags 0x0
+SPAcupfollow	=	*-SPAlist	; 8-facing cycle, EXE spa 0x971, flags 0x0
 	dc.w	18,50,82,114,146,178,210,242,0,3328,8,3336
 	dc.w	8,3344,8,3352,8,3360,8,3368,8,3376,8,3384
 	dc.w	-8,3329,8,3337,8,3345,8,3353,8,3361,8,3369
@@ -1681,33 +1681,33 @@ SPA0971	=	*-SPAlist	; 8-facing cycle, EXE spa 0x971, flags 0x0
 	dc.w	-8,3335,8,3343,8,3351,8,3359,8,3367,8,3375
 	dc.w	8,3383,8,3391,-8
 
-SPA0983	=	*-SPAlist	; held pose, EXE spa 0x983, flags 0x0
+SPAcupidle	=	*-SPAlist	; held pose, EXE spa 0x983, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,3456,-8,3457
 	dc.w	-8,3458,-8,3459,-8,3460,-8,3461,-8,3462,-8,3463
 	dc.w	-8
 
-SPA0987	=	*-SPAlist	; held pose, EXE spa 0x987, flags 0x0
+SPAcupstand	=	*-SPAlist	; held pose, EXE spa 0x987, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,3673,-8,3674
 	dc.w	-8,3675,-8,3676,-8,3677,-8,3678,-8,3679,-8,3680
 	dc.w	-8
 
-SPA098B	=	*-SPAlist	; facing-stride cycle, EXE spa 0x98b, flags 0x0
+SPAcupraise	=	*-SPAlist	; facing-stride cycle, EXE spa 0x98b, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,3665,12,3673
 	dc.w	-12,3666,12,3674,-12,3667,12,3675,-12,3668,12,3676
 	dc.w	-12,3669,12,3677,-12,3670,12,3678,-12,3671,12,3679
 	dc.w	-12,3672,12,3680,-12
 
-SPA0991	=	*-SPAlist	; 9 step, no facing, EXE spa 0x991, flags 0x2
+SPAgetcup	=	*-SPAlist	; 9 step, no facing, EXE spa 0x991, flags 0x2
 	dc.w	18,18,18,18,18,18,18,18,0,3560,8,3561
 	dc.w	8,3562,8,3563,8,3564,8,3565,8,3566,8,3567
 	dc.w	8,3568,-28
 
-SPA09A5	=	*-SPAlist	; 8 step, no facing, EXE spa 0x9a5, flags 0x2
+SPAboxenter	=	*-SPAlist	; 8 step, no facing, EXE spa 0x9a5, flags 0x2
 	dc.w	18,18,18,18,18,18,18,18,0,3552,30,3553
 	dc.w	6,3554,6,3555,6,3556,6,3557,6,3558,6,3559
 	dc.w	-16
 
-SPA09B7	=	*-SPAlist	; 9 step, EXE spa 0x9b7, flags 0x0
+SPAcuptakeend	=	*-SPAlist	; 9 step, EXE spa 0x9b7, flags 0x0
 	dc.w	18,54,90,126,162,198,234,270,0,3528,4,3520
 	dc.w	4,3512,4,3504,4,3496,4,3488,4,3480,4,3472
 	dc.w	4,3464,-4,3529,4,3521,4,3513,4,3505,4,3497
@@ -1722,20 +1722,20 @@ SPA09B7	=	*-SPAlist	; 9 step, EXE spa 0x9b7, flags 0x0
 	dc.w	4,3470,-4,3535,4,3527,4,3519,4,3511,4,3503
 	dc.w	4,3495,4,3487,4,3479,4,3471,-4
 
-SPA09CB	=	*-SPAlist	; 2 step, EXE spa 0x9cb, flags 0x0
+SPAcupheld	=	*-SPAlist	; 2 step, EXE spa 0x9cb, flags 0x0
 	dc.w	18,26,34,42,50,58,66,74,0,3544,12,3536
 	dc.w	-12,3545,12,3537,-12,3546,12,3538,-12,3547,12,3539
 	dc.w	-12,3548,12,3540,-12,3549,12,3541,-12,3550,12,3542
 	dc.w	-12,3551,12,3543,-12
 
-SPA09D1	=	*-SPAlist	; facing-stride cycle, EXE spa 0x9d1, flags 0x0
+SPAcupheld2	=	*-SPAlist	; facing-stride cycle, EXE spa 0x9d1, flags 0x0
 	dc.w	18,30,42,54,66,78,90,102,0,3536,12,3544
 	dc.w	12,3456,-12,3537,12,3545,12,3457,-12,3538,12,3546
 	dc.w	12,3458,-12,3539,12,3547,12,3459,-12,3540,12,3548
 	dc.w	12,3460,-12,3541,12,3549,12,3461,-12,3542,12,3550
 	dc.w	12,3462,-12,3543,12,3551,12,3463,-12
 
-SPA09D9	=	*-SPAlist	; 8-facing cycle, EXE spa 0x9d9, flags 0x0
+SPAcupfollow2	=	*-SPAlist	; 8-facing cycle, EXE spa 0x9d9, flags 0x0
 	dc.w	18,50,82,114,146,178,210,242,0,3392,8,3400
 	dc.w	8,3408,8,3416,8,3424,8,3432,8,3440,8,3448
 	dc.w	-8,3393,8,3401,8,3409,8,3417,8,3425,8,3433
@@ -1749,7 +1749,7 @@ SPA09D9	=	*-SPAlist	; 8-facing cycle, EXE spa 0x9d9, flags 0x0
 	dc.w	-8,3399,8,3407,8,3415,8,3423,8,3431,8,3439
 	dc.w	8,3447,8,3455,-8
 
-SPA09EB	=	*-SPAlist	; held pose, EXE spa 0x9eb, flags 0x0
+SPAcupfollowhold	=	*-SPAlist	; held pose, EXE spa 0x9eb, flags 0x0
 	dc.w	18,22,26,30,34,38,42,46,0,3392,-8,3393
 	dc.w	-8,3394,-8,3395,-8,3396,-8,3397,-8,3398,-8,3399
 	dc.w	-8
