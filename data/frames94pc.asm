@@ -2,7 +2,25 @@
 ; Frame numbers are 1-based (docs index 0 = frame 1). Player sheet 000-875;
 ; crowd sprites F000-F149 live in separate PPV banks (not this SPF table).
 
-SPFskaters	=	1	; 000-351 players
+SPFskatewp	=	1	; 0-39 skating, stick down (same groups and numbers as NHL 94 Genesis)
+SPFskate	=	41	; 40-79 skating, stick up (same groups and numbers as NHL 94 Genesis)
+SPFturnl	=	81	; 80-87 turning left (same groups and numbers as NHL 94 Genesis)
+SPFturnr	=	89	; 88-95 turning right (same groups and numbers as NHL 94 Genesis)
+SPFswing	=	97	; 96-143 pass and shot swings (same groups and numbers as NHL 94 Genesis)
+SPFstop	=	145	; 144-159 scrape stop (same groups and numbers as NHL 94 Genesis)
+SPFskateb	=	161	; 160-183 skating backwards (same groups and numbers as NHL 94 Genesis)
+SPFcelebrate	=	185	; 184-199 celebrating (same groups and numbers as NHL 94 Genesis)
+SPFpump	=	201	; 200-215 arm pump (same groups and numbers as NHL 94 Genesis)
+SPFcup	=	217	; 216-223 skating with the cup (same groups and numbers as NHL 94 Genesis)
+SPFhipl	=	225	; 224-231 hip check left (same groups and numbers as NHL 94 Genesis)
+SPFhipr	=	233	; 232-239 hip check right (same groups and numbers as NHL 94 Genesis)
+SPFshoulderl	=	241	; 240-247 shoulder check left (same groups and numbers as NHL 94 Genesis)
+SPFshoulderr	=	249	; 248-255 shoulder check right (same groups and numbers as NHL 94 Genesis)
+SPFsweep	=	257	; 256-271 sweep check (same groups and numbers as NHL 94 Genesis)
+SPFfallback	=	273	; 272-303 falling backward (same groups and numbers as NHL 94 Genesis)
+SPFfallfwd	=	305	; 304-335 falling forward (same groups and numbers as NHL 94 Genesis)
+SPFduck	=	337	; 336-343 ducking (same groups and numbers as NHL 94 Genesis)
+SPFHold	=	345	; 344-351 holding (same groups and numbers as NHL 94 Genesis)
 SPFdosarrow	=	353	; 352-355 arrows
 SPFmouse	=	357	; 356 mouse crosshair
 SPFcupaccept	=	358	; 357-358 Stanley Cup accept
@@ -249,12 +267,12 @@ SPAburst	= *-SPAList
 	dc.w	-24,51,-24,56,-24,61,-24,66,-24,71,-24,76
 	dc.w	-24
 
-SPAhold	= *-SPAList
+SPAHold	= *-SPAList
 	dc.w	18,22,26,30,34,38,42,46,0,345,-30,346
 	dc.w	-30,347,-30,348,-30,349,-30,350,-30,351,-30,352
 	dc.w	-30
 
-SPAhold2	= *-SPAList
+SPAHold2	= *-SPAList
 	dc.w	18,22,26,30,34,38,42,46,0,345,-30,346
 	dc.w	-30,347,-30,348,-30,349,-30,350,-30,351,-30,352
 	dc.w	-30
