@@ -6019,16 +6019,16 @@
         "end": 1385678
       },
       {
-        "id": "SetupBgMap2.map.jim",
-        "label": "Setup Bg Map 2",
+        "id": "GameSetUp95-1.map.jim",
+        "label": "Game Set Up 1",
         "group": "Screens",
         "kind": "jim",
         "start": 1385678,
         "end": 1411324
       },
       {
-        "id": "SetupBgMap1.map.jim",
-        "label": "Setup Bg Map 1",
+        "id": "GameSetUp95-2.map.jim",
+        "label": "Game Set Up 2",
         "group": "Screens",
         "kind": "jim",
         "start": 1411324,
