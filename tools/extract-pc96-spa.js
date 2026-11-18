@@ -155,9 +155,12 @@ function blurbOf(rec) {
   return kind + extra + ', EXE spa 0x' + rec.spa.toString(16);
 }
 
+// SPA number -> name, from the labels in NHL96PC src/data/engine/penalty_data_01.asm (sequences without a name keep SPAxxxx)
+const SPA_NAMES = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'pc96-spa-names.json'), 'utf8'));
+
 function nameSpas(recs) {
   return recs.map((rec) => Object.assign({
-    name: 'SPA' + rec.spa.toString(16).toUpperCase().padStart(4, '0'),
+    name: SPA_NAMES[rec.spa] || 'SPA' + rec.spa.toString(16).toUpperCase().padStart(4, '0'),
     blurb: blurbOf(rec)
   }, rec));
 }
