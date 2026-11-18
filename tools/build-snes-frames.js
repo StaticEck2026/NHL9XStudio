@@ -22,6 +22,8 @@ const { findRomIn, ROMS } = require('../lib/upstream-rom');
 const ROM94 = process.env.SNES94_ROM || findRomIn('/tmp/snes/94', ROMS.nhl94snes) || '/tmp/snes/94/lst/nhl94snes.sfc';
 const OUT = path.join(__dirname, '..', 'data');
 // NHL 94 SNES sequences named by hand (see docs/AGENT-HANDOFF.md): generated name -> [name, comment].
+// The 71 sequences of the NHL94SNES source SPAlist, in ROM order (src/data/frames94s.asm). They name every ROM sequence by position.
+const NAMES94 = ["SPAgready", "SPAgready2", "SPAgglover", "SPAgglovel", "SPAgstickr", "SPAgstickl", "SPAgstackr", "SPAgstackl", "SPAgswing", "SPAgskate", "SPAgwallright", "SPAgwallleft", "SPAgdive", "SPAgpoke", "SPAgcover2", "SPAgcover", "SPAgbutterfly", "SPAgsprawll", "SPAgsprawlr", "SPAwallright", "SPAwallleft", "SPApflip", "SPAglide", "SPAskatewp", "SPAskate", "SPAturnl", "SPAturnr", "SPAstop", "SPApassf", "SPApassb", "SPAshotf", "SPAshotb", "SPAonetimerf", "SPAonetimerb", "SPAglideback", "SPAskateback", "SPAcrosscheck", "SPAsweepchk", "SPAshoulderchkl", "SPAshoulderchkr", "SPAhipchkl", "SPAhipchkr", "SPAburst", "SPAHold", "SPAHold2", "SPAhook2", "SPAflail", "SPAfallfwd", "SPAfallback", "SPAfaceoff", "SPAfaceoffr", "SPAsiren", "SPAstanley", "SPAflip", "SPAstumble", "SPAhook", "SPAcatch", "SPAbglass", "SPAinjury1", "SPAcelebrate", "SPApump", "SPApump2", "SPAboardfront", "SPAboardback", "SPAboardright", "SPAboardleft", "SPAbenchcheckr", "SPAbenchcheckl", "SPAunused1", "SPAunused2", "SPAunused3"];
 const KNOWN94 = {
   SPAextra42: ['SPAcelebrate', 'On-ice celebrate (93 SNES SPAcelebrate vblank list; was SPAextra42)'],
   SPAextra43: ['SPApump', 'Scorer pump (93 SNES SPApump vblank list; was SPAextra43)'],
@@ -273,6 +275,7 @@ function main() {
     // Sequences that no longer match by vblank list but are known by hand (the 93 SNES list differs in one time).
     const known = KNOWN94[name];
     if (known) { comment = known[1]; name = known[0]; }
+    if (NAMES94[anims94.length] && name !== NAMES94[anims94.length]) { comment = 'Named as in the NHL94SNES source (generated: ' + name + ')'; name = NAMES94[anims94.length]; }
     anims94.push({
       name,
       comment,
@@ -290,7 +293,7 @@ function main() {
 ; Frame and time words are from LoROM bank $9D (file 0xEE0FE) of the retail
 ; ROM, read from McMarkis' NHL94SNES branch segment/bank96_9000.
 ; A sequence keeps its NHLPA 93 SNES name when the eight vblank lists match.
-; SPAextraN is a sequence that list does not have. Player SPF bases are the
+; Sequence names are the NHL94SNES source's, by position. Player SPF bases are the
 ; 93 SNES bases before SPFgoalie. SPFlater is everything after that.
 `;
   const asm94 = emit(spfs94, anims94, header94);

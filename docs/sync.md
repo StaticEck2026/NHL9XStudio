@@ -223,7 +223,7 @@ Sync NHL9X Studio per docs/sync.md (full). EA-NHL-Tools at <path>. Disasm ROMs u
 | `test.js` 93G slice failures | `genesis-images.js` vs `extractAssets93.js` trim | Reconcile using `EXTRACT93_SLICES` in `test.js`; prefer retail |
 | 95G Crowd offset wrong | Dev ROM extract vs retail | Use retail offsets in `genesis-images.js` (`EXTRACT95_RETAIL`) |
 | New SPA name parse errors | `frames*.asm` syntax | Extend `parse-frames.js` if assembler emits new directives |
-| SNES 94 SPA count changed | Re-run `build-snes-frames.js`; may need new `SPAextra` naming rules in tool |
+| SNES 94 SPA count changed | Re-run `build-snes-frames.js`; add the new names to NAMES94 in the tool |
 | Audio preview empty | Wrong FMTune table for title | Update `genesis-constants.js`; validate with `--rom` scan |
 | `games.json` out of date | Forgot manifest | Always run `build-manifest.js` before push |
 

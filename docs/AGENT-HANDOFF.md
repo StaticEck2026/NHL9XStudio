@@ -47,7 +47,7 @@ Audio: **NHL '92 retail chain (steps 6–8)** — full 68k→Z80→ymfm path, te
 - Full NHL9X Studio app, GitHub Pages workflow, static `public/games.json`
 - Genesis auxiliary frame banks **92G–94G**; **93G** title/setup frame banks; **95G** Crowd/FaceOff + `openFrames` `record: '95'`
 - GAP-2 extract slice checks; optional `nhlpa93.bin` tests
-- SNES **94S** `SPAcelebrate` / `SPApump` named in `frames94snes.asm` (was SPAextra42/43)
+- SNES **94S** `SPAcelebrate` / `SPApump` named in `frames94snes.asm` (was SPAextra42/43); every 94S sequence now takes the NHL94SNES source name by position
 - Self-contained `test/fixtures/` for CI
 - SPA/SPF/image search aliases (celebrate vs bench-check); Pages deploy to `gh-pages` branch
 - GAP-4 retail Crowd/FaceOff slice checks vs `genesis-images.js`; GAP-8 `nhl94pc` planar PPV/QPP + AdLib/SFX Audio tab (`pc94/` server routes)
