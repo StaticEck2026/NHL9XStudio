@@ -906,7 +906,7 @@
       },
       {
         "id": "HiScoreImg.map.jim",
-        "label": "Mark Lesser",
+        "label": "Hi Score Img",
         "group": "Screens",
         "kind": "jim",
         "start": 1004344,
@@ -5859,8 +5859,8 @@
         "end": 1360200
       },
       {
-        "id": "Rinktilelist.map.jim",
-        "label": "Rinktilelist",
+        "id": "IceRink95.map.jim",
+        "label": "Ice Rink",
         "group": "Ice",
         "kind": "jim",
         "start": 805500,
@@ -5868,23 +5868,23 @@
       },
       {
         "id": "SmallFont.map.jim",
-        "label": "Roster Font",
+        "label": "Small Font",
         "group": "Fonts",
         "kind": "jim",
         "start": 1278918,
         "end": 1282196
       },
       {
-        "id": "SmallFontMap.map.jim",
-        "label": "Small Font",
+        "id": "SmallFont95.map.jim",
+        "label": "Small Font 95",
         "group": "Fonts",
         "kind": "jim",
         "start": 1282196,
         "end": 1285634
       },
       {
-        "id": "SmallFontMap2.map.jim",
-        "label": "Small Font Map 2",
+        "id": "SmallFont95-2.map.jim",
+        "label": "Small Font 95 2",
         "group": "Fonts",
         "kind": "jim",
         "start": 1285634,
@@ -5939,8 +5939,8 @@
         "end": 1321222
       },
       {
-        "id": "Teamblocksmap.map.jim",
-        "label": "Teamblocks",
+        "id": "TeamBlocks.map.jim",
+        "label": "Team Blocks",
         "group": "Screens",
         "kind": "jim",
         "start": 1321222,
@@ -5955,7 +5955,7 @@
         "end": 1351218
       },
       {
-        "id": "FaceOffMap.map.jim",
+        "id": "FaceOff.map.jim",
         "label": "Face Off",
         "group": "Sprites",
         "kind": "jim",
@@ -5963,7 +5963,7 @@
         "end": 1352848
       },
       {
-        "id": "Framermap.map.jim",
+        "id": "Framer.map.jim",
         "label": "Framer",
         "group": "Screens",
         "kind": "jim",
@@ -5971,15 +5971,15 @@
         "end": 1360648
       },
       {
-        "id": "Framermap2.map.jim",
-        "label": "Framermap 2",
+        "id": "Framer2.map.jim",
+        "label": "Framer 2",
         "group": "Screens",
         "kind": "jim",
         "start": 1360648,
         "end": 1361096
       },
       {
-        "id": "EnergyBarMap.map.jim",
+        "id": "EnergyBar.map.jim",
         "label": "Energy Bar",
         "group": "Screens",
         "kind": "jim",
@@ -5987,24 +5987,24 @@
         "end": 1361814
       },
       {
-        "id": "EASportsMap.map.jim",
-        "label": "EASports",
+        "id": "EASportsSplash.map.jim",
+        "label": "EASportsSplash",
         "group": "Screens",
         "kind": "jim",
         "start": 1361814,
         "end": 1370884
       },
       {
-        "id": "RefTiles.map.jim",
-        "label": "Ref Tiles",
+        "id": "Refs.map.jim",
+        "label": "Refs",
         "group": "Ice",
         "kind": "jim",
         "start": 1370884,
         "end": 1375138
       },
       {
-        "id": "RefTilesHor.map.jim",
-        "label": "Ref Tiles Hor",
+        "id": "Refs2.map.jim",
+        "label": "Refs 2",
         "group": "Ice",
         "kind": "jim",
         "start": 1375138,
@@ -6019,16 +6019,16 @@
         "end": 1385678
       },
       {
-        "id": "SetupBgMap2.map.jim",
-        "label": "Setup Bg Map 2",
+        "id": "GameSetUp95-1.map.jim",
+        "label": "Game Set Up 1",
         "group": "Screens",
         "kind": "jim",
         "start": 1385678,
         "end": 1411324
       },
       {
-        "id": "SetupBgMap1.map.jim",
-        "label": "Setup Bg Map 1",
+        "id": "GameSetUp95-2.map.jim",
+        "label": "Game Set Up 2",
         "group": "Screens",
         "kind": "jim",
         "start": 1411324,
@@ -6043,15 +6043,15 @@
         "end": 1429096
       },
       {
-        "id": "BigFontMap3.map.jim",
-        "label": "Big Font Map 3",
+        "id": "BigFont95-3.map.jim",
+        "label": "Big Font 3",
         "group": "Fonts",
         "kind": "jim",
         "start": 1429096,
         "end": 1433994
       },
       {
-        "id": "BigFontMap.map.jim",
+        "id": "BigFont95.map.jim",
         "label": "Big Font",
         "group": "Fonts",
         "kind": "jim",
@@ -6059,16 +6059,16 @@
         "end": 1438828
       },
       {
-        "id": "BigFontMap2.map.jim",
-        "label": "Big Font Map 2",
+        "id": "BigFont95-2.map.jim",
+        "label": "Big Font 2",
         "group": "Fonts",
         "kind": "jim",
         "start": 1438828,
         "end": 1443342
       },
       {
-        "id": "ReplayMap.map.jim",
-        "label": "Replay",
+        "id": "ReplayOptions.map.jim",
+        "label": "Replay Options",
         "group": "Screens",
         "kind": "jim",
         "start": 1451506,
@@ -6403,7 +6403,7 @@
         "end": 1575758
       },
       {
-        "id": "EASNmap.map.jim",
+        "id": "EASN.map.jim",
         "label": "EASN",
         "group": "Screens",
         "kind": "jim",
@@ -6459,7 +6459,7 @@
         "end": 1586646
       },
       {
-        "id": "Arrowsmap.map.jim",
+        "id": "Arrows.map.jim",
         "label": "Arrows",
         "group": "Screens",
         "kind": "jim",
@@ -6483,23 +6483,23 @@
         "end": 1615302
       },
       {
-        "id": "HotIconMap.map.jim",
-        "label": "Hot Icon",
+        "id": "Hot.map.jim",
+        "label": "Hot",
         "group": "Screens",
         "kind": "jim",
         "start": 1615302,
         "end": 1615756
       },
       {
-        "id": "ColdIconMap.map.jim",
-        "label": "Cold Icon",
+        "id": "Cold.map.jim",
+        "label": "Cold",
         "group": "Screens",
         "kind": "jim",
         "start": 1615756,
         "end": 1616306
       },
       {
-        "id": "RonBarrMap.map.jim",
+        "id": "RonBarr.map.jim",
         "label": "Ron Barr",
         "group": "Screens",
         "kind": "jim",
@@ -6507,16 +6507,16 @@
         "end": 1619496
       },
       {
-        "id": "TitleScreenImg.map.jim",
-        "label": "Title Screen Img",
+        "id": "Title95-1.map.jim",
+        "label": "Title 1",
         "group": "Screens",
         "kind": "jim",
         "start": 1628840,
         "end": 1663190
       },
       {
-        "id": "TitleImg.map.jim",
-        "label": "Title Img",
+        "id": "Title95-4.map.jim",
+        "label": "Title 4",
         "group": "Screens",
         "kind": "jim",
         "start": 1663190,
@@ -7073,8 +7073,8 @@
     ],
     "images": [
       {
-        "id": "TitleScreenImg.map.jim",
-        "label": "Title",
+        "id": "Title96-1.map.jim",
+        "label": "Title 1",
         "group": "Screens",
         "kind": "jim",
         "start": 559640,
@@ -7089,8 +7089,8 @@
         "end": 591494
       },
       {
-        "id": "NHLPALogoMap.map.jim",
-        "label": "NHLPA Logo",
+        "id": "NHLPALogo.map.jim",
+        "label": "NHLPALogo",
         "group": "Screens",
         "kind": "jim",
         "start": 591494,
@@ -7105,7 +7105,7 @@
         "end": 596870
       },
       {
-        "id": "Framermap.map.jim",
+        "id": "Framer.map.jim",
         "label": "Framer",
         "group": "Screens",
         "kind": "jim",
@@ -7113,7 +7113,7 @@
         "end": 597318
       },
       {
-        "id": "FaceOffMap.map.jim",
+        "id": "FaceOff.map.jim",
         "label": "Face Off",
         "group": "Screens",
         "kind": "jim",
@@ -7121,7 +7121,7 @@
         "end": 599012
       },
       {
-        "id": "Rinktilelist.map.jim",
+        "id": "IceRink96.map.jim",
         "label": "Ice Rink",
         "group": "Ice",
         "kind": "jim",
@@ -7129,7 +7129,7 @@
         "end": 622194
       },
       {
-        "id": "RefTiles.map.jim",
+        "id": "Refs.map.jim",
         "label": "Refs",
         "group": "Ice",
         "kind": "jim",
@@ -7137,7 +7137,7 @@
         "end": 626480
       },
       {
-        "id": "RefTilesHor.map.jim",
+        "id": "Refs2.map.jim",
         "label": "Refs 2",
         "group": "Ice",
         "kind": "jim",
@@ -7162,7 +7162,7 @@
         "teamPalette": true
       },
       {
-        "id": "EnergyBarMap.map.jim",
+        "id": "EnergyBar.map.jim",
         "label": "Energy Bar",
         "group": "Screens",
         "kind": "jim",
@@ -7170,7 +7170,7 @@
         "end": 1299870
       },
       {
-        "id": "EASNmap.map.jim",
+        "id": "EASN.map.jim",
         "label": "EASN",
         "group": "Screens",
         "kind": "jim",
@@ -7186,13 +7186,13 @@
         "end": 1304986
       },
       {
-        "id": "RevRinkTilelist.bin",
+        "id": "IceRink96Reverse.map.jim",
         "label": "Ice Rink Reverse",
         "group": "Ice",
         "kind": "jim",
         "start": 1304986,
         "end": 1313534,
-        "tilesFrom": "Rinktilelist.map.jim"
+        "tilesFrom": "IceRink96.map.jim"
       },
       {
         "id": "ReplayIconMap.map.jim",
@@ -7927,31 +7927,31 @@
         "end": 1544552
       },
       {
-        "id": "RosterFont.bin",
-        "label": "Roster Font",
+        "id": "SmallFont.map.jim",
+        "label": "Small Font",
         "group": "Fonts",
         "kind": "jim",
         "start": 1544552,
         "end": 1546870
       },
       {
-        "id": "SmallFontMap.map.jim",
-        "label": "Small Font",
+        "id": "SmallFont96.map.jim",
+        "label": "Small Font 96",
         "group": "Fonts",
         "kind": "jim",
         "start": 1546870,
         "end": 1548644
       },
       {
-        "id": "SmallFontMap2.map.jim",
-        "label": "Small Font 2",
+        "id": "SmallFont96-2.map.jim",
+        "label": "Small Font 96 2",
         "group": "Fonts",
         "kind": "jim",
         "start": 1548644,
         "end": 1550962
       },
       {
-        "id": "BigFontMap2.map.jim",
+        "id": "BigFont96-2.map.jim",
         "label": "Big Font 2",
         "group": "Fonts",
         "kind": "jim",
@@ -7959,7 +7959,7 @@
         "end": 1554048
       },
       {
-        "id": "BigFontMap4.map.jim",
+        "id": "BigFont96-4.map.jim",
         "label": "Big Font 4",
         "group": "Fonts",
         "kind": "jim",
@@ -8647,7 +8647,7 @@
         "end": 1804744
       },
       {
-        "id": "BigFontMap.map.jim",
+        "id": "BigFont96.map.jim",
         "label": "Big Font",
         "group": "Fonts",
         "kind": "jim",
@@ -8655,7 +8655,7 @@
         "end": 1807382
       },
       {
-        "id": "BigFontMap3.map.jim",
+        "id": "BigFont96-3.map.jim",
         "label": "Big Font 3",
         "group": "Fonts",
         "kind": "jim",
