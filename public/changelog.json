@@ -1,6 +1,15 @@
 {
   "releases": [
     {
+      "version": "1.38.0",
+      "date": "2026-11-18",
+      "changes": [
+        "NHL 96 (PC): the referee frames show their real colors (black and white stripes, skin, gray) from rinkpal.qfs instead of a team jersey palette",
+        "NHL 96 (PC): SPAskateback and SPAglideback are now SPAskatebox and SPAglidebox: they are a player skating to the penalty box after a fight (the second is one held frame of the same skate), not backward skating. NHL96PC has the same rename",
+        "NHL 94 (Sega CD): one Audio tab (the extra Genesis FM sketch tab is gone); the Audio texts say Sega CD and NHL 97"
+      ]
+    },
+    {
       "version": "1.37.0",
       "date": "2026-11-18",
       "changes": [

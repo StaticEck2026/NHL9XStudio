@@ -99,6 +99,10 @@
     return gameOf() === 'nhl97pc';
   }
 
+  function isCd() {
+    return gameOf() === 'nhl94cd';
+  }
+
   function is96() {
     return gameOf() === 'nhl96pc' || is97();
   }
@@ -814,26 +818,30 @@
       return;
     }
     const rec = entries().find((e) => e.id === id);
-    const title = is97() ? 'NHL 97 PC' : is96() ? 'NHL 96 PC' : (is95() ? 'NHL 95 PC' : 'NHL 94 PC');
+    const title = isCd() ? 'NHL 94 Sega CD' : is97() ? 'NHL 97 PC' : is96() ? 'NHL 96 PC' : (is95() ? 'NHL 95 PC' : 'NHL 94 PC');
     const kind = id.startsWith('iff-')
       ? title + ' desk music (IFF)'
       : id.startsWith('speech-')
         ? title + ' announcer speech'
         : id.startsWith('sfx-')
           ? title + ' digital SFX'
-          : (rec && rec.asf ? title + ' 1SN song' : title + ' AdLib song');
+          : (rec && rec.asf ? title + (is97() ? ' song (ASF)' : ' 1SN song') : title + ' AdLib song');
     box.appendChild(make('p', 'st-kind', kind));
     box.appendChild(make('h3', null, rec ? rec.label : id));
     if (rec && rec.sub) box.appendChild(make('p', 'st-note mono', rec.sub));
     if (id.startsWith('song-') && rec && /^MT/.test(rec.stem)) {
       box.appendChild(make('p', 'st-note', 'This file is the Roland MT-32 version. Play still uses the AdLib (YM3812) path, so it will not match the MT-32.'));
     }
-    box.appendChild(make('p', 'st-note', rec && rec.asf
+    box.appendChild(make('p', 'st-note', rec && rec.asf && is97()
+      ? 'EA ASF: an SCHl header (PATl and TMpl, the rate is at TMpl+10) then SCDl chunks. Each chunk is a count, then predictor and step index for left and right (16-bit each), then one byte per stereo frame (high nibble left, low nibble right) of standard IMA ADPCM; the next chunk starts from the previous one\'s end state. Speech (.KSF) and sound effects (.VIV) are not decoded yet.'
+      : rec && rec.asf
       ? 'NHL96PC locateshape music: EA 1SNh / 1SNd chunks (HOCKEY.EXE four-byte ids). EACS+0x0A==2 is EA IMA ADPCM with a 20-byte block header per chunk (idx/pred reset); EACS+8 is bits, EACS+9 is channels. Codec 0 is signed 8-bit PCM (no IMA header). 1SNl loops. Not the 94/95 EACSNDF .KMS path. .BNK banks stay listed, not played.'
       : id.startsWith('iff-')
       ? 'NHL95PC sub_8F98F load + sub_8FB8E play. FORM 8SVX BODY is word_D7414 4-bit Fibonacci deltas (two samples per byte, acc starts 0) at the VHDR rate, volume 0x4C from MainDeskLoop. VHDR oneShotHiSamples then repeatHiSamples is an intro plus a looping tail (mixer loc_A92E6 when flag 1) — not verse/chorus branches. Play uses that loop the way the desk does. RIFF WAVE XOR 80h, then 8-bit unless the fmt bits field is 16. 94 PC has no IFF. Desk music, not announcer speech.'
       : id.startsWith('speech-')
-        ? (is95()
+        ? (isCd()
+          ? 'A .PCM file at the root of the disc: RF5C164 8-bit sign-magnitude (bit 7 set is positive, low 7 bits the size, FF ends the sample), mono, about 16.3 kHz. Team names, All-Star calls and Ron Barr speech. The CD music tracks are audio tracks and are not on the data track.'
+          : is95()
           ? 'OpenSpeechBank / OpenAnnouncerBank on XBRUCE2.VIV (C0 FB like 94; count at +4). 47 FB (G) clips: ReadSpeechSample unpack + DPCM, mixer flag 0. Other clips (.NUM / .COR / .TEA / .PEN / .FRM rink calls): PlaceSpeechSlot + mixer flag 1 (loc_A91DA D7414, two samples per byte). Played at 11025 Hz. 95 has no XRBARR pack; NUM, COR, TEA, PEN, FRM, HOM, BAR, INT, … are subgroups of this file.'
           : 'C0 FB directory (count at +4, then offset/size/name from byte 6). Each clip is BTree 47 FB then a 72 FB signed 8-bit PCM body. Names keep their suffixes (.BRU Bruce, .BAR Barr, .CTY city, .RNK rank). Played at 11025 Hz.')
         : id.startsWith('sfx-')
@@ -950,7 +958,11 @@
   function metaRows(id) {
     const rec = entries().find((e) => e.id === id);
     const rows = [['Plays', rec ? rec.label : id]];
-    if ((id.startsWith('speech-') || id.startsWith('iff-')) && rec && rec.clip) {
+    if (isCd() && rec && rec.pcmName) {
+      rows.push(['File', rec.pcmName]);
+      rows.push(['Rate', rec.rate + ' Hz']);
+      rows.push(['Path', 'ISO root .PCM → RF5C164 sign-magnitude, mono']);
+    } else if ((id.startsWith('speech-') || id.startsWith('iff-')) && rec && rec.clip) {
       rows.push(['File', rec.clip.name]);
       rows.push(['Rate', rec.clip.rate + ' Hz']);
       rows.push(['Length', rec.clip.length + ' samples']);
@@ -971,6 +983,9 @@
       rows.push(['Rate', rec.sample.rate + ' Hz']);
       rows.push(['Length', rec.sample.length + ' bytes']);
       rows.push(['Path', 'PCFF001.TIM / .DIG → signed 8-bit PCM']);
+    } else if (rec && rec.asf && is97()) {
+      rows.push(['Path', '.ASF SCHl header, SCDl chunks: stereo IMA ADPCM (predictor and index per channel at the start of each chunk)']);
+      rows.push(['Source', 'NHL 97 PC GAMEDATA']);
     } else if (rec && rec.asf) {
       rows.push(['Path', '.ASF 1SNh/1SNd → EACS PCM or EA IMA ADPCM']);
       rows.push(['Source', 'NHL96PC HOCKEY.EXE locateshape music']);
@@ -978,7 +993,7 @@
       rows.push(['Path', '.KMS + .CFG sequencer → OPL2 (AdLib)']);
       rows.push(['Source', 'NHL95PC sub_990CB / sub_99925']);
     }
-    rows.push(['Notes', 'docs/PC-AUDIO-KMS-VIV.md']);
+    if (!isCd() && !is97()) rows.push(['Notes', 'docs/PC-AUDIO-KMS-VIV.md']);
     return rows;
   }
 
