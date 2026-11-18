@@ -1,6 +1,16 @@
 {
   "releases": [
     {
+      "version": "1.37.0",
+      "date": "2026-11-18",
+      "changes": [
+        "NHL 97 (PC) has an Audio tab: the menu songs, goal horns, ditties, anthems, fireworks and period horn (EA .ASF, IMA ADPCM stereo, 22 or 44 kHz). The speech (.KSF) and sound-effect (.VIV) packs are not decoded yet",
+        "NHL 97 (PC) pictures are grouped by kind (menu screens, team logos, trophies, goalie masks, player faces by set, arena, uniforms), with the pack as a folder under each, and no longer show sprite or rink banks",
+        "NHL 94 Sega CD now shows the player sprites, and the face and team-logo palettes come from the disc (HOCKEY.BIN holds the logo palettes)",
+        "NHL 94 Sega CD has an Audio tab with the speech and team-name PCM files from the disc (RF5C164 sign-magnitude, about 16 kHz). The CD music tracks are not on the data track"
+      ]
+    },
+    {
       "version": "1.36.0",
       "date": "2026-11-18",
       "changes": [

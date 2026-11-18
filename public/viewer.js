@@ -19,13 +19,13 @@ function shownFrame(n) {
 /** The Audio tab (Sound test in older docs and links) plays the retail sound chain live (bundled slice): NHL 92, NHLPA 93, NHL 94/95/96 Genesis, NHL 94 SNES, NHLPA 93 SNES, NHL 94/95 PC AdLib/SFX, and NHL 96 PC 1SN .ASF. */
 function hasSoundTest(info) {
   if (!info) return false;
-  if (info.id === 'nhl94pc' || info.id === 'nhl95pc' || info.id === 'nhl96pc') return typeof NhlSoundTestPc94 !== 'undefined';
+  if (info.id === 'nhl94pc' || info.id === 'nhl95pc' || info.id === 'nhl96pc' || info.id === 'nhl97pc' || info.id === 'nhl94cd') return typeof NhlSoundTestPc94 !== 'undefined';
   return !!(info.id === 'nhl92' || info.id === 'nhlpa93' || info.id === 'nhl94' || info.id === 'nhl95' || info.id === 'nhl96' || info.id === 'nhl94snes' || info.id === 'nhlpa93snes') && typeof NhlSoundTestView !== 'undefined';
 }
 
 function soundTestViewFor(info) {
   const id = (info || gameInfo || {}).id;
-  if ((id === 'nhl94pc' || id === 'nhl95pc' || id === 'nhl96pc') && typeof NhlSoundTestPc94 !== 'undefined') return NhlSoundTestPc94;
+  if ((id === 'nhl94pc' || id === 'nhl95pc' || id === 'nhl96pc' || id === 'nhl97pc' || id === 'nhl94cd') && typeof NhlSoundTestPc94 !== 'undefined') return NhlSoundTestPc94;
   return typeof NhlSoundTestView !== 'undefined' ? NhlSoundTestView : null;
 }
 
@@ -2910,7 +2910,7 @@ async function loadGame(id, keepSelection) {
     }
   }
   if (typeof NhlSoundTestPc94 !== 'undefined') {
-    if (info.id === 'nhl94pc' || info.id === 'nhl95pc' || info.id === 'nhl96pc') {
+    if (info.id === 'nhl94pc' || info.id === 'nhl95pc' || info.id === 'nhl96pc' || info.id === 'nhl97pc' || info.id === 'nhl94cd') {
       window.NhlPcAudioFiles = window.NhlPc94Files = clientPc
         ? { map: clientPc.map, catalog: clientPc.catalog, baseUrl: pathPrefix || '', gameId: info.id }
         : { map: null, catalog: info.pcAudio ? { audio: info.pcAudio } : null, baseUrl: pathPrefix || '', gameId: info.id };

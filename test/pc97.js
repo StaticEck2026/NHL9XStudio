@@ -25,3 +25,30 @@ assert.deepStrictEqual(colors[3], [9, 9, 9]);
 const image = Pc.openImageParts([{ name: 'x.fsh', data: bytes }], null, { rel: 'x.fsh' });
 assert.deepStrictEqual(image.renderFrame(1).colors[1], [0, 255, 0]);
 console.log('pc97 ok');
+
+// NHL 97 PC .ASF songs: SCHl header, SCDl chunks of IMA ADPCM (stereo, one byte per frame).
+{
+  const asf = require('../lib/audio/pc96-asf');
+  const fs = require('fs');
+  const sample = '/mnt/user-data/uploads/CDs/NHL97/GAMEDATA/DIT40.ASF';
+  const build = (frames) => {
+    const hdr = Buffer.alloc(100); hdr.write('SCHl', 0); hdr.writeUInt32LE(100, 4); hdr.write('TMpl', 0x40);
+    hdr[0x47] = 2; hdr.writeUInt16LE(22050, 0x4a);
+    const ch = Buffer.alloc(20 + frames); ch.write('SCDl', 0); ch.writeUInt32LE(20 + frames, 4);
+    ch.writeUInt32LE(frames, 8);
+    return Buffer.concat([hdr, ch]);
+  };
+  const p = asf.parse(build(100));
+  assert.ok(p && p.playable && p.rate === 22050 && p.channels === 2 && p.pcm.length === 400, 'SCHl parse');
+  if (fs.existsSync(sample)) {
+    const q = asf.parse(fs.readFileSync(sample));
+    assert.strictEqual(q.pcm.length / 4, 230095, 'DIT40 length matches TMpl');
+  }
+}
+
+// Sega CD speech PCM: sign-magnitude, 0xFF ends the sample.
+{
+  const pcm = require('../lib/audio/segacd-pcm');
+  const out = pcm.decode(Uint8Array.from([0x80, 0x85, 0x05, 0xff, 0x90]));
+  assert.deepStrictEqual(Array.from(out), [0, 5, 251], 'Sega CD PCM decode');
+}
