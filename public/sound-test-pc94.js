@@ -58,6 +58,14 @@
 
   function labelOf(stem) {
     if (CUES[stem]) return CUES[stem];
+    if (is97()) {
+      const m97 = /^(MENU|GOAL|DIT)(\d+)$/.exec(stem);
+      if (m97) return (m97[1] === 'MENU' ? 'Menu song ' : m97[1] === 'GOAL' ? 'Goal horn ' : 'Ditty ') + Number(m97[2]);
+      if (stem === 'ANTHUS') return 'U.S. anthem';
+      if (stem === 'ANTHCAN') return 'Canadian anthem';
+      if (stem === 'FIREWORK') return 'Fireworks';
+      if (stem === 'PERIOD') return 'Period horn';
+    }
     const dit = /^DIT(\d+)$/.exec(stem);
     if (dit) return 'Ditty ' + dit[1];
     const m = /^([A-Z]+)(\d+)$/.exec(stem);
@@ -66,6 +74,7 @@
   }
 
   function groupOf(stem) {
+    if (is97()) return /^MENU/.test(stem) ? 'Menu songs' : /^GOAL/.test(stem) ? 'Goal horns' : /^DIT/.test(stem) ? 'Ditties' : 'Arena and anthems';
     return Groups ? Groups.songGroup(stem, CAT().songs) : (
       /^MT/.test(stem) ? 'Songs — MT-32'
         : /^(AD|TITLE|ROCK|SB|SLAP|CANADA|USA)/.test(stem) ? CAT().songs
@@ -86,8 +95,12 @@
     return gameOf() === 'nhl95pc';
   }
 
+  function is97() {
+    return gameOf() === 'nhl97pc';
+  }
+
   function is96() {
-    return gameOf() === 'nhl96pc';
+    return gameOf() === 'nhl96pc' || is97();
   }
 
   async function readRel(rel) {
@@ -162,6 +175,19 @@
       }
       const speech = [];
       const digital = [];
+      for (const e of audio.segaCdPcm || []) {
+        const stem = e.name.replace(/\.[^.]+$/, '');
+        speech.push({
+          id: 'speech-' + e.name,
+          group: /^RON/i.test(stem) ? 'Ron Barr speech' : 'Names and calls',
+          subgroup: '',
+          name: e.name,
+          label: stem,
+          sub: e.name + ' · ' + (audio.rate || 16276) + ' Hz · ' + e.size + ' bytes',
+          pcmName: e.name,
+          rate: audio.rate || 16276
+        });
+      }
       if (root.NhlViv && audio.extra && audio.extra.length) {
         for (const rel of audio.extra) {
           if (!/\.viv$/i.test(rel)) continue;
@@ -576,6 +602,12 @@
     await ensure();
     if (id.startsWith('speech-') || id.startsWith('iff-')) {
       const rec = (catalog.speech || []).concat(catalog.digital || []).find((s) => s.id === id);
+      if (rec && rec.pcmName && !rec.clip) {
+        const host = filesHost();
+        const res = await fetch(((host && host.baseUrl) || '') + '/api/games/' + gameOf() + '/pcm?name=' + encodeURIComponent(rec.pcmName));
+        if (!res.ok) throw new Error(rec.pcmName + ' not on the disc');
+        rec.clip = { pcm: new Uint8Array(await res.arrayBuffer()), rate: rec.rate, vol: 0x7F, length: 0 };
+      }
       if (!rec || !rec.clip) throw new Error('Unknown clip');
       const part = (opts && opts.part) || (id.startsWith('iff-') && rec.clip.repeat ? 'song' : 'once');
       const slice = id.startsWith('iff-') && root.NhlViv.iffSlice
@@ -782,7 +814,7 @@
       return;
     }
     const rec = entries().find((e) => e.id === id);
-    const title = is96() ? 'NHL 96 PC' : (is95() ? 'NHL 95 PC' : 'NHL 94 PC');
+    const title = is97() ? 'NHL 97 PC' : is96() ? 'NHL 96 PC' : (is95() ? 'NHL 95 PC' : 'NHL 94 PC');
     const kind = id.startsWith('iff-')
       ? title + ' desk music (IFF)'
       : id.startsWith('speech-')

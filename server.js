@@ -129,9 +129,50 @@ function readDiscFile(file, game) {
   try {
     const bytes = iso.read(game.disc.file);
     if (!bytes) throw new Error(game.disc.file + ' is not on ' + path.basename(file));
-    return Buffer.from(bytes.buffer, bytes.byteOffset, bytes.length);
+    const parts = [Buffer.from(bytes.buffer, bytes.byteOffset, bytes.length)];
+    // Further files follow the first one (Sega CD: HOCKEY.BIN holds the team logo palettes).
+    for (const name of game.disc.extra || []) {
+      const more = iso.read(name);
+      if (more) parts.push(Buffer.from(more.buffer, more.byteOffset, more.length));
+    }
+    return parts.length > 1 ? Buffer.concat(parts) : parts[0];
   } finally {
     if (iso.close) iso.close();
+  }
+}
+
+// Sega CD speech: every .PCM at the ISO root, listed for the Audio tab and decoded on request.
+const segaCdPcm = require('./lib/audio/segacd-pcm');
+let segaPcmList = { file: '', mtime: 0, list: [] };
+function segaCdPcmFiles(game) {
+  const file = game.disc && findRom(game);
+  if (!file) return [];
+  const mtime = fs.statSync(file).mtimeMs;
+  if (segaPcmList.file === file && segaPcmList.mtime === mtime) return segaPcmList.list;
+  const iso = iso9660.openFile(file);
+  let list = [];
+  if (iso) {
+    try {
+      list = iso.names().filter((n) => /\.pcm$/i.test(n) && n.indexOf('/') < 0).sort().map((name) => {
+        const bytes = iso.read(name);
+        return { name, size: bytes ? bytes.length : 0 };
+      });
+    } finally {
+      if (iso.close) iso.close();
+    }
+  }
+  segaPcmList = { file, mtime, list };
+  return list;
+}
+function segaCdPcmRead(game, name) {
+  const file = game.disc && findRom(game);
+  if (!file || !segaCdPcmFiles(game).some((e) => e.name === name)) return null;
+  const iso = iso9660.openFile(file);
+  try {
+    const bytes = iso && iso.read(name);
+    return bytes ? Buffer.from(segaCdPcm.decode(bytes)) : null;
+  } finally {
+    if (iso && iso.close) iso.close();
   }
 }
 
@@ -382,7 +423,7 @@ function gameStatus(game) {
       : null,
     snes: game.snes || null,
     romHint: game.kind === 'pc95' ? 'pc95/ or roms/nhl95.iso' : (game.kind === 'pc94' ? 'pc94/' : (game.kind === 'pc96' ? 'pc96/ or roms/nhl96.iso' : (game.kind === 'pc97' ? 'pc97/ or roms/nhl97.iso' : (game.disc ? 'roms/' + game.disc.names[0] : (game.romNames.length ? 'roms/' + game.romNames[0] : null))))),
-    pcAudio: pc && pc.audio ? pc.audio : undefined
+    pcAudio: pc && pc.audio ? pc.audio : (game.id === 'nhl94cd' && rom ? { songs: [], tim: [], pat: [], extra: [], dig: '', segaCdPcm: segaCdPcmFiles(game), rate: segaCdPcm.RATE } : undefined)
   };
 }
 
@@ -461,6 +502,15 @@ const server = http.createServer((req, res) => {
       : (bank === 'rink' ? catalog.rinkFiles : catalog.spriteFiles);
     if (!files.length) { send(res, 404, 'No PC sprites', 'text/plain; charset=utf-8'); return; }
     send(res, 200, pcBundle(game, files), 'application/octet-stream');
+    return;
+  }
+
+  const segaPcm = /^\/api\/games\/(nhl94cd)\/pcm$/.exec(pathname);
+  if (segaPcm) {
+    const game = gameById(segaPcm[1]);
+    const body = game && segaCdPcmRead(game, url.searchParams.get('name') || '');
+    if (!body) { send(res, 404, 'Not found', 'text/plain; charset=utf-8'); return; }
+    send(res, 200, body, 'application/octet-stream');
     return;
   }
 

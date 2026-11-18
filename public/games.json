@@ -2694,7 +2694,8 @@
         "group": "Logos",
         "kind": "jim",
         "start": 61574,
-        "end": 62748
+        "end": 62748,
+        "paletteAt": 3092576
       },
       {
         "id": "TeamLogoBOS.map.jim",
@@ -2702,7 +2703,8 @@
         "group": "Logos",
         "kind": "jim",
         "start": 62748,
-        "end": 63602
+        "end": 63602,
+        "paletteAt": 3092640
       },
       {
         "id": "TeamLogoBUF.map.jim",
@@ -2710,7 +2712,8 @@
         "group": "Logos",
         "kind": "jim",
         "start": 63602,
-        "end": 64456
+        "end": 64456,
+        "paletteAt": 3092704
       },
       {
         "id": "TeamLogoCGY.map.jim",
@@ -2718,7 +2721,8 @@
         "group": "Logos",
         "kind": "jim",
         "start": 64456,
-        "end": 65630
+        "end": 65630,
+        "paletteAt": 3092768
       },
       {
         "id": "TeamLogoCHI.map.jim",
@@ -2726,7 +2730,8 @@
         "group": "Logos",
         "kind": "jim",
         "start": 65630,
-        "end": 66708
+        "end": 66708,
+        "paletteAt": 3092832
       },
       {
         "id": "TeamLogoDET.map.jim",
@@ -2734,7 +2739,8 @@
         "group": "Logos",
         "kind": "jim",
         "start": 66708,
-        "end": 67562
+        "end": 67562,
+        "paletteAt": 3092960
       },
       {
         "id": "TeamLogoEDM.map.jim",
@@ -2742,7 +2748,8 @@
         "group": "Logos",
         "kind": "jim",
         "start": 67562,
-        "end": 68576
+        "end": 68576,
+        "paletteAt": 3093024
       },
       {
         "id": "TeamLogoHFD.map.jim",
@@ -2750,7 +2757,8 @@
         "group": "Logos",
         "kind": "jim",
         "start": 69814,
-        "end": 70476
+        "end": 70476,
+        "paletteAt": 3093152
       },
       {
         "id": "TeamLogoNYI.map.jim",
@@ -2758,7 +2766,8 @@
         "group": "Logos",
         "kind": "jim",
         "start": 70476,
-        "end": 71586
+        "end": 71586,
+        "paletteAt": 3093408
       },
       {
         "id": "TeamLogoLA.map.jim",
@@ -2766,7 +2775,8 @@
         "group": "Logos",
         "kind": "jim",
         "start": 71586,
-        "end": 72472
+        "end": 72472,
+        "paletteAt": 3093216
       },
       {
         "id": "TeamLogoDAL.map.jim",
@@ -2774,7 +2784,8 @@
         "group": "Logos",
         "kind": "jim",
         "start": 72472,
-        "end": 73198
+        "end": 73198,
+        "paletteAt": 3092896
       },
       {
         "id": "TeamLogoMTL.map.jim",
@@ -2782,7 +2793,8 @@
         "group": "Logos",
         "kind": "jim",
         "start": 73198,
-        "end": 74084
+        "end": 74084,
+        "paletteAt": 3093280
       },
       {
         "id": "TeamLogoNJ.map.jim",
@@ -2790,7 +2802,8 @@
         "group": "Logos",
         "kind": "jim",
         "start": 74084,
-        "end": 75290
+        "end": 75290,
+        "paletteAt": 3093344
       },
       {
         "id": "TeamLogoNYR.map.jim",
@@ -2798,7 +2811,8 @@
         "group": "Logos",
         "kind": "jim",
         "start": 75290,
-        "end": 76528
+        "end": 76528,
+        "paletteAt": 3093472
       },
       {
         "id": "TeamLogoPHI.map.jim",
@@ -2806,7 +2820,8 @@
         "group": "Logos",
         "kind": "jim",
         "start": 77510,
-        "end": 78460
+        "end": 78460,
+        "paletteAt": 3093600
       },
       {
         "id": "TeamLogoPIT.map.jim",
@@ -2814,7 +2829,8 @@
         "group": "Logos",
         "kind": "jim",
         "start": 78460,
-        "end": 79346
+        "end": 79346,
+        "paletteAt": 3093664
       },
       {
         "id": "TeamLogoQUE.map.jim",
@@ -2822,7 +2838,8 @@
         "group": "Logos",
         "kind": "jim",
         "start": 79346,
-        "end": 80200
+        "end": 80200,
+        "paletteAt": 3093728
       },
       {
         "id": "TeamLogoSJ.map.jim",
@@ -2830,7 +2847,8 @@
         "group": "Logos",
         "kind": "jim",
         "start": 80200,
-        "end": 81278
+        "end": 81278,
+        "paletteAt": 3093792
       },
       {
         "id": "TeamLogoSTL.map.jim",
@@ -2838,7 +2856,8 @@
         "group": "Logos",
         "kind": "jim",
         "start": 81278,
-        "end": 82260
+        "end": 82260,
+        "paletteAt": 3093856
       },
       {
         "id": "TeamLogoTB.map.jim",
@@ -2846,7 +2865,8 @@
         "group": "Logos",
         "kind": "jim",
         "start": 82260,
-        "end": 83306
+        "end": 83306,
+        "paletteAt": 3093920
       },
       {
         "id": "TeamLogoTOR.map.jim",
@@ -2854,7 +2874,8 @@
         "group": "Logos",
         "kind": "jim",
         "start": 83306,
-        "end": 84160
+        "end": 84160,
+        "paletteAt": 3093984
       },
       {
         "id": "TeamLogoVAN.map.jim",
@@ -2862,7 +2883,8 @@
         "group": "Logos",
         "kind": "jim",
         "start": 84160,
-        "end": 85206
+        "end": 85206,
+        "paletteAt": 3094048
       },
       {
         "id": "TeamLogoWSH.map.jim",
@@ -2870,7 +2892,8 @@
         "group": "Logos",
         "kind": "jim",
         "start": 85206,
-        "end": 85836
+        "end": 85836,
+        "paletteAt": 3094112
       },
       {
         "id": "TeamLogoWPG.map.jim",
@@ -2878,7 +2901,8 @@
         "group": "Logos",
         "kind": "jim",
         "start": 85836,
-        "end": 86978
+        "end": 86978,
+        "paletteAt": 3094176
       },
       {
         "id": "NoPicSkater1.map.jim",
@@ -2886,7 +2910,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 91802,
-        "end": 92676
+        "end": 92676,
+        "paletteAt": 91598
       },
       {
         "id": "NoPicSkater2.map.jim",
@@ -2894,7 +2919,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 92676,
-        "end": 93550
+        "end": 93550,
+        "paletteAt": 91598
       },
       {
         "id": "NoPicGoalie1.map.jim",
@@ -2902,7 +2928,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 93550,
-        "end": 94424
+        "end": 94424,
+        "paletteAt": 91598
       },
       {
         "id": "NoPicGoalie2.map.jim",
@@ -2910,7 +2937,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 94424,
-        "end": 95298
+        "end": 95298,
+        "paletteAt": 91598
       },
       {
         "id": "Card001.map.jim",
@@ -2918,7 +2946,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 95298,
-        "end": 96172
+        "end": 96172,
+        "paletteAt": 91598
       },
       {
         "id": "Card002.map.jim",
@@ -2926,7 +2955,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 96172,
-        "end": 97046
+        "end": 97046,
+        "paletteAt": 91598
       },
       {
         "id": "Card003.map.jim",
@@ -2934,7 +2964,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 97046,
-        "end": 97920
+        "end": 97920,
+        "paletteAt": 91598
       },
       {
         "id": "Card004.map.jim",
@@ -2942,7 +2973,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 97920,
-        "end": 98794
+        "end": 98794,
+        "paletteAt": 91598
       },
       {
         "id": "Card005.map.jim",
@@ -2950,7 +2982,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 98794,
-        "end": 99668
+        "end": 99668,
+        "paletteAt": 91598
       },
       {
         "id": "Card006.map.jim",
@@ -2958,7 +2991,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 99668,
-        "end": 100542
+        "end": 100542,
+        "paletteAt": 91598
       },
       {
         "id": "Card007.map.jim",
@@ -2966,7 +3000,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 100542,
-        "end": 101416
+        "end": 101416,
+        "paletteAt": 91598
       },
       {
         "id": "Card008.map.jim",
@@ -2974,7 +3009,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 101416,
-        "end": 102290
+        "end": 102290,
+        "paletteAt": 91598
       },
       {
         "id": "Card009.map.jim",
@@ -2982,7 +3018,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 102290,
-        "end": 103164
+        "end": 103164,
+        "paletteAt": 91598
       },
       {
         "id": "Card010.map.jim",
@@ -2990,7 +3027,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 103164,
-        "end": 104038
+        "end": 104038,
+        "paletteAt": 91598
       },
       {
         "id": "Card011.map.jim",
@@ -2998,7 +3036,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 104038,
-        "end": 104912
+        "end": 104912,
+        "paletteAt": 91598
       },
       {
         "id": "Card012.map.jim",
@@ -3006,7 +3045,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 104912,
-        "end": 105786
+        "end": 105786,
+        "paletteAt": 91598
       },
       {
         "id": "Card013.map.jim",
@@ -3014,7 +3054,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 105786,
-        "end": 106660
+        "end": 106660,
+        "paletteAt": 91598
       },
       {
         "id": "Card014.map.jim",
@@ -3022,7 +3063,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 106660,
-        "end": 107534
+        "end": 107534,
+        "paletteAt": 91598
       },
       {
         "id": "Card015.map.jim",
@@ -3030,7 +3072,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 107534,
-        "end": 108408
+        "end": 108408,
+        "paletteAt": 91598
       },
       {
         "id": "Card016.map.jim",
@@ -3038,7 +3081,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 108408,
-        "end": 109282
+        "end": 109282,
+        "paletteAt": 91598
       },
       {
         "id": "Card017.map.jim",
@@ -3046,7 +3090,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 109282,
-        "end": 110156
+        "end": 110156,
+        "paletteAt": 91598
       },
       {
         "id": "Card018.map.jim",
@@ -3054,7 +3099,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 110156,
-        "end": 111030
+        "end": 111030,
+        "paletteAt": 91598
       },
       {
         "id": "Card019.map.jim",
@@ -3062,7 +3108,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 111030,
-        "end": 111904
+        "end": 111904,
+        "paletteAt": 91598
       },
       {
         "id": "Card020.map.jim",
@@ -3070,7 +3117,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 111904,
-        "end": 112778
+        "end": 112778,
+        "paletteAt": 91598
       },
       {
         "id": "Card021.map.jim",
@@ -3078,7 +3126,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 112778,
-        "end": 113652
+        "end": 113652,
+        "paletteAt": 91598
       },
       {
         "id": "Card022.map.jim",
@@ -3086,7 +3135,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 113652,
-        "end": 114526
+        "end": 114526,
+        "paletteAt": 91598
       },
       {
         "id": "Card023.map.jim",
@@ -3094,7 +3144,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 114526,
-        "end": 115400
+        "end": 115400,
+        "paletteAt": 91598
       },
       {
         "id": "Card024.map.jim",
@@ -3102,7 +3153,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 115400,
-        "end": 116274
+        "end": 116274,
+        "paletteAt": 91598
       },
       {
         "id": "Card025.map.jim",
@@ -3110,7 +3162,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 116274,
-        "end": 117148
+        "end": 117148,
+        "paletteAt": 91598
       },
       {
         "id": "Card026.map.jim",
@@ -3118,7 +3171,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 117148,
-        "end": 118022
+        "end": 118022,
+        "paletteAt": 91598
       },
       {
         "id": "Card027.map.jim",
@@ -3126,7 +3180,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 118022,
-        "end": 118896
+        "end": 118896,
+        "paletteAt": 91598
       },
       {
         "id": "Card028.map.jim",
@@ -3134,7 +3189,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 118896,
-        "end": 119770
+        "end": 119770,
+        "paletteAt": 91598
       },
       {
         "id": "Card029.map.jim",
@@ -3142,7 +3198,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 119770,
-        "end": 120644
+        "end": 120644,
+        "paletteAt": 91598
       },
       {
         "id": "Card030.map.jim",
@@ -3150,7 +3207,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 120644,
-        "end": 121518
+        "end": 121518,
+        "paletteAt": 91598
       },
       {
         "id": "Card031.map.jim",
@@ -3158,7 +3216,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 121518,
-        "end": 122392
+        "end": 122392,
+        "paletteAt": 91598
       },
       {
         "id": "Card032.map.jim",
@@ -3166,7 +3225,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 122392,
-        "end": 123266
+        "end": 123266,
+        "paletteAt": 91598
       },
       {
         "id": "Card033.map.jim",
@@ -3174,7 +3234,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 123266,
-        "end": 124140
+        "end": 124140,
+        "paletteAt": 91598
       },
       {
         "id": "Card034.map.jim",
@@ -3182,7 +3243,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 124140,
-        "end": 125014
+        "end": 125014,
+        "paletteAt": 91598
       },
       {
         "id": "Card035.map.jim",
@@ -3190,7 +3252,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 125014,
-        "end": 126044
+        "end": 126044,
+        "paletteAt": 91598
       },
       {
         "id": "Card036.map.jim",
@@ -3198,7 +3261,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 126044,
-        "end": 126918
+        "end": 126918,
+        "paletteAt": 91598
       },
       {
         "id": "Card037.map.jim",
@@ -3206,7 +3270,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 126918,
-        "end": 127792
+        "end": 127792,
+        "paletteAt": 91598
       },
       {
         "id": "Card038.map.jim",
@@ -3214,7 +3279,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 127792,
-        "end": 128666
+        "end": 128666,
+        "paletteAt": 91598
       },
       {
         "id": "Card039.map.jim",
@@ -3222,7 +3288,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 128666,
-        "end": 129540
+        "end": 129540,
+        "paletteAt": 91598
       },
       {
         "id": "Card040.map.jim",
@@ -3230,7 +3297,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 129540,
-        "end": 130414
+        "end": 130414,
+        "paletteAt": 91598
       },
       {
         "id": "Card042.map.jim",
@@ -3238,7 +3306,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 131288,
-        "end": 132162
+        "end": 132162,
+        "paletteAt": 91598
       },
       {
         "id": "Card043.map.jim",
@@ -3246,7 +3315,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 132162,
-        "end": 133036
+        "end": 133036,
+        "paletteAt": 91598
       },
       {
         "id": "Card044.map.jim",
@@ -3254,7 +3324,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 133036,
-        "end": 133910
+        "end": 133910,
+        "paletteAt": 91598
       },
       {
         "id": "Card045.map.jim",
@@ -3262,7 +3333,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 133910,
-        "end": 134784
+        "end": 134784,
+        "paletteAt": 91598
       },
       {
         "id": "Card046.map.jim",
@@ -3270,7 +3342,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 134784,
-        "end": 135658
+        "end": 135658,
+        "paletteAt": 91598
       },
       {
         "id": "Card047.map.jim",
@@ -3278,7 +3351,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 135658,
-        "end": 136532
+        "end": 136532,
+        "paletteAt": 91598
       },
       {
         "id": "Card048.map.jim",
@@ -3286,7 +3360,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 136532,
-        "end": 137562
+        "end": 137562,
+        "paletteAt": 91598
       },
       {
         "id": "Card049.map.jim",
@@ -3294,7 +3369,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 137562,
-        "end": 138568
+        "end": 138568,
+        "paletteAt": 91598
       },
       {
         "id": "Card050.map.jim",
@@ -3302,7 +3378,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 138568,
-        "end": 139442
+        "end": 139442,
+        "paletteAt": 91598
       },
       {
         "id": "Card051.map.jim",
@@ -3310,7 +3387,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 139442,
-        "end": 140316
+        "end": 140316,
+        "paletteAt": 91598
       },
       {
         "id": "Card052.map.jim",
@@ -3318,7 +3396,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 140316,
-        "end": 141190
+        "end": 141190,
+        "paletteAt": 91598
       },
       {
         "id": "Card053.map.jim",
@@ -3326,7 +3405,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 141190,
-        "end": 142064
+        "end": 142064,
+        "paletteAt": 91598
       },
       {
         "id": "Card054.map.jim",
@@ -3334,7 +3414,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 142064,
-        "end": 142938
+        "end": 142938,
+        "paletteAt": 91598
       },
       {
         "id": "Card056.map.jim",
@@ -3342,7 +3423,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 143812,
-        "end": 144686
+        "end": 144686,
+        "paletteAt": 91598
       },
       {
         "id": "Card057.map.jim",
@@ -3350,7 +3432,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 144686,
-        "end": 145560
+        "end": 145560,
+        "paletteAt": 91598
       },
       {
         "id": "Card058.map.jim",
@@ -3358,7 +3441,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 145560,
-        "end": 146434
+        "end": 146434,
+        "paletteAt": 91598
       },
       {
         "id": "Card059.map.jim",
@@ -3366,7 +3450,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 146434,
-        "end": 147308
+        "end": 147308,
+        "paletteAt": 91598
       },
       {
         "id": "Card060.map.jim",
@@ -3374,7 +3459,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 147308,
-        "end": 148182
+        "end": 148182,
+        "paletteAt": 91598
       },
       {
         "id": "Card061.map.jim",
@@ -3382,7 +3468,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 148182,
-        "end": 149056
+        "end": 149056,
+        "paletteAt": 91598
       },
       {
         "id": "Card063.map.jim",
@@ -3390,7 +3477,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 149930,
-        "end": 150912
+        "end": 150912,
+        "paletteAt": 91598
       },
       {
         "id": "Card064.map.jim",
@@ -3398,7 +3486,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 150912,
-        "end": 151786
+        "end": 151786,
+        "paletteAt": 91598
       },
       {
         "id": "Card065.map.jim",
@@ -3406,7 +3495,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 151786,
-        "end": 152660
+        "end": 152660,
+        "paletteAt": 91598
       },
       {
         "id": "Card066.map.jim",
@@ -3414,7 +3504,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 152660,
-        "end": 153534
+        "end": 153534,
+        "paletteAt": 91598
       },
       {
         "id": "Card068.map.jim",
@@ -3422,7 +3513,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 154408,
-        "end": 155282
+        "end": 155282,
+        "paletteAt": 91598
       },
       {
         "id": "Card069.map.jim",
@@ -3430,7 +3522,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 155282,
-        "end": 156156
+        "end": 156156,
+        "paletteAt": 91598
       },
       {
         "id": "Card070.map.jim",
@@ -3438,7 +3531,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 156156,
-        "end": 157030
+        "end": 157030,
+        "paletteAt": 91598
       },
       {
         "id": "Card071.map.jim",
@@ -3446,7 +3540,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 157030,
-        "end": 157904
+        "end": 157904,
+        "paletteAt": 91598
       },
       {
         "id": "Card072.map.jim",
@@ -3454,7 +3549,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 157904,
-        "end": 158778
+        "end": 158778,
+        "paletteAt": 91598
       },
       {
         "id": "Card075.map.jim",
@@ -3462,7 +3558,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 159652,
-        "end": 160526
+        "end": 160526,
+        "paletteAt": 91598
       },
       {
         "id": "Card076.map.jim",
@@ -3470,7 +3567,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 160526,
-        "end": 161400
+        "end": 161400,
+        "paletteAt": 91598
       },
       {
         "id": "Card077.map.jim",
@@ -3478,7 +3576,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 161400,
-        "end": 162274
+        "end": 162274,
+        "paletteAt": 91598
       },
       {
         "id": "Card078.map.jim",
@@ -3486,7 +3585,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 162274,
-        "end": 163148
+        "end": 163148,
+        "paletteAt": 91598
       },
       {
         "id": "Card079.map.jim",
@@ -3494,7 +3594,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 163148,
-        "end": 164130
+        "end": 164130,
+        "paletteAt": 91598
       },
       {
         "id": "Card081.map.jim",
@@ -3502,7 +3603,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 165004,
-        "end": 165878
+        "end": 165878,
+        "paletteAt": 91598
       },
       {
         "id": "Card082.map.jim",
@@ -3510,7 +3612,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 165878,
-        "end": 166752
+        "end": 166752,
+        "paletteAt": 91598
       },
       {
         "id": "Card083.map.jim",
@@ -3518,7 +3621,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 166752,
-        "end": 167626
+        "end": 167626,
+        "paletteAt": 91598
       },
       {
         "id": "Card084.map.jim",
@@ -3526,7 +3630,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 167626,
-        "end": 168500
+        "end": 168500,
+        "paletteAt": 91598
       },
       {
         "id": "Card085.map.jim",
@@ -3534,7 +3639,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 168500,
-        "end": 169374
+        "end": 169374,
+        "paletteAt": 91598
       },
       {
         "id": "Card086.map.jim",
@@ -3542,7 +3648,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 169374,
-        "end": 170248
+        "end": 170248,
+        "paletteAt": 91598
       },
       {
         "id": "Card087.map.jim",
@@ -3550,7 +3657,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 170248,
-        "end": 171122
+        "end": 171122,
+        "paletteAt": 91598
       },
       {
         "id": "Card088.map.jim",
@@ -3558,7 +3666,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 171122,
-        "end": 171996
+        "end": 171996,
+        "paletteAt": 91598
       },
       {
         "id": "Card089.map.jim",
@@ -3566,7 +3675,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 171996,
-        "end": 172870
+        "end": 172870,
+        "paletteAt": 91598
       },
       {
         "id": "Card090.map.jim",
@@ -3574,7 +3684,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 172870,
-        "end": 173744
+        "end": 173744,
+        "paletteAt": 91598
       },
       {
         "id": "Card091.map.jim",
@@ -3582,7 +3693,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 173744,
-        "end": 174618
+        "end": 174618,
+        "paletteAt": 91598
       },
       {
         "id": "Card092.map.jim",
@@ -3590,7 +3702,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 174618,
-        "end": 175492
+        "end": 175492,
+        "paletteAt": 91598
       },
       {
         "id": "Card093.map.jim",
@@ -3598,7 +3711,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 175492,
-        "end": 176366
+        "end": 176366,
+        "paletteAt": 91598
       },
       {
         "id": "Card094.map.jim",
@@ -3606,7 +3720,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 176366,
-        "end": 177240
+        "end": 177240,
+        "paletteAt": 91598
       },
       {
         "id": "Card095.map.jim",
@@ -3614,7 +3729,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 177240,
-        "end": 178114
+        "end": 178114,
+        "paletteAt": 91598
       },
       {
         "id": "Card096.map.jim",
@@ -3622,7 +3738,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 178114,
-        "end": 178988
+        "end": 178988,
+        "paletteAt": 91598
       },
       {
         "id": "Card097.map.jim",
@@ -3630,7 +3747,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 178988,
-        "end": 179970
+        "end": 179970,
+        "paletteAt": 91598
       },
       {
         "id": "Card100.map.jim",
@@ -3638,7 +3756,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 181718,
-        "end": 182592
+        "end": 182592,
+        "paletteAt": 91598
       },
       {
         "id": "Card101.map.jim",
@@ -3646,7 +3765,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 182592,
-        "end": 183466
+        "end": 183466,
+        "paletteAt": 91598
       },
       {
         "id": "Card102.map.jim",
@@ -3654,7 +3774,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 183466,
-        "end": 184340
+        "end": 184340,
+        "paletteAt": 91598
       },
       {
         "id": "Card103.map.jim",
@@ -3662,7 +3783,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 184340,
-        "end": 185214
+        "end": 185214,
+        "paletteAt": 91598
       },
       {
         "id": "Card105.map.jim",
@@ -3670,7 +3792,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 186088,
-        "end": 186962
+        "end": 186962,
+        "paletteAt": 91598
       },
       {
         "id": "Card106.map.jim",
@@ -3678,7 +3801,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 186962,
-        "end": 187836
+        "end": 187836,
+        "paletteAt": 91598
       },
       {
         "id": "Card107.map.jim",
@@ -3686,7 +3810,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 187836,
-        "end": 188710
+        "end": 188710,
+        "paletteAt": 91598
       },
       {
         "id": "Card108.map.jim",
@@ -3694,7 +3819,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 188710,
-        "end": 189584
+        "end": 189584,
+        "paletteAt": 91598
       },
       {
         "id": "Card109.map.jim",
@@ -3702,7 +3828,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 189584,
-        "end": 190458
+        "end": 190458,
+        "paletteAt": 91598
       },
       {
         "id": "Card110.map.jim",
@@ -3710,7 +3837,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 190458,
-        "end": 191332
+        "end": 191332,
+        "paletteAt": 91598
       },
       {
         "id": "Card111.map.jim",
@@ -3718,7 +3846,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 191332,
-        "end": 192206
+        "end": 192206,
+        "paletteAt": 91598
       },
       {
         "id": "Card112.map.jim",
@@ -3726,7 +3855,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 192206,
-        "end": 193080
+        "end": 193080,
+        "paletteAt": 91598
       },
       {
         "id": "Card113.map.jim",
@@ -3734,7 +3864,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 193080,
-        "end": 193954
+        "end": 193954,
+        "paletteAt": 91598
       },
       {
         "id": "Card114.map.jim",
@@ -3742,7 +3873,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 193954,
-        "end": 194828
+        "end": 194828,
+        "paletteAt": 91598
       },
       {
         "id": "Card116.map.jim",
@@ -3750,7 +3882,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 195702,
-        "end": 196576
+        "end": 196576,
+        "paletteAt": 91598
       },
       {
         "id": "Card117.map.jim",
@@ -3758,7 +3891,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 196576,
-        "end": 197450
+        "end": 197450,
+        "paletteAt": 91598
       },
       {
         "id": "Card118.map.jim",
@@ -3766,7 +3900,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 197450,
-        "end": 198324
+        "end": 198324,
+        "paletteAt": 91598
       },
       {
         "id": "Card119.map.jim",
@@ -3774,7 +3909,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 198324,
-        "end": 199198
+        "end": 199198,
+        "paletteAt": 91598
       },
       {
         "id": "Card120.map.jim",
@@ -3782,7 +3918,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 199198,
-        "end": 200072
+        "end": 200072,
+        "paletteAt": 91598
       },
       {
         "id": "Card121.map.jim",
@@ -3790,7 +3927,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 200072,
-        "end": 200946
+        "end": 200946,
+        "paletteAt": 91598
       },
       {
         "id": "Card123.map.jim",
@@ -3798,7 +3936,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 201820,
-        "end": 202694
+        "end": 202694,
+        "paletteAt": 91598
       },
       {
         "id": "Card125.map.jim",
@@ -3806,7 +3945,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 203568,
-        "end": 204442
+        "end": 204442,
+        "paletteAt": 91598
       },
       {
         "id": "Card126.map.jim",
@@ -3814,7 +3954,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 204442,
-        "end": 205472
+        "end": 205472,
+        "paletteAt": 91598
       },
       {
         "id": "Card127.map.jim",
@@ -3822,7 +3963,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 205472,
-        "end": 206346
+        "end": 206346,
+        "paletteAt": 91598
       },
       {
         "id": "Card128.map.jim",
@@ -3830,7 +3972,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 206346,
-        "end": 207220
+        "end": 207220,
+        "paletteAt": 91598
       },
       {
         "id": "Card129.map.jim",
@@ -3838,7 +3981,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 207220,
-        "end": 208094
+        "end": 208094,
+        "paletteAt": 91598
       },
       {
         "id": "Card130.map.jim",
@@ -3846,7 +3990,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 208094,
-        "end": 208968
+        "end": 208968,
+        "paletteAt": 91598
       },
       {
         "id": "Card131.map.jim",
@@ -3854,7 +3999,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 208968,
-        "end": 209842
+        "end": 209842,
+        "paletteAt": 91598
       },
       {
         "id": "Card132.map.jim",
@@ -3862,7 +4008,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 209842,
-        "end": 210716
+        "end": 210716,
+        "paletteAt": 91598
       },
       {
         "id": "Card133.map.jim",
@@ -3870,7 +4017,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 210716,
-        "end": 211590
+        "end": 211590,
+        "paletteAt": 91598
       },
       {
         "id": "Card134.map.jim",
@@ -3878,7 +4026,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 211590,
-        "end": 212464
+        "end": 212464,
+        "paletteAt": 91598
       },
       {
         "id": "Card135.map.jim",
@@ -3886,7 +4035,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 212464,
-        "end": 213338
+        "end": 213338,
+        "paletteAt": 91598
       },
       {
         "id": "Card139.map.jim",
@@ -3894,7 +4044,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 215960,
-        "end": 216834
+        "end": 216834,
+        "paletteAt": 91598
       },
       {
         "id": "Card140.map.jim",
@@ -3902,7 +4053,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 216834,
-        "end": 217708
+        "end": 217708,
+        "paletteAt": 91598
       },
       {
         "id": "Card142.map.jim",
@@ -3910,7 +4062,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 218582,
-        "end": 219456
+        "end": 219456,
+        "paletteAt": 91598
       },
       {
         "id": "Card143.map.jim",
@@ -3918,7 +4071,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 219456,
-        "end": 220510
+        "end": 220510,
+        "paletteAt": 91598
       },
       {
         "id": "Card144.map.jim",
@@ -3926,7 +4080,8 @@
         "group": "Players",
         "kind": "jim",
         "start": 220510,
-        "end": 221384
+        "end": 221384,
+        "paletteAt": 91598
       },
       {
         "id": "SmallFont.map.jim",
@@ -4141,7 +4296,13 @@
     "rom": false,
     "revisions": [],
     "revision": "",
-    "sheet": null,
+    "sheet": {
+      "record": "94",
+      "boundsAt": 2,
+      "sprites": 456704,
+      "hotlist": 405906,
+      "palette": 301482
+    },
     "snes": null,
     "romHint": "Drop ROM or use roms/",
     "paletteDir": "genesis",
