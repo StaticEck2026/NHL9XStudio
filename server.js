@@ -176,6 +176,17 @@ function segaCdPcmRead(game, name) {
   }
 }
 
+const pc97Asf = require('./lib/audio/pc96-asf');
+let ksfCache = { key: '', bytes: null };
+function ksfBytes(game, rel) {
+  const key = game.id + '|' + rel;
+  if (ksfCache.key === key) return ksfCache.bytes;
+  const body = pcRead(game, rel);
+  if (!body) return null;
+  ksfCache = { key, bytes: new Uint8Array(body.buffer ? body.buffer : body, body.byteOffset || 0, body.length) };
+  return ksfCache.bytes;
+}
+
 function readRom(file, game) {
   if (game && game.disc) return readDiscFile(file, game);
   let buf = fs.readFileSync(file);
@@ -511,6 +522,22 @@ const server = http.createServer((req, res) => {
     const body = game && segaCdPcmRead(game, url.searchParams.get('name') || '');
     if (!body) { send(res, 404, 'Not found', 'text/plain; charset=utf-8'); return; }
     send(res, 200, body, 'application/octet-stream');
+    return;
+  }
+
+  // NHL 97 speech banks (.KSF can be 100 MB): list the streams, or send one stream's bytes.
+  const ksfRoute = /^\/api\/games\/(nhl97pc)\/ksf$/.exec(pathname);
+  if (ksfRoute) {
+    const game = gameById(ksfRoute[1]);
+    const rel = url.searchParams.get('path');
+    const bytes = game && rel && /\.ksf$/i.test(rel) ? ksfBytes(game, rel) : null;
+    if (!bytes) { send(res, 404, 'Not found', 'text/plain; charset=utf-8'); return; }
+    const streams = pc97Asf.ksfStreams(bytes);
+    const n = url.searchParams.get('n');
+    if (n == null) { send(res, 200, JSON.stringify(streams), MIME['.json']); return; }
+    const one = streams.find((x) => x.index === Number(n));
+    if (!one) { send(res, 404, 'Not found', 'text/plain; charset=utf-8'); return; }
+    send(res, 200, Buffer.from(bytes.subarray(one.start, one.end)), 'application/octet-stream');
     return;
   }
 
