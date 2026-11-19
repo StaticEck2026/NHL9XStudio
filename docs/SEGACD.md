@@ -58,6 +58,10 @@ Two full-screen pictures sit in GRAPH2.BIN outside its own directory: the licens
 
 One record per team in TeamList order (68 is ANH, 78 is LA, 95 is ASW). GTABLE.BIN holds 6-byte entries (u16 sector, u32 length); the record sits at sector * 2048 in GRAPH2.BIN. It starts with three longs (the pictures' offsets, 12 and then each after the one before), followed by three stored pictures in the goalie-screen format: the team details page (name banner, crest, arena photo, NHLPA and NHL logos), the same page with an empty photo frame, and the video player frame (crest left and right, a black window of 18 x 11 tiles for the clip). The clips themselves are the 20 x 14 tile `SM` frames of the `.SEG` movies that `segacd-film.js` already decodes. `CD_TEAM_PAGES` in `lib/games.js` lists the offsets and sizes.
 
+## Finding the disc (`lib/segacd-find.js`, `lib/cue.js`)
+
+Studio looks under `roms/` (three folder levels down) and recognises the disc by its contents, not by its names: a data track that holds `GRAPH2.BIN`, `HOCKEY.BIN` and `STARTER.BIN`. The data track can be an `.iso`, `.img`, `.bin` or `.mdf`, with 2048 byte sectors or raw 2352 (Mode 1 or Mode 2 XA), 2336 or 2448 byte sectors, with or without the 2 second pregap in front (`lib/iso9660.js` tries each layout). A `.cue` sheet works too: its data track can be any `.bin` it names, in one file per track or one file for the whole disc, and a sheet whose data track is present wins over a separate `.iso`. Music comes from the sheet's AUDIO tracks (`INDEX 01` is where the music starts, the next track's `INDEX 00` where it ends in a single-file dump), or from loose track files next to the disc ("Track 07", any naming). CD music in `.chd`, `.mp3`, `.ogg` or `.flac` is not read.
+
 ## Boot pictures (STARTER.BIN)
 
 STARTER.BIN holds two uncompressed .map.jim pictures in the region the disassembly once called unused data: the title with credits at $5BD8 (18030 bytes, 40 by 28 tiles) and High Score Productions at $A942 (4896 bytes). Studio appends STARTER.BIN after HOCKEY.BIN to list them.
