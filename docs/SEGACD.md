@@ -35,10 +35,18 @@ last 15 hold the title). Audio is interleaved in the same records (RF5C164 sign-
   FM. **Channel type 1 is a sample channel on the RF5C164 PCM chip, never the PSG** (the disc writes no PSG data and no YM
   DAC data for effects; checked by injecting every id into the real disc in an emulator). Programs `$60-$6F` pick a sample from
   the bank at `GRAPH2.BIN $2D2000` (GTABLE record 96): `u16` count 13, 13 pairs of tag and length, then the samples
-  (sign-magnitude bytes, `$FF` stops). Each sample has a reference note that plays at 8,138 Hz; each semitone is a factor
-  2^(1/12). The program to sample map and reference notes are in `segacd-sfx.js`; the cartridge's own samples are different
-  recordings. The FM effects are still a reconstruction through the ymfm YM2612 (envelopes, bend range and the tick, taken as
-  one frame, are approximate); the disc's own Z80 driver is not run.
+  (sign-magnitude bytes, `$FF` stops). The game copies the samples into the chip's wave RAM from pages `$01 $1B $1D $2B $30 $3A
+  $40 $4C $4F $7E $AB $D3 $E1`, and the chip plays on to the first `$FF` (a sample with none runs into the next one). The disc sets
+  FD to `$200 * 2^((note - reference note) / 12)` (the chip steps FD/`$800` bytes per 32,552 Hz tick, so `$200` is 8,138 Hz), ENV
+  to twice the velocity and PAN to `$FF` (`$99` for the punch/check program 103). Programs: 96 puck pickup s7, 97 pass s2, 98
+  backhand s1, 99 forehand s6, 100 s4, 101 s0, 102 boards s3, 103 punch/check s5, 107 boo s12, 108 oooh s10, 109 cheer s8, 110
+  glass s9, 111 whistle s11. The cartridge's own samples are different recordings. The FM effects play through the ymfm YM2612
+  with what was read from the disc's Z80 driver by recording every YM2612 write: the patch bytes go to `$30, $34, $38, ...` in
+  order, carrier total level goes up by 19.3 steps per halving of the velocity, a note sounds 12 semitones above its number plus the
+  patch's signed byte 28, a full bend is +-(patch byte 30) semitones (the horn 2, the siren 12), and one tick is one 60 Hz frame.
+  Output is checked against emulator recordings of every effect (mean similarity of envelope, spectrum and length 0.66 before,
+  0.94 after); the remaining differences are the FM envelopes and release (ymfm against the real chip) and the disc's Z80 driver
+  is not run.
 - **Stereo CD music:** the tracks are mixed to mono because the Audio player's clips are mono.
 - **STARTER PCM bank** (`$BC64`): instrument waves for the PCM chip, not sound effects; not listed.
 
