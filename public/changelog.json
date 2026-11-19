@@ -1,6 +1,13 @@
 {
   "releases": [
     {
+      "version": "1.57.3",
+      "date": "2026-11-19",
+      "changes": [
+        "Loading screen: it now appears at once and stays up for 3 seconds after everything is loaded, so you can see which games loaded and which were not found (click it to close sooner)"
+      ]
+    },
+    {
       "version": "1.57.2",
       "date": "2026-11-19",
       "changes": [
