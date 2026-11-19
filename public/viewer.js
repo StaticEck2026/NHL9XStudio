@@ -121,6 +121,7 @@ const bitmaps = new Map();
 const roms = new Map();
 const rinkColors = new Map();
 let pathPrefix = '';
+let loadingRun = null; // the loading screen of a folder or file being opened (loader.js)
 let useApi = true;
 let clientPc = null;
 
@@ -2832,6 +2833,7 @@ function choosePalette(pals, previous, keepSelection) {
 
 async function loadGame(id, keepSelection) {
   rememberImage();
+  if (loadingRun) { const gm = games.find((game) => game.id === id); if (gm) loadingRun.detail('Loading ' + gm.title + '…'); }
   const previous = {
     mode: state.mode,
     bank: state.bank,
@@ -3103,6 +3105,21 @@ async function ingestRomFolder(entries) {
 async function ingestDroppedFiles(fileList) {
   const files = Array.from(fileList || []);
   if (!files.length) return;
+  const first = files[0];
+  const rel = String(first.webkitRelativePath || '');
+  const folder = rel.includes('/') ? rel.split('/')[0] : '';
+  const run = NhlLoader.start(folder ? 'Opening folder' : 'Opening file', folder ? folder + ' · ' + files.length + ' files' : first.name);
+  const mark = loadingRun;
+  loadingRun = run;
+  try {
+    await ingestFiles(files);
+  } finally {
+    loadingRun = mark;
+    run.done();
+  }
+}
+
+async function ingestFiles(files) {
   const entries = await Promise.all(files.map(async (file) => ({
     file,
     rel: (file.webkitRelativePath || file.name).replace(/^\/+/, ''),
@@ -3343,7 +3360,19 @@ function renderRevision(info) {
 }
 
 async function boot() {
+  const run = NhlLoader.start('Loading games', 'Looking for your games…');
+  try {
+    await bootInner(run);
+  } finally {
+    run.done();
+  }
+}
+
+async function bootInner(run) {
   const listed = await loadGamesList();
+  // The list says which games have their files (a ROM, disc or install folder) and which are only the built-in pictures.
+  run.games(listed.map((game) => ({ id: game.id, title: game.title, state: game.rom || game.pixels ? 'found' : 'missing' })));
+  run.detail('Found ' + listed.filter((game) => game.rom || game.pixels).length + ' of ' + listed.length + ' games');
   baseGames = listed.map(retailGame);
   // A game with revisions comes placed for the ROM on disk (or Rev 0 with none).
   games = listed.map((game, i) => {
@@ -3365,7 +3394,10 @@ async function boot() {
   const onSoundChange = () => { if (soundPanel()) renderList(); };
   if (typeof NhlSoundTestView !== 'undefined') NhlSoundTestView.onChange = onSoundChange;
   if (typeof NhlSoundTestPc94 !== 'undefined') NhlSoundTestPc94.onChange = onSoundChange;
+  run.mark(state.game, 'loading');
+  run.detail('Loading ' + gameInfo.title + '…');
   await loadGame(state.game, true);
+  run.mark(state.game, 'done');
   requestAnimationFrame(clock);
 }
 
