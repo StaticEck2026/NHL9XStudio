@@ -130,6 +130,13 @@
     const host = filesHost();
     const base = (host && host.baseUrl) || '';
     if (rec.pcmName) {
+      const disc = root.NhlSegaCdIso;
+      if (disc && root.NhlSegaCdPcm) {
+        const raw = disc.iso.read(rec.pcmName);
+        if (!raw) throw new Error(rec.pcmName + ' not on the disc');
+        rec.clip = { pcm: root.NhlSegaCdPcm.decode(raw), rate: rec.rate, vol: 0x7F, length: 0, name: rec.pcmName };
+        return rec.clip;
+      }
       const res = await fetch(base + '/api/games/' + gameOf() + '/pcm?name=' + encodeURIComponent(rec.pcmName));
       if (!res.ok) throw new Error(rec.pcmName + ' not on the disc');
       rec.clip = { pcm: new Uint8Array(await res.arrayBuffer()), rate: rec.rate, vol: 0x7F, length: 0, name: rec.pcmName };

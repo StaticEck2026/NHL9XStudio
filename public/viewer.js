@@ -3137,7 +3137,7 @@ async function ingestDroppedFiles(fileList) {
   const classified = NhlOpenAsset.classify(file.name, bytes);
   if (classified.kind === 'iso') {
     if (typeof NhlIso9660 === 'undefined' || !NhlIso9660.isIso(bytes)) {
-      loadError = classified.message || 'That ISO is not a 95/96 PC disc image.';
+      loadError = classified.message || 'That ISO is not an NHL 94 Sega CD or 95/96/97 PC disc image.';
       refreshAll();
       return;
     }
@@ -3152,6 +3152,37 @@ async function ingestDroppedFiles(fileList) {
       has: function (rel) { return iso.has(rel); },
       get: function (rel) { return iso.read(rel); }
     };
+    // NHL 94 Sega CD: GRAPH2.BIN and HOCKEY.BIN at the disc root, no PC install files.
+    if (NhlOpenAsset.isSegaCdDisc(names)) {
+      const parts = ['GRAPH2.BIN', 'HOCKEY.BIN'].map((n) => iso.read(NhlOpenAsset.discName(names, n)));
+      const total = parts.reduce((sum, part) => sum + (part ? part.length : 0), 0);
+      const joined = new Uint8Array(total);
+      let at = 0;
+      for (const part of parts) { if (part) { joined.set(part, at); at += part.length; } }
+      const pcm = names.filter((n) => /\.pcm$/i.test(n) && n.indexOf('/') < 0).sort().map((name) => {
+        const raw = iso.read(name);
+        return { name, size: raw ? raw.length : 0 };
+      });
+      window.NhlSegaCdIso = { iso, pcm };
+      clientPc = null;
+      const id = registerRom({ id: 'nhl94cd', bytes: joined }, joined);
+      if (!id) {
+        loadError = 'Unknown game profile for the Sega CD disc.';
+        refreshAll();
+        return;
+      }
+      games = games.map((game) => (game.id === id ? Object.assign({}, game, {
+        pcAudio: { songs: [], tim: [], pat: [], extra: [], dig: '', segaCdPcm: pcm, rate: 16276 }
+      }) : game));
+      loadError = '';
+      state.game = id;
+      el('game').value = id;
+      await loadGame(id);
+      gameInfo = games.find((game) => game.id === id) || gameInfo;
+      refreshAll();
+      return;
+    }
+    window.NhlSegaCdIso = null;
     clientPc = { map, catalog: Nhl95Pc.catalogFromPaths(names, (rel) => iso.read(rel)) };
     const year = Nhl95Pc.pcYearOf ? Nhl95Pc.pcYearOf(names) : 95;
     const pcId = Nhl95Pc.isNhl97 && Nhl95Pc.isNhl97(names) ? 'nhl97pc' : (year === 94 ? 'nhl94pc' : (year === 96 ? 'nhl96pc' : 'nhl95pc'));
