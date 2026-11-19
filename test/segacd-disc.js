@@ -6,6 +6,7 @@ const os = require('os');
 const path = require('path');
 const Film = require('../lib/segacd-film');
 const Cdda = require('../lib/audio/segacd-cdda');
+const Sfx = require('../lib/audio/segacd-sfx');
 
 const be32 = (n) => [n >>> 24, (n >>> 16) & 255, (n >>> 8) & 255, n & 255];
 
@@ -80,4 +81,21 @@ try {
 } finally {
   fs.rmSync(dir, { recursive: true, force: true });
 }
-console.log('segacd-disc: SM pictures, title picture and CD tracks OK');
+
+// Effect scripts: events with delta times, a script cut at its $FF, padding bytes between scripts.
+{
+  const script = Uint8Array.from([0xb0, 0x12, 0x00, 0x00, 0xc0, 0x1a, 0x00, 0x90, 0x3e, 0x7f, 0x14, 0x02, 0xe0, 0x44, 0x01, 0xff, 0x00, 0x00, 0x00]);
+  const ev = Sfx.parseScript(script);
+  assert.deepStrictEqual(ev.map((e) => e.type), ['control', 'program', 'on', 'bend']);
+  assert.deepStrictEqual(ev.map((e) => e.tick), [0, 0, 0, 2], 'delta after the note is 2 ticks');
+  assert.strictEqual(ev[2].dur, 20);
+  assert.strictEqual(Sfx.lengthTicks(ev), 20);
+  // a 14-bit duration ($81 $00 = 128) and running status
+  const two = Sfx.parseScript(Uint8Array.from([0x90, 0x30, 0x7f, 0x81, 0x00, 0x00, 0x32, 0x70, 0x04, 0x04, 0xff, 0, 0, 0]));
+  assert.strictEqual(two[0].dur, 128);
+  assert.strictEqual(two[1].type, 'on', 'running status repeats the note on');
+  assert.strictEqual(Sfx.nameOf(4), 'Period horn');
+  assert.strictEqual(Sfx.nameOf(0x12), 'Pass 3');
+  assert.strictEqual(Sfx.isMain(new Uint8Array(100)), false);
+}
+console.log('segacd-disc: SM pictures, title picture, CD tracks and sound effect scripts OK');

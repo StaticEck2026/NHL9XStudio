@@ -129,7 +129,12 @@
     if (!rec || rec.clip) return rec && rec.clip;
     const host = filesHost();
     const base = (host && host.baseUrl) || '';
-    if (rec.cdTrack) {
+    if (rec.sfxId != null) {
+      const res = await fetch(base + '/api/games/' + gameOf() + '/sfx?id=' + rec.sfxId);
+      if (!res.ok) throw new Error('Effect ' + rec.sfxId + ' could not be rendered (Studio needs the disc image in roms/)');
+      const pcm = new Int16Array(await res.arrayBuffer());
+      rec.clip = { pcm, rate: Number(res.headers.get('X-Sample-Rate')) || 53267, vol: 0x7F, length: pcm.length, name: 'NHL94CD-sfx' + String(rec.sfxId).padStart(2, '0') };
+    } else if (rec.cdTrack) {
       const res = await fetch(base + '/api/games/' + gameOf() + '/cdda?track=' + rec.cdTrack);
       if (!res.ok) throw new Error('Track ' + rec.cdTrack + ' not found next to the disc image');
       const pcm = new Int16Array(await res.arrayBuffer());
@@ -343,6 +348,19 @@
           sub: e.name + ' · ' + (audio.rate || 16276) + ' Hz · ' + e.size + ' bytes',
           pcmName: e.name,
           rate: audio.rate || 16276
+        });
+      }
+      // Sega CD sound effects: scripts in MAIN.BIN, played through the YM2612 (see docs/SEGACD.md).
+      for (const e of audio.segaSfx || []) {
+        speech.push({
+          id: 'speech-sfx-' + e.id,
+          group: 'Sound effects',
+          subgroup: '',
+          name: e.name,
+          label: e.name,
+          sub: 'Effect $' + e.id.toString(16).toUpperCase() + ' · ' + (e.psg ? 'PSG script' : 'FM script') + ' · ' + e.seconds + ' s',
+          sfxId: e.id,
+          rate: 53267
         });
       }
       // Sega CD music: CD-DA tracks 2-79. Song requests $30-$77 play tracks 7-78 (track = song - $29).
@@ -1013,6 +1031,8 @@
           ? 'AUDSFX.VIV is a C0 FB archive of BNKl sound banks (.bkh header + .bkd data). Each sound has a TMpl record (channels, rate, frames, codec). Codec 2 sounds are bare IMA ADPCM from state zero. Codec 0 sounds (the crowd16 and game16 banks) are signed 8-bit stereo PCM, and those .bkd files are Huffman packed (30 FB / 32 FB) as a whole.'
           : is97()
           ? 'NHL 97 .KSF speech bank: a table of streams, each a PATl/TMpl header then bare IMA ADPCM from state zero (no chunk headers). Stereo is one byte per frame (high nibble left, low nibble right), mono is two samples per byte. Played as mono at the TMpl rate.'
+          : isCd() && rec && rec.sfxId != null
+          ? 'A game sound effect from MAIN.BIN. The disc has its own sequencer and Z80 driver, not the cartridge\'s, but the effect numbers and the FM patches (the first 26 bytes of each 36-byte record) are the cartridge\'s. Studio reads the effect script (note on with a duration, program change, pitch bend, delta times) and plays it through the YM2612 core with those patches. Studio does not run the disc\'s Z80 driver, so the pitch, envelope and the square-wave stand-in for the PSG effects are approximate; one tick is taken as one frame (60 Hz).'
           : isCd() && rec && rec.cdTrack
           ? 'CD audio (Red Book) track from the disc, not on the ISO data track: 16-bit stereo at 44.1 kHz, shown here mixed down to mono. The game starts it with the CD BIOS (MSCPLAY1 / MSCPLAYR). A song request $30-$77 plays track song - $29, so tracks 7-78 are those songs; tracks 2-6 and 79 are played by other code paths (see the Sega CD disassembly notes in NHL94Genesis, docs/segacd_audio.md).'
           : isCd()
@@ -1155,7 +1175,11 @@
       rows.push(['Source', 'NHL 97 PC GAMEDATA']);
       return rows;
     }
-    if (isCd() && rec && rec.cdTrack) {
+    if (isCd() && rec && rec.sfxId != null) {
+      rows.push(['Effect', '$' + rec.sfxId.toString(16).toUpperCase() + ' (the cartridge\'s sfx id)']);
+      rows.push(['Rate', rec.rate + ' Hz']);
+      rows.push(['Path', 'SndEffectTable + SndEffectScripts + FmInstrumentPatches in MAIN.BIN']);
+    } else if (isCd() && rec && rec.cdTrack) {
       rows.push(['Track', rec.cdTrack + ' of the disc (CD-DA)']);
       rows.push(['Rate', rec.rate + ' Hz, stereo mixed down to mono']);
       rows.push(['Path', 'cdtrack: song request $30-$77 plays track song - $29 (MSCPLAY1)']);
