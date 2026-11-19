@@ -1,6 +1,13 @@
 {
   "releases": [
     {
+      "version": "1.47.0",
+      "date": "2026-11-19",
+      "changes": [
+        "NHL 94 (Sega CD) Audio now lists the game's 45 sound effects (Sound effects), read from the effect table, scripts and FM patches in MAIN.BIN and played through the YM2612. The disc has its own sound engine, so these are a reconstruction: the pitch, envelopes and the PSG effects (a square wave) are approximate"
+      ]
+    },
+    {
       "version": "1.46.0",
       "date": "2026-11-19",
       "changes": [

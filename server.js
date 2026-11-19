@@ -171,6 +171,45 @@ function segaCdPcmFiles(game) {
   segaPcmList = { file, mtime, list };
   return list;
 }
+// Sega CD sound effects: scripts in MAIN.BIN, rendered on demand through the YM2612 core (lib/audio/segacd-sfx.js).
+const segaCdSfx = require('./lib/audio/segacd-sfx');
+const ymWasm = require('./lib/audio/ym2612-wasm');
+const segaSfxCache = { file: '', mtime: 0, main: null, list: [], pcm: new Map() };
+function segaCdSfxMain(game) {
+  const file = game.disc && findRom(game);
+  if (!file) return null;
+  const mtime = fs.statSync(file).mtimeMs;
+  if (segaSfxCache.file === file && segaSfxCache.mtime === mtime) return segaSfxCache;
+  const iso = iso9660.openFile(file);
+  let main = null;
+  try { main = iso && iso.read('MAIN.BIN'); } finally { if (iso && iso.close) iso.close(); }
+  const bytes = main ? new Uint8Array(main) : null;
+  segaSfxCache.file = file;
+  segaSfxCache.mtime = mtime;
+  segaSfxCache.main = bytes && segaCdSfx.isMain(bytes) ? bytes : null;
+  segaSfxCache.pcm = new Map();
+  segaSfxCache.list = segaSfxCache.main
+    ? segaCdSfx.effects(segaSfxCache.main).sort((a, b) => a.id - b.id).map((e) => ({ id: e.id, name: segaCdSfx.nameOf(e.id), psg: segaCdSfx.parseScript(e.script).some((x) => x.type === 'control' && x.num === 0x12 && x.val === 1), seconds: Math.round((segaCdSfx.lengthTicks(segaCdSfx.parseScript(e.script)) + 24) / segaCdSfx.TICK_HZ * 10) / 10 }))
+    : [];
+  return segaSfxCache;
+}
+async function segaCdSfxRender(game, id) {
+  const c = segaCdSfxMain(game);
+  if (!c || !c.main) return null;
+  if (c.pcm.has(id)) return c.pcm.get(id);
+  const effect = segaCdSfx.effects(c.main).find((e) => e.id === id);
+  if (!effect) return null;
+  const chip = await ymWasm.createChip();
+  try {
+    const out = segaCdSfx.render(c.main, effect, chip);
+    const body = Buffer.from(out.pcm.buffer, out.pcm.byteOffset, out.pcm.byteLength);
+    const hit = { rate: out.rate, body };
+    c.pcm.set(id, hit);
+    return hit;
+  } finally {
+    chip.dispose();
+  }
+}
 function segaCdPcmRead(game, name) {
   const file = game.disc && findRom(game);
   if (!file || !segaCdPcmFiles(game).some((e) => e.name === name)) return null;
@@ -452,7 +491,7 @@ function gameStatus(game) {
       : null,
     snes: game.snes || null,
     romHint: game.kind === 'pc95' ? 'pc95/ or roms/nhl95.iso' : (game.kind === 'pc94' ? 'pc94/' : (game.kind === 'pc96' ? 'pc96/ or roms/nhl96.iso' : (game.kind === 'pc97' ? 'pc97/ or roms/nhl97.iso' : (game.disc ? 'roms/' + game.disc.names[0] : (game.romNames.length ? 'roms/' + game.romNames[0] : null))))),
-    pcAudio: pc && pc.audio ? pc.audio : (game.id === 'nhl94cd' && rom ? { songs: [], tim: [], pat: [], extra: [], dig: '', segaCdPcm: segaCdPcmFiles(game), rate: segaCdPcm.RATE, cdTracks: segaCdTracks().map(({ track, seconds }) => ({ track, seconds })), cdRate: segaCdda.RATE } : undefined)
+    pcAudio: pc && pc.audio ? pc.audio : (game.id === 'nhl94cd' && rom ? { songs: [], tim: [], pat: [], extra: [], dig: '', segaCdPcm: segaCdPcmFiles(game), rate: segaCdPcm.RATE, cdTracks: segaCdTracks().map(({ track, seconds }) => ({ track, seconds })), cdRate: segaCdda.RATE, segaSfx: (segaCdSfxMain(game) || { list: [] }).list } : undefined)
   };
 }
 
@@ -541,6 +580,18 @@ const server = http.createServer((req, res) => {
     const body = hit && segaCdda.readMono(hit.entry, hit.gap);
     if (!body) { send(res, 404, 'Not found', 'text/plain; charset=utf-8'); return; }
     send(res, 200, body, 'application/octet-stream');
+    return;
+  }
+
+  const segaSfxRoute = /^\/api\/games\/(nhl94cd)\/sfx$/.exec(pathname);
+  if (segaSfxRoute) {
+    const game = gameById(segaSfxRoute[1]);
+    const done = (hit) => {
+      if (!hit) send(res, 404, 'Not found', 'text/plain; charset=utf-8');
+      else send(res, 200, hit.body, 'application/octet-stream', { 'X-Sample-Rate': String(hit.rate), 'Access-Control-Expose-Headers': 'X-Sample-Rate' });
+    };
+    if (!game) { done(null); return; }
+    segaCdSfxRender(game, Number(url.searchParams.get('id'))).then(done, () => done(null));
     return;
   }
 
