@@ -4292,12 +4292,28 @@
         "end": 452614
       },
       {
-        "id": "Title.map.jim",
-        "label": "Title (NHL Hockey 94)",
+        "id": "TitleCredits.map.jim",
+        "label": "Title with credits",
         "group": "Screens",
         "kind": "jim",
-        "start": 3236362,
-        "end": 3266968
+        "start": 3259874,
+        "end": 3277904
+      },
+      {
+        "id": "HighScoreProductions.map.jim",
+        "label": "High Score Productions",
+        "group": "Screens",
+        "kind": "jim",
+        "start": 3279692,
+        "end": 3284588
+      },
+      {
+        "id": "Title.map.jim",
+        "label": "Title (intro movie, last frame)",
+        "group": "Screens",
+        "kind": "jim",
+        "start": 3356610,
+        "end": 3387216
       }
     ],
     "pixels": false,

@@ -3159,7 +3159,7 @@ async function ingestDroppedFiles(fileList) {
     };
     // NHL 94 Sega CD: GRAPH2.BIN and HOCKEY.BIN at the disc root, no PC install files.
     if (NhlOpenAsset.isSegaCdDisc(names)) {
-      const parts = ['GRAPH2.BIN', 'HOCKEY.BIN'].map((n) => iso.read(NhlOpenAsset.discName(names, n)));
+      const parts = ['GRAPH2.BIN', 'HOCKEY.BIN', 'STARTER.BIN'].map((n) => iso.read(NhlOpenAsset.discName(names, n)));
       // The title picture is the last frame of HOCKEY.SEG, decoded and appended as a .map.jim.
       const seg = typeof NhlSegaCdFilm !== 'undefined' && names.some((n) => /^hockey\.seg$/i.test(n)) ? iso.read(NhlOpenAsset.discName(names, 'HOCKEY.SEG')) : null;
       const titleJim = seg ? NhlSegaCdFilm.titleJim(seg) : null;
