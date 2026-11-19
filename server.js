@@ -254,10 +254,21 @@ function segaCdPcmRead(game, name) {
 const segaCdda = require('./lib/audio/segacd-cdda');
 function segaCdTracks() {
   const disc = segaCdFind.findCached(ROM_DIR);
-  return segaCdda.findTracks(ROM_DIR, { sheets: disc ? disc.sheets : [], folders: disc ? [disc.folder] : [] }).map((e) => {
+  // Loose "... (Track 07).bin" files first, then whatever the disc's own sheet or track table names (lib/segacd-find.js).
+  const merged = new Map(segaCdda.findTracks(ROM_DIR).map((e) => [e.track, e]));
+  for (const e of (disc && disc.audio) || []) merged.set(e.track, e);
+  return [...merged.values()].sort((a, b) => a.track - b.track).map((e) => {
     const gap = e.skip != null ? undefined : segaCdda.pregaps(path.dirname(e.file)).get(e.track);
     return { track: e.track, seconds: Math.round(segaCdda.seconds(e, gap) * 10) / 10, entry: e, gap };
   });
+}
+
+// What was found of the disc, for the Audio tab: how it was loaded and what could not be read (lib/segacd-find.js).
+function segaCdDiscInfo() {
+  const disc = segaCdFind.findCached(ROM_DIR);
+  if (!disc) return null;
+  const how = { cue: 'cue sheet', ccd: 'CloneCD image', raw: 'raw disc image', iso: 'ISO' }[disc.kind] || disc.kind;
+  return { kind: disc.kind, how, image: path.basename(disc.image), tracks: (disc.audio || []).length, notes: disc.notes || [] };
 }
 
 // Every track the game plays (2-79), whether or not its file is beside the ISO, so the Audio tab always lists the CD music.
@@ -531,7 +542,7 @@ function gameStatus(game) {
       : null,
     snes: game.snes || null,
     romHint: game.kind === 'pc95' ? 'pc95/ or roms/nhl95.iso' : (game.kind === 'pc94' ? 'pc94/' : (game.kind === 'pc96' ? 'pc96/ or roms/nhl96.iso' : (game.kind === 'pc97' ? 'pc97/ or roms/nhl97.iso' : (game.disc ? 'roms/' + game.disc.names[0] : (game.romNames.length ? 'roms/' + game.romNames[0] : null))))),
-    pcAudio: pc && pc.audio ? pc.audio : (game.id === 'nhl94cd' && rom ? { songs: [], tim: [], pat: [], extra: [], dig: '', segaCdPcm: segaCdPcmFiles(game), rate: segaCdPcm.RATE, cdTracks: segaCdTrackList(), cdRate: segaCdda.RATE, segaSfx: (segaCdSfxMain(game) || { list: [] }).list } : undefined)
+    pcAudio: pc && pc.audio ? pc.audio : (game.id === 'nhl94cd' && rom ? { songs: [], tim: [], pat: [], extra: [], dig: '', segaCdPcm: segaCdPcmFiles(game), rate: segaCdPcm.RATE, cdTracks: segaCdTrackList(), segaDisc: segaCdDiscInfo(), cdRate: segaCdda.RATE, segaSfx: (segaCdSfxMain(game) || { list: [] }).list } : undefined)
   };
 }
 

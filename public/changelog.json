@@ -1,6 +1,13 @@
 {
   "releases": [
     {
+      "version": "1.54.0",
+      "date": "2026-11-19",
+      "changes": [
+        "Sega CD disc loading handles the way different programs rip a disc: .cue sheets with any line ending, encoding, case, quoting, Windows or absolute paths, one file per track or one for the disc, WAVE music files, renamed .bin files, CloneCD (.ccd/.img), a bare ISO or raw image with numbered track files in any naming, and music in another folder. Formats it cannot read (.chd, .nrg, .cdi, FLAC/MP3 music) are named in the Audio tab note instead of silently showing no music"
+      ]
+    },
+    {
       "version": "1.53.1",
       "date": "2026-11-19",
       "changes": [
