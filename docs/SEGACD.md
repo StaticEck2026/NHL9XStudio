@@ -8,7 +8,7 @@ NHL94Genesis (`src/segacd/`, `docs/segacd*.md`). Nothing from the disc is stored
 | `GRAPH2.BIN` + `HOCKEY.BIN` (ISO root) | Images, player sheet. The two files are joined; picture offsets are in `lib/genesis-images.js` (`nhl94cd`) | `lib/games.js`, `server.js` `readDiscFile`, `public/viewer.js` (Open file) |
 | `HOCKEY.SEG` last frame | Images > Screens > Title (NHL HOCKEY '94). Decoded to a `.map.jim` and appended after HOCKEY.BIN (30,606 bytes at `3051520 + 184842`) | `lib/segacd-film.js` |
 | `*.PCM` (ISO root) | Audio > speech (team names, All-Star calls, Ron Barr), RF5C164 sign-magnitude mono | `lib/audio/segacd-pcm.js` |
-| CD-DA tracks 2-79 | Audio > CD music. Not on the ISO: track files next to it in `roms/` (`... (Track NN).bin`, optional `.cue` for pregaps), mixed to mono | `lib/audio/segacd-cdda.js`, `/api/games/nhl94cd/cdda` |
+| CD-DA tracks 2-79 | Audio > CD music. Not on the ISO: from the rip's `.cue`/`.bin` (or numbered track files), mixed to mono; see Finding the disc | `lib/audio/segacd-cdda.js`, `/api/games/nhl94cd/cdda` |
 
 ## Movies (.SEG)
 
@@ -60,7 +60,15 @@ One record per team in TeamList order (68 is ANH, 78 is LA, 95 is ASW). GTABLE.B
 
 ## Finding the disc (`lib/segacd-find.js`, `lib/cue.js`)
 
-Studio looks under `roms/` (three folder levels down) and recognises the disc by its contents, not by its names: a data track that holds `GRAPH2.BIN`, `HOCKEY.BIN` and `STARTER.BIN`. The data track can be an `.iso`, `.img`, `.bin` or `.mdf`, with 2048 byte sectors or raw 2352 (Mode 1 or Mode 2 XA), 2336 or 2448 byte sectors, with or without the 2 second pregap in front (`lib/iso9660.js` tries each layout). A `.cue` sheet works too: its data track can be any `.bin` it names, in one file per track or one file for the whole disc, and a sheet whose data track is present wins over a separate `.iso`. Music comes from the sheet's AUDIO tracks (`INDEX 01` is where the music starts, the next track's `INDEX 00` where it ends in a single-file dump), or from loose track files next to the disc ("Track 07", any naming). CD music in `.chd`, `.mp3`, `.ogg` or `.flac` is not read.
+Studio looks under `roms/` (three folder levels down, following links) and recognises the disc by its contents, not by its names: a data track that holds `GRAPH2.BIN`, `HOCKEY.BIN` and `STARTER.BIN`. It does not matter which program ripped the disc or what the files are called. What is read (`test/segacd-rips.js` builds each of these from synthetic data):
+
+- **Data track:** an `.iso`, `.img`, `.bin`, `.mdf` or `.raw` with 2048 byte sectors or raw 2352 (Mode 1 or Mode 2 XA), 2336 or 2448 byte sectors, with or without the 2 second pregap in front (`lib/iso9660.js` tries each layout).
+- **`.cue` sheets** (EAC, CDRWIN, ImgBurn, Redump, IsoBuster and others): any line ending (CRLF, LF, bare CR), BOM or old code page, UTF-16, any keyword case, tabs, quoted or bare file names (bare names may hold spaces), Windows or Unix paths, absolute paths from another machine (the file is found by name below the sheet), REM/CATALOG/FLAGS/PREGAP lines, one file per track or one file for the disc, `MODE1/2048`, `MODE1/2352` and `MODE2/2352` data. A data file that was renamed (the sheet names a file that is gone) is found by its contents. Music is the sheet's AUDIO tracks as raw 2352 byte sectors (`INDEX 01` where the music starts, the next `INDEX 00` where it ends in a single file) or 16-bit stereo 44.1 kHz `WAVE` files.
+- **CloneCD:** a `.ccd` with its `.img` (track start from `PLBA`).
+- **No sheet:** numbered track files beside the disc, `Track 07`, `Track07.wav`, `02 - Name.bin`, `... (Track 07).bin` (raw 2352 byte tracks with their pregap, or WAVE), also when the tracks are in another folder (ten or more).
+- **Not read** (the Audio tab says so instead of showing nothing): `.chd` (convert with `chdman extractcd`), `.nrg`, `.cdi`, `.mds` music (the `.mdf` works as the data track), archives, and music in FLAC, MP3, OGG or APE (convert to `.wav` 16-bit stereo 44.1 kHz, or use the `.bin`).
+
+`/api/games` reports what was loaded (`pcAudio.segaDisc`: how, file, tracks found, notes).
 
 ## Boot pictures (STARTER.BIN)
 
