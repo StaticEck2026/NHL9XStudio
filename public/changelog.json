@@ -1,6 +1,14 @@
 {
   "releases": [
     {
+      "version": "1.56.0",
+      "date": "2026-11-19",
+      "changes": [
+        "NHL 94 (Sega CD) CD music is named like the cartridge songs: \"Track 07 · $30 · NHL94_music_001\" with the song and team (\"Go Team Go [E-flat] (BOS)\") underneath. Track 2 is the crowdbed, 3 is $7A (scouting), 4 is $78 (title), 5 is $79 (end of period), and track 7 onward is $30 onward up to track 78 = $77. Tracks 6 and 79 are not used by any song id, so they are labelled not mapped; they are in two groups, Team songs and Shared tracks",
+        "Fixed a crash opening the Sega CD when a .cue's own data track file was missing and an .iso was used instead"
+      ]
+    },
+    {
       "version": "1.55.0",
       "date": "2026-11-19",
       "changes": [
