@@ -30,6 +30,7 @@ const PAL_DIRS = {
 };
 const PAL_DIR = PAL_DIRS['92'];
 const ROM_DIR = path.join(ROOT, 'roms');
+const cueSheet = require('./lib/cue');
 const PC_DIRS = {
   // NHL_PC95_DIR / NHL_PC94_DIR / NHL_PC96_DIR point at an installed game folder instead of pc95/ / pc94/ / pc96/ here.
   pc95: process.env.NHL_PC95_DIR ? path.resolve(process.env.NHL_PC95_DIR) : path.join(ROOT, 'pc95'),
@@ -108,12 +109,19 @@ function nhl95RomPalettes() {
   }
 }
 
+const segaCdFind = require('./lib/segacd-find');
+
+// Opens the disc's data track: the .iso itself, or the data track .bin a .cue names.
+function openDisc(file) {
+  return iso9660.openFile(/\.cue$/i.test(file) ? cueSheet.dataFile(file) : file);
+}
+
 function findRom(game) {
   if (!fs.existsSync(ROM_DIR)) return null;
   if (game.disc) {
-    const wantedIso = new Set(game.disc.names);
-    const hit = fs.readdirSync(ROM_DIR).find((name) => wantedIso.has(name.toLowerCase()));
-    return hit ? path.join(ROM_DIR, hit) : null;
+    // The disc is found by its contents, whatever the rip is called or how it is laid out (lib/segacd-find.js).
+    const hit = segaCdFind.findCached(ROM_DIR);
+    return hit ? hit.image : null;
   }
   if (!game.romNames.length) return null;
   const wanted = new Set(game.romNames.map((name) => name.toLowerCase()));
@@ -125,7 +133,7 @@ function findRom(game) {
 
 // A game that reads one file out of a disc image (Sega CD: GRAPH2.BIN from the ISO).
 function readDiscFile(file, game) {
-  const iso = iso9660.openFile(file);
+  const iso = openDisc(file);
   if (!iso) throw new Error('Not an ISO 9660 image: ' + path.basename(file));
   try {
     const bytes = iso.read(game.disc.file);
@@ -161,7 +169,7 @@ function segaCdPcmFiles(game) {
   if (!file) return [];
   const mtime = fs.statSync(file).mtimeMs;
   if (segaPcmList.file === file && segaPcmList.mtime === mtime) return segaPcmList.list;
-  const iso = iso9660.openFile(file);
+  const iso = openDisc(file);
   let list = [];
   if (iso) {
     try {
@@ -185,7 +193,7 @@ function segaCdSfxMain(game) {
   if (!file) return null;
   const mtime = fs.statSync(file).mtimeMs;
   if (segaSfxCache.file === file && segaSfxCache.mtime === mtime) return segaSfxCache;
-  const iso = iso9660.openFile(file);
+  const iso = openDisc(file);
   let main = null;
   let graph2 = null;
   try { main = iso && iso.read('MAIN.BIN'); graph2 = iso && iso.read('GRAPH2.BIN'); } finally { if (iso && iso.close) iso.close(); }
@@ -233,7 +241,7 @@ async function segaCdSfxRender(game, id) {
 function segaCdPcmRead(game, name) {
   const file = game.disc && findRom(game);
   if (!file || !segaCdPcmFiles(game).some((e) => e.name === name)) return null;
-  const iso = iso9660.openFile(file);
+  const iso = openDisc(file);
   try {
     const bytes = iso && iso.read(name);
     return bytes ? Buffer.from(segaCdPcm.decode(bytes)) : null;
@@ -245,8 +253,9 @@ function segaCdPcmRead(game, name) {
 // Sega CD music: the disc's CD-DA tracks, kept as raw files beside the ISO (see lib/audio/segacd-cdda.js).
 const segaCdda = require('./lib/audio/segacd-cdda');
 function segaCdTracks() {
-  return segaCdda.findTracks(ROM_DIR).map((e) => {
-    const gap = segaCdda.pregaps(path.dirname(e.file)).get(e.track);
+  const disc = segaCdFind.findCached(ROM_DIR);
+  return segaCdda.findTracks(ROM_DIR, { sheets: disc ? disc.sheets : [], folders: disc ? [disc.folder] : [] }).map((e) => {
+    const gap = e.skip != null ? undefined : segaCdda.pregaps(path.dirname(e.file)).get(e.track);
     return { track: e.track, seconds: Math.round(segaCdda.seconds(e, gap) * 10) / 10, entry: e, gap };
   });
 }

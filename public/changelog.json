@@ -1,6 +1,13 @@
 {
   "releases": [
     {
+      "version": "1.53.0",
+      "date": "2026-11-19",
+      "changes": [
+        "NHL 94 (Sega CD) now loads from a .cue/.bin dump as well as an .iso. The disc is recognised by its contents (a data track with GRAPH2.BIN, HOCKEY.BIN and STARTER.BIN), so file names, folders (up to three levels under roms/) and ripping software do not matter: .iso/.img/.bin/.mdf data tracks, cooked 2048 or raw 2352/2336/2448 byte sectors, Mode 1 or Mode 2 XA, with or without the 2 second pregap, and a .cue with one .bin per track or one .bin for the whole disc. The CD music is read from the .cue (any file names, backslashes, any text encoding), or from loose track files beside the disc. A .cue whose data track is present is preferred over a separate .iso"
+      ]
+    },
+    {
       "version": "1.52.0",
       "date": "2026-11-19",
       "changes": [

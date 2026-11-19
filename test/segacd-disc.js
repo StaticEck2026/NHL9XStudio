@@ -137,4 +137,34 @@ try {
   listed.forEach((x, i) => assert.strictEqual(x.end - x.start, G.disc.blobScreens[i].len + 6));
   assert.strictEqual(listed.length, 2 + 28 * 3);
 }
+{
+  // Detection that does not depend on how a disc was ripped or what the files are called.
+  const Iso = require('../lib/iso9660');
+  const Cue = require('../lib/cue');
+  const Find = require('../lib/segacd-find');
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'segacd-find-'));
+  const files = ['GRAPH2.BIN', 'HOCKEY.BIN', 'STARTER.BIN'].map((name) => ({ name, data: new Uint8Array(100) }));
+  const cooked = Buffer.from(Iso.encode(files));
+  // The same data track as raw Mode 2 XA sectors (24 byte header), preceded by the 2 second pregap.
+  const sectors = cooked.length / 2048;
+  const raw = Buffer.alloc((150 + sectors) * 2352);
+  for (let s = 0; s < sectors; s++) cooked.copy(raw, (150 + s) * 2352 + 24, s * 2048, (s + 1) * 2048);
+  const sub = path.join(dir, 'My Rips', 'disc');
+  fs.mkdirSync(sub, { recursive: true });
+  fs.writeFileSync(path.join(sub, 'DATA.BIN'), raw);
+  const audio = Buffer.alloc(300 * 2352);
+  fs.writeFileSync(path.join(sub, 'Music.BIN'), audio);
+  // Single-file style sheet written on Windows: backslashes, odd case, a UTF-8 BOM, no 94 anywhere in the names.
+  fs.writeFileSync(path.join(sub, 'whatever.cue'), '\ufeffFILE "data.bin" BINARY\r\n  TRACK 01 MODE2/2352\r\n    INDEX 01 00:00:00\r\nFILE "MUSIC.bin" BINARY\r\n  TRACK 02 AUDIO\r\n    INDEX 00 00:00:00\r\n    INDEX 01 00:02:00\r\n  TRACK 03 AUDIO\r\n    INDEX 00 00:03:00\r\n    INDEX 01 00:03:10\r\n');
+  const hit = Find.find(dir);
+  assert.ok(hit && /whatever\.cue$/.test(hit.image), 'finds the disc through a sheet in a subfolder by its contents');
+  assert.ok(/DATA\.BIN$/.test(hit.dataFile), 'case-insensitive file names');
+  const a = Cue.audioTracks(hit.sheet);
+  assert.deepStrictEqual(a.map((x) => [x.track, x.skip, x.end]), [[2, 150 * 2352, 3 * 75 * 2352], [3, (3 * 75 + 10) * 2352, null]]);
+  const tracks = Cdda.findTracks(dir, { sheets: hit.sheets, folders: [hit.folder] });
+  assert.deepStrictEqual(tracks.map((x) => x.track), [2, 3]);
+  assert.ok(Math.abs(Cdda.seconds(tracks[0]) - (75 * 2352 * 1) / 176400 * 0 - ((225 - 150) * 2352) / 176400) < 1e-9, 'track length from the sheet');
+  const disc = Iso.openFile(hit.dataFile);
+  assert.ok(disc && disc.names().indexOf('GRAPH2.BIN') >= 0, 'reads a raw XA data track with a pregap');
+}
 console.log('segacd-disc: SM pictures, title picture, CD tracks and sound effect scripts OK');
