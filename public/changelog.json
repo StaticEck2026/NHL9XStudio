@@ -1,6 +1,16 @@
 {
   "releases": [
     {
+      "version": "1.44.0",
+      "date": "2026-11-19",
+      "changes": [
+        "NHL 94 (Sega CD) now has the title screen (NHL HOCKEY '94) in Images, Screens. It is the last frame of the disc's intro movie (HOCKEY.SEG), which Studio decodes itself",
+        "NHL 94 (Sega CD) Audio now lists the disc's music: CD audio tracks 2 to 79 under CD music, played as mono. The tracks are not on the ISO's data track, so put the track files (\"NHL '94 (USA) (Track 07).bin\" and the rest) in the roms folder next to the ISO",
+        "Images and Audio lists now start with every group or subgroup of more than 8 items collapsed; smaller ones start open",
+        "npm install no longer reports vulnerabilities: the opl3 package (and its speaker and yargs dependencies) is gone, since Studio already carried its own copy of the OPL3 chip, and Playwright is updated"
+      ]
+    },
+    {
       "version": "1.43.1",
       "date": "2026-11-19",
       "changes": [

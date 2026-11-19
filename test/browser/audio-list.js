@@ -1,6 +1,6 @@
 /**
- * Browser test: the Audio tab's lists. Songs and SFX are collapsible and start open; the DAC samples and Instruments
- * start closed. NHLPA 93 lists the label once (no "label | EQUATE"), and has an Instruments list whose entries play.
+ * Browser test: the Audio tab's lists. Songs and SFX are collapsible and start open when they hold 8 items or fewer
+ * (more than 8 starts collapsed); the DAC samples and Instruments always start closed. NHLPA 93 lists the label once (no "label | EQUATE"), and has an Instruments list whose entries play.
  *
  *   node test/browser/audio-list.js
  */
@@ -10,6 +10,12 @@ const OPTIONAL = /\/api\/games\/\w+\/rom/;
 
 const groups = (page) => page.$$eval('#catalog .group-label', (n) => n.map((x) => x.textContent.replace(/\s+/g, ' ').trim()));
 const items = (page) => page.$$eval('#catalog .item .name', (n) => n.map((x) => x.textContent.replace(/\s+/g, ' ').trim()));
+
+// Groups with more than 8 items start collapsed; open one so its rows are listed.
+async function ensureOpen(page, name) {
+  const label = await page.$$eval('#catalog .group-label', (n, nm) => (n.find((x) => x.textContent.includes(nm)) || {}).textContent || '', name);
+  if (/^▸/.test(label.trim())) await page.$$eval('#catalog .group-label', (n, nm) => n.find((x) => x.textContent.includes(nm)).click(), name);
+}
 
 async function open(page, url, game) {
   await page.goto(url);
@@ -25,7 +31,14 @@ async function open(page, url, game) {
     for (const game of ['nhl92', 'nhlpa93', 'nhl94', 'nhl95', 'nhl96', 'nhlpa93snes', 'nhl94snes']) {
       await open(page, url, game);
       let g = await groups(page);
-      assert.ok(g.some((x) => /^▾ Songs/.test(x)) && g.some((x) => /^▾ SFX/.test(x)), game + ': Songs and SFX start open: ' + g.join(' | '));
+      assert.ok(g.some((x) => /^[▾▸] Songs/.test(x)) && g.some((x) => /^[▾▸] SFX/.test(x)), game + ': Songs and SFX are listed: ' + g.join(' | '));
+      for (const x of g) {
+        const m = /^([▾▸]) (Songs|SFX) \((\d+)\)/.exec(x);
+        if (m) assert.strictEqual(m[1] === '▾', Number(m[3]) <= 8, game + ': ' + m[2] + ' (' + m[3] + ') starts ' + (Number(m[3]) <= 8 ? 'open' : 'collapsed'));
+      }
+      await ensureOpen(page, 'Songs');
+      await ensureOpen(page, 'SFX');
+      g = await groups(page);
       const isSnes = game.endsWith('snes');
       if (!isSnes && game !== 'nhl96') assert.ok(g.some((x) => /^▸ Instruments/.test(x)), game + ': Instruments start closed: ' + g.join(' | '));
       if (game === 'nhl96') assert.ok(!g.some((x) => /Instruments|MIDI/.test(x)), 'nhl96: no Instruments or MIDI tools: ' + g.join(' | '));

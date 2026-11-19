@@ -1,5 +1,6 @@
 /**
- * Browser test: the SPF, SPA and Images lists collapse by group. Groups start open, but Player cards starts closed.
+ * Browser test: the SPF, SPA and Images lists collapse by group. SPF and SPA groups start open. In Images a group
+ * with more than 8 items starts collapsed (and Player cards always does); a smaller one starts open.
  *
  *   node test/browser/list-folds.js
  */
@@ -30,6 +31,12 @@ const heads = (page) => page.$$eval('#catalog .group-label', (n) => n.map((x) =>
     const cards = page.locator('#catalog .group-label.is-toggle', { hasText: 'Player cards' });
     assert.strictEqual(await cards.count(), 1, 'Player cards group exists: ' + (await heads(page)).join(', '));
     assert.strictEqual(await cards.getAttribute('aria-expanded'), 'false');
+    // Every Images group starts closed when it holds more than 8 items, open otherwise.
+    for (const head of await page.$$eval('#catalog .group-label.is-toggle', (n) => n.map((x) => ({ text: x.textContent.replace(/\s+/g, ' ').trim(), open: x.getAttribute('aria-expanded') === 'true' })))) {
+      const m = /\((\d+)\)$/.exec(head.text);
+      if (!m || /Player cards/.test(head.text)) continue;
+      assert.strictEqual(head.open, Number(m[1]) <= 8, 'Images group starts ' + (Number(m[1]) <= 8 ? 'open' : 'collapsed') + ': ' + head.text);
+    }
     await cards.click();
     assert.strictEqual(await page.locator('#catalog .group-label.is-toggle', { hasText: 'Player cards' }).getAttribute('aria-expanded'), 'true');
   });
