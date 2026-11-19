@@ -1,6 +1,14 @@
 {
   "releases": [
     {
+      "version": "1.57.0",
+      "date": "2026-11-19",
+      "changes": [
+        "The loading screen now shows skaters carrying the puck across NHL 92 ice instead of a sliding puck. Each skater is the game's own skate-with-puck animation (frames, hot spots and frame timing) in a team's colours, for NHL 92, NHLPA 93, 94, 95, 96 and 94 SNES, and NHL 94, 95 and 96 PC. They cross at different speeds and heights, and only games that were found appear",
+        "Every supported game is listed as a pill: green for a found game (solid for the one loading), red for a game not found in the roms or opened folder. Only the skating frames, the puck sprite and a few team palettes are embedded (public/skaters-data.js)"
+      ]
+    },
+    {
       "version": "1.56.0",
       "date": "2026-11-19",
       "changes": [
