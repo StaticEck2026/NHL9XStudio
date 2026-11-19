@@ -110,4 +110,12 @@ try {
   assert.strictEqual(new DataView(j.buffer).getUint32(0), 10 + n * 32);
   assert.strictEqual(Film.blobJim(new Uint8Array(blob.length), 0, blob.length), null, 'wrong magic');
 }
+{
+  // Every Sega CD blob screen is listed once, after the title picture, and the list ends where the extras end.
+  const G = require('../lib/games').gameById('nhl94cd');
+  const listed = G.images.filter((x) => /^(Goalie|TeamDetails|VideoPlayer)/.test(x.id));
+  assert.strictEqual(listed.length, G.disc.blobScreens.length);
+  listed.forEach((x, i) => assert.strictEqual(x.end - x.start, G.disc.blobScreens[i].len + 6));
+  assert.strictEqual(listed.length, 2 + 28 * 3);
+}
 console.log('segacd-disc: SM pictures, title picture, CD tracks and sound effect scripts OK');

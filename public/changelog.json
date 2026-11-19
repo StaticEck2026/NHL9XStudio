@@ -1,6 +1,13 @@
 {
   "releases": [
     {
+      "version": "1.49.0",
+      "date": "2026-11-19",
+      "changes": [
+        "NHL 94 (Sega CD) Images now has the 28 per-team pages from GRAPH2.BIN: Team details (with the arena photo), Team details without the photo, and the Video player frame the team clips play in, each with the team's name banner and crest. They sit in the groups Team details, Team details, no photo and Video player"
+      ]
+    },
+    {
       "version": "1.48.0",
       "date": "2026-11-19",
       "changes": [
