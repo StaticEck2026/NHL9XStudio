@@ -1,6 +1,14 @@
 {
   "releases": [
     {
+      "version": "1.46.0",
+      "date": "2026-11-19",
+      "changes": [
+        "NHL 94 (PC) Images, Players now has Player portraits: all 145 faces from PORTRAIT.NSH, decoded from the game file (raw Mode X planes and a 120-color palette). Tags are the game's player numbers",
+        "NHL 94 (Sega CD) Images, Fonts now has the Boot font from STARTER.BIN"
+      ]
+    },
+    {
       "version": "1.45.0",
       "date": "2026-11-19",
       "changes": [

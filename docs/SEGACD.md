@@ -36,3 +36,5 @@ last 15 hold the title). Audio is interleaved in the same records (RF5C164 sign-
 ## Boot pictures (STARTER.BIN)
 
 STARTER.BIN holds two uncompressed .map.jim pictures in the region the disassembly once called unused data: the title with credits at $5BD8 (18030 bytes, 40 by 28 tiles) and High Score Productions at $A942 (4896 bytes). Studio appends STARTER.BIN after HOCKEY.BIN to list them.
+
+The 32 by 4 tile font at $A246 of STARTER.BIN (packed .map.jim) is listed as Boot font.

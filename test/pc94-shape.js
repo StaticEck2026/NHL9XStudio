@@ -197,4 +197,32 @@ if (retail) {
   assert.ok(Crests.find(bank, 'BOS'));
 }
 
+// A raw bank (PORTRAIT.NSH layout): flags 0, planes stored unpacked, first long is the file size, !pal holds 3-byte colors.
+{
+  const count = 2;
+  const tableEnd = 6 + 8 * count;
+  const pal = new Uint8Array(3 * 3).fill(0).map((v, i) => i);
+  const palRec = Buffer.concat([Buffer.from([3, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), Buffer.from(pal)]);
+  const planes = Buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
+  const shRec = Buffer.concat([Buffer.from([1, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), planes]);
+  const total = tableEnd + palRec.length + shRec.length;
+  const head = Buffer.alloc(tableEnd);
+  head.writeUInt32LE(total, 0);
+  head.writeUInt16LE(count, 4);
+  head.write('!pal', 6, 'latin1');
+  head.write('0001', 10, 'latin1');
+  head.writeUInt32LE(0, 14);
+  head.writeUInt32LE(palRec.length, 18);
+  const raw = Buffer.concat([head, palRec, shRec]);
+  assert.ok(Shape.isBank(raw), 'raw bank is recognised');
+  const opened = Shape.openBank(raw);
+  assert.strictEqual(opened.shapes.length, 1);
+  assert.strictEqual(opened.shapes[0].tag, '0001');
+  assert.strictEqual(opened.shapes[0].width, 4);
+  assert.strictEqual(opened.shapes[0].height, 2);
+  // plane p holds x = p, p + 4, ...: row 0 is planes 0-3 byte 0, row 1 is byte 1
+  assert.deepStrictEqual(Array.from(opened.shapes[0].pixels), [1, 3, 5, 7, 2, 4, 6, 8]);
+  assert.deepStrictEqual(opened.palette[1], [Math.round(3 * 255 / 63), Math.round(4 * 255 / 63), Math.round(5 * 255 / 63)]);
+}
+
 console.log('pc94-shape: ok');
