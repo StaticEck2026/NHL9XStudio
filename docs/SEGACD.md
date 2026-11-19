@@ -40,6 +40,10 @@ last 15 hold the title). Audio is interleaved in the same records (RF5C164 sign-
 - **Stereo CD music:** the tracks are mixed to mono because the Audio player's clips are mono.
 - **STARTER PCM bank** (`$BC64`): instrument waves for the PCM chip, not sound effects; not listed.
 
+## Goalie license and loading screens (GRAPH2.BIN)
+
+Two full-screen pictures sit in GRAPH2.BIN outside its own directory: the license screen at $DD800 (23,496 bytes) and the loading screen at $E33C8 (12,648 bytes). GTABLE.BIN lists them (6-byte records: u16 sector, u32 length; record 5 is sector 443). Both are stored uncompressed as u16 $0808, u16 tile count, the 4bpp tiles, 128 bytes of CRAM, u16 width, u16 height (40 x 28) and the name table. Studio wraps each with a 10 byte `.map.jim` header (`segacd-film.blobJim`).
+
 ## Boot pictures (STARTER.BIN)
 
 STARTER.BIN holds two uncompressed .map.jim pictures in the region the disassembly once called unused data: the title with credits at $5BD8 (18030 bytes, 40 by 28 tiles) and High Score Productions at $A942 (4896 bytes). Studio appends STARTER.BIN after HOCKEY.BIN to list them.

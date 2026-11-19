@@ -98,4 +98,16 @@ try {
   assert.strictEqual(Sfx.nameOf(0x12), 'Pass 3');
   assert.strictEqual(Sfx.isMain(new Uint8Array(100)), false);
 }
+{
+  // A stored picture (2 x 1 tiles, 2 tiles) becomes a .map.jim 6 bytes longer.
+  const n = 2, w = 2, h = 1;
+  const blob = new Uint8Array(4 + n * 32 + 128 + 4 + w * h * 2);
+  const dv = new DataView(blob.buffer);
+  dv.setUint16(0, 0x0808); dv.setUint16(2, n);
+  dv.setUint16(4 + n * 32 + 128, w); dv.setUint16(4 + n * 32 + 130, h);
+  const j = Film.blobJim(blob, 0, blob.length);
+  assert.strictEqual(j.length, blob.length + 6);
+  assert.strictEqual(new DataView(j.buffer).getUint32(0), 10 + n * 32);
+  assert.strictEqual(Film.blobJim(new Uint8Array(blob.length), 0, blob.length), null, 'wrong magic');
+}
 console.log('segacd-disc: SM pictures, title picture, CD tracks and sound effect scripts OK');

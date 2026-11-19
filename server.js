@@ -142,6 +142,11 @@ function readDiscFile(file, game) {
       const title = seg && segaCdFilm.titleJim(seg);
       if (title) parts.push(Buffer.from(title.buffer, title.byteOffset, title.length));
     }
+    // Sega CD: the goalie license and loading screens sit in GRAPH2.BIN outside its directory (GTABLE.BIN record 5); wrap each as a .map.jim.
+    for (const s of game.disc.blobScreens || []) {
+      const j = segaCdFilm.blobJim(parts[0], s.at, s.len);
+      if (j) parts.push(Buffer.from(j.buffer, j.byteOffset, j.length));
+    }
     return parts.length > 1 ? Buffer.concat(parts) : parts[0];
   } finally {
     if (iso.close) iso.close();
