@@ -1,6 +1,13 @@
 {
   "releases": [
     {
+      "version": "1.57.1",
+      "date": "2026-11-19",
+      "changes": [
+        "Loading screen: the puck is drawn with the game's own puck colours and placed by its own hot spot at the stick blade tip (the PC puck used the team palette and looked pale)"
+      ]
+    },
+    {
       "version": "1.57.0",
       "date": "2026-11-19",
       "changes": [

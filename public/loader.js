@@ -43,7 +43,7 @@
     for (const g of data) {
       const frames = g.frames.map(mk);
       const puck = mk(g.puck);
-      // The stick blade (right-most low pixel) relative to the hot spot, averaged over the cycle: the puck rides there.
+      // The stick blade tip (right-most low pixel) relative to the hot spot, averaged over the cycle. The puck's own hot spot (bottom centre, where it meets the ice) goes there.
       let tx = 0;
       let ty = 0;
       for (const f of frames) {
@@ -136,7 +136,7 @@
         ctx.fill();
         ctx.drawImage(tint(s.art, s.team, f, s.team.name + '|' + s.k), ax - f.hx * SC, ay - f.hy * SC, f.w * SC, f.h * SC);
         const p = s.art.puck;
-        ctx.drawImage(tint(s.art, s.team, p, 'puck'), Math.round(ax + (s.art.tx + 1) * SC - p.w * SC / 2), Math.round(ay + s.art.ty * SC - p.h * SC / 2), p.w * SC, p.h * SC);
+        ctx.drawImage(tint(s.art, s.team, p, 'puck'), Math.round(ax + (s.art.tx - p.hx) * SC), Math.round(ay + (s.art.ty - p.hy) * SC), p.w * SC, p.h * SC);
       }
       if (!reduced) raf = requestAnimationFrame(frame);
     };
