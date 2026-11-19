@@ -1,6 +1,13 @@
 {
   "releases": [
     {
+      "version": "1.43.1",
+      "date": "2026-11-19",
+      "changes": [
+        "Open file on the web page now reads an NHL 94 Sega CD disc image (GRAPH2.BIN and HOCKEY.BIN at the disc root) as NHL 94 (Sega CD), with its pictures and speech clips. Before, it was read as NHL 95 (PC) and showed no pictures"
+      ]
+    },
+    {
       "version": "1.43.0",
       "date": "2026-11-18",
       "changes": [
