@@ -1,6 +1,13 @@
 {
   "releases": [
     {
+      "version": "1.52.0",
+      "date": "2026-11-19",
+      "changes": [
+        "NHL 94 (Sega CD) Audio always lists the CD music (tracks 2-79, named like the cartridge songs), even when the track files are not beside the ISO; tracks without a file say so and a note explains where to put the files"
+      ]
+    },
+    {
       "version": "1.51.0",
       "date": "2026-11-19",
       "changes": [

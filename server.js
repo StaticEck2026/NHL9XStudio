@@ -251,6 +251,17 @@ function segaCdTracks() {
   });
 }
 
+// Every track the game plays (2-79), whether or not its file is beside the ISO, so the Audio tab always lists the CD music.
+function segaCdTrackList() {
+  const have = new Map(segaCdTracks().map((t) => [t.track, t]));
+  const out = [];
+  for (let track = 2; track <= 79; track++) {
+    const t = have.get(track);
+    out.push({ track, seconds: t ? t.seconds : 0, present: !!t, label: segaCdSongLabel(track) });
+  }
+  return out;
+}
+
 const pc97Asf = require('./lib/audio/pc96-asf');
 const eaHuff = require('./lib/audio/ea-huff');
 const bnkUnpacked = new Map();
@@ -511,7 +522,7 @@ function gameStatus(game) {
       : null,
     snes: game.snes || null,
     romHint: game.kind === 'pc95' ? 'pc95/ or roms/nhl95.iso' : (game.kind === 'pc94' ? 'pc94/' : (game.kind === 'pc96' ? 'pc96/ or roms/nhl96.iso' : (game.kind === 'pc97' ? 'pc97/ or roms/nhl97.iso' : (game.disc ? 'roms/' + game.disc.names[0] : (game.romNames.length ? 'roms/' + game.romNames[0] : null))))),
-    pcAudio: pc && pc.audio ? pc.audio : (game.id === 'nhl94cd' && rom ? { songs: [], tim: [], pat: [], extra: [], dig: '', segaCdPcm: segaCdPcmFiles(game), rate: segaCdPcm.RATE, cdTracks: segaCdTracks().map(({ track, seconds }) => ({ track, seconds, label: segaCdSongLabel(track) })), cdRate: segaCdda.RATE, segaSfx: (segaCdSfxMain(game) || { list: [] }).list } : undefined)
+    pcAudio: pc && pc.audio ? pc.audio : (game.id === 'nhl94cd' && rom ? { songs: [], tim: [], pat: [], extra: [], dig: '', segaCdPcm: segaCdPcmFiles(game), rate: segaCdPcm.RATE, cdTracks: segaCdTrackList(), cdRate: segaCdda.RATE, segaSfx: (segaCdSfxMain(game) || { list: [] }).list } : undefined)
   };
 }
 

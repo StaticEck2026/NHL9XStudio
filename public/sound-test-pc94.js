@@ -374,13 +374,14 @@
           subgroup: t.track < 7 ? 'Tracks 2-6' : (t.track <= 78 ? 'Songs $30-$77 (tracks 7-78)' : 'Title song $78 (track 79)'),
           name: t.label || 'Track ' + num,
           label: t.label || 'Track ' + num,
-          sub: 'Track ' + num + ' · CD-DA · ' + Math.floor(secs / 60) + ':' + String(secs % 60).padStart(2, '0') + (song && t.track <= 79 && t.track >= 7 ? ' · song $' + song.toString(16).toUpperCase() : ''),
+          sub: 'Track ' + num + ' · CD-DA · ' + (t.present ? Math.floor(secs / 60) + ':' + String(secs % 60).padStart(2, '0') : 'file not found next to the ISO') + (song && t.track <= 79 && t.track >= 7 ? ' · song $' + song.toString(16).toUpperCase() : ''),
           cdTrack: t.track,
           rate: audio.cdRate || 44100
         });
       }
-      const cdNote = isCd() && !(audio.cdTracks || []).length
-        ? 'Sega CD music is CD audio, not on the ISO. Put the disc\'s track files (for example "NHL \'94 (USA) (Track 07).bin") in the roms folder next to the ISO and reload.'
+      const cdMissing = (audio.cdTracks || []).filter((t) => !t.present).length;
+      const cdNote = isCd() && cdMissing
+        ? 'Sega CD music is CD audio, not on the ISO. ' + (cdMissing === (audio.cdTracks || []).length ? 'Put' : cdMissing + ' of the tracks are missing; put') + ' the disc\'s track files (for example "NHL \'94 (USA) (Track 07).bin") in the roms folder next to the ISO and reload.'
         : '';
       if (root.NhlViv && audio.extra && audio.extra.length) {
         for (const rel of audio.extra) {
