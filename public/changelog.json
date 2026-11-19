@@ -1,6 +1,13 @@
 {
   "releases": [
     {
+      "version": "1.45.0",
+      "date": "2026-11-19",
+      "changes": [
+        "NHL 94 (Sega CD) Images, Screens now also has the boot pictures from STARTER.BIN: Title with credits (the screen with the credits text) and High Score Productions"
+      ]
+    },
+    {
       "version": "1.44.0",
       "date": "2026-11-19",
       "changes": [
