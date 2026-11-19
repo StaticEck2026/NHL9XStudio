@@ -4290,6 +4290,14 @@
         "kind": "jim",
         "start": 451504,
         "end": 452614
+      },
+      {
+        "id": "Title.map.jim",
+        "label": "Title (NHL Hockey 94)",
+        "group": "Screens",
+        "kind": "jim",
+        "start": 3236362,
+        "end": 3266968
       }
     ],
     "pixels": false,

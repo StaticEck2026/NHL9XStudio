@@ -7,6 +7,7 @@ const { APP_NAME } = require('./lib/studio');
 const { buildManifest } = require('./lib/manifest');
 const pc95 = require('./lib/pc95');
 const iso9660 = require('./lib/iso9660');
+const segaCdFilm = require('./lib/segacd-film');
 const audio = require('./lib/audio');
 const genesis95Pals = require('./lib/genesis95-pals');
 const httpCache = require('./lib/http-cache');
@@ -135,6 +136,12 @@ function readDiscFile(file, game) {
       const more = iso.read(name);
       if (more) parts.push(Buffer.from(more.buffer, more.byteOffset, more.length));
     }
+    // Sega CD: the title picture is the last frame of the intro movie; decode it and append it as a .map.jim.
+    if (game.disc.titleMovie) {
+      const seg = iso.read(game.disc.titleMovie);
+      const title = seg && segaCdFilm.titleJim(seg);
+      if (title) parts.push(Buffer.from(title.buffer, title.byteOffset, title.length));
+    }
     return parts.length > 1 ? Buffer.concat(parts) : parts[0];
   } finally {
     if (iso.close) iso.close();
@@ -174,6 +181,15 @@ function segaCdPcmRead(game, name) {
   } finally {
     if (iso && iso.close) iso.close();
   }
+}
+
+// Sega CD music: the disc's CD-DA tracks, kept as raw files beside the ISO (see lib/audio/segacd-cdda.js).
+const segaCdda = require('./lib/audio/segacd-cdda');
+function segaCdTracks() {
+  return segaCdda.findTracks(ROM_DIR).map((e) => {
+    const gap = segaCdda.pregaps(path.dirname(e.file)).get(e.track);
+    return { track: e.track, seconds: Math.round(segaCdda.seconds(e, gap) * 10) / 10, entry: e, gap };
+  });
 }
 
 const pc97Asf = require('./lib/audio/pc96-asf');
@@ -436,7 +452,7 @@ function gameStatus(game) {
       : null,
     snes: game.snes || null,
     romHint: game.kind === 'pc95' ? 'pc95/ or roms/nhl95.iso' : (game.kind === 'pc94' ? 'pc94/' : (game.kind === 'pc96' ? 'pc96/ or roms/nhl96.iso' : (game.kind === 'pc97' ? 'pc97/ or roms/nhl97.iso' : (game.disc ? 'roms/' + game.disc.names[0] : (game.romNames.length ? 'roms/' + game.romNames[0] : null))))),
-    pcAudio: pc && pc.audio ? pc.audio : (game.id === 'nhl94cd' && rom ? { songs: [], tim: [], pat: [], extra: [], dig: '', segaCdPcm: segaCdPcmFiles(game), rate: segaCdPcm.RATE } : undefined)
+    pcAudio: pc && pc.audio ? pc.audio : (game.id === 'nhl94cd' && rom ? { songs: [], tim: [], pat: [], extra: [], dig: '', segaCdPcm: segaCdPcmFiles(game), rate: segaCdPcm.RATE, cdTracks: segaCdTracks().map(({ track, seconds }) => ({ track, seconds })), cdRate: segaCdda.RATE } : undefined)
   };
 }
 
@@ -515,6 +531,16 @@ const server = http.createServer((req, res) => {
       : (bank === 'rink' ? catalog.rinkFiles : catalog.spriteFiles);
     if (!files.length) { send(res, 404, 'No PC sprites', 'text/plain; charset=utf-8'); return; }
     send(res, 200, pcBundle(game, files), 'application/octet-stream');
+    return;
+  }
+
+  const segaCdd = /^\/api\/games\/(nhl94cd)\/cdda$/.exec(pathname);
+  if (segaCdd) {
+    const want = Number(url.searchParams.get('track'));
+    const hit = segaCdTracks().find((t) => t.track === want);
+    const body = hit && segaCdda.readMono(hit.entry, hit.gap);
+    if (!body) { send(res, 404, 'Not found', 'text/plain; charset=utf-8'); return; }
+    send(res, 200, body, 'application/octet-stream');
     return;
   }
 

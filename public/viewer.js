@@ -940,10 +940,12 @@ const imageMemory = new Map();
 // Collapsible list headings for SPF, SPA, Images and the older Audio catalog. Groups start open except the ones in
 // CLOSED_GROUPS; openGroups holds the groups flipped from that default, keyed "mode:group". A search shows every match.
 const CLOSED_GROUPS = new Set(['Player cards']);
+// In Images and Audio a group or subgroup with more than this many items starts collapsed.
+const COLLAPSE_OVER = 8;
 const foldInit = new Set();
 function foldKey(group) { return state.mode + ':' + group; }
-function groupOpen(group, q) {
-  return !!q || (!CLOSED_GROUPS.has(group) !== state.openGroups.has(foldKey(group)));
+function groupOpen(group, q, count) {
+  return !!q || (!(CLOSED_GROUPS.has(group) || count > COLLAPSE_OVER) !== state.openGroups.has(foldKey(group)));
 }
 // A selection inside a closed group opens that group once per view, so the selection is visible.
 function openSelectedGroup(sections, isSelected) {
@@ -1004,19 +1006,21 @@ function renderImageList(box, q) {
   openSelectedGroup(sections, (image) => image.id === state.image);
   const nested96 = gameInfo && (gameInfo.id === 'nhl96pc' || gameInfo.id === 'nhl97pc') && state.sort !== 'file';
   const packKeyOf = (image) => (image.group || '') + '\x1f' + (image.pack || '');
+  const packSize = (image) => visible.filter((item) => item.group === image.group && item.pack === image.pack).length;
   if (nested96) {
     const sel = visible.find((image) => image.id === state.image);
     if (sel && sel.pack) {
       const key = packKeyOf(sel);
       if (state.imagePackAuto !== key) {
         state.imagePackAuto = key;
-        state.openGroups.add(key);
+        // Packs with 8 or fewer pictures start open, so only a big pack needs flipping.
+        if (packSize(sel) > COLLAPSE_OVER) state.openGroups.add(key);
       }
     }
   }
   for (const section of sections) {
     if (section.label) {
-      const open = groupOpen(section.label, q);
+      const open = groupOpen(section.label, q, section.items.length);
       groupToggle(box, section.label, section.items.length, open);
       if (!open) continue;
     }
@@ -1026,8 +1030,8 @@ function renderImageList(box, q) {
       if (nested96 && image.pack && image.pack !== pack) {
         pack = image.pack;
         const key = packKeyOf(image);
-        packOpen = !!q || state.openGroups.has(key);
         const n = section.items.filter((item) => item.pack === pack).length;
+        packOpen = !!q || ((n <= COLLAPSE_OVER) !== state.openGroups.has(key));
         const subLabel = document.createElement('button');
         subLabel.type = 'button';
         subLabel.className = 'group-label is-toggle is-sub';
@@ -1097,18 +1101,19 @@ function renderSoundList(box, q) {
     box.appendChild(note);
     return;
   }
-  // Every Audio group but the MIDI tools collapses. Songs and SFX start open; lists flagged collapsible (DAC samples,
-  // Instruments) start closed. openGroups holds the groups flipped from that default. Speech packs (XBRUCE2.VIV)
+  // Every Audio group but the MIDI tools collapses. A group or subgroup with more than COLLAPSE_OVER (8) items starts
+  // closed, a smaller one starts open, and lists flagged collapsible (DAC samples, Instruments) always start closed. openGroups holds the groups flipped from that default. Speech packs (XBRUCE2.VIV)
   // start open; their extension subgroups (NUM, HOM, …) start closed.
   const foldable = (entry) => entry.group !== 'MIDI';
-  const startsOpen = (entry) => !entry.collapsible;
+  const countIn = (g, sg) => list.filter((e) => e.group === g && (sg == null || e.subgroup === sg)).length;
+  const startsOpen = (entry) => !entry.collapsible && countIn(entry.group) <= COLLAPSE_OVER;
   const subKeyOf = (entry) => entry.group + '\x1f' + entry.subgroup;
   // A link to an item inside a list that starts closed opens that list once, so the selection is visible.
   if (!state.groupsInit && list.length) {
     state.groupsInit = true;
     const sel = list.find((e) => e.id === state[panel.key]);
     if (sel && foldable(sel) && !startsOpen(sel)) state.openGroups.add(sel.group);
-    if (sel && sel.subgroup) state.openGroups.add(subKeyOf(sel));
+    if (sel && sel.subgroup && countIn(sel.group, sel.subgroup) > COLLAPSE_OVER) state.openGroups.add(subKeyOf(sel));
   }
   let group = '';
   let subgroup = null;
@@ -1144,8 +1149,8 @@ function renderSoundList(box, q) {
     if (sg && sg !== subgroup) {
       subgroup = sg;
       const key = subKeyOf(entry);
-      subOpen = !!q || state.openGroups.has(key);
       const n = list.filter((e) => e.group === group && e.subgroup === sg).length;
+      subOpen = !!q || ((n <= COLLAPSE_OVER) !== state.openGroups.has(key));
       const subLabel = document.createElement('button');
       subLabel.type = 'button';
       subLabel.className = 'group-label is-toggle is-sub';
@@ -3155,6 +3160,10 @@ async function ingestDroppedFiles(fileList) {
     // NHL 94 Sega CD: GRAPH2.BIN and HOCKEY.BIN at the disc root, no PC install files.
     if (NhlOpenAsset.isSegaCdDisc(names)) {
       const parts = ['GRAPH2.BIN', 'HOCKEY.BIN'].map((n) => iso.read(NhlOpenAsset.discName(names, n)));
+      // The title picture is the last frame of HOCKEY.SEG, decoded and appended as a .map.jim.
+      const seg = typeof NhlSegaCdFilm !== 'undefined' && names.some((n) => /^hockey\.seg$/i.test(n)) ? iso.read(NhlOpenAsset.discName(names, 'HOCKEY.SEG')) : null;
+      const titleJim = seg ? NhlSegaCdFilm.titleJim(seg) : null;
+      if (titleJim) parts.push(titleJim);
       const total = parts.reduce((sum, part) => sum + (part ? part.length : 0), 0);
       const joined = new Uint8Array(total);
       let at = 0;

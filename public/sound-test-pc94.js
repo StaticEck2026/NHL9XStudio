@@ -129,7 +129,12 @@
     if (!rec || rec.clip) return rec && rec.clip;
     const host = filesHost();
     const base = (host && host.baseUrl) || '';
-    if (rec.pcmName) {
+    if (rec.cdTrack) {
+      const res = await fetch(base + '/api/games/' + gameOf() + '/cdda?track=' + rec.cdTrack);
+      if (!res.ok) throw new Error('Track ' + rec.cdTrack + ' not found next to the disc image');
+      const pcm = new Int16Array(await res.arrayBuffer());
+      rec.clip = { pcm, rate: rec.rate, vol: 0x7F, length: pcm.length, name: 'NHL94CD-track' + String(rec.cdTrack).padStart(2, '0') };
+    } else if (rec.pcmName) {
       const disc = root.NhlSegaCdIso;
       if (disc && root.NhlSegaCdPcm) {
         const raw = disc.iso.read(rec.pcmName);
@@ -340,6 +345,25 @@
           rate: audio.rate || 16276
         });
       }
+      // Sega CD music: CD-DA tracks 2-79. Song requests $30-$77 play tracks 7-78 (track = song - $29).
+      for (const t of audio.cdTracks || []) {
+        const num = String(t.track).padStart(2, '0');
+        const song = t.track >= 7 && t.track <= 78 ? t.track + 0x29 : 0;
+        const secs = Math.round(t.seconds || 0);
+        speech.push({
+          id: 'speech-cd-' + num,
+          group: 'CD music',
+          subgroup: t.track < 7 ? 'Tracks 2-6' : (t.track <= 78 ? 'Songs $30-$77 (tracks 7-78)' : 'Track 79'),
+          name: 'Track ' + num,
+          label: 'Track ' + num,
+          sub: 'CD-DA · ' + Math.floor(secs / 60) + ':' + String(secs % 60).padStart(2, '0') + (song ? ' · song $' + song.toString(16).toUpperCase() : ''),
+          cdTrack: t.track,
+          rate: audio.cdRate || 44100
+        });
+      }
+      const cdNote = isCd() && !(audio.cdTracks || []).length
+        ? 'Sega CD music is CD audio, not on the ISO. Put the disc\'s track files (for example "NHL \'94 (USA) (Track 07).bin") in the roms folder next to the ISO and reload.'
+        : '';
       if (root.NhlViv && audio.extra && audio.extra.length) {
         for (const rel of audio.extra) {
           if (!/\.viv$/i.test(rel) || is97()) continue;
@@ -396,6 +420,7 @@
         digital: digital,
         samples: samples,
         speech: Groups && Groups.sortSpeech ? Groups.sortSpeech(speech) : speech,
+        note: cdNote || undefined,
         audio: audio
       };
       return true;
@@ -988,6 +1013,8 @@
           ? 'AUDSFX.VIV is a C0 FB archive of BNKl sound banks (.bkh header + .bkd data). Each sound has a TMpl record (channels, rate, frames, codec). Codec 2 sounds are bare IMA ADPCM from state zero. Codec 0 sounds (the crowd16 and game16 banks) are signed 8-bit stereo PCM, and those .bkd files are Huffman packed (30 FB / 32 FB) as a whole.'
           : is97()
           ? 'NHL 97 .KSF speech bank: a table of streams, each a PATl/TMpl header then bare IMA ADPCM from state zero (no chunk headers). Stereo is one byte per frame (high nibble left, low nibble right), mono is two samples per byte. Played as mono at the TMpl rate.'
+          : isCd() && rec && rec.cdTrack
+          ? 'CD audio (Red Book) track from the disc, not on the ISO data track: 16-bit stereo at 44.1 kHz, shown here mixed down to mono. The game starts it with the CD BIOS (MSCPLAY1 / MSCPLAYR). A song request $30-$77 plays track song - $29, so tracks 7-78 are those songs; tracks 2-6 and 79 are played by other code paths (see the Sega CD disassembly notes in NHL94Genesis, docs/segacd_audio.md).'
           : isCd()
           ? 'A .PCM file at the root of the disc: RF5C164 8-bit sign-magnitude (bit 7 set is positive, low 7 bits the size, FF ends the sample), mono, about 16.3 kHz. Team names, All-Star calls and Ron Barr speech. The CD music tracks are audio tracks and are not on the data track.'
           : is95()
@@ -1128,7 +1155,11 @@
       rows.push(['Source', 'NHL 97 PC GAMEDATA']);
       return rows;
     }
-    if (isCd() && rec && rec.pcmName) {
+    if (isCd() && rec && rec.cdTrack) {
+      rows.push(['Track', rec.cdTrack + ' of the disc (CD-DA)']);
+      rows.push(['Rate', rec.rate + ' Hz, stereo mixed down to mono']);
+      rows.push(['Path', 'cdtrack: song request $30-$77 plays track song - $29 (MSCPLAY1)']);
+    } else if (isCd() && rec && rec.pcmName) {
       rows.push(['File', rec.pcmName]);
       rows.push(['Rate', rec.rate + ' Hz']);
       rows.push(['Path', 'ISO root .PCM → RF5C164 sign-magnitude, mono']);
