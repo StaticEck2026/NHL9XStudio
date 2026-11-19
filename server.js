@@ -113,7 +113,8 @@ const segaCdFind = require('./lib/segacd-find');
 
 // Opens the disc's data track: the .iso itself, or the data track .bin a .cue names.
 function openDisc(file) {
-  return iso9660.openFile(/\.cue$/i.test(file) ? cueSheet.dataFile(file) : file);
+  const real = /\.cue$/i.test(file) ? (cueSheet.dataFile(file) || (segaCdFind.findCached(ROM_DIR) || {}).dataFile) : file;
+  return iso9660.openFile(real);
 }
 
 function findRom(game) {
@@ -121,7 +122,7 @@ function findRom(game) {
   if (game.disc) {
     // The disc is found by its contents, whatever the rip is called or how it is laid out (lib/segacd-find.js).
     const hit = segaCdFind.findCached(ROM_DIR);
-    return hit ? hit.image : null;
+    return hit ? hit.dataFile : null; // the file holding the data track (a .cue whose own data file is missing falls back to an .iso)
   }
   if (!game.romNames.length) return null;
   const wanted = new Set(game.romNames.map((name) => name.toLowerCase()));
@@ -208,18 +209,29 @@ function segaCdSfxMain(game) {
     : [];
   return segaSfxCache;
 }
-// Sega CD music: the game's `song` call takes the cartridge's song ids; $30-$77 play CD tracks 7-78 (track = song - $29) and the
-// title song $78 is track 79. The names are the cartridge's own (lib/audio/data/nhl94-streams.json).
-let segaSongLabels = null;
+// Sega CD music, named like the cartridge's songs. The disc's tracks and the cartridge song ids line up like this (Abdul, from the game):
+// track 2 is the crowd bed, 3 is $7A (scouting report), 4 is $78 (title), 5 is $79 (end of period), 7 is $30 and every track after it
+// is the next song up to track 78 = $77. Track 6 and track 79 are not referenced by the song table or by any code that names a track.
+const CD_SHARED_SONGS = { 3: 0x7a, 4: 0x78, 5: 0x79 };
+let segaMusicNames = null;
 function segaCdSongLabel(track) {
-  if (!segaSongLabels) {
-    segaSongLabels = {};
-    try {
-      for (const s of require('./lib/audio/data/nhl94-streams.json').streams) if (s.group === 'Music') segaSongLabels[s.soundId] = s.label;
-    } catch (e) { /* names only */ }
+  if (!segaMusicNames) {
+    try { segaMusicNames = require('./lib/audio/data/nhl94-music.json').songs; } catch (e) { segaMusicNames = {}; }
   }
-  const song = track + 0x29;
-  return track >= 7 && track <= 79 ? segaSongLabels[song] || '' : '';
+  const num = String(track).padStart(2, '0');
+  if (track === 2) return { label: 'Track ' + num + ' · crowdbed', desc: 'The crowd bed: the loop that replaces a playing track below 7 (played a little quieter, volume $300)', team: false };
+  if (CD_SHARED_SONGS[track]) {
+    const song = CD_SHARED_SONGS[track];
+    const names = require('./lib/audio/nhl93-names');
+    return { label: 'Track ' + num + ' · $' + song.toString(16).toUpperCase() + ' · ' + names.songName(song), desc: names.songDescribe(song), team: false };
+  }
+  if (track >= 7 && track <= 78) {
+    const song = track + 0x29;
+    const hex = song.toString(16).toUpperCase();
+    const entry = segaMusicNames[hex];
+    return { label: 'Track ' + num + ' · $' + hex + (entry ? ' · ' + entry.name : ''), desc: entry ? entry.desc : '', team: true };
+  }
+  return { label: 'Track ' + num + ' · not mapped', desc: 'No song id or code that names a track plays this one', team: false };
 }
 async function segaCdSfxRender(game, id) {
   const c = segaCdSfxMain(game);
@@ -277,7 +289,7 @@ function segaCdTrackList() {
   const out = [];
   for (let track = 2; track <= 79; track++) {
     const t = have.get(track);
-    out.push({ track, seconds: t ? t.seconds : 0, present: !!t, label: segaCdSongLabel(track) });
+    out.push(Object.assign({ track, seconds: t ? t.seconds : 0, present: !!t }, segaCdSongLabel(track)));
   }
   return out;
 }

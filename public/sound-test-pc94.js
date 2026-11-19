@@ -366,15 +366,15 @@
       // Sega CD music: CD-DA tracks 2-79. Song requests $30-$77 play tracks 7-78 (track = song - $29).
       for (const t of audio.cdTracks || []) {
         const num = String(t.track).padStart(2, '0');
-        const song = t.track >= 7 && t.track <= 79 ? t.track + 0x29 : 0;
         const secs = Math.round(t.seconds || 0);
+        const time = t.present ? Math.floor(secs / 60) + ':' + String(secs % 60).padStart(2, '0') : 'track file not found';
         speech.push({
           id: 'speech-cd-' + num,
           group: 'CD music',
-          subgroup: t.track < 7 ? 'Tracks 2-6' : (t.track <= 78 ? 'Songs $30-$77 (tracks 7-78)' : 'Title song $78 (track 79)'),
+          subgroup: t.team ? 'Team songs' : 'Shared tracks',
           name: t.label || 'Track ' + num,
           label: t.label || 'Track ' + num,
-          sub: 'Track ' + num + ' · CD-DA · ' + (t.present ? Math.floor(secs / 60) + ':' + String(secs % 60).padStart(2, '0') : 'track file not found') + (song && t.track <= 79 && t.track >= 7 ? ' · song $' + song.toString(16).toUpperCase() : ''),
+          sub: (t.desc ? t.desc + ' · ' : '') + time,
           cdTrack: t.track,
           rate: audio.cdRate || 44100
         });
