@@ -7,14 +7,15 @@
  *   run.detail('Loading NHL 94…');
  *   run.done();
  *
- * It waits a moment before appearing (a fast load shows nothing) and then stays long enough to read.
+ * It appears at once and stays up for 3 seconds after loading finishes, so you can see what loaded and what was not found (click it to close sooner).
  */
 (function (root) {
-  const SHOW_AFTER = 180;
-  const SHOW_AT_LEAST = 450;
+  const SHOW_AFTER = 0;
+  const HOLD_AFTER_DONE = 3000;   // stays up this long once everything is loaded, to read what loaded and what was not found
   let overlay = null;
   let active = 0;
   let stopAnim = null;
+  let current = null;   // the last run to finish, still showing for its 3 seconds
 
   function build() {
     const box = document.createElement('div');
@@ -22,6 +23,7 @@
     box.setAttribute('role', 'status');
     box.setAttribute('aria-live', 'polite');
     box.hidden = true;
+    box.addEventListener('click', () => { if (current && current.dismiss) current.dismiss(); });
     box.innerHTML = '<div class="loader-card">' +
       '<div class="loader-rink" aria-hidden="true"><canvas class="loader-lane"></canvas></div>' +
       '<h2 class="loader-title"></h2><p class="loader-detail"></p><div class="loader-pills"></div></div>';
@@ -187,8 +189,10 @@
       const hide = () => {
         if (active === run.id) { box.hidden = true; document.body.removeAttribute('aria-busy'); if (stopAnim) { stopAnim(); stopAnim = null; } }
       };
+      run.dismiss = () => { clearTimeout(run.hideTimer); hide(); };
+      current = run;
       if (!run.shownAt) { hide(); return; }
-      setTimeout(hide, Math.max(0, SHOW_AT_LEAST - (Date.now() - run.shownAt)));
+      run.hideTimer = setTimeout(hide, HOLD_AFTER_DONE);
     };
     return run;
   }
