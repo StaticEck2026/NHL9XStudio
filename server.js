@@ -179,7 +179,7 @@ function segaCdPcmFiles(game) {
 // Sega CD sound effects: scripts in MAIN.BIN, rendered on demand through the YM2612 core (lib/audio/segacd-sfx.js).
 const segaCdSfx = require('./lib/audio/segacd-sfx');
 const ymWasm = require('./lib/audio/ym2612-wasm');
-const segaSfxCache = { file: '', mtime: 0, main: null, list: [], pcm: new Map() };
+const segaSfxCache = { file: '', mtime: 0, main: null, samples: [], list: [], pcm: new Map() };
 function segaCdSfxMain(game) {
   const file = game.disc && findRom(game);
   if (!file) return null;
@@ -187,16 +187,31 @@ function segaCdSfxMain(game) {
   if (segaSfxCache.file === file && segaSfxCache.mtime === mtime) return segaSfxCache;
   const iso = iso9660.openFile(file);
   let main = null;
-  try { main = iso && iso.read('MAIN.BIN'); } finally { if (iso && iso.close) iso.close(); }
+  let graph2 = null;
+  try { main = iso && iso.read('MAIN.BIN'); graph2 = iso && iso.read('GRAPH2.BIN'); } finally { if (iso && iso.close) iso.close(); }
   const bytes = main ? new Uint8Array(main) : null;
+  segaSfxCache.samples = segaCdSfx.sampleBank(graph2 ? new Uint8Array(graph2.buffer, graph2.byteOffset, graph2.length) : null);
   segaSfxCache.file = file;
   segaSfxCache.mtime = mtime;
   segaSfxCache.main = bytes && segaCdSfx.isMain(bytes) ? bytes : null;
   segaSfxCache.pcm = new Map();
   segaSfxCache.list = segaSfxCache.main
-    ? segaCdSfx.effects(segaSfxCache.main).sort((a, b) => a.id - b.id).map((e) => ({ id: e.id, name: segaCdSfx.nameOf(e.id), psg: segaCdSfx.parseScript(e.script).some((x) => x.type === 'control' && x.num === 0x12 && x.val === 1), seconds: Math.round((segaCdSfx.lengthTicks(segaCdSfx.parseScript(e.script)) + 24) / segaCdSfx.TICK_HZ * 10) / 10 }))
+    ? segaCdSfx.effects(segaSfxCache.main).sort((a, b) => a.id - b.id).map((e) => ({ id: e.id, name: segaCdSfx.nameOf(e.id), sample: segaCdSfx.hasSample(e.script), fm: segaCdSfx.parseScript(e.script).some((x) => x.type === 'control' && x.num === 0x12 && x.val === 0), seconds: Math.round((segaCdSfx.lengthTicks(segaCdSfx.parseScript(e.script)) + 24) / segaCdSfx.TICK_HZ * 10) / 10 }))
     : [];
   return segaSfxCache;
+}
+// Sega CD music: the game's `song` call takes the cartridge's song ids; $30-$77 play CD tracks 7-78 (track = song - $29) and the
+// title song $78 is track 79. The names are the cartridge's own (lib/audio/data/nhl94-streams.json).
+let segaSongLabels = null;
+function segaCdSongLabel(track) {
+  if (!segaSongLabels) {
+    segaSongLabels = {};
+    try {
+      for (const s of require('./lib/audio/data/nhl94-streams.json').streams) if (s.group === 'Music') segaSongLabels[s.soundId] = s.label;
+    } catch (e) { /* names only */ }
+  }
+  const song = track + 0x29;
+  return track >= 7 && track <= 79 ? segaSongLabels[song] || '' : '';
 }
 async function segaCdSfxRender(game, id) {
   const c = segaCdSfxMain(game);
@@ -206,7 +221,7 @@ async function segaCdSfxRender(game, id) {
   if (!effect) return null;
   const chip = await ymWasm.createChip();
   try {
-    const out = segaCdSfx.render(c.main, effect, chip);
+    const out = segaCdSfx.render(c.main, effect, chip, { samples: c.samples });
     const body = Buffer.from(out.pcm.buffer, out.pcm.byteOffset, out.pcm.byteLength);
     const hit = { rate: out.rate, body };
     c.pcm.set(id, hit);
@@ -496,7 +511,7 @@ function gameStatus(game) {
       : null,
     snes: game.snes || null,
     romHint: game.kind === 'pc95' ? 'pc95/ or roms/nhl95.iso' : (game.kind === 'pc94' ? 'pc94/' : (game.kind === 'pc96' ? 'pc96/ or roms/nhl96.iso' : (game.kind === 'pc97' ? 'pc97/ or roms/nhl97.iso' : (game.disc ? 'roms/' + game.disc.names[0] : (game.romNames.length ? 'roms/' + game.romNames[0] : null))))),
-    pcAudio: pc && pc.audio ? pc.audio : (game.id === 'nhl94cd' && rom ? { songs: [], tim: [], pat: [], extra: [], dig: '', segaCdPcm: segaCdPcmFiles(game), rate: segaCdPcm.RATE, cdTracks: segaCdTracks().map(({ track, seconds }) => ({ track, seconds })), cdRate: segaCdda.RATE, segaSfx: (segaCdSfxMain(game) || { list: [] }).list } : undefined)
+    pcAudio: pc && pc.audio ? pc.audio : (game.id === 'nhl94cd' && rom ? { songs: [], tim: [], pat: [], extra: [], dig: '', segaCdPcm: segaCdPcmFiles(game), rate: segaCdPcm.RATE, cdTracks: segaCdTracks().map(({ track, seconds }) => ({ track, seconds, label: segaCdSongLabel(track) })), cdRate: segaCdda.RATE, segaSfx: (segaCdSfxMain(game) || { list: [] }).list } : undefined)
   };
 }
 

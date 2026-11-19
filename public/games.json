@@ -4322,6 +4322,694 @@
         "kind": "jim",
         "start": 3356610,
         "end": 3387216
+      },
+      {
+        "id": "GoalieLicense.map.jim",
+        "label": "License (goalie)",
+        "group": "Screens",
+        "kind": "jim",
+        "start": 3387216,
+        "end": 3410718
+      },
+      {
+        "id": "GoalieLoading.map.jim",
+        "label": "Loading (goalie)",
+        "group": "Screens",
+        "kind": "jim",
+        "start": 3410718,
+        "end": 3423372
+      },
+      {
+        "id": "TeamDetailsANH.map.jim",
+        "label": "Team details ANH",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 3423372,
+        "end": 3435994
+      },
+      {
+        "id": "TeamDetailsNoPhotoANH.map.jim",
+        "label": "Team details, no photo ANH",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 3435994,
+        "end": 3444392
+      },
+      {
+        "id": "VideoPlayerANH.map.jim",
+        "label": "Video player ANH",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 3444392,
+        "end": 3454774
+      },
+      {
+        "id": "TeamDetailsBOS.map.jim",
+        "label": "Team details BOS",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 3454774,
+        "end": 3466692
+      },
+      {
+        "id": "TeamDetailsNoPhotoBOS.map.jim",
+        "label": "Team details, no photo BOS",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 3466692,
+        "end": 3474290
+      },
+      {
+        "id": "VideoPlayerBOS.map.jim",
+        "label": "Video player BOS",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 3474290,
+        "end": 3483904
+      },
+      {
+        "id": "TeamDetailsBUF.map.jim",
+        "label": "Team details BUF",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 3483904,
+        "end": 3496494
+      },
+      {
+        "id": "TeamDetailsNoPhotoBUF.map.jim",
+        "label": "Team details, no photo BUF",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 3496494,
+        "end": 3505084
+      },
+      {
+        "id": "VideoPlayerBUF.map.jim",
+        "label": "Video player BUF",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 3505084,
+        "end": 3516042
+      },
+      {
+        "id": "TeamDetailsCGY.map.jim",
+        "label": "Team details CGY",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 3516042,
+        "end": 3528664
+      },
+      {
+        "id": "TeamDetailsNoPhotoCGY.map.jim",
+        "label": "Team details, no photo CGY",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 3528664,
+        "end": 3537638
+      },
+      {
+        "id": "VideoPlayerCGY.map.jim",
+        "label": "Video player CGY",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 3537638,
+        "end": 3547956
+      },
+      {
+        "id": "TeamDetailsCHI.map.jim",
+        "label": "Team details CHI",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 3547956,
+        "end": 3560642
+      },
+      {
+        "id": "TeamDetailsNoPhotoCHI.map.jim",
+        "label": "Team details, no photo CHI",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 3560642,
+        "end": 3569296
+      },
+      {
+        "id": "VideoPlayerCHI.map.jim",
+        "label": "Video player CHI",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 3569296,
+        "end": 3579774
+      },
+      {
+        "id": "TeamDetailsDAL.map.jim",
+        "label": "Team details DAL",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 3579774,
+        "end": 3590540
+      },
+      {
+        "id": "TeamDetailsNoPhotoDAL.map.jim",
+        "label": "Team details, no photo DAL",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 3590540,
+        "end": 3597050
+      },
+      {
+        "id": "VideoPlayerDAL.map.jim",
+        "label": "Video player DAL",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 3597050,
+        "end": 3604136
+      },
+      {
+        "id": "TeamDetailsDET.map.jim",
+        "label": "Team details DET",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 3604136,
+        "end": 3616406
+      },
+      {
+        "id": "TeamDetailsNoPhotoDET.map.jim",
+        "label": "Team details, no photo DET",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 3616406,
+        "end": 3624580
+      },
+      {
+        "id": "VideoPlayerDET.map.jim",
+        "label": "Video player DET",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 3624580,
+        "end": 3634226
+      },
+      {
+        "id": "TeamDetailsEDM.map.jim",
+        "label": "Team details EDM",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 3634226,
+        "end": 3646336
+      },
+      {
+        "id": "TeamDetailsNoPhotoEDM.map.jim",
+        "label": "Team details, no photo EDM",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 3646336,
+        "end": 3654830
+      },
+      {
+        "id": "VideoPlayerEDM.map.jim",
+        "label": "Video player EDM",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 3654830,
+        "end": 3665244
+      },
+      {
+        "id": "TeamDetailsFLA.map.jim",
+        "label": "Team details FLA",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 3665244,
+        "end": 3677226
+      },
+      {
+        "id": "TeamDetailsNoPhotoFLA.map.jim",
+        "label": "Team details, no photo FLA",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 3677226,
+        "end": 3684920
+      },
+      {
+        "id": "VideoPlayerFLA.map.jim",
+        "label": "Video player FLA",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 3684920,
+        "end": 3694214
+      },
+      {
+        "id": "TeamDetailsHFD.map.jim",
+        "label": "Team details HFD",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 3694214,
+        "end": 3706740
+      },
+      {
+        "id": "TeamDetailsNoPhotoHFD.map.jim",
+        "label": "Team details, no photo HFD",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 3706740,
+        "end": 3714786
+      },
+      {
+        "id": "VideoPlayerHFD.map.jim",
+        "label": "Video player HFD",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 3714786,
+        "end": 3724080
+      },
+      {
+        "id": "TeamDetailsLA.map.jim",
+        "label": "Team details LA",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 3724080,
+        "end": 3736382
+      },
+      {
+        "id": "TeamDetailsNoPhotoLA.map.jim",
+        "label": "Team details, no photo LA",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 3736382,
+        "end": 3744972
+      },
+      {
+        "id": "VideoPlayerLA.map.jim",
+        "label": "Video player LA",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 3744972,
+        "end": 3755386
+      },
+      {
+        "id": "TeamDetailsMTL.map.jim",
+        "label": "Team details MTL",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 3755386,
+        "end": 3768104
+      },
+      {
+        "id": "TeamDetailsNoPhotoMTL.map.jim",
+        "label": "Team details, no photo MTL",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 3768104,
+        "end": 3776822
+      },
+      {
+        "id": "VideoPlayerMTL.map.jim",
+        "label": "Video player MTL",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 3776822,
+        "end": 3787300
+      },
+      {
+        "id": "TeamDetailsNJ.map.jim",
+        "label": "Team details NJ",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 3787300,
+        "end": 3800146
+      },
+      {
+        "id": "TeamDetailsNoPhotoNJ.map.jim",
+        "label": "Team details, no photo NJ",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 3800146,
+        "end": 3808576
+      },
+      {
+        "id": "VideoPlayerNJ.map.jim",
+        "label": "Video player NJ",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 3808576,
+        "end": 3819278
+      },
+      {
+        "id": "TeamDetailsNYI.map.jim",
+        "label": "Team details NYI",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 3819278,
+        "end": 3832188
+      },
+      {
+        "id": "TeamDetailsNoPhotoNYI.map.jim",
+        "label": "Team details, no photo NYI",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 3832188,
+        "end": 3840842
+      },
+      {
+        "id": "VideoPlayerNYI.map.jim",
+        "label": "Video player NYI",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 3840842,
+        "end": 3851832
+      },
+      {
+        "id": "TeamDetailsNYR.map.jim",
+        "label": "Team details NYR",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 3851832,
+        "end": 3864838
+      },
+      {
+        "id": "TeamDetailsNoPhotoNYR.map.jim",
+        "label": "Team details, no photo NYR",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 3864838,
+        "end": 3874132
+      },
+      {
+        "id": "VideoPlayerNYR.map.jim",
+        "label": "Video player NYR",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 3874132,
+        "end": 3885346
+      },
+      {
+        "id": "TeamDetailsOTW.map.jim",
+        "label": "Team details OTW",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 3885346,
+        "end": 3897552
+      },
+      {
+        "id": "TeamDetailsNoPhotoOTW.map.jim",
+        "label": "Team details, no photo OTW",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 3897552,
+        "end": 3905150
+      },
+      {
+        "id": "VideoPlayerOTW.map.jim",
+        "label": "Video player OTW",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 3905150,
+        "end": 3913420
+      },
+      {
+        "id": "TeamDetailsPHI.map.jim",
+        "label": "Team details PHI",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 3913420,
+        "end": 3926266
+      },
+      {
+        "id": "TeamDetailsNoPhotoPHI.map.jim",
+        "label": "Team details, no photo PHI",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 3926266,
+        "end": 3934856
+      },
+      {
+        "id": "VideoPlayerPHI.map.jim",
+        "label": "Video player PHI",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 3934856,
+        "end": 3945302
+      },
+      {
+        "id": "TeamDetailsPIT.map.jim",
+        "label": "Team details PIT",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 3945302,
+        "end": 3957892
+      },
+      {
+        "id": "TeamDetailsNoPhotoPIT.map.jim",
+        "label": "Team details, no photo PIT",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 3957892,
+        "end": 3966386
+      },
+      {
+        "id": "VideoPlayerPIT.map.jim",
+        "label": "Video player PIT",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 3966386,
+        "end": 3976448
+      },
+      {
+        "id": "TeamDetailsQUE.map.jim",
+        "label": "Team details QUE",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 3976448,
+        "end": 3988718
+      },
+      {
+        "id": "TeamDetailsNoPhotoQUE.map.jim",
+        "label": "Team details, no photo QUE",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 3988718,
+        "end": 3996924
+      },
+      {
+        "id": "VideoPlayerQUE.map.jim",
+        "label": "Video player QUE",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 3996924,
+        "end": 4006634
+      },
+      {
+        "id": "TeamDetailsSJ.map.jim",
+        "label": "Team details SJ",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 4006634,
+        "end": 4018904
+      },
+      {
+        "id": "TeamDetailsNoPhotoSJ.map.jim",
+        "label": "Team details, no photo SJ",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 4018904,
+        "end": 4026822
+      },
+      {
+        "id": "VideoPlayerSJ.map.jim",
+        "label": "Video player SJ",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 4026822,
+        "end": 4036660
+      },
+      {
+        "id": "TeamDetailsSTL.map.jim",
+        "label": "Team details STL",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 4036660,
+        "end": 4048578
+      },
+      {
+        "id": "TeamDetailsNoPhotoSTL.map.jim",
+        "label": "Team details, no photo STL",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 4048578,
+        "end": 4056400
+      },
+      {
+        "id": "VideoPlayerSTL.map.jim",
+        "label": "Video player STL",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 4056400,
+        "end": 4064862
+      },
+      {
+        "id": "TeamDetailsTB.map.jim",
+        "label": "Team details TB",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 4064862,
+        "end": 4077676
+      },
+      {
+        "id": "TeamDetailsNoPhotoTB.map.jim",
+        "label": "Team details, no photo TB",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 4077676,
+        "end": 4086234
+      },
+      {
+        "id": "VideoPlayerTB.map.jim",
+        "label": "Video player TB",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 4086234,
+        "end": 4097160
+      },
+      {
+        "id": "TeamDetailsTOR.map.jim",
+        "label": "Team details TOR",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 4097160,
+        "end": 4109910
+      },
+      {
+        "id": "TeamDetailsNoPhotoTOR.map.jim",
+        "label": "Team details, no photo TOR",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 4109910,
+        "end": 4118500
+      },
+      {
+        "id": "VideoPlayerTOR.map.jim",
+        "label": "Video player TOR",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 4118500,
+        "end": 4129074
+      },
+      {
+        "id": "TeamDetailsVAN.map.jim",
+        "label": "Team details VAN",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 4129074,
+        "end": 4142144
+      },
+      {
+        "id": "TeamDetailsNoPhotoVAN.map.jim",
+        "label": "Team details, no photo VAN",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 4142144,
+        "end": 4150798
+      },
+      {
+        "id": "VideoPlayerVAN.map.jim",
+        "label": "Video player VAN",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 4150798,
+        "end": 4161628
+      },
+      {
+        "id": "TeamDetailsWSH.map.jim",
+        "label": "Team details WSH",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 4161628,
+        "end": 4173770
+      },
+      {
+        "id": "TeamDetailsNoPhotoWSH.map.jim",
+        "label": "Team details, no photo WSH",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 4173770,
+        "end": 4182168
+      },
+      {
+        "id": "VideoPlayerWSH.map.jim",
+        "label": "Video player WSH",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 4182168,
+        "end": 4192070
+      },
+      {
+        "id": "TeamDetailsWPG.map.jim",
+        "label": "Team details WPG",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 4192070,
+        "end": 4203444
+      },
+      {
+        "id": "TeamDetailsNoPhotoWPG.map.jim",
+        "label": "Team details, no photo WPG",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 4203444,
+        "end": 4211330
+      },
+      {
+        "id": "VideoPlayerWPG.map.jim",
+        "label": "Video player WPG",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 4211330,
+        "end": 4221168
+      },
+      {
+        "id": "TeamDetailsASE.map.jim",
+        "label": "Team details ASE",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 4221168,
+        "end": 4232926
+      },
+      {
+        "id": "TeamDetailsNoPhotoASE.map.jim",
+        "label": "Team details, no photo ASE",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 4232926,
+        "end": 4240716
+      },
+      {
+        "id": "VideoPlayerASE.map.jim",
+        "label": "Video player ASE",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 4240716,
+        "end": 4250586
+      },
+      {
+        "id": "TeamDetailsASW.map.jim",
+        "label": "Team details ASW",
+        "group": "Team details",
+        "kind": "jim",
+        "start": 4250586,
+        "end": 4261992
+      },
+      {
+        "id": "TeamDetailsNoPhotoASW.map.jim",
+        "label": "Team details, no photo ASW",
+        "group": "Team details, no photo",
+        "kind": "jim",
+        "start": 4261992,
+        "end": 4269366
+      },
+      {
+        "id": "VideoPlayerASW.map.jim",
+        "label": "Video player ASW",
+        "group": "Video player",
+        "kind": "jim",
+        "start": 4269366,
+        "end": 4278916
       }
     ],
     "pixels": false,

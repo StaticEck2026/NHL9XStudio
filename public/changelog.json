@@ -1,6 +1,14 @@
 {
   "releases": [
     {
+      "version": "1.50.0",
+      "date": "2026-11-19",
+      "changes": [
+        "NHL 94 (Sega CD) sound effects fixed: the effect table was being read one record off, so effects had the wrong scripts and names. They now use the cartridge's own names and ids (sfx whistle, sfx pass1, sfx crowdcheer, ...). The effects that were played as PSG square waves are sample effects: the disc plays them on its RF5C164 PCM chip from a 13 sample bank in GRAPH2.BIN, and Studio now plays those samples at the right pitch. The disc never uses the PSG",
+        "NHL 94 (Sega CD) CD music tracks 7-79 are named like the cartridge songs (ChooseSong, TeamSongs BOS, ...)"
+      ]
+    },
+    {
       "version": "1.49.0",
       "date": "2026-11-19",
       "changes": [

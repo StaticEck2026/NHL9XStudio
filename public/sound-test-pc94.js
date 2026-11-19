@@ -350,7 +350,7 @@
           rate: audio.rate || 16276
         });
       }
-      // Sega CD sound effects: scripts in MAIN.BIN, played through the YM2612 (see docs/SEGACD.md).
+      // Sega CD sound effects: scripts in MAIN.BIN: FM through the YM2612, samples from GRAPH2.BIN (see docs/SEGACD.md).
       for (const e of audio.segaSfx || []) {
         speech.push({
           id: 'speech-sfx-' + e.id,
@@ -358,7 +358,7 @@
           subgroup: '',
           name: e.name,
           label: e.name,
-          sub: 'Effect $' + e.id.toString(16).toUpperCase() + ' · ' + (e.psg ? 'PSG script' : 'FM script') + ' · ' + e.seconds + ' s',
+          sub: 'Effect $' + e.id.toString(16).toUpperCase() + ' · ' + (e.sample && e.fm ? 'FM + sample' : e.sample ? 'Sample' : 'FM') + ' · ' + e.seconds + ' s',
           sfxId: e.id,
           rate: 53267
         });
@@ -366,15 +366,15 @@
       // Sega CD music: CD-DA tracks 2-79. Song requests $30-$77 play tracks 7-78 (track = song - $29).
       for (const t of audio.cdTracks || []) {
         const num = String(t.track).padStart(2, '0');
-        const song = t.track >= 7 && t.track <= 78 ? t.track + 0x29 : 0;
+        const song = t.track >= 7 && t.track <= 79 ? t.track + 0x29 : 0;
         const secs = Math.round(t.seconds || 0);
         speech.push({
           id: 'speech-cd-' + num,
           group: 'CD music',
-          subgroup: t.track < 7 ? 'Tracks 2-6' : (t.track <= 78 ? 'Songs $30-$77 (tracks 7-78)' : 'Track 79'),
-          name: 'Track ' + num,
-          label: 'Track ' + num,
-          sub: 'CD-DA · ' + Math.floor(secs / 60) + ':' + String(secs % 60).padStart(2, '0') + (song ? ' · song $' + song.toString(16).toUpperCase() : ''),
+          subgroup: t.track < 7 ? 'Tracks 2-6' : (t.track <= 78 ? 'Songs $30-$77 (tracks 7-78)' : 'Title song $78 (track 79)'),
+          name: t.label || 'Track ' + num,
+          label: t.label || 'Track ' + num,
+          sub: 'Track ' + num + ' · CD-DA · ' + Math.floor(secs / 60) + ':' + String(secs % 60).padStart(2, '0') + (song && t.track <= 79 && t.track >= 7 ? ' · song $' + song.toString(16).toUpperCase() : ''),
           cdTrack: t.track,
           rate: audio.cdRate || 44100
         });
