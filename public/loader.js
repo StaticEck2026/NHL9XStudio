@@ -114,7 +114,7 @@
       ctx.clearRect(0, 0, W, H);
       const ground0 = H - 26;
       const span = H - 78;
-      skaters.sort((a, b) => a.y - b.y);
+      skaters.sort((a, b) => b.y - a.y);   // higher on screen first, so the lower skaters draw in front
       for (const s of skaters) {
         const art = s.art;
         s.x += dt / 1000 * s.v;

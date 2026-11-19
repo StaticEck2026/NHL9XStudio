@@ -1,6 +1,13 @@
 {
   "releases": [
     {
+      "version": "1.57.2",
+      "date": "2026-11-19",
+      "changes": [
+        "Loading screen: a skater lower on the screen is drawn in front of the ones higher up"
+      ]
+    },
+    {
       "version": "1.57.1",
       "date": "2026-11-19",
       "changes": [
