@@ -1,6 +1,13 @@
 {
   "releases": [
     {
+      "version": "1.53.1",
+      "date": "2026-11-19",
+      "changes": [
+        "The Sega CD disc search now follows symlinks and junctions under roms/, so a linked folder with the .cue and tracks works"
+      ]
+    },
+    {
       "version": "1.53.0",
       "date": "2026-11-19",
       "changes": [
