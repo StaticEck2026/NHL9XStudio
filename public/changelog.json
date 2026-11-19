@@ -1,6 +1,13 @@
 {
   "releases": [
     {
+      "version": "1.48.0",
+      "date": "2026-11-19",
+      "changes": [
+        "NHL 94 (Sega CD) Images, Screens now has the goalie License screen and the goalie Loading screen, decoded from GRAPH2.BIN (they are stored outside its directory, listed in GTABLE.BIN)"
+      ]
+    },
+    {
       "version": "1.47.0",
       "date": "2026-11-19",
       "changes": [
