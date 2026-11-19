@@ -99,6 +99,25 @@ try {
   assert.strictEqual(Sfx.isMain(new Uint8Array(100)), false);
 }
 {
+  // The sample bank: count 13, 13 (tag, length) pairs, the samples back to back; in wave RAM each starts on its own 256 byte page.
+  const lens = [6470, 512, 3363, 1280, 2529, 1368, 3072, 538, 12032, 11443, 10226, 3396, 5914];
+  const at = Sfx.SAMPLE_BANK_AT;
+  const g2 = new Uint8Array(at + 2 + 13 * 4 + lens.reduce((a, b) => a + b, 0) + 8);
+  g2[at + 1] = 13;
+  lens.forEach((n, k) => { g2[at + 2 + k * 4] = 2; g2[at + 3 + k * 4] = k; g2[at + 4 + k * 4] = n >> 8; g2[at + 5 + k * 4] = n & 255; });
+  let o = at + 2 + 13 * 4;
+  lens.forEach((n, k) => { g2.fill(0x10 + k, o, o + n); o += n; });
+  const bank = Sfx.sampleBank(g2);
+  assert.strictEqual(bank.length, 13);
+  assert.deepStrictEqual(bank.map((b) => b.page), [0x01, 0x1b, 0x1d, 0x2b, 0x30, 0x3a, 0x40, 0x4c, 0x4f, 0x7e, 0xab, 0xd3, 0xe1], 'pages the game uses in wave RAM');
+  assert.strictEqual(bank.ram[0x1b * 256], 0x11, 'sample 1 is at page $1B');
+  assert.strictEqual(bank.ram[0x1b * 256 + 512], 0x12, 'and the next sample follows it (it plays on into it)');
+  assert.strictEqual(bank.ram[0xf9 * 256], 0xff, 'wave RAM after the last sample stops the chip');
+  // Programs 100 and 101 are the two check samples (read from the disc), and the sample reference notes line up with the table.
+  assert.strictEqual(Sfx.PROGRAM_SAMPLE[100], 4); assert.strictEqual(Sfx.PROGRAM_SAMPLE[101], 0);
+  assert.strictEqual(Sfx.SAMPLE_REF_NOTE.length, 13);
+}
+{
   // A stored picture (2 x 1 tiles, 2 tiles) becomes a .map.jim 6 bytes longer.
   const n = 2, w = 2, h = 1;
   const blob = new Uint8Array(4 + n * 32 + 128 + 4 + w * h * 2);

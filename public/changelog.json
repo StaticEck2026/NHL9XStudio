@@ -1,6 +1,13 @@
 {
   "releases": [
     {
+      "version": "1.51.0",
+      "date": "2026-11-19",
+      "changes": [
+        "NHL 94 (Sega CD) sound effects now sound like the disc: every effect was compared with the real disc running in an emulator (envelope, spectrum, length) and fixed from that. The FM patch bytes were being written to the wrong operators, the notes were an octave off, the FM level and pitch bend range were wrong, and the sample effects now play through the chip's wave RAM the way the disc does (a sample runs on into the next one until a stop byte), with the disc's pitch, volume and pan. The check effects use the right two samples"
+      ]
+    },
+    {
       "version": "1.50.0",
       "date": "2026-11-19",
       "changes": [
