@@ -4300,6 +4300,14 @@
         "end": 3277904
       },
       {
+        "id": "BootFont.map.jim",
+        "label": "Boot font",
+        "group": "Fonts",
+        "kind": "jim",
+        "start": 3277904,
+        "end": 3279692
+      },
+      {
         "id": "HighScoreProductions.map.jim",
         "label": "High Score Productions",
         "group": "Screens",
