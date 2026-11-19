@@ -94,8 +94,8 @@ try {
   const two = Sfx.parseScript(Uint8Array.from([0x90, 0x30, 0x7f, 0x81, 0x00, 0x00, 0x32, 0x70, 0x04, 0x04, 0xff, 0, 0, 0]));
   assert.strictEqual(two[0].dur, 128);
   assert.strictEqual(two[1].type, 'on', 'running status repeats the note on');
-  assert.strictEqual(Sfx.nameOf(4), 'Period horn');
-  assert.strictEqual(Sfx.nameOf(0x12), 'Pass 3');
+  assert.strictEqual(Sfx.nameOf(4), 'sfx horn');
+  assert.strictEqual(Sfx.nameOf(0x12), 'sfx pass3');
   assert.strictEqual(Sfx.isMain(new Uint8Array(100)), false);
 }
 {

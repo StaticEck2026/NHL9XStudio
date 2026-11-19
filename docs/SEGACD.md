@@ -25,18 +25,20 @@ last 15 hold the title). Audio is interleaved in the same records (RF5C164 sign-
   ENTERPRISES, LTD.`) sits in the system area (IP) and is drawn by boot code; the game's own "Licensed by Sega Enterprises Ltd."
   is a text line in the title credits (`Credits` in `teamdata94cd.asm`).
 - **Sound effects** (`lib/audio/segacd-sfx.js`, Audio, Sound effects): not the cartridge's sound engine. `MAIN.BIN` has its own
-  68000 sequencer (`SndSlotsTickAll`) feeding its own Z80 driver (Z80 image at `MAIN.BIN $5E0C-$765C`, mailbox at Z80 `$0030`);
-  none of the Z80 driver's code matches the cartridge's. What the disc shares with the cartridge is the effect ids (the game's
-  `sfx` call posts the same numbers, id 4 is the horn) and the FM patch: the first 26 bytes of each 36-byte record are the
-  cartridge's register layout. Data: `SndEffectTable` (file `$863D`, 82 records of length low byte, type, id, length high byte;
-  type 3 is a script, type 0 a patch; the first three, ids `$26`, `$27` and the horn `$04`, have no script), `SndEffectScripts`
-  (`$8785`, 1,255 bytes: the type 3 scripts in record order, each ended by `$FF` and three bytes; the table length is only the
-  first block of the long slide, effect 6) and `FmInstrumentPatches` (`$8C6C`). A script is MIDI-like with a delta time after
-  every event: `9n note vel duration` (duration is one or two bytes, bit 7 continues), `Bn 12 v` (0 FM, 1 PSG), `Cn program`
-  (patch index), `En bend` (`$40` centre), `FF` end. Studio reads the scripts the way the sequencer does and plays them through
-  the ymfm YM2612 with the disc's patches. It does not run the disc's Z80 driver, so the note table, envelopes and bend range
-  are approximations, the PSG effects are a square wave, and a tick is taken as one frame (60 Hz). Running the real Z80 image
-  (`lib/audio/nhl92-z80-harness.js`, `ymTimers: true`) with the queue commands the sequencer posts is the way to make them exact.
+  68000 sequencer (`SndSlotsTickAll`) and Z80 driver (Z80 image at `MAIN.BIN $5E0C-$765C`). What the disc shares with the
+  cartridge is the effect ids (the game's `sfx` call posts the same numbers, id 4 is the horn), so the names are the
+  cartridge's ("sfx whistle", "sfx pass1", ...), and the FM patch layout. `SndEffectTable` (file `$863C`: a word count, 79,
+  then records of type, id and a big-endian length) lists the type 3 scripts (ids in the cartridge's numbering), then the 31
+  type 0 FM patches. `SndEffectScripts` (`$877A`) holds the scripts back to back, each as long as its record says, each with a
+  few header bytes and ending `$FF`. `FmInstrumentPatches` (`$8C6C`, 36 bytes each). A script is MIDI-like with a delta time
+  after every event: `9n note vel duration`, `Bn 12 v` (channel type), `Cn program`, `En bend`, `FF` end. Channel type 0 is
+  FM. **Channel type 1 is a sample channel on the RF5C164 PCM chip, never the PSG** (the disc writes no PSG data and no YM
+  DAC data for effects; checked by injecting every id into the real disc in an emulator). Programs `$60-$6F` pick a sample from
+  the bank at `GRAPH2.BIN $2D2000` (GTABLE record 96): `u16` count 13, 13 pairs of tag and length, then the samples
+  (sign-magnitude bytes, `$FF` stops). Each sample has a reference note that plays at 8,138 Hz; each semitone is a factor
+  2^(1/12). The program to sample map and reference notes are in `segacd-sfx.js`; the cartridge's own samples are different
+  recordings. The FM effects are still a reconstruction through the ymfm YM2612 (envelopes, bend range and the tick, taken as
+  one frame, are approximate); the disc's own Z80 driver is not run.
 - **Stereo CD music:** the tracks are mixed to mono because the Audio player's clips are mono.
 - **STARTER PCM bank** (`$BC64`): instrument waves for the PCM chip, not sound effects; not listed.
 
