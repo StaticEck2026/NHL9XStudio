@@ -1,6 +1,13 @@
 {
   "releases": [
     {
+      "version": "1.55.0",
+      "date": "2026-11-19",
+      "changes": [
+        "A loading screen (a sliding puck) shows while Studio starts and while a folder, ROM or disc image is opened. It says what is happening: looking for your games, which games were found, and which game is loading. A load that finishes quickly shows nothing"
+      ]
+    },
+    {
       "version": "1.54.0",
       "date": "2026-11-19",
       "changes": [
