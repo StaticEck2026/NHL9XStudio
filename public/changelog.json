@@ -1,6 +1,13 @@
 {
   "releases": [
     {
+      "version": "1.57.5",
+      "date": "2026-11-20",
+      "changes": [
+        "The Jerseys (PC) header button has its jersey icon back (the icon rule only matched the exact label \"Jerseys\")"
+      ]
+    },
+    {
       "version": "1.57.4",
       "date": "2026-11-20",
       "changes": [
