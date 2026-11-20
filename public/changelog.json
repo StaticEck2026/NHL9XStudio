@@ -1,6 +1,13 @@
 {
   "releases": [
     {
+      "version": "1.57.4",
+      "date": "2026-11-20",
+      "changes": [
+        "The header button that opens the jersey palette editor now reads \"Jerseys (PC)\", since it edits NHL 94 PC and NHL 95 PC palettes"
+      ]
+    },
+    {
       "version": "1.57.3",
       "date": "2026-11-19",
       "changes": [
