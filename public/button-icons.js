@@ -73,7 +73,7 @@
   const RULES = [
     [/^about\b/, 'info', 'Version, what changed, and how to send feedback'],
     [/^image editor/, 'image', 'Open the Image Editor'],
-    [/^jerseys?$/, 'shirt', 'Open the jersey palette editor'],
+    [/^jerseys?( \(pc\))?$/, 'shirt', 'Open the jersey palette editor'],
     [/^(← )?nhl9x studio/, 'back', 'Back to NHL9X Studio'],
     [/^open (game )?folder/, 'open', 'Open a folder of game files'],
     [/^open|^load|^choose|^browse/, 'open', 'Open a file'],
