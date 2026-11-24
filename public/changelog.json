@@ -1,6 +1,13 @@
 {
   "releases": [
     {
+      "version": "1.57.6",
+      "date": "2026-11-24",
+      "changes": [
+        "NHL 94 SNES songs now line up with Genesis: the Audio list runs in 94G song order ($30-$77) under the Genesis names (NHL94_music_NNN) and descriptions, with the SNES song name beside them; songs the SNES merges list under the first 94G song they stand for"
+      ]
+    },
+    {
       "version": "1.57.5",
       "date": "2026-11-20",
       "changes": [

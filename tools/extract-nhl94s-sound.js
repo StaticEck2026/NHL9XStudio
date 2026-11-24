@@ -185,6 +185,22 @@ function main() {
   const teamBytes = tableBytes('TeamSongs');
   pack.teamSongs = tableNames('TeamSongs', teamBytes);
   pack.defaultSongs = tableNames('DefaultSongs', tableBytes('DefaultSongs'));
+  // Which NHL 94 Genesis songs (sound ids $30-$77, SongPointerTable) each organ song is: the file header of every
+  // SNES song quotes them ("94G songs $31, $3F at the same TeamSongs slots"). Lets Studio list the SNES songs by the
+  // Genesis names and order.
+  const genesisNames = require('../lib/audio/data/nhl94-music.json').songs;
+  pack.genesisSongs = {};
+  for (const n of Object.keys(songs).filter((f) => /^Song/.test(f))) {
+    const head = fs.readFileSync(path.join(dir, file[n]), 'utf8').split(/\r?\n/).slice(0, 12)
+      .filter((l) => l.startsWith(';')).map((l) => l.replace(/^;\s*/, '')).join(' ');
+    const m = /94G songs? ((?:\$[0-9A-Fa-f]{2}(?:, | and )?)+)/.exec(head);
+    if (!m) throw new Error(n + ': header does not name its 94G songs');
+    pack.genesisSongs[n] = [...m[1].matchAll(/\$([0-9A-Fa-f]{2})/g)].map((x) => {
+      const rec = genesisNames[x[1].toUpperCase()];
+      if (!rec) throw new Error(n + ': 94G song $' + x[1] + ' has no name in lib/audio/data/nhl94-music.json');
+      return { id: parseInt(x[1], 16), name: rec.name, desc: rec.desc };
+    });
+  }
   verified.tables += 2;
   const names = fs.readFileSync(path.join(dir, 'src', 'data', 'text', 'TeamPlaceNames.asm'), 'utf8');
   pack.teams = [...names.split('\n').filter((l) => /^\s*dw\s+\./.test(l)).join(',').matchAll(/\.(\w+)/g)].map((m) => m[1]);
