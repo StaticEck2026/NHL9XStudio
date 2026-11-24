@@ -29,18 +29,27 @@
   /** Catalog rows for the Sound test list (songs playable; sound entries informational). */
   function entries(data) {
     const out = [];
+    // Same names and order as the Genesis list: each SNES organ song is one or more 94G songs ($30-$77), named
+    // NHL94_music_NNN, and the list runs in 94G song order. Songs the SNES merges list under the first 94G song.
+    const hex = (n) => '$' + n.toString(16).toUpperCase().padStart(2, '0');
+    const gen = (name) => data.genesisSongs(name);
     const songs = data.songNames.slice().sort((a, b) => {
-      const ga = songGroup(a, data);
-      const gb = songGroup(b, data);
-      if (ga !== gb) return ga.localeCompare(gb);
-      return a.localeCompare(b);
+      const ga = gen(a).length ? gen(a)[0].id : 0x1000;
+      const gb = gen(b).length ? gen(b)[0].id : 0x1000;
+      return ga !== gb ? ga - gb : a.localeCompare(b);
     });
     for (const name of songs) {
+      const g = gen(name);
+      const first = g[0];
       out.push({
         id: 'song-' + name,
-        group: root.NhlAudioCategories.CATEGORY.songs,
-        label: name,
-        sub: songGroup(name, data) + ' · ' + data.songSet(name) + ' sample set · plays until Stop or song end'
+        group: g.length ? 'Team songs' : root.NhlAudioCategories.CATEGORY.songs,
+        label: first
+          ? hex(first.id) + ' · ' + first.name + (g.length > 1 ? ' (+' + (g.length - 1) + ')' : '') + ' · ' + name
+          : name,
+        sub: first
+          ? g.map((x) => hex(x.id) + ' ' + x.name + ': ' + x.desc).join(' | ') + ' · ' + data.songSet(name) + ' sample set · plays until Stop or song end'
+          : songGroup(name, data) + ' · ' + data.songSet(name) + ' sample set · plays until Stop or song end'
       });
     }
     const sets = ['game', 'menu', 'intro'];

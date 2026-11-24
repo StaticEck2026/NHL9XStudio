@@ -194,3 +194,18 @@ console.log('nhl94s sound data: sound entries, sample lists, team songs and inst
   assert.strictEqual(u.cpu.pc, 0x04dc, 'back at the command wait');
 }
 console.log('nhl94s sound data: the extracted SPC700 program boots and answers the reset command on snes-spc OK');
+
+// --- Genesis names: every organ song names the 94G songs it is (file headers), in Genesis order ---
+{
+  const d = L.load(pack);
+  const covered = new Set();
+  for (const n of d.songNames) {
+    const g = d.genesisSongs(n);
+    if (/^Song/.test(n)) assert.ok(g.length > 0, n + ' names no 94G song');
+    for (const s of g) { covered.add(s.id); assert.ok(/^NHL94_music_\d{3}$/.test(s.name), n + ': ' + s.name); }
+  }
+  // 94G $62 and $72 are in no 94G table and not in the SNES ROM; every other $30-$77 song is one of ours
+  for (let id = 0x30; id <= 0x77; id++) if (id !== 0x62 && id !== 0x72) assert.ok(covered.has(id), 'no SNES song for 94G $' + id.toString(16));
+  assert.strictEqual(d.genesisSongs('SongBrassBonanza')[0].name, 'NHL94_music_017');
+  console.log('nhl94s sound data: SNES songs line up with the Genesis songs OK');
+}
