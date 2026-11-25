@@ -10,7 +10,7 @@ This list was compiled on 2026-10-20 from the docs and PR bodies on `main` (`7bc
 - [x] **93G / 94G sequencer:** per-note key-on volume and MIDI CC 7 / stream `$3x` 7 in `lib/audio/nhl9x-stream.js` (native MIDI markers `v=`). (`docs/NHL93-94-SOUND.md`)
 - **93G revisions:** NHLPA 93 Rev A (`1992.OCT`, which runs the track slots twice every 6th frame at 50 Hz) and Rev B are not bundled for sound, and PAL timing is not modelled. (`docs/NHL93-94-SOUND.md`)
 - **93G / 94G GM map:** the matches come from measurements; nobody has checked them by ear. (`docs/NHL93-94-SOUND.md`)
-- **NHL 92 gaps that are still open** (`docs/NHL92-SOUND-HANDOFF-FOR-CLAUDE.md`, "Gaps still open"; `docs/NHL92-SOUND-CHAIN.md`, "Not verified"):
+- **NHL 92 gaps that are still open** (`docs/NHL92-SOUND-CHAIN.md`, "Not verified"):
   - An ear match against the retail game. No MAME/BlastEm capture is allowed.
   - 68k timing within the frame: the copy's offset after vblank isn't measured, the bus hold (about 560–630 T-states) comes from textbook timings, and the Z80 stall isn't modelled.
   - Whether a real YM2612 accepts writes 62 Z80 T-states apart. The driver never reads the busy flag.
@@ -21,8 +21,6 @@ This list was compiled on 2026-10-20 from the docs and PR bodies on `main` (`7bc
   - Listen against the game with `out/nhl92-sound-chain.zip`.
   - Add cycle counts to `m68k-cpu.js`.
   - Move from ScriptProcessor to AudioWorklet.
-  
-  (`docs/NHL92-SOUND-HANDOFF-FOR-CLAUDE.md`, "Next steps")
 
 ### SNES
 - **94S MIDI:** [x] GM import maps CC7 → `$DE` volume and CC10 → `$DF` pan (`$0B`/`$0C`). [x] Basic sound-entry editor (BRR preview, ADSR/GAIN) in the 94 sequencer (`sound-snes-inst-editor.js`). [x] One GM program (drawbar organ) maps to left/right game organ entries via `pan` in `nhl94s-gm-map.json` and MIDI CC10 on import/export.
@@ -45,7 +43,7 @@ This list was compiled on 2026-10-20 from the docs and PR bodies on `main` (`7bc
 ## Graphics / images
 - **MAPS:** [x] Hide Chip Lab header link; [x] Image Editor (`jim.html`) import/edit/export of Genesis `.map.jim` (raw and `DecompressBytecode` packed), portrait `UnpackPicture` encode, NHLPA 93 SNES `.map.sjim`, and NHL 94 SNES screens (huf/lz/rle ZIP). Spec: [`docs/nhl9x-studio-requirements.md`](nhl9x-studio-requirements.md).
 - GAP-2 (93G): JIM inventory polish (optional). (`docs/AGENT-HANDOFF.md`, Backlog)
-- GAP-4 (95G): [x] 27 `ArenaGfx*` in `genesis-images.js`, contiguous retail slices, decode test when ROM present (`docs/GAP-4-95G-ARENA.md`). Full dev `extractAssets95.js` bitwise audit still optional.
+- GAP-4 (95G): [x] 27 `ArenaGfx*` in `genesis-images.js`, contiguous retail slices, decode test when ROM present (`docs/IMPLEMENTATION.md` §1.8, "GAP-4 (95G): arena graphics audit"). Full dev `extractAssets95.js` bitwise audit still optional.
 - GAP-5/6 (93S/94S): [x] 94S framer, energy bar, playoff arrows, crowd sprite strip (658–720), scouting backdrop (94S `scout` = `MenuBackMap` / `LoadScoutingScreen.asm`), 93S NHLPA logo (`$8C8000` / `NHLPALogo.map.sjim`), 93S playoff bracket (`PlayoffBracketMap` `$8AF880`), and 93S scouting backdrop (`scout` = `EASNBG` per `ScoutingReport.asm`). No separate ROM for the full 93S scouting layout (composite of EASNBG, team blocks, framer, Ron Barr). Genesis JIM scouting maps stay on 93G/94G only.
 - GAP-7 (95PC): DOS polish: goalie palette edge cases, QFS/PPV catalog holes, hotspot and dynamic rules. Audio tab is in (EACSNDF KMS/PCFF, OpenSpeechBank VIV, IFF). (`docs/IMPLEMENTATION.md`)
 - GAP-8 (94PC): [x] planar PPV/QPP decode, AdLib/SFX Audio tab, retail `HOCKEY.EXE` SPA at `0x358A4`, VIV speech, bank `hotX`/`hotY` and 94 `frameIsDynamic` ranges. Still open: MT-32 playback, YM30.BGP ear-match. (`docs/AGENT-HANDOFF.md`)
@@ -55,6 +53,8 @@ This list was compiled on 2026-10-20 from the docs and PR bodies on `main` (`7bc
   - The 93G/93S Stanley Cup palette was reported wrong but has not been reproduced. We need to know what colour is expected.
   - [x] 94S crowd frames on the Images tab (sprite frames 658–720).
 
+- Chip Lab: optional "dev tools" disclosure or `?chip=1` to show the hidden link (`docs/nhl9x-studio-requirements.md` §2.1).
+
 ## Host / product
 - HOST-3: OPFS storage is not implemented. HOST-5: NHL 95/96 PC ISO 9660 from `roms/nhl95.iso` / `roms/nhl96.iso` or a dropped `.iso` (`lib/iso9660.js`). Pages still cannot see a local disc.
 - Teams, schedules, ROM build and patches are not implemented. (`docs/DESIGN.md` §6)
@@ -62,7 +62,6 @@ This list was compiled on 2026-10-20 from the docs and PR bodies on `main` (`7bc
 ## Stale docs
 - [x] `lib/audio/README.md` — SNES section added.
 - [x] `docs/NHL94S-SOUND-DATA.md` — playback vs listening.
-- [x] `docs/NHL92-SOUND-HANDOFF-FOR-CLAUDE.md` — 93G/94G chain.
 - [x] `docs/AGENT-HANDOFF.md` — 95G catalog-only note.
 
 ---

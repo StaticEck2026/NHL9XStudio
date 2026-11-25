@@ -2,7 +2,7 @@
 
 This document is the **single runbook** for aligning [NHL9XStudio](https://github.com/abdulahmad/NHL9XStudio) with the latest **disassembly**, **EA-NHL-Tools**, and related research repos. Humans and agents should follow it when asked to **“sync per `docs/sync.md`”** (full or scoped — see §6).
 
-**NHL9X Studio is the app of record.** Upstream repos are inputs; nothing in git here should be replaced by re-copying the old `EA-NHL-Tools/Sprite-Viewer/` tree (see `docs/MIGRATION.md`).
+**NHL9X Studio is the app of record.** Upstream repos are inputs; nothing in git here should be replaced by re-copying the old `EA-NHL-Tools/Sprite-Viewer/` tree (it was briefly mirrored from there; development now lives only in this repository, on `main`).
 
 ---
 
@@ -238,7 +238,6 @@ When upstream and Studio **intentionally** diverge, document the reason in `data
 | `docs/AGENT-HANDOFF.md` | Current backlog, branch naming, PR habits |
 | `docs/DESIGN.md` | Product requirements and game priority |
 | `docs/IMPLEMENTATION.md` | GAP-* IDs, audio plan, 94 PC strategy |
-| `docs/MIGRATION.md` | Why Studio is not a mirror of Sprite-Viewer |
 | `lib/audio/README.md` | Audio catalog and preview |
 | EA-NHL-Tools `Docs/Sprites/Readme.md` | DOS/Genesis frame numbering |
 | EA-NHL-Tools `Docs/SND/Readme.md` | Hockey.snd digital anchors |

@@ -1,7 +1,5 @@
 # NHL9X Studio — requirements and implementation plan
 
-**In-repo copy:** [docs/nhl9x-studio-requirements.md](https://github.com/abdulahmad/nhl9xstudio/blob/main/docs/nhl9x-studio-requirements.md) in [NHL9XStudio](https://github.com/abdulahmad/NHL9XStudio). Keep both files the same.
-
 **Related:** `docs/DESIGN.md` (product requirements), `docs/IMPLEMENTATION.md` (architecture), `lib/jim.js` + `lib/sjim.js` + `lib/sscr.js` (parse/encode), `public/ice.js` + `jed.html` (PC ice/jersey UX to reuse), EA-NHL-Tools `JIM-Tools/` (do **not** treat as format truth).
 
 This plan is for a **Genesis `.map.jim` import / edit / export tool** inside NHL9X Studio, plus **hiding Chip Lab** in the product chrome. It is not a rewrite of the viewer, the PC ice editor, or ANIM/SHPI editing.
@@ -32,7 +30,7 @@ This plan is for a **Genesis `.map.jim` import / edit / export tool** inside NHL
 - [x] Keep `public/chip-lab.html`, `chip-lab.js`, `chip-lab.css`, `lib/audio/chip-lab-*.js`, and `test/chip-audio.js`. Do not delete.
 - [x] `server.js` may keep serving those paths.
 - [ ] Optional later: a small “dev tools” disclosure or `?chip=1` to show the link. Not required for v1 hide.
-- [x] Update copy that tells people to open Chip Lab from the header (`docs/NHL92-SOUND-HANDOFF-FOR-CLAUDE.md` “local viewer + chip lab”). Sound test and sequencer stay.
+- [x] Update copy that tells people to open Chip Lab from the header (the NHL 92 sound handoff, since removed). Sound test and sequencer stay.
 
 ### 2.2 Map editor — user-required features
 
@@ -390,27 +388,24 @@ Known Studio nits to fix while touching this code:
 
 ---
 
-## 5. Implementation steps and models
+## 5. Implementation steps
 
-Use only: `claude-opus-5-5-high`, `claude-sonnet-5-5-high`, `gpt-5.6-sol-high`, `grok-4.7-high`, `cursor-grok-4.6-high`, `composer-2.5`.
+All steps below have landed (see §7 and the document history). The table keeps the deliverables.
 
-**Default implementer: `grok-4.7-high`.** Pick another only when the step is clearly a better fit.
+| Step | Deliverable |
+|------|-------------|
+| **0** | Hide Chip Lab link; Maps button stub; docs pointers |
+| **1** | `parseJim` / `encodeJim` uncompressed; structured `JimDoc`; no-op round-trip on 92G raw JIMs |
+| **2** | `compressBytecode` + tests vs `decompressBytecode` and retail packed slices |
+| **3** | Golden tests: 93G/94G ROM slices + `ronbarr.map.jzip` |
+| **4** | `genesis-quantize.js`: 3-bit, methods, dither %, reverse order, ACT lock |
+| **5** | Per-tile palette assign + seam copy (U4) |
+| **6** | `jim.html` editor chrome: grid, tiles, flips, rotate, undo, inspect |
+| **7** | Import wizard (batch, palettes, ACT, two-step preview) |
+| **8** | Visual pass: seams, dither, transparency checkerboard |
+| **9** | Images-tab **Edit map**, drop-to-editor, export raw/packed |
+| **10** | Playwright smoke + `test/jim-roundtrip.js` in `test/select.js` |
 
-| Step | Deliverable | Model | Why |
-|------|-------------|-------|-----|
-| **0** | Hide Chip Lab link; Maps button stub; docs pointers | `composer-2.5` | Mechanical HTML/docs. No design judgment. |
-| **1** | `parseJim` / `encodeJim` uncompressed; structured `JimDoc`; no-op round-trip on 92G raw JIMs | `grok-4.7-high` | Code-heavy against existing `decodeJim`. |
-| **2** | `compressBytecode` + tests vs `decompressBytecode` and retail packed slices | `claude-opus-5-5-high` | Encoder must match a real opcode VM. JIM-Tools already failed this by guessing. Opus for correctness-critical format work. |
-| **3** | Golden tests: 93G/94G ROM slices + `ronbarr.map.jzip` | `grok-4.7-high` | Test-heavy, fixtures exist. |
-| **4** | `genesis-quantize.js`: 3-bit, methods, dither %, reverse order, ACT lock | `gpt-5.6-sol-high` | Quantization / dither math. Do not paste JIM-Tools’ 106k JS. |
-| **5** | Per-tile palette assign + seam copy (U4) | `claude-opus-5-5-high` | Hardest product requirement; needs a real cost model, not quadrants. |
-| **6** | `jim.html` editor chrome: grid, tiles, flips, rotate, undo, inspect | `grok-4.7-high` | Clone `ice.js` patterns onto Genesis cells. |
-| **7** | Import wizard (batch, palettes, ACT, two-step preview) | `grok-4.7-high` | UI + pipeline glue. |
-| **8** | Visual pass: seams, dither, transparency checkerboard | `claude-sonnet-5-5-high` | UI/visual judgment after the engine works. Not Opus (cost) and not Composer (too shallow). |
-| **9** | Images-tab **Edit map**, drop-to-editor, export raw/packed | `grok-4.7-high` | Studio wiring. |
-| **10** | Playwright smoke + `test/jim-roundtrip.js` in `test/select.js` | `grok-4.7-high` | Matches existing test style. |
-
-`cursor-grok-4.6-high`: use only if 4.7 is unavailable for a follow-up on the same files. Not first choice.
 
 ### Step notes
 
@@ -455,7 +450,7 @@ Check Title1, IceRink, a logo, and a locked-pal-0 / open-pal-1 import. Look at s
 5. **M4** — Multi-palette seams + batch import.  
 6. **M5** — Images-tab integration, goldens on 93/94 rinks/titles, polish.
 
-Each milestone is a PR titled `DOCS:` (M0) or `TOOLS:` / feature (`MAPS:` is fine if you want a prefix; DESIGN.md does not require it). Do not merge unless asked.
+Each milestone is a PR titled `DOCS:` (M0) or `TOOLS:` / feature (`MAPS:` is fine if you want a prefix; DESIGN.md does not require it).
 
 ---
 
