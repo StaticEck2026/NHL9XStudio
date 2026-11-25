@@ -10617,90 +10617,6 @@
     ],
     "images": [
       {
-        "id": "ArtRossPicMap",
-        "label": "Art Ross Trophy",
-        "group": "Awards",
-        "kind": "snes95-set",
-        "addr": 13303289,
-        "fileNames": [
-          "ArtRossPicMap",
-          "ArtRossPicTiles",
-          "ArtRossPicPalette"
-        ]
-      },
-      {
-        "id": "ConnSmythePicMap",
-        "label": "Conn Smythe Trophy",
-        "group": "Awards",
-        "kind": "snes95-set",
-        "addr": 13172281,
-        "fileNames": [
-          "ConnSmythePicMap",
-          "ConnSmythePicTiles",
-          "ConnSmythePicPalette"
-        ]
-      },
-      {
-        "id": "FaceOffMap",
-        "label": "Face Off",
-        "group": "Screens",
-        "kind": "snes95-set",
-        "addr": 12701666,
-        "fileNames": [
-          "FaceOffMap",
-          "FaceOffTiles",
-          "FaceOffPalette"
-        ]
-      },
-      {
-        "id": "HartPicMap",
-        "label": "Hart Memorial Trophy",
-        "group": "Awards",
-        "kind": "snes95-set",
-        "addr": 13497131,
-        "fileNames": [
-          "HartPicMap",
-          "HartPicTiles",
-          "HartPicPalette"
-        ]
-      },
-      {
-        "id": "HighScoreMap",
-        "label": "High Score",
-        "group": "Screens",
-        "kind": "snes95-set",
-        "addr": 12761961,
-        "fileNames": [
-          "HighScoreMap",
-          "HighScoreTiles",
-          "HighScorePalette"
-        ]
-      },
-      {
-        "id": "IceRinkMap",
-        "label": "Ice Rink",
-        "group": "Ice",
-        "kind": "snes95-set",
-        "addr": 13430437,
-        "fileNames": [
-          "IceRinkMap",
-          "IceRinkTiles",
-          "IceRinkPalette"
-        ]
-      },
-      {
-        "id": "JenningsPicMap",
-        "label": "William M. Jennings Trophy",
-        "group": "Awards",
-        "kind": "snes95-set",
-        "addr": 13238251,
-        "fileNames": [
-          "JenningsPicMap",
-          "JenningsPicTiles",
-          "JenningsPicPalette"
-        ]
-      },
-      {
         "id": "MenuBackMap",
         "label": "Menu Back",
         "group": "Screens",
@@ -10710,66 +10626,6 @@
           "MenuBackMap",
           "MenuBackTiles",
           "MenuBackPalette"
-        ]
-      },
-      {
-        "id": "NorrisPicMap",
-        "label": "James Norris Memorial Trophy",
-        "group": "Awards",
-        "kind": "snes95-set",
-        "addr": 13368789,
-        "fileNames": [
-          "NorrisPicMap",
-          "NorrisPicTiles",
-          "NorrisPicPalette"
-        ]
-      },
-      {
-        "id": "PadButtonsMap",
-        "label": "Pad Buttons",
-        "group": "Screens",
-        "kind": "snes95-set",
-        "addr": 12703608,
-        "fileNames": [
-          "PadButtonsMap",
-          "PadButtonsTiles",
-          "PadButtonsPalette"
-        ]
-      },
-      {
-        "id": "PauseScreenMap",
-        "label": "Pause Screen",
-        "group": "Screens",
-        "kind": "snes95-set",
-        "addr": 12696113,
-        "fileNames": [
-          "PauseScreenMap",
-          "PauseScreenTiles",
-          "PauseScreenPalette"
-        ]
-      },
-      {
-        "id": "PlayoffBracketMap",
-        "label": "Playoff Bracket",
-        "group": "Screens",
-        "kind": "snes95-set",
-        "addr": 12704891,
-        "fileNames": [
-          "PlayoffBracketMap",
-          "PlayoffBracketTiles",
-          "PlayoffBracketPalette"
-        ]
-      },
-      {
-        "id": "PresidentsPicMap",
-        "label": "Presidents Trophy",
-        "group": "Awards",
-        "kind": "snes95-set",
-        "addr": 13562027,
-        "fileNames": [
-          "PresidentsPicMap",
-          "PresidentsPicTiles",
-          "PresidentsPicPalette"
         ]
       },
       {
@@ -10785,99 +10641,1001 @@
         ]
       },
       {
-        "id": "SelkePicMap",
-        "label": "Frank J. Selke Trophy",
-        "group": "Awards",
-        "kind": "snes95-set",
-        "addr": 13106814,
+        "id": "LogoANHSprite",
+        "label": "Anaheim",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 0,
         "fileNames": [
-          "SelkePicMap",
-          "SelkePicTiles",
-          "SelkePicPalette"
+          "LogoANHSprite",
+          "LogoANHFrame",
+          "LogoANHPieces",
+          "LogoANHTiles"
         ]
       },
       {
-        "id": "StanleyCupMap",
-        "label": "Stanley Cup",
+        "id": "LogoBOSSprite",
+        "label": "Boston",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 1,
+        "fileNames": [
+          "LogoBOSSprite",
+          "LogoBOSFrame",
+          "LogoBOSPieces",
+          "LogoBOSTiles"
+        ]
+      },
+      {
+        "id": "LogoBUFSprite",
+        "label": "Buffalo",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 2,
+        "fileNames": [
+          "LogoBUFSprite",
+          "LogoBUFFrame",
+          "LogoBUFPieces",
+          "LogoBUFTiles"
+        ]
+      },
+      {
+        "id": "LogoCGYSprite",
+        "label": "Calgary",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 3,
+        "fileNames": [
+          "LogoCGYSprite",
+          "LogoCGYFrame",
+          "LogoCGYPieces",
+          "LogoCGYTiles"
+        ]
+      },
+      {
+        "id": "LogoCHISprite",
+        "label": "Chicago",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 4,
+        "fileNames": [
+          "LogoCHISprite",
+          "LogoCHIFrame",
+          "LogoCHIPieces",
+          "LogoCHITiles"
+        ]
+      },
+      {
+        "id": "LogoDALSprite",
+        "label": "Dallas",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 5,
+        "fileNames": [
+          "LogoDALSprite",
+          "LogoDALFrame",
+          "LogoDALPieces",
+          "LogoDALTiles"
+        ]
+      },
+      {
+        "id": "LogoDETSprite",
+        "label": "Detroit",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 6,
+        "fileNames": [
+          "LogoDETSprite",
+          "LogoDETFrame",
+          "LogoDETPieces",
+          "LogoDETTiles"
+        ]
+      },
+      {
+        "id": "LogoEDMSprite",
+        "label": "Edmonton",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 7,
+        "fileNames": [
+          "LogoEDMSprite",
+          "LogoEDMFrame",
+          "LogoEDMPieces",
+          "LogoEDMTiles"
+        ]
+      },
+      {
+        "id": "LogoFLASprite",
+        "label": "Florida",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 8,
+        "fileNames": [
+          "LogoFLASprite",
+          "LogoFLAFrame",
+          "LogoFLAPieces",
+          "LogoFLATiles"
+        ]
+      },
+      {
+        "id": "LogoHFDSprite",
+        "label": "Hartford",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 9,
+        "fileNames": [
+          "LogoHFDSprite",
+          "LogoHFDFrame",
+          "LogoHFDPieces",
+          "LogoHFDTiles"
+        ]
+      },
+      {
+        "id": "LogoLASprite",
+        "label": "Los Angeles",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 10,
+        "fileNames": [
+          "LogoLASprite",
+          "LogoLAFrame",
+          "LogoLAPieces",
+          "LogoLATiles"
+        ]
+      },
+      {
+        "id": "LogoMTLSprite",
+        "label": "Montreal",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 11,
+        "fileNames": [
+          "LogoMTLSprite",
+          "LogoMTLFrame",
+          "LogoMTLPieces",
+          "LogoMTLTiles"
+        ]
+      },
+      {
+        "id": "LogoNJSprite",
+        "label": "New Jersey",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 12,
+        "fileNames": [
+          "LogoNJSprite",
+          "LogoNJFrame",
+          "LogoNJPieces",
+          "LogoNJTiles"
+        ]
+      },
+      {
+        "id": "LogoNYISprite",
+        "label": "Long Island",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 13,
+        "fileNames": [
+          "LogoNYISprite",
+          "LogoNYIFrame",
+          "LogoNYIPieces",
+          "LogoNYITiles"
+        ]
+      },
+      {
+        "id": "LogoNYRSprite",
+        "label": "New York",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 14,
+        "fileNames": [
+          "LogoNYRSprite",
+          "LogoNYRFrame",
+          "LogoNYRPieces",
+          "LogoNYRTiles"
+        ]
+      },
+      {
+        "id": "LogoOTWSprite",
+        "label": "Ottawa",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 15,
+        "fileNames": [
+          "LogoOTWSprite",
+          "LogoOTWFrame",
+          "LogoOTWPieces",
+          "LogoOTWTiles"
+        ]
+      },
+      {
+        "id": "LogoPHISprite",
+        "label": "Philadelphia",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 16,
+        "fileNames": [
+          "LogoPHISprite",
+          "LogoPHIFrame",
+          "LogoPHIPieces",
+          "LogoPHITiles"
+        ]
+      },
+      {
+        "id": "LogoPITSprite",
+        "label": "Pittsburgh",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 17,
+        "fileNames": [
+          "LogoPITSprite",
+          "LogoPITFrame",
+          "LogoPITPieces",
+          "LogoPITTiles"
+        ]
+      },
+      {
+        "id": "LogoQUESprite",
+        "label": "Quebec",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 18,
+        "fileNames": [
+          "LogoQUESprite",
+          "LogoQUEFrame",
+          "LogoQUEPieces",
+          "LogoQUETiles"
+        ]
+      },
+      {
+        "id": "LogoSJSprite",
+        "label": "San Jose",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 19,
+        "fileNames": [
+          "LogoSJSprite",
+          "LogoSJFrame",
+          "LogoSJPieces",
+          "LogoSJTiles"
+        ]
+      },
+      {
+        "id": "LogoSTLSprite",
+        "label": "St. Louis",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 20,
+        "fileNames": [
+          "LogoSTLSprite",
+          "LogoSTLFrame",
+          "LogoSTLPieces",
+          "LogoSTLTiles"
+        ]
+      },
+      {
+        "id": "LogoTBSprite",
+        "label": "Tampa Bay",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 21,
+        "fileNames": [
+          "LogoTBSprite",
+          "LogoTBFrame",
+          "LogoTBPieces",
+          "LogoTBTiles"
+        ]
+      },
+      {
+        "id": "LogoTORSprite",
+        "label": "Toronto",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 22,
+        "fileNames": [
+          "LogoTORSprite",
+          "LogoTORFrame",
+          "LogoTORPieces",
+          "LogoTORTiles"
+        ]
+      },
+      {
+        "id": "LogoVANSprite",
+        "label": "Vancouver",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 23,
+        "fileNames": [
+          "LogoVANSprite",
+          "LogoVANFrame",
+          "LogoVANPieces",
+          "LogoVANTiles"
+        ]
+      },
+      {
+        "id": "LogoWSHSprite",
+        "label": "Washington",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 24,
+        "fileNames": [
+          "LogoWSHSprite",
+          "LogoWSHFrame",
+          "LogoWSHPieces",
+          "LogoWSHTiles"
+        ]
+      },
+      {
+        "id": "LogoWPGSprite",
+        "label": "Winnipeg",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 25,
+        "fileNames": [
+          "LogoWPGSprite",
+          "LogoWPGFrame",
+          "LogoWPGPieces",
+          "LogoWPGTiles"
+        ]
+      },
+      {
+        "id": "LogoASESprite",
+        "label": "All-Star East",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 26,
+        "fileNames": [
+          "LogoASESprite",
+          "LogoASEFrame",
+          "LogoASEPieces",
+          "LogoASETiles"
+        ]
+      },
+      {
+        "id": "LogoASWSprite",
+        "label": "All-Star West",
+        "group": "Logos",
+        "kind": "snes95-object",
+        "record": 27,
+        "fileNames": [
+          "LogoASWSprite",
+          "LogoASWFrame",
+          "LogoASWPieces",
+          "LogoASWTiles"
+        ]
+      },
+      {
+        "id": "Sprite28Sprite",
+        "label": "Symbols (arrows, shine, sparkle, copyright)",
+        "group": "Sprites",
+        "kind": "snes95-object",
+        "record": 28,
+        "fileNames": [
+          "Sprite28Sprite",
+          "Sprite28Frame",
+          "Sprite28Pieces",
+          "Sprite28Tiles"
+        ]
+      },
+      {
+        "id": "PadNumbersSprite",
+        "label": "Pad and numbers",
+        "group": "Sprites",
+        "kind": "snes95-object",
+        "record": 29,
+        "fileNames": [
+          "PadNumbersSprite",
+          "PadNumbersFrame",
+          "PadNumbersPieces",
+          "PadNumbersTiles"
+        ]
+      },
+      {
+        "id": "SkaterSprite",
+        "label": "Skater",
+        "group": "Sprites",
+        "kind": "snes95-object",
+        "record": 30,
+        "fileNames": [
+          "SkaterSprite",
+          "SkaterFrame",
+          "SkaterPieces",
+          "SkaterTiles"
+        ]
+      },
+      {
+        "id": "RedDotSprite",
+        "label": "Red dot",
+        "group": "Sprites",
+        "kind": "snes95-object",
+        "record": 31,
+        "fileNames": [
+          "RedDotSprite",
+          "RedDotFrame",
+          "RedDotPieces",
+          "RedDotTiles"
+        ]
+      },
+      {
+        "id": "EASportsSprite",
+        "label": "EA Sports",
         "group": "Screens",
-        "kind": "snes95-set",
-        "addr": 13562857,
+        "kind": "snes95-object",
+        "record": 32,
         "fileNames": [
-          "StanleyCupMap",
-          "StanleyCupTiles",
-          "StanleyCupPalette"
+          "EASportsSprite",
+          "EASportsFrame",
+          "EASportsPieces",
+          "EASportsTiles"
         ]
       },
       {
-        "id": "TeamNameBarsMap",
-        "label": "Team Name Bars",
+        "id": "EALogoESprite",
+        "label": "EA logo E",
         "group": "Screens",
-        "kind": "snes95-set",
-        "addr": 12708274,
+        "kind": "snes95-object",
+        "record": 33,
         "fileNames": [
-          "TeamNameBarsMap",
-          "TeamNameBarsTiles",
-          "TeamNameBarsPalette"
+          "EALogoESprite",
+          "EALogoEFrame",
+          "EALogoEPieces",
+          "EALogoETiles"
         ]
       },
       {
-        "id": "TitleGoalieMap",
-        "label": "Title Goalie",
+        "id": "EALogoASprite",
+        "label": "EA logo A",
         "group": "Screens",
-        "kind": "snes95-set",
-        "addr": 12725426,
+        "kind": "snes95-object",
+        "record": 34,
         "fileNames": [
-          "TitleGoalieMap",
-          "TitleGoalieTiles",
-          "TitleGoaliePalette"
+          "EALogoASprite",
+          "EALogoAFrame",
+          "EALogoAPieces",
+          "EALogoATiles"
         ]
       },
       {
-        "id": "TitleLogoMap",
-        "label": "Title Logo",
+        "id": "SportsWordSprite",
+        "label": "Sports word",
         "group": "Screens",
-        "kind": "snes95-set",
-        "addr": 12743158,
+        "kind": "snes95-object",
+        "record": 35,
         "fileNames": [
-          "TitleLogoMap",
-          "TitleLogoTiles",
-          "TitleLogoPalette"
+          "SportsWordSprite",
+          "SportsWordFrame",
+          "SportsWordPieces",
+          "SportsWordTiles"
         ]
       },
       {
-        "id": "TitlePlayersMap",
-        "label": "Title Players",
+        "id": "ElectronicWordSprite",
+        "label": "Electronic Arts word",
         "group": "Screens",
-        "kind": "snes95-set",
-        "addr": 12716728,
+        "kind": "snes95-object",
+        "record": 36,
         "fileNames": [
-          "TitlePlayersMap",
-          "TitlePlayersTiles",
-          "TitlePlayersPalette"
+          "ElectronicWordSprite",
+          "ElectronicWordFrame",
+          "ElectronicWordPieces",
+          "ElectronicWordTiles"
         ]
       },
       {
-        "id": "VezinaPicMap",
-        "label": "Vezina Trophy",
-        "group": "Awards",
-        "kind": "snes95-set",
-        "addr": 13041128,
-        "fileNames": [
-          "VezinaPicMap",
-          "VezinaPicTiles",
-          "VezinaPicPalette"
-        ]
-      },
-      {
-        "id": "VisualConceptsMap",
-        "label": "Visual Concepts",
+        "id": "ItsInTheSprite",
+        "label": "It's in the game",
         "group": "Screens",
-        "kind": "snes95-set",
-        "addr": 12759370,
+        "kind": "snes95-object",
+        "record": 37,
         "fileNames": [
-          "VisualConceptsMap",
-          "VisualConceptsTiles",
-          "VisualConceptsPalette"
+          "ItsInTheSprite",
+          "ItsInTheFrame",
+          "ItsInThePieces",
+          "ItsInTheTiles"
+        ]
+      },
+      {
+        "id": "BlackBoxSprite",
+        "label": "Black box",
+        "group": "Screens",
+        "kind": "snes95-object",
+        "record": 38,
+        "fileNames": [
+          "BlackBoxSprite",
+          "BlackBoxFrame",
+          "BlackBoxPieces",
+          "BlackBoxTiles"
+        ]
+      },
+      {
+        "id": "NHLShieldSprite",
+        "label": "NHL shield",
+        "group": "Screens",
+        "kind": "snes95-object",
+        "record": 39,
+        "fileNames": [
+          "NHLShieldSprite",
+          "NHLShieldFrame",
+          "NHLShieldPieces",
+          "NHLShieldTiles"
+        ]
+      },
+      {
+        "id": "NHLPASprite",
+        "label": "NHLPA",
+        "group": "Screens",
+        "kind": "snes95-object",
+        "record": 40,
+        "fileNames": [
+          "NHLPASprite",
+          "NHLPAFrame",
+          "NHLPAPieces",
+          "NHLPATiles"
+        ]
+      },
+      {
+        "id": "ArrowFontTiles",
+        "label": "Arrow Font",
+        "group": "Fonts",
+        "kind": "snes95-tiles",
+        "addr": 12583550,
+        "packed": true,
+        "columns": 16,
+        "fileNames": [
+          "ArrowFontTiles"
+        ]
+      },
+      {
+        "id": "DigitFontTiles",
+        "label": "Digit Font",
+        "group": "Fonts",
+        "kind": "snes95-tiles",
+        "addr": 12600898,
+        "packed": true,
+        "columns": 16,
+        "fileNames": [
+          "DigitFontTiles"
+        ]
+      },
+      {
+        "id": "MeterFontTiles",
+        "label": "Meter Font",
+        "group": "Fonts",
+        "kind": "snes95-tiles",
+        "addr": 12585334,
+        "packed": true,
+        "columns": 16,
+        "fileNames": [
+          "MeterFontTiles"
+        ]
+      },
+      {
+        "id": "GradientBarTiles",
+        "label": "Gradient Bars",
+        "group": "Screens",
+        "kind": "snes95-tiles",
+        "addr": 12585021,
+        "packed": true,
+        "columns": 16,
+        "fileNames": [
+          "GradientBarTiles"
+        ]
+      },
+      {
+        "id": "LinePieceTiles",
+        "label": "Line Pieces",
+        "group": "Screens",
+        "kind": "snes95-tiles",
+        "addr": 12601096,
+        "packed": true,
+        "columns": 16,
+        "fileNames": [
+          "LinePieceTiles"
+        ]
+      },
+      {
+        "id": "WonCheckTiles",
+        "label": "Won Check",
+        "group": "Screens",
+        "kind": "snes95-tiles",
+        "addr": 12598521,
+        "packed": true,
+        "columns": 16,
+        "fileNames": [
+          "WonCheckTiles",
+          "WonCheckPalette"
+        ],
+        "palette": 12599010
+      },
+      {
+        "id": "TeamNicknameTiles",
+        "label": "Team Nicknames",
+        "group": "Screens",
+        "kind": "snes95-centerice",
+        "addr": 12688232,
+        "gridW": 10,
+        "gridH": 2,
+        "fileNames": [
+          "TeamNicknameTiles"
+        ]
+      },
+      {
+        "id": "CenterIceTiles",
+        "label": "Center Ice Logos",
+        "group": "Ice",
+        "kind": "snes95-centerice",
+        "addr": 12745003,
+        "palette": 12758474,
+        "fileNames": [
+          "CenterIceTiles",
+          "CenterIcePalettes"
+        ]
+      },
+      {
+        "id": "PlayerPhotosANH",
+        "label": "Anaheim Player Photos",
+        "group": "Players",
+        "kind": "snes95-photos",
+        "palettes": 13453933,
+        "photos": 13454125,
+        "fileNames": [
+          "PlayerPhotosANH",
+          "PhotoPalettesANH"
+        ]
+      },
+      {
+        "id": "PlayerPhotosBOS",
+        "label": "Boston Player Photos",
+        "group": "Players",
+        "kind": "snes95-photos",
+        "palettes": 13458997,
+        "photos": 13459189,
+        "fileNames": [
+          "PlayerPhotosBOS",
+          "PhotoPalettesBOS"
+        ]
+      },
+      {
+        "id": "PlayerPhotosBUF",
+        "label": "Buffalo Player Photos",
+        "group": "Players",
+        "kind": "snes95-photos",
+        "palettes": 13463542,
+        "photos": 13463734,
+        "fileNames": [
+          "PlayerPhotosBUF",
+          "PhotoPalettesBUF"
+        ]
+      },
+      {
+        "id": "PlayerPhotosCGY",
+        "label": "Calgary Player Photos",
+        "group": "Players",
+        "kind": "snes95-photos",
+        "palettes": 13468201,
+        "photos": 13468393,
+        "fileNames": [
+          "PlayerPhotosCGY",
+          "PhotoPalettesCGY"
+        ]
+      },
+      {
+        "id": "PlayerPhotosCHI",
+        "label": "Chicago Player Photos",
+        "group": "Players",
+        "kind": "snes95-photos",
+        "palettes": 13472785,
+        "photos": 13472977,
+        "fileNames": [
+          "PlayerPhotosCHI",
+          "PhotoPalettesCHI"
+        ]
+      },
+      {
+        "id": "PlayerPhotosDAL",
+        "label": "Dallas Player Photos",
+        "group": "Players",
+        "kind": "snes95-photos",
+        "palettes": 13477307,
+        "photos": 13477499,
+        "fileNames": [
+          "PlayerPhotosDAL",
+          "PhotoPalettesDAL"
+        ]
+      },
+      {
+        "id": "PlayerPhotosDET",
+        "label": "Detroit Player Photos",
+        "group": "Players",
+        "kind": "snes95-photos",
+        "palettes": 13482515,
+        "photos": 13482707,
+        "fileNames": [
+          "PlayerPhotosDET",
+          "PhotoPalettesDET"
+        ]
+      },
+      {
+        "id": "PlayerPhotosEDM",
+        "label": "Edmonton Player Photos",
+        "group": "Players",
+        "kind": "snes95-photos",
+        "palettes": 13487225,
+        "photos": 13487417,
+        "fileNames": [
+          "PlayerPhotosEDM",
+          "PhotoPalettesEDM"
+        ]
+      },
+      {
+        "id": "PlayerPhotosFLA",
+        "label": "Florida Player Photos",
+        "group": "Players",
+        "kind": "snes95-photos",
+        "palettes": 13492062,
+        "photos": 13492254,
+        "fileNames": [
+          "PlayerPhotosFLA",
+          "PhotoPalettesFLA"
+        ]
+      },
+      {
+        "id": "PlayerPhotosHFD",
+        "label": "Hartford Player Photos",
+        "group": "Players",
+        "kind": "snes95-photos",
+        "palettes": 13502938,
+        "photos": 13503130,
+        "fileNames": [
+          "PlayerPhotosHFD",
+          "PhotoPalettesHFD"
+        ]
+      },
+      {
+        "id": "PlayerPhotosLA",
+        "label": "Los Angeles Player Photos",
+        "group": "Players",
+        "kind": "snes95-photos",
+        "palettes": 13507783,
+        "photos": 13507975,
+        "fileNames": [
+          "PlayerPhotosLA",
+          "PhotoPalettesLA"
+        ]
+      },
+      {
+        "id": "PlayerPhotosMTL",
+        "label": "Montreal Player Photos",
+        "group": "Players",
+        "kind": "snes95-photos",
+        "palettes": 13513154,
+        "photos": 13513346,
+        "fileNames": [
+          "PlayerPhotosMTL",
+          "PhotoPalettesMTL"
+        ]
+      },
+      {
+        "id": "PlayerPhotosNJ",
+        "label": "New Jersey Player Photos",
+        "group": "Players",
+        "kind": "snes95-photos",
+        "palettes": 13518213,
+        "photos": 13518405,
+        "fileNames": [
+          "PlayerPhotosNJ",
+          "PhotoPalettesNJ"
+        ]
+      },
+      {
+        "id": "PlayerPhotosNYI",
+        "label": "Long Island Player Photos",
+        "group": "Players",
+        "kind": "snes95-photos",
+        "palettes": 13522879,
+        "photos": 13523071,
+        "fileNames": [
+          "PlayerPhotosNYI",
+          "PhotoPalettesNYI"
+        ]
+      },
+      {
+        "id": "PlayerPhotosNYR",
+        "label": "New York Player Photos",
+        "group": "Players",
+        "kind": "snes95-photos",
+        "palettes": 13528320,
+        "photos": 13528512,
+        "fileNames": [
+          "PlayerPhotosNYR",
+          "PhotoPalettesNYR"
+        ]
+      },
+      {
+        "id": "PlayerPhotosOTW",
+        "label": "Ottawa Player Photos",
+        "group": "Players",
+        "kind": "snes95-photos",
+        "palettes": 13533319,
+        "photos": 13533511,
+        "fileNames": [
+          "PlayerPhotosOTW",
+          "PhotoPalettesOTW"
+        ]
+      },
+      {
+        "id": "PlayerPhotosPHI",
+        "label": "Philadelphia Player Photos",
+        "group": "Players",
+        "kind": "snes95-photos",
+        "palettes": 13538259,
+        "photos": 13538451,
+        "fileNames": [
+          "PlayerPhotosPHI",
+          "PhotoPalettesPHI"
+        ]
+      },
+      {
+        "id": "PlayerPhotosPIT",
+        "label": "Pittsburgh Player Photos",
+        "group": "Players",
+        "kind": "snes95-photos",
+        "palettes": 13543298,
+        "photos": 13543490,
+        "fileNames": [
+          "PlayerPhotosPIT",
+          "PhotoPalettesPIT"
+        ]
+      },
+      {
+        "id": "PlayerPhotosQUE",
+        "label": "Quebec Player Photos",
+        "group": "Players",
+        "kind": "snes95-photos",
+        "palettes": 13547680,
+        "photos": 13547872,
+        "fileNames": [
+          "PlayerPhotosQUE",
+          "PhotoPalettesQUE"
+        ]
+      },
+      {
+        "id": "PlayerPhotosSJ",
+        "label": "San Jose Player Photos",
+        "group": "Players",
+        "kind": "snes95-photos",
+        "palettes": 13552602,
+        "photos": 13552794,
+        "fileNames": [
+          "PlayerPhotosSJ",
+          "PhotoPalettesSJ"
+        ]
+      },
+      {
+        "id": "PlayerPhotosSTL",
+        "label": "St. Louis Player Photos",
+        "group": "Players",
+        "kind": "snes95-photos",
+        "palettes": 13557195,
+        "photos": 13557387,
+        "fileNames": [
+          "PlayerPhotosSTL",
+          "PhotoPalettesSTL"
+        ]
+      },
+      {
+        "id": "PlayerPhotosTB",
+        "label": "Tampa Bay Player Photos",
+        "group": "Players",
+        "kind": "snes95-photos",
+        "palettes": 12602599,
+        "photos": 12602791,
+        "fileNames": [
+          "PlayerPhotosTB",
+          "PhotoPalettesTB"
+        ]
+      },
+      {
+        "id": "PlayerPhotosTOR",
+        "label": "Toronto Player Photos",
+        "group": "Players",
+        "kind": "snes95-photos",
+        "palettes": 12606892,
+        "photos": 12607084,
+        "fileNames": [
+          "PlayerPhotosTOR",
+          "PhotoPalettesTOR"
+        ]
+      },
+      {
+        "id": "PlayerPhotosVAN",
+        "label": "Vancouver Player Photos",
+        "group": "Players",
+        "kind": "snes95-photos",
+        "palettes": 12611181,
+        "photos": 12611373,
+        "fileNames": [
+          "PlayerPhotosVAN",
+          "PhotoPalettesVAN"
+        ]
+      },
+      {
+        "id": "PlayerPhotosWSH",
+        "label": "Washington Player Photos",
+        "group": "Players",
+        "kind": "snes95-photos",
+        "palettes": 13444576,
+        "photos": 13444768,
+        "fileNames": [
+          "PlayerPhotosWSH",
+          "PhotoPalettesWSH"
+        ]
+      },
+      {
+        "id": "PlayerPhotosWPG",
+        "label": "Winnipeg Player Photos",
+        "group": "Players",
+        "kind": "snes95-photos",
+        "palettes": 13449337,
+        "photos": 13449529,
+        "fileNames": [
+          "PlayerPhotosWPG",
+          "PhotoPalettesWPG"
+        ]
+      },
+      {
+        "id": "SPFpad",
+        "label": "Pad Cursor",
+        "group": "Sprites",
+        "kind": "snes95-frames",
+        "first": 111,
+        "last": 111,
+        "fileNames": [
+          "SPFpad"
+        ]
+      },
+      {
+        "id": "SPFreplay",
+        "label": "Replay Cursor",
+        "group": "Sprites",
+        "kind": "snes95-frames",
+        "first": 114,
+        "last": 114,
+        "fileNames": [
+          "SPFreplay"
+        ]
+      },
+      {
+        "id": "SPFpuck",
+        "label": "Puck",
+        "group": "Sprites",
+        "kind": "snes95-frames",
+        "first": 435,
+        "last": 445,
+        "fileNames": [
+          "SPFpuck"
+        ]
+      },
+      {
+        "id": "SPFgoal",
+        "label": "Goal",
+        "group": "Sprites",
+        "kind": "snes95-frames",
+        "first": 446,
+        "last": 446,
+        "fileNames": [
+          "SPFgoal"
+        ]
+      },
+      {
+        "id": "SPFSiren",
+        "label": "Goal Light",
+        "group": "Sprites",
+        "kind": "snes95-frames",
+        "first": 701,
+        "last": 714,
+        "fileNames": [
+          "SPFSiren"
         ]
       }
     ],

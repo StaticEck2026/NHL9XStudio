@@ -1,6 +1,14 @@
 {
   "releases": [
     {
+      "version": "1.58.0",
+      "date": "2026-11-25",
+      "changes": [
+        "NHL 95 SNES now lists the pictures the Genesis side has: the 28 team logos, the Pad Cursor (controller stars), Replay Cursor, puck, goal and goal light, the title and EA logos, the NHL shield and NHLPA, the skater, and the 26 teams' player photos with their own colours",
+        "NHL 95 SNES also lists the centre ice logos, the team nicknames, and the font, bar, line-piece and Won / check tiles (the nickname colours are a guess)"
+      ]
+    },
+    {
       "version": "1.57.6",
       "date": "2026-11-24",
       "changes": [

@@ -2738,6 +2738,16 @@ async function ensureImage(id) {
       };
     } else if (image.kind === 'snes95-set') {
       parsed = Nhl95Snes.renderMapSet(rom, image.addr);
+    } else if (image.kind === 'snes95-object') {
+      parsed = Nhl95Snes.renderSpriteObject(rom, image.record);
+    } else if (image.kind === 'snes95-tiles') {
+      parsed = Nhl95Snes.renderTileSheet(rom, image);
+    } else if (image.kind === 'snes95-centerice') {
+      parsed = Nhl95Snes.renderCenterIce(rom, image);
+    } else if (image.kind === 'snes95-photos') {
+      parsed = Nhl95Snes.renderPhotos(rom, image);
+    } else if (image.kind === 'snes95-frames') {
+      parsed = Nhl95Snes.renderFrames(rom, image);
     } else {
       parsed = Nhl92Snes.openImage(rom, image, gameInfo.snes, await ensureRink());
     }
