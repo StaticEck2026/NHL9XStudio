@@ -82,6 +82,9 @@ const SHEETS = [
 for (const [name, label, group, pal] of SHEETS) {
   more.push(Object.assign({ id: name, label, group, kind: 'snes95-tiles', addr: addrOf(name + '.asm') - 4, packed: true, columns: 16, fileNames: [name] }, pal ? { palette: findList(pal + '.asm'), fileNames: [name, pal] } : {}));
 }
+for (const [name, label, gw, gh, bytes] of [['BoldFontGlyphs', 'Bold Font', 16, 8, 1472], ['ItalicFontGlyphs', 'Italic Font', 16, 16, 4672], ['ThinFontGlyphs', 'Thin Font', 16, 16, 2752]]) {
+  more.push({ id: name, label, group: 'Fonts', kind: 'snes95-glyphs', addr: addrOf(name + '.asm'), gw, gh, bytes, columns: 16, fileNames: [name] });
+}
 more.push({ id: 'TeamNicknameTiles', label: 'Team Nicknames', group: 'Screens', kind: 'snes95-centerice', addr: addrOf('TeamNicknameTiles.asm') - 4, gridW: 10, gridH: 2, fileNames: ['TeamNicknameTiles'] });
 more.push({ id: 'CenterIceTiles', label: 'Center Ice Logos', group: 'Ice', kind: 'snes95-centerice', addr: addrOf('CenterIceTiles.asm') - 4, palette: findList('CenterIcePalettes.asm'), fileNames: ['CenterIceTiles', 'CenterIcePalettes'] });
 for (const t of TEAMS.slice(0, 26)) {

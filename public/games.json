@@ -11248,6 +11248,48 @@
         "palette": 12599010
       },
       {
+        "id": "BoldFontGlyphs",
+        "label": "Bold Font",
+        "group": "Fonts",
+        "kind": "snes95-glyphs",
+        "addr": 12589625,
+        "gw": 16,
+        "gh": 8,
+        "bytes": 1472,
+        "columns": 16,
+        "fileNames": [
+          "BoldFontGlyphs"
+        ]
+      },
+      {
+        "id": "ItalicFontGlyphs",
+        "label": "Italic Font",
+        "group": "Fonts",
+        "kind": "snes95-glyphs",
+        "addr": 12591097,
+        "gw": 16,
+        "gh": 16,
+        "bytes": 4672,
+        "columns": 16,
+        "fileNames": [
+          "ItalicFontGlyphs"
+        ]
+      },
+      {
+        "id": "ThinFontGlyphs",
+        "label": "Thin Font",
+        "group": "Fonts",
+        "kind": "snes95-glyphs",
+        "addr": 12595769,
+        "gw": 16,
+        "gh": 16,
+        "bytes": 2752,
+        "columns": 16,
+        "fileNames": [
+          "ThinFontGlyphs"
+        ]
+      },
+      {
         "id": "TeamNicknameTiles",
         "label": "Team Nicknames",
         "group": "Screens",
