@@ -56,6 +56,12 @@
     return n;
   }
 
+  /* the PCFF digital effects the NHL 95 PC code names (sfx id = program number): goal siren, period horn, one minute horn */
+  function pcSfxName(s) {
+    const names = { 156: 'Goal siren (sfx 9Ch)', 145: 'Period horn (sfx 91h)', 151: 'One minute horn (sfx 97h)' };
+    for (const p of s.programs || []) if (names[p.program]) return names[p.program];
+    return '';
+  }
   function labelOf(stem) {
     if (CUES[stem]) return CUES[stem];
     if (is97()) {
@@ -261,7 +267,7 @@
           samples = root.NhlPc94Sfx.listDigital(tim, dig, pat).map((s) => ({
             id: 'sfx-' + s.timbre,
             group: CAT().sfx,
-            label: 'Timbre ' + s.timbre,
+            label: pcSfxName(s) || 'Timbre ' + s.timbre,
             sub: s.rate + ' Hz · ' + s.length + ' bytes' + (s.loop ? ' · loop' : '') +
               (s.programs.length ? ' · prog ' + s.programs.map((p) => p.program).join(',') : ''),
             sample: s
