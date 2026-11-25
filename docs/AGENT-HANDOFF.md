@@ -2,6 +2,8 @@
 
 ## Status (2026-10-28)
 
+Work merged since then (through #243, 2026-11-23) is in the git log; open items are in `docs/TODO.md`.
+
 Everything below is merged to `main` and live on GitHub Pages (a deploy can fail at the gh-pages push with an Internal Server Error: re-run the workflow).
 
 - **96G:** NHL 96 Genesis is a studio profile (`nhl96`): 95-style sprite records, `frames96.asm` SPA names, extractAssets96.js pictures. SetSframe menu `*Sprites` and ArenaAnim/CupCelebration are frame banks (frame 0 included). Team logos stamp `TeamLogoPalettes` (`$1D93C8`). Team CRAM pals are `data/pals/genesis96`. Sound test plays the retail chain from `data/fixtures/nhl96-sound-slice.bin` (`$24486–$88A18`; `docs/NHL96-SOUND.md`). Sequencer / MIDI stay off.
@@ -15,7 +17,7 @@ Everything below is merged to `main` and live on GitHub Pages (a deploy can fail
 - After source repos change, regenerate nhl-disasm-report (`python3 tools/generate.py`) and fix `lib/games.js` offsets if a layout moves.
 
 
-**Last updated:** 2026-10-15 (NHL '92 sound steps 6–7 on main; see sound handoff below)  
+**Last updated:** 2026-10-15 (NHL '92 sound steps 6–7 on main; see `docs/NHL92-SOUND-CHAIN.md`)  
 **Repository:** [NHL9XStudio](https://github.com/abdulahmad/NHL9XStudio) (`main`) — app at repo root  
 **Product requirements:** `docs/DESIGN.md`. **Implementation notes:** `docs/IMPLEMENTATION.md`. **Maps editor spec:** `docs/nhl9x-studio-requirements.md`.  
 **Upstream sync runbook:** `docs/sync.md` — use when aligning with disasm / EA-NHL-Tools (“sync per sync.md”).
@@ -38,7 +40,7 @@ Bundled regression fixtures live in `test/fixtures/` (ANIM/JIM/PAL). Full golden
 
 **92G → 93G → 94G → 95G → 96G → 93S → 94S → 95PC → 94PC → 96PC**
 
-Audio: **NHL '92 retail chain (steps 6–8)** — full 68k→Z80→ymfm path, tests; the **Sound test** tab is NHL 92's only audio UI (Sound data tab removed, Audio tab hidden for NHL 92). **`docs/NHL92-SOUND-HANDOFF-FOR-CLAUDE.md`** for git context, the siren fix, step 8, chip lab, gaps. Legacy **Audio** tab (AUD-1 FM sketch, not YM2612) is unused; NHLPA 93 / NHL 94 / NHL 95 / NHL 96 Genesis and both SNES games use the Sound test UI. The Z80 test profile was removed (#66). The sequencer editors (all five sound games; not 96G) are described in **`docs/SEQUENCER-EDITOR.md`**; `node test.js` also runs the Playwright load check `test/browser/load-errors.js` when Playwright is installed. **93G / 94G / 95G / 96G** use the retail sound chain in the Sound test (`docs/NHL93-94-SOUND.md`, `docs/NHL95-SOUND.md`, `docs/NHL96-SOUND.md`). See `lib/audio/README.md`, `docs/NHL92-SOUND-CHAIN.md`. Do not depend on MID94-Tools.
+Audio: **NHL '92 retail chain (steps 6–8)** — full 68k→Z80→ymfm path, tests; the **Sound test** tab is NHL 92's only audio UI (Sound data tab removed, Audio tab hidden for NHL 92). **`docs/NHL92-SOUND-CHAIN.md`** for git context, the siren fix, step 8, chip lab, gaps. Legacy **Audio** tab (AUD-1 FM sketch, not YM2612) is unused; NHLPA 93 / NHL 94 / NHL 95 / NHL 96 Genesis and both SNES games use the Sound test UI. The Z80 test profile was removed (#66). The sequencer editors (all five sound games; not 96G) are described in **`docs/SEQUENCER-EDITOR.md`**; `node test.js` also runs the Playwright load check `test/browser/load-errors.js` when Playwright is installed. **93G / 94G / 95G / 96G** use the retail sound chain in the Sound test (`docs/NHL93-94-SOUND.md`, `docs/NHL95-SOUND.md`, `docs/NHL96-SOUND.md`). See `lib/audio/README.md`, `docs/NHL92-SOUND-CHAIN.md`. Do not depend on MID94-Tools.
 
 ---
 

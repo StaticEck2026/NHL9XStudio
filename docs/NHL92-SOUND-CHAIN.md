@@ -154,3 +154,16 @@ Sequencer checks (headless Chromium, `node server.js`, Playwright):
   - DAC level relative to FM, model 1 vs model 2 output stages, and the Mega Drive's analog filtering aren't modelled or compared. The PSG mix level is untested because the driver never writes the PSG.
 - **The bare-boot siren WAV.** `sfx-00-siren-SFXsiren.wav` stays pinned as step 6's run (boot, idle vblank, siren). It's a flat line at ymfm's idle level 504: silence, not quiet sound, because no patch loads. The audible siren is `sfx-00-siren-SFXsiren-after-music-off.wav`. Both are in the zip, named so they can't be confused.
 - **Slow machines.** Node renders the chain at about 4× real time on this VM, and headless Chromium kept up with real time; its headroom wasn't measured. On a much slower machine the ScriptProcessor would underrun, which is audible as glitches, not wrong notes.
+
+## Pinned files and related docs
+
+| File | Purpose |
+|------|---------|
+| `data/audio/nhl92-68k-driver.json` | Step 6 68k log SHA-256 |
+| `data/audio/nhl92-sound-chain.json` | Chain WAV / YM log SHA-256 (subset) |
+| `data/audio/nhl92-chip-tests.json` | Chip Lab / Z80-audio renders |
+| `data/fixtures/nhl92-sound-slice.bin` | Bundled ROM slice @ `$F4C8` |
+
+Read with: `docs/NHL92-68K-DRIVER.md` (step 6 68k behaviour, SFX table), `docs/NHL92-SOUND-DATA.md` (parser, blocks,
+patterns), `docs/M68K-CORE.md` (68k interpreter limits), `lib/audio/README.md` (module index). Reference disassembly
+(read-only): NHL92Genesis `src/sound/sound.asm`, `src/middle.asm` (`sfx` / `song`), `src/ram.asm` (SFX equates).
