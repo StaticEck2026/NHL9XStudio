@@ -2746,6 +2746,8 @@ async function ensureImage(id) {
       parsed = Nhl95Snes.renderCenterIce(rom, image);
     } else if (image.kind === 'snes95-photos') {
       parsed = Nhl95Snes.renderPhotos(rom, image);
+    } else if (image.kind === 'snes95-glyphs') {
+      parsed = Nhl95Snes.renderGlyphs(rom, image);
     } else if (image.kind === 'snes95-frames') {
       parsed = Nhl95Snes.renderFrames(rom, image);
     } else {
