@@ -16,11 +16,12 @@ const SUITES = [
   'snes-gm-analysis', 'snes-sfx-midi', 'nhl92-68k-driver', 'nhl92-sound-chain', 'nhl9x-sound-chain', 'nhl95-sound-chain', 'nhl96-sound-chain',
   'nhl95-seq', 'nhl95-stream', 'nhl9x-song-gm', 'nhl9x-stream', 'nhl9x-gm-audition', 'ym-note-tracker', 'nhl92-gm-map',
   'nhl92-sequencer', 'fingerprint-site', 'editor-extras', 'patch-edits-export', 'pc-jersey', 'rom94', 'genesis95-pals', 'pc-rink', 'pc-palette', 'pc-crests',
-  'jim-roundtrip', 'genesis-quantize', 'jim-compress', 'sjim', 'sscr', 'indexed-image', 'snes94-pals', 'snes95', 'segacd-disc', 'segacd-rips'
+  'jim-roundtrip', 'genesis-quantize', 'jim-compress', 'sjim', 'sscr', 'indexed-image', 'snes94-pals', 'snes95', 'segacd-disc', 'segacd-rips',
+  'dropstick'
 ];
 // Playwright scripts under test/browser/ that test.js runs.
 const BROWSER = ['load-errors', 'audio-list', 'sound-smoke', 'snes93-roll', 'nhl95-sequencer', 'rev-switch', 'revision-picker', 'jed', 'jed-ice', 'jed-server', 'jim', 'indexed-export'];
-const NON_SOUND = ['fingerprint-site', 'pc-jersey', 'pc-rink', 'pc-palette', 'pc-crests', 'jim-roundtrip', 'genesis-quantize', 'jim-compress', 'sjim', 'sscr', 'pc94-shape', 'indexed-image', 'snes94-pals', 'snes95', 'segacd-disc', 'segacd-rips'];
+const NON_SOUND = ['fingerprint-site', 'pc-jersey', 'pc-rink', 'pc-palette', 'pc-crests', 'jim-roundtrip', 'genesis-quantize', 'jim-compress', 'sjim', 'sscr', 'pc94-shape', 'indexed-image', 'snes94-pals', 'snes95', 'segacd-disc', 'segacd-rips', 'dropstick'];
 const SOUND = SUITES.filter((s) => !NON_SOUND.includes(s));
 const M68K = ['m68k-cpu', 'nhl92-68k-driver', 'nhl92-sound-chain', 'nhl9x-sound-chain', 'nhl95-sound-chain', 'nhl96-sound-chain', 'nhl92-sequencer'];
 const Z80 = ['chip-audio', 'nhl92-z80-driver', 'nhl92-z80-audio', 'nhl92-sound-chain', 'nhl92-68k-driver'];
@@ -60,6 +61,8 @@ const RULES = [
   { re: /^lib\/audio\/pc94-(kms|player|sfx)\.js$/, tests: ['core', 'pc94-audio', 'pc95-audio'], why: '94/95 PC EACSNDF' },
   { re: /^lib\/audio\/pc-audio-groups\.js$/, tests: ['pc-audio-groups', 'pc94-audio', 'pc95-audio', 'browser:audio-list'], why: '94/95 PC Audio list groups' },
   { re: /^public\/sound-test-pc94\.js$/, tests: ['pc-audio-groups', 'pc94-audio', 'pc95-audio', 'browser:audio-list', 'browser:sound-smoke', 'browser:load-errors'], why: '94/95 PC Audio tab' },
+  // Drop-stick animation builder (NHL 94 player sheet).
+  { re: /^tools\/(build-dropstick\.js|dropstick\/)/, tests: ['dropstick'], why: 'drop-stick builder' },
   // Everything else in sound: all sound suites, the core checks (they read the audio catalogue) and the sound pages.
   { re: /^(lib\/audio\/|data\/audio\/|tools\/(build|extract|render|run|scan|vendor)-)/, tests: ['core', ...SOUND, ...SOUND_BROWSER.map((b) => 'browser:' + b)], why: 'sound code / data' },
   // Jersey palette editor (NHL 94 / 95 PC HOMEPALS / AWAYPALS): its format module and page.

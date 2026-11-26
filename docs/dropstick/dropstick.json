@@ -1,0 +1,6196 @@
+{
+ "source": "NHL Hockey (92) Sprites.anim (same skater frame numbers as NHL 94; no NHL 94 ROM found in roms/)",
+ "palette": {
+  "line2": "Bruinsv.pal",
+  "colours": [
+   [
+    146,
+    255,
+    255
+   ],
+   [
+    255,
+    255,
+    255
+   ],
+   [
+    219,
+    255,
+    255
+   ],
+   [
+    219,
+    219,
+    219
+   ],
+   [
+    0,
+    0,
+    0
+   ],
+   [
+    182,
+    182,
+    182
+   ],
+   [
+    109,
+    109,
+    109
+   ],
+   [
+    73,
+    73,
+    73
+   ],
+   [
+    219,
+    182,
+    182
+   ],
+   [
+    255,
+    146,
+    146
+   ],
+   [
+    219,
+    73,
+    109
+   ],
+   [
+    73,
+    109,
+    219
+   ],
+   [
+    219,
+    182,
+    36
+   ],
+   [
+    109,
+    146,
+    255
+   ],
+   [
+    36,
+    36,
+    36
+   ],
+   [
+    255,
+    255,
+    255
+   ],
+   [
+    146,
+    255,
+    255
+   ],
+   [
+    219,
+    219,
+    219
+   ],
+   [
+    146,
+    146,
+    146
+   ],
+   [
+    73,
+    73,
+    73
+   ],
+   [
+    36,
+    36,
+    36
+   ],
+   [
+    219,
+    146,
+    0
+   ],
+   [
+    182,
+    109,
+    0
+   ],
+   [
+    0,
+    0,
+    0
+   ],
+   [
+    36,
+    36,
+    146
+   ],
+   [
+    0,
+    0,
+    109
+   ],
+   [
+    36,
+    73,
+    0
+   ],
+   [
+    0,
+    36,
+    0
+   ],
+   [
+    146,
+    36,
+    0
+   ],
+   [
+    146,
+    0,
+    0
+   ],
+   [
+    182,
+    109,
+    109
+   ],
+   [
+    109,
+    73,
+    36
+   ],
+   [
+    146,
+    255,
+    255
+   ],
+   [
+    36,
+    36,
+    36
+   ],
+   [
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    0
+   ],
+   [
+    36,
+    0,
+    36
+   ],
+   [
+    73,
+    36,
+    36
+   ],
+   [
+    219,
+    146,
+    146
+   ],
+   [
+    182,
+    109,
+    109
+   ],
+   [
+    219,
+    146,
+    0
+   ],
+   [
+    255,
+    146,
+    0
+   ],
+   [
+    219,
+    219,
+    219
+   ],
+   [
+    36,
+    0,
+    36
+   ],
+   [
+    73,
+    36,
+    36
+   ],
+   [
+    0,
+    0,
+    0
+   ],
+   [
+    219,
+    146,
+    73
+   ],
+   [
+    73,
+    146,
+    182
+   ],
+   [
+    146,
+    255,
+    255
+   ],
+   [
+    219,
+    219,
+    219
+   ],
+   [
+    146,
+    146,
+    146
+   ],
+   [
+    73,
+    73,
+    73
+   ],
+   [
+    36,
+    36,
+    36
+   ],
+   [
+    182,
+    36,
+    146
+   ],
+   [
+    146,
+    0,
+    109
+   ],
+   [
+    0,
+    0,
+    0
+   ],
+   [
+    36,
+    73,
+    182
+   ],
+   [
+    0,
+    36,
+    146
+   ],
+   [
+    36,
+    146,
+    36
+   ],
+   [
+    0,
+    73,
+    0
+   ],
+   [
+    182,
+    36,
+    36
+   ],
+   [
+    109,
+    0,
+    0
+   ],
+   [
+    182,
+    109,
+    109
+   ],
+   [
+    109,
+    73,
+    36
+   ]
+  ]
+ },
+ "note": "x, y: offset of each VDP sprite from the player position (sticks: from the blade heel). sizeIndex as SIZE_TAB in lib/anim.js. tiles: 32-byte 4bpp tiles, column-major within the sprite.",
+ "retailLimits": {
+  "tiles": 20,
+  "sprites": 8,
+  "width": 70,
+  "height": 72,
+  "cutTiles": 21,
+  "cutSprites": 8
+ },
+ "frames": [
+  {
+   "id": 0,
+   "symbol": "SPFnostick+0",
+   "kind": "body",
+   "name": "glide",
+   "facing": "N",
+   "from": 1,
+   "angle": null,
+   "file": "frames/nostick-n-glide.png",
+   "tiles": 8,
+   "sprites": [
+    {
+     "x": -7,
+     "y": -25,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "00000cbd0000cccb0000ccbd0000cbdd0000c777000aaaaa00a999990b8bbbbb",
+      "ba8cccccb8bcccccbdbcccccddbccccc0dbccccc00bccccc0089cccb0a389cc8",
+      "a3339999a3333333a4333333a543305455543005c543d0009bddb000a9999000",
+      "0aaaa0002ccb20002cbb2000f222ff000f1f0ff00000f0000000000000000000",
+      "00000000d0000000d0000000d0000000d0000000aaaa00009999a000bbbb98c0",
+      "cccccc9abbcb9aabcbdaa9bccbdbdbbbbbddbbb0b98bdb0098ddb0009d220000",
+      "333a0000333a0000333300003333a00044433000543dd000bddb80009999a000",
+      "0aaab0002ccb20002bbb2000f222f0000f1fff00f0f0f000000f000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 1,
+   "symbol": "SPFnostick+1",
+   "kind": "body",
+   "name": "stride1",
+   "facing": "N",
+   "from": 2,
+   "angle": null,
+   "file": "frames/nostick-n-stride1.png",
+   "tiles": 9,
+   "sprites": [
+    {
+     "x": -6,
+     "y": -26,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "0000000c000000bc000000cc000000cb000000c700000aaa0000a99900009bbb",
+      "000bbccc0009bccc000abccc0009bccc000dcccc00008ccc00009ccc00043999",
+      "00a543330a55544405555433a4454333433433f39bd330f0a9bdd0f0ca9b00f0",
+      "cca000f0bb00000fb000000f200f000f2ff00000ff0000000f00000000000000",
+      "bd000000cbd00000bdd00000ddd0000077d00000aaaaa0009999aa00bbbb99c0",
+      "cccccbc0ccbcb9a0ccb99a90ccbaa9b0cccd9bb0c89ddd0089d220009d330000",
+      "334a00004433a0003333a000333330003333300033333000aaaa00000bbd0000",
+      "02220000f222f000ff1fff000fff0000ff00f000000000000000000000000000"
+     ]
+    },
+    {
+     "x": -14,
+     "y": -2,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "0000000c000000cc00002222000012220000f12200000f11000000ff00000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "symbol": "SPFnostick+2",
+   "kind": "body",
+   "name": "stride2",
+   "facing": "N",
+   "from": 3,
+   "angle": null,
+   "file": "frames/nostick-n-stride2.png",
+   "tiles": 8,
+   "sprites": [
+    {
+     "x": -5,
+     "y": -29,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "0000ccd0000ccbbd000ccddd000ccbbd000c777d00aaaaaa08899999bbccbbbb",
+      "9cccccccaccccccc8bccccccbbccccccdbbccccc09bbcccb0898cc890d899998",
+      "0a433333a4555554a5544444a4443333a55434334343f433cdd33f43c8aaaf43",
+      "0abbbfaa00cb22fb000222f20022210200211fff000ff0f00000000000000000",
+      "0000000000000000000000000000000000000000a00000009a000000b9b00000",
+      "bbb00000bb9a0000c9a90000da9b0000dbbb00008bcb00009bcb00003db00000",
+      "3300000043000000330000003300000033000000330000003300000033000000",
+      "aa000000bd00000022200000222f0000f1ff0000f0f000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "symbol": "SPFnostick+3",
+   "kind": "body",
+   "name": "stride3",
+   "facing": "N",
+   "from": 4,
+   "angle": null,
+   "file": "frames/nostick-n-stride3.png",
+   "tiles": 8,
+   "sprites": [
+    {
+     "x": -5,
+     "y": -26,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "000000cc00000ccb00000ccd00000cbb00000c77000aaaaa009aaa9900b999bb",
+      "09cbbbcc0acccccc0bcccccc0dbccccc089bcccb0389bd890a4899980a555444",
+      "034455553333444533333334b9333303bbadd0fbbbbd00f0022200f00222f0f0",
+      "0f1fff0f00ff0f000000f0000000000000000000000000000000000000000000",
+      "b0000000dd000000dd000000bd0000007c000000aaa000009aaa0000b999b000",
+      "bbbbb000ccbbb000cbdbb000cda9b000bd8a900098b9a0003ddb00003a000000",
+      "5a5000005a85000043a800003dda0000bbbd0000ccbb80000b99a00000aab000",
+      "00cbbb00f00b2222f0f222210f02221f00ff11f00000ff0f0000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "symbol": "SPFnostick+4",
+   "kind": "body",
+   "name": "stride4",
+   "facing": "N",
+   "from": 5,
+   "angle": null,
+   "file": "frames/nostick-n-stride4.png",
+   "tiles": 7,
+   "sprites": [
+    {
+     "x": -3,
+     "y": -29,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "00000000000000000000ccb0000ccbdd000cdddd000cbbbd000c777b000caaab",
+      "00aaaaaa0aa99999099cbbbb9cccccccaccccccbcccccccbbccccccdd89ccc99",
+      "038999883333dddd33453333333345430333335403333345033333450888a544",
+      "0aaad83300bbbaa800222ccb0022222200f1f222000f01220000ff11000000ff"
+     ]
+    },
+    {
+     "x": 5,
+     "y": -21,
+     "w": 1,
+     "h": 3,
+     "sizeIndex": 2,
+     "palette": 2,
+     "tiles": [
+      "aa000000aa90000099b00000bbbb0000bccb0000dbbb0000a89900008aaa0000",
+      "b9990000dbb00000a0000000a00000003a0000004a0000004a00000033000000",
+      "3d000000dd000000b000000000000000200000002f0000002f000000f0f00000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "symbol": "SPFnostick+5",
+   "kind": "body",
+   "name": "stop1",
+   "facing": "N",
+   "from": 145,
+   "angle": null,
+   "file": "frames/nostick-n-stop1.png",
+   "tiles": 9,
+   "sprites": [
+    {
+     "x": -6,
+     "y": -6,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 0,
+     "tiles": [
+      "0030000030030000132120003213210002321300001232000000000000000000"
+     ]
+    },
+    {
+     "x": -5,
+     "y": -25,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "00000cbd0000cccb0000ccbd0000cbdd0000bbdd000aa77700caaaa700cbaaaa",
+      "00cc9aa80cccb99b0ccdcccbcccdcccbccbdccb8bcbd999a8bbdaaad89bd998d",
+      "489dcccb5544bbbb4555a84400554a85030554a8000054a800000a8400000bbb",
+      "00000cb900dda99a00ffcaa00ff22bb2000f222200f22222000f2222000000ff",
+      "00000000d0000000d0000000d0000000d0000000d00000000000000000000000",
+      "d0000000d0000000d0000000d0000000d0000000d2200000bb220000bb220000",
+      "bb200000b00000000000000040000000400000005000000040000000b0000000",
+      "8ff00000f00000000ff00000ff00000022ff00002220f000222f0000ffff0000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "symbol": "SPFnostick+6",
+   "kind": "body",
+   "name": "stop2",
+   "facing": "N",
+   "from": 146,
+   "angle": null,
+   "file": "frames/nostick-n-stop2.png",
+   "tiles": 9,
+   "sprites": [
+    {
+     "x": -10,
+     "y": -7,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 0,
+     "tiles": [
+      "0232030031113210103210300321321020232130000123200000111000000110"
+     ]
+    },
+    {
+     "x": -5,
+     "y": -25,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "00000cbd0000cccb0000ccbd0000cbdd0000bbdd000aa77700caaaa700cbaaaa",
+      "00cc9aa80cccb99b0ccdcccbcccdcccbccbdccb8bcbd999a8bbdaaad89bd998d",
+      "489dcccb5544bbbb0555a84400554a85004554a8003454a800344a8400ddcbbb",
+      "00dd8cb900dda99a00ffcaa00ff22bb2000f222200f22222000f2222000000ff",
+      "00000000d0000000d0000000d0000000d0000000d00000000000000000000000",
+      "d0000000d0000000d0000000d0000000d0000000d2200000bb220000bb220000",
+      "bb200000b00000000000000040000000400000005000000040000000b0000000",
+      "8ff00000f00000000ff00000ff00000022ff00002220f000222f0000ffff0000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "symbol": "SPFnostick+7",
+   "kind": "body",
+   "name": "reach",
+   "facing": "N",
+   "from": 257,
+   "angle": null,
+   "file": "frames/nostick-n-reach.png",
+   "tiles": 9,
+   "sprites": [
+    {
+     "x": -8,
+     "y": -27,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "00000cbd0000cccb0000ccbd0000cbdd0000c777000aaaaa00aaaa990a9999bb",
+      "0ccccccc0cccbbcc9ccdbccca9cdbccc9adbbcccc9dbbccccc2bbbcc2c089bbb",
+      "22238999222344550223444400083383000aaaaf000ccccf0002222f0002222f",
+      "00f222f00fff1fff0000f00f00000f0000000000000000000000000000000000",
+      "00000000d0000000d0000000d0000000d0000000aa00000088b00000bbbb0000",
+      "ccbbb000cbbb8a00cbd8a900cbdd8b00cbbddb00bbbdd000b98a0000984a0000",
+      "8454a0005555a00045554a0044555a003445540004455500044ccc0000ccc800",
+      "00998a00f0aaac20ff2cc220ff22222f002222ff0ff22ff0000f1f0f0000f000"
+     ]
+    },
+    {
+     "x": 8,
+     "y": -3,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "000000000000000000000000f000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "symbol": "SPFnostick+8",
+   "kind": "body",
+   "name": "glide",
+   "facing": "NE",
+   "from": 6,
+   "angle": null,
+   "file": "frames/nostick-ne-glide.png",
+   "tiles": 8,
+   "sprites": [
+    {
+     "x": -7,
+     "y": -21,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "000000000000000000000009000000cc00000ccc0000cccc000ccccc00cccccc",
+      "00cccccb0cccccc998ccccbb398cccbc3398cc8c333999985533333d0355333a",
+      "00d34554008d34450ca88d340ccaa00022cb22002222220f22221ffff111f0f2",
+      "0fff0ff200f0f0f20000000f0000000000000000000000000000000000000000",
+      "00dbc0000dbccc00adbccc00adbbd7009add7700b9aa7000cb9aa000ccb99000",
+      "bccbb0009bbbb000a99d00009aa00000bbbb2000ccbb2200bbb2222083322220",
+      "a883220054a8000045a8300034a830f0888d4ff0aaa80000ccca0f002cb22000",
+      "22222f002221f0f0111f0f00fffff0000f0f0000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 9,
+   "symbol": "SPFnostick+9",
+   "kind": "body",
+   "name": "stride1",
+   "facing": "NE",
+   "from": 7,
+   "angle": null,
+   "file": "frames/nostick-ne-stride1.png",
+   "tiles": 9,
+   "sprites": [
+    {
+     "x": -3,
+     "y": -30,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "0000000000000000000000000000000000000000000000000000000000000009",
+      "000000cc00000ccc0000cccc000ccccc000ccccc00cccccb008cccba0098ccb9",
+      "00398bbb0353998b035533333335553333333444333333343333300033330000",
+      "d330000098800000cb000000b000000000000000f0f00000ff000000ff000000",
+      "0000000000000000000000000000000000dcc0000dbccc000dbbcc00adbbd700",
+      "9aad7700b9aa7000cb9a0000ccb9a000cbcb80009bbcb000a99bd0009aa8dd00",
+      "b99a2220bbb8bdd0bccbb2d033bb220033a83f00444a8f00344a800003339000",
+      "00aac00000bbc2ffff2222f0ff222f0ff0222ff00ff1f000000f0f0000000000"
+     ]
+    },
+    {
+     "x": -11,
+     "y": -6,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "0000000a0000000c000000bc000002cb000002bb000002220000012f00000ff0"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 10,
+   "symbol": "SPFnostick+10",
+   "kind": "body",
+   "name": "stride2",
+   "facing": "NE",
+   "from": 8,
+   "angle": null,
+   "file": "frames/nostick-ne-stride2.png",
+   "tiles": 8,
+   "sprites": [
+    {
+     "x": -3,
+     "y": -26,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "00000000000000000000000000000000000000c900000ccb0000cccc0000cccc",
+      "000ccccc000ccccc0098cccb008998cb003388980035433a0034554a0033444a",
+      "0033334400033335000833340009dd3300ca9dd000cbaa0002bbb00c2222000c",
+      "22120002212f0ff2fffff0f2000fff0f000000000000000f0000000000000000",
+      "00dcc0000dcccc000dcbbc000dbdd700addd77009aad7000b9aaa000cb9aa000",
+      "cbb99000bbbbb000d9bbb000da99b000d9aa0000db990000dbbb000083cc0000",
+      "a83000004a8000004a8000004a800000d8d0000099d00000ca000000cb000000",
+      "b2200000222f000022fff0001fff0000ff00000000f000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 11,
+   "symbol": "SPFnostick+11",
+   "kind": "body",
+   "name": "stride3",
+   "facing": "NE",
+   "from": 9,
+   "angle": null,
+   "file": "frames/nostick-ne-stride3.png",
+   "tiles": 8,
+   "sprites": [
+    {
+     "x": -5,
+     "y": -26,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "00000000000000000000000000000000000000000000000c000000cc00000ccc",
+      "00000ccc0000cccc0000cccb00009bcb000089bb000038990000433a00005543",
+      "0000055400000054000005540000044a000044a800009bdd000aa9bd000cba00",
+      "00cccb00002cb22f002222220f222222ff11111100ff0fff0000f0f000000000",
+      "000dcb0000dccbb000dcbbb000dbdd70aaddd7709aaa7700b9aaa000ccbaa000",
+      "ccc9a000cccb9000ccc9d000bc9a9d00b9a9ccb09a9ccc208dbbcc20a8302200",
+      "a8300000a8300000a830000083d2000033220000322f0000f11fff00fff0f000",
+      "000ff000fff00000ff0000002ff00000100000000ff00000ff00000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 12,
+   "symbol": "SPFnostick+12",
+   "kind": "body",
+   "name": "stride4",
+   "facing": "NE",
+   "from": 10,
+   "angle": null,
+   "file": "frames/nostick-ne-stride4.png",
+   "tiles": 7,
+   "sprites": [
+    {
+     "x": -2,
+     "y": -23,
+     "w": 2,
+     "h": 3,
+     "sizeIndex": 6,
+     "palette": 2,
+     "tiles": [
+      "000000000000000d0000000d0000000d00000aad0000c9aa000ccb9900ccccbb",
+      "0ccccccb0ccccc9b9ccccba9898ccd9a48989db9534988bb543addbb554a8322",
+      "0554a83300554a8300554a8400044a8300043a840008d84200baa9d2022bba82",
+      "ddc00000cccc0000cbbc0000bdd70000dd770000a7700000aaa000009aa00000",
+      "b9900000bcb00000bb0000009b000000ad000000dd000000d2d00000dd200000",
+      "22000000000000000000000000000000000000000000000000000000ff000000"
+     ]
+    },
+    {
+     "x": -2,
+     "y": 1,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "1122222f011222ff0011222000f1122f000ffff000000f0f0000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 13,
+   "symbol": "SPFnostick+13",
+   "kind": "body",
+   "name": "stop1",
+   "facing": "NE",
+   "from": 147,
+   "angle": null,
+   "file": "frames/nostick-ne-stop1.png",
+   "tiles": 10,
+   "sprites": [
+    {
+     "x": 3,
+     "y": -6,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 0,
+     "tiles": [
+      "3023100003010300213221001321300023130000000000000000000000000000"
+     ]
+    },
+    {
+     "x": -12,
+     "y": -21,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "000000db00000dbc00000dbc000ccdbb00c987dd0c9aaa7708aaaaaa098aa999",
+      "aa989ccc99a8dccccc9dddbbccccbb220cccc22200a8442200a8444400a84455",
+      "000a454400045443000c44330000bcc90000999a00000aab00000f220000f0f2",
+      "00000fff00000000000000000000000000000000000000000000000000000000",
+      "c0000000cc000000cc000000d700000077c000007ac000008c800000ccab0000",
+      "cbdcb000cbdcb000bd0b22002d3b2220233b2220333422204444345033344550",
+      "303344493003999000000aa0a0000020c00000f2c20f0fff2220ff00222ff0f0",
+      "222f000000000000000000000000000000000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": 4,
+     "y": -5,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "00000000000000000000000000000000222f0000222f00000ff0f000000f0000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 14,
+   "symbol": "SPFnostick+14",
+   "kind": "body",
+   "name": "stop2",
+   "facing": "NE",
+   "from": 148,
+   "angle": null,
+   "file": "frames/nostick-ne-stop2.png",
+   "tiles": 10,
+   "sprites": [
+    {
+     "x": 3,
+     "y": -9,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 0,
+     "tiles": [
+      "0010202300320230020232303123123003213021313221001322313033231200"
+     ]
+    },
+    {
+     "x": -12,
+     "y": -21,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "000000db00000dbc00000dbc000ccdbb00c987dd0c9aaa7708aaaaaa098aa999",
+      "aa989ccc99a8dccccc9dddbbccccbb220cccc22200a8442200a8444400a84455",
+      "000a454400045443000c44330000bcc90000999a00000aab00000f220000f0f2",
+      "00000fff00000000000000000000000000000000000000000000000000000000",
+      "c0000000cc000000cc000000d700000077c000007ac000008c800000ccab0000",
+      "cbdcb000cbdcb000bd0b22002d3b2220233b2220333422204444345033344550",
+      "303344493003999000000aa0a0000020c00000f2c20f0fff2220ff00222ff0f0",
+      "222f000000000000000000000000000000000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": 4,
+     "y": -5,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "00000000000000000000000000000000222f0000222f00000ff0f000000f0000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 15,
+   "symbol": "SPFnostick+15",
+   "kind": "body",
+   "name": "reach",
+   "facing": "NE",
+   "from": 259,
+   "angle": null,
+   "file": "frames/nostick-ne-reach.png",
+   "tiles": 9,
+   "sprites": [
+    {
+     "x": -4,
+     "y": -25,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "000000000000000d0000000d0000000d0000000d0000aaaa0cc899aa9cbbcc99",
+      "a8bdcccc8adbccccc8bcccccbdbcccccddbbccbbd8bbbbbb098bbbb808999999",
+      "0455544a0344555a0033454a00034548002244a80f2224a800f224a8000ffcbb",
+      "00000ccb000fa9cb0000ca9800ffcbaf00022bb20ff2222200f22222000f222f",
+      "dbc00000bccc0000bccc0000bbd70000dd770000aa700000aaaa00009aa98000",
+      "c99cb000cbbccb00bbdccb00bd8bb900bda99a00dd8aa90098b89bd0840bbdd2",
+      "8400dd2284000222840000004400000045000000400000005f000000b0000000",
+      "bf000000b00000000f000000f0ff0000220f000022f000002fff000000000000"
+     ]
+    },
+    {
+     "x": -12,
+     "y": -17,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "000000000000000c0000000c0000000c0000000d000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 16,
+   "symbol": "SPFnostick+16",
+   "kind": "body",
+   "name": "glide",
+   "facing": "E",
+   "from": 11,
+   "angle": null,
+   "file": "frames/nostick-e-glide.png",
+   "tiles": 8,
+   "sprites": [
+    {
+     "x": -3,
+     "y": -24,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "000000000000000000000000000000cb00008bc9000a9bc9009a9bc90bb9a9bb",
+      "cccb9abb99ccbbdb889ccbbd048ccc2b54accc2854a8222255a83222454a8222",
+      "0454a83300454a8400035a8400035a830002a83300229bdd002ca999001ccaa1",
+      "0022bbff02222222022222220111111100ffff0f000f00f00000000000000000",
+      "000dcc0000dccbd000dcbdd0aadbd770aadd7d60aa776760aa7077009aa00000",
+      "d98b0000bbbb0000bcbdb000dbbdb000db88900020aaa0002089900020dbb000",
+      "33ddd00033222000302220003022200000222000d00200002200000011000000",
+      "ff000000f00000002f00000010f00000ff000000f0f000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 17,
+   "symbol": "SPFnostick+17",
+   "kind": "body",
+   "name": "stride1",
+   "facing": "E",
+   "from": 12,
+   "angle": null,
+   "file": "frames/nostick-e-stride1.png",
+   "tiles": 9,
+   "sprites": [
+    {
+     "x": -1,
+     "y": -23,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "0000000000000000000000000000000c000000cc0000cccb000cccbb00ccbdcc",
+      "09cbdabc089d9a9c33dbb9a953dbcbbd543dbbb23354abb203334a82333334a8",
+      "d333354abdd3335a9b0003a8a0000bbd2000099b0000cca9f000bcb0ff002b20",
+      "f0f222220f0222220ff1111100ffffff0000f0f0000000000000000000000000",
+      "0000cbb0000cccbd0b9dcbddcbadbd77b9a7d7d69aa776769aaa7770b9aa8b00",
+      "cb99bb00bbdd9900dd89aa00d0aa99002288bb0022ddbb0022dddb003330db00",
+      "843dd2208400022033000220dd000200d0000000000000000000000000000000",
+      "200000002200000011f00000ff000000f0000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": -9,
+     "y": -7,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "0000000b00000009000000cc000002cb000022bb0000222200002221000011f0"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 18,
+   "symbol": "SPFnostick+18",
+   "kind": "body",
+   "name": "stride2",
+   "facing": "E",
+   "from": 13,
+   "angle": null,
+   "file": "frames/nostick-e-stride2.png",
+   "tiles": 9,
+   "sprites": [
+    {
+     "x": 0,
+     "y": -24,
+     "w": 2,
+     "h": 3,
+     "sizeIndex": 6,
+     "palette": 2,
+     "tiles": [
+      "00000000000000000000000000000008000000c900000cc90000cc9a000ccc9a",
+      "00ccbbb90cbdbcbb0bbd9ccb9bd9a9cb89cb9add38ccbbbd543cccb2554bbb22",
+      "445a83220344a83000344a83c3345a839d33a833addd8330dda9dd00dcca9000",
+      "000dcb0000dcbbd000dbbdd0aadbd770aadd7d60aa776760aa707700aaa00000",
+      "aa90000099b00000bdbb0000ddb90000d89a00008aa90000288bb00022dbb000",
+      "222db20022002220000022200000222000000200000000000000000000000000"
+     ]
+    },
+    {
+     "x": -8,
+     "y": -8,
+     "w": 1,
+     "h": 2,
+     "sizeIndex": 1,
+     "palette": 2,
+     "tiles": [
+      "000000000000000000000000000000000000000a000000bb0000022b00000222",
+      "0000022200000f22000000f10000000f00000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": 0,
+     "y": 0,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "22bb0000222222ff2222222011111110fffffff00f0f00f00000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 19,
+   "symbol": "SPFnostick+19",
+   "kind": "body",
+   "name": "stride3",
+   "facing": "E",
+   "from": 14,
+   "angle": null,
+   "file": "frames/nostick-e-stride3.png",
+   "tiles": 9,
+   "sprites": [
+    {
+     "x": 4,
+     "y": -28,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "000000000000000000000000000000000000dcb0000dcbbd000dcbddb8abbd77",
+      "9aadd7d6aaa77676aaa78770aa99bb0099bbbb00bbcccbb0dbccbbb0cccdbbb0",
+      "bbd8bcb098da89902228aaa0222b89902223ccb033333c203333332203382222",
+      "0aaad220bbbd00002bd20000222222002222222011111110f0fff0ff00000000"
+     ]
+    },
+    {
+     "x": -4,
+     "y": -20,
+     "w": 1,
+     "h": 3,
+     "sizeIndex": 2,
+     "palette": 2,
+     "tiles": [
+      "0000000c000000c900000b9a0000dbb9000da9cb00d9a9bb0bdb9a9d09dbc9dd",
+      "08dbccbd538dcccb5a833cc2a8433332a8433333843300033330000033000000",
+      "30000000d0000000000000000000000200000002f0000001f0000f0f00000000"
+     ]
+    },
+    {
+     "x": -12,
+     "y": -12,
+     "w": 1,
+     "h": 2,
+     "sizeIndex": 1,
+     "palette": 2,
+     "tiles": [
+      "00000000000000000000000500000005000000550000005a000005a800000c83",
+      "0000a9bd0000ca980002ccaa00222bd002222200012222200f11122f00ffffff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 20,
+   "symbol": "SPFnostick+20",
+   "kind": "body",
+   "name": "stride4",
+   "facing": "E",
+   "from": 15,
+   "angle": null,
+   "file": "frames/nostick-e-stride4.png",
+   "tiles": 8,
+   "sprites": [
+    {
+     "x": 3,
+     "y": -28,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "0000000000000000000000000000000000ccb0000ccbbd000dbbdd000dbd7700",
+      "add7d600a7767600a7a770009a99b000b9bbb000bbccbb00cccbbb00ccbddb00",
+      "cdddbb0080a99b00208aa90000b99a0000bbb000300c20003000220030000200",
+      "3002000000000000000000000000000020000000200000001ff00000f0000000"
+     ]
+    },
+    {
+     "x": -5,
+     "y": -20,
+     "w": 1,
+     "h": 3,
+     "sizeIndex": 2,
+     "palette": 2,
+     "tiles": [
+      "0000099a00009aaa000c9aaa00cdb9aa0cbbcb99cba9cccb9b9a9cbb89b9a9db",
+      "ddcbddbc5dbbbd2953bbb22254a8b22255a84322054a8433005a843305a84433",
+      "03843333cdd43333c8dd3a00ca82dd20bb222222202222222211111122ffffff"
+     ]
+    },
+    {
+     "x": -13,
+     "y": -4,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "0000000000000000000000000000002200000222000002220000011200000ff1"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 21,
+   "symbol": "SPFnostick+21",
+   "kind": "body",
+   "name": "stop1",
+   "facing": "E",
+   "from": 149,
+   "angle": null,
+   "file": "frames/nostick-e-stop1.png",
+   "tiles": 11,
+   "sprites": [
+    {
+     "x": 8,
+     "y": -4,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 0,
+     "tiles": [
+      "0000300000030000013000000220000030200000000000000000000000000000"
+     ]
+    },
+    {
+     "x": -10,
+     "y": -27,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "0000000000000000000000000000000000cbd0000cccbd000cccbd00acbbbdaa",
+      "abb726aaaa7676aaa97779999bbbbbbbbbcccbbdbcccccbbd2ccccbb222ccbbb",
+      "2222bbbb222bbbb8a8489945a85444430a8554430a85544004a8554000a844b0",
+      "004cbb80000c8a22000002220000002200000f220000ff000000000000000000"
+     ]
+    },
+    {
+     "x": -18,
+     "y": -19,
+     "w": 1,
+     "h": 2,
+     "sizeIndex": 1,
+     "palette": 2,
+     "tiles": [
+      "000000aa00000aaa00009aaa00008aa9000aa98b00099cdd000cccbb0000cccb",
+      "00000c2200000000000000000000000000000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": -2,
+     "y": -19,
+     "w": 1,
+     "h": 3,
+     "sizeIndex": 2,
+     "palette": 2,
+     "tiles": [
+      "a0000000a90000009dd00000bbbb0000bbb80000d89a0000daa9b000d89bc000",
+      "dbbbc00094b2200055222200322222004422220034422200334430000333bb00",
+      "00ccb8a000099ab22000acb220f00022ff00f022fff000ff0000fff00000000f"
+     ]
+    },
+    {
+     "x": 6,
+     "y": -3,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "0000000000000000200000002f0f00002fff0000f1ff000000f00000ff0f0000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 22,
+   "symbol": "SPFnostick+22",
+   "kind": "body",
+   "name": "stop2",
+   "facing": "E",
+   "from": 150,
+   "angle": null,
+   "file": "frames/nostick-e-stop2.png",
+   "tiles": 11,
+   "sprites": [
+    {
+     "x": 8,
+     "y": -5,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 0,
+     "tiles": [
+      "0030330000030030000232000132300002223000300000000000300000000000"
+     ]
+    },
+    {
+     "x": -10,
+     "y": -27,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "0000000000000000000000000000000000cbd0000cccbd000cccbd00acbbbdaa",
+      "abb726aaaa7676aaa97779999bbbbbbbbbcccbbdbcccccbbd2ccccbb222ccbbb",
+      "2222bbbb222bbbb8a8489945a85444430a8554430a85544004a8554000a844b0",
+      "004cbb80000c8a22000002220000002200000f220000ff000000000000000000"
+     ]
+    },
+    {
+     "x": -18,
+     "y": -19,
+     "w": 1,
+     "h": 2,
+     "sizeIndex": 1,
+     "palette": 2,
+     "tiles": [
+      "000000aa00000aaa00009aaa00008aa9000aa98b00099cdd000cccbb0000cccb",
+      "00000c2200000000000000000000000000000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": -2,
+     "y": -19,
+     "w": 1,
+     "h": 3,
+     "sizeIndex": 2,
+     "palette": 2,
+     "tiles": [
+      "a0000000a90000009dd00000bbbb0000bbb80000d89a0000daa9b000d89bc000",
+      "dbbbc00094b2200055222200322222004422220034422200334430000333bb00",
+      "00ccb8a000099ab22000acb220f00022ff00f022fff000ff0000fff00000000f"
+     ]
+    },
+    {
+     "x": 6,
+     "y": -3,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "0000000000000000200000002f0f00002fff0000f1ff000000f00000ff0f0000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 23,
+   "symbol": "SPFnostick+23",
+   "kind": "body",
+   "name": "reach",
+   "facing": "E",
+   "from": 261,
+   "angle": null,
+   "file": "frames/nostick-e-reach.png",
+   "tiles": 10,
+   "sprites": [
+    {
+     "x": -3,
+     "y": -22,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "0000000000000000000000000000b8a00008d9aa00bdd9aa00dccc9a0cccccc9",
+      "bcccccbcbbcccbdcbbcccbdb9bbccb8999bbbbaa8899bd89a84898bba8444333",
+      "a8454333a8554333a85400bb84400c8ccb00cca9b0002bba0000222200002222",
+      "0000f12220f00f11200fffff2ff0f0f0fff00000f0000000f000000000000000",
+      "0dcc0000dccbd000dcbdd000dbd77000dd7d600077676000a0770000aa000000",
+      "9aa000009aa00000c9800000bcb0000088000000acc00000bcc22000bbb22000",
+      "332220003b022000bb000000b000000080000000000000002000000022200000",
+      "222f000011f0f000ffff00000000000000000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": -11,
+     "y": -6,
+     "w": 1,
+     "h": 2,
+     "sizeIndex": 1,
+     "palette": 2,
+     "tiles": [
+      "000000040000000400000005000000cc00000a9c00000ca900002cba00002222",
+      "0000222200ff1222000ff12200000f12000000f1000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 24,
+   "symbol": "SPFnostick+24",
+   "kind": "body",
+   "name": "glide",
+   "facing": "SE",
+   "from": 16,
+   "angle": null,
+   "file": "frames/nostick-se-glide.png",
+   "tiles": 8,
+   "sprites": [
+    {
+     "x": -8,
+     "y": -23,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "0000000000000000000000aa00009b9a0009a9b9000c9add000cccbb0000ccbb",
+      "0000222b00052222000522220004a2220005a8440000a8440000a8430005a843",
+      "0004a833000a83330008333300c9ddd00ccc8800022ca0002222000022222200",
+      "122222ffff111f0f00fff0f00000000000000000000000000000000000000000",
+      "000dcc00aadccbb0aabcbdd0aabb77709ab7d6d0b987767acbb877aabcbb8888",
+      "ccccdcbbbcccd8bbbbb8aa9b888d89a9433bbc90333bbcb0333bbcb00222bb00",
+      "02222000022220000a2200000baa0000022c0000222220002222220011222200",
+      "0f11ff00f0fff000ffffff000000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 25,
+   "symbol": "SPFnostick+25",
+   "kind": "body",
+   "name": "stride1",
+   "facing": "SE",
+   "from": 17,
+   "angle": null,
+   "file": "frames/nostick-se-stride1.png",
+   "tiles": 8,
+   "sprites": [
+    {
+     "x": -2,
+     "y": -17,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "000000000000000000009aaa009c9aaa9aa9c9aac9a8cc9accbdccc9cccbdbcc",
+      "0cbbdbbb002228bb032222885a8222335a8322335a84433304a843330d4a8432",
+      "2224a8422222a8320222dbb0002a98b0fffcaa000fcccbf00022bfff002222f0",
+      "0f12222f00f1222f000fffff00000f0000000000000000000000000000000000",
+      "0bbb0000bbbbb000cccdd000cb777000b7d6d00076767000a777a00099aaa900",
+      "bc9aaa00ddd9aa000b9b990009a9b0000b9a9000ccc9a0002ccc000022200000",
+      "2220000022000000200000000000000000000000000000000000000000000000",
+      "f0000000f0000000f0000000f000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 26,
+   "symbol": "SPFnostick+26",
+   "kind": "body",
+   "name": "stride2",
+   "facing": "SE",
+   "from": 18,
+   "angle": null,
+   "file": "frames/nostick-se-stride2.png",
+   "tiles": 8,
+   "sprites": [
+    {
+     "x": -5,
+     "y": -21,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "000000000000000000000000000009aa00099aaa00b9aaaa099b9999caa9bdbb",
+      "cb9ddbccccbbdcccccccdccc0cccb2bb0abbb2294a82222d5a83222354a83333",
+      "054a8333004a8433003a843a000833dd0009bbdb00ca9d00ffccaaf00f22b2ff",
+      "002222ff0012222f0001222f0000fff00000000f000000000000000000000000",
+      "0dbb0000dcccb000dccdd000cc777000c7d6d00076767000a777a0009999aa00",
+      "bbbb9800cbbbbb00bdddbb00d08bcb0000a99b00008aa80030b99a0030cbb000",
+      "322bb00032220000222200002222000002200000000000000000000000000000",
+      "f0000000f000000000000000f000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 27,
+   "symbol": "SPFnostick+27",
+   "kind": "body",
+   "name": "stride3",
+   "facing": "SE",
+   "from": 19,
+   "angle": null,
+   "file": "frames/nostick-se-stride3.png",
+   "tiles": 9,
+   "sprites": [
+    {
+     "x": -5,
+     "y": -20,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "0000000000000000000009990000aaaa00c9aaaa00bc99aa009bbb990b98ddbc",
+      "0c8bdbbc00cbbdbb00ccbbdb000cbb28004a22220048322209a84322a9844430",
+      "a9b44300aa833000bb00000020000000000000020000002200000022f000f011",
+      "0000000f0000f000000000000000000000000000000000000000000000000000",
+      "0dcc0000dcccc000dccdd000cc777000c7d6d00076767000a777a000999aaa00",
+      "cbb9aaa0bbbd9990bbddcb90898b88a03330aa90433388b04443bbb004422b00",
+      "04222200a8222000caa20000cbd000002d000000222200002222200011111ff0",
+      "ffffff000f0ff000000000000000000000000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": -13,
+     "y": -4,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "0000000c0000002c0000022c000022220000222200002220000100ff0000fff0"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 28,
+   "symbol": "SPFnostick+28",
+   "kind": "body",
+   "name": "stride4",
+   "facing": "SE",
+   "from": 20,
+   "angle": null,
+   "file": "frames/nostick-se-stride4.png",
+   "tiles": 7,
+   "sprites": [
+    {
+     "x": 1,
+     "y": -25,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "00000000000000000000000000000000000000000000dbb0000dbbbdaaacccdd",
+      "aaacc7779aac7d6db9976767bcb9777acccbb9aabccccb99dbcccbbb228bdccb",
+      "222dd8db22280a99222338aa44333b99443332b244332222433322208d332200",
+      "a8d0000020000000220000002220000011f00000fffff0000f0f000000000000"
+     ]
+    },
+    {
+     "x": -7,
+     "y": -17,
+     "w": 1,
+     "h": 3,
+     "sizeIndex": 2,
+     "palette": 2,
+     "tiles": [
+      "0000009a00009cc9000aa9cc000b9abb000cbddb000ccccd0000cccc0000acc2",
+      "0005a8c20005a83200055a84000045a8000034a8000003a800005484000a8333",
+      "02ccaa8d222bbb222222202201222212001222010ff110f0000fff0f00000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 29,
+   "symbol": "SPFnostick+29",
+   "kind": "body",
+   "name": "stop1",
+   "facing": "SE",
+   "from": 151,
+   "angle": null,
+   "file": "frames/nostick-se-stop1.png",
+   "tiles": 10,
+   "sprites": [
+    {
+     "x": 8,
+     "y": 0,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 0,
+     "tiles": [
+      "1100000030000000000000000210000000000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": -9,
+     "y": -23,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "00000dcc0000dccb0000bcbd00aabb770b8ab7d60cb9a776a82b8a779a2bb888",
+      "c8b2bccc0cb2bccc0bbb2bcc002222cc000222bb000222b80033334804443333",
+      "044443330c44443000cbbd80000998a00000a222000002220000222200022221",
+      "0002221f000011f00000ffff0000000000000000000000000000000000000000",
+      "00000000b0000000d000000070000000daa000007aaa0000aaaaa00099aaa800",
+      "cb9aa800bcb99b00cbcccb00ccdccc00cb89c800bbaa9a0089c9a80044cc9c00",
+      "35cccc003222200032222000022220000c22b0002099bb00210aa2001ff0c220",
+      "0fff2222f0ff22220ff22210000221ff000f1ff00000f00f0000000000000000"
+     ]
+    },
+    {
+     "x": 7,
+     "y": 1,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "f00000001f000000f00000000000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 30,
+   "symbol": "SPFnostick+30",
+   "kind": "body",
+   "name": "stop2",
+   "facing": "SE",
+   "from": 152,
+   "angle": null,
+   "file": "frames/nostick-se-stop2.png",
+   "tiles": 10,
+   "sprites": [
+    {
+     "x": 6,
+     "y": -3,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 0,
+     "tiles": [
+      "0002200000301300302330000311000000303300000000000002100000000000"
+     ]
+    },
+    {
+     "x": -9,
+     "y": -23,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "00000dcc0000dccb0000bcbd00aabb770b8ab7d60cb9a776a82b8a779a2bb888",
+      "c8b2bccc0cb2bccc0bbb2bcc002222cc000222bb000222b80033334804443333",
+      "044443330c44443000cbbd80000998a00000a222000002220000222200022221",
+      "0002221f000011f00000ffff0000000000000000000000000000000000000000",
+      "00000000b0000000d000000070000000daa000007aaa0000aaaaa00099aaa800",
+      "cb9aa800bcb99b00cbcccb00ccdccc00cb89c800bbaa9a0089c9a80044cc9c00",
+      "35cccc003222200032222000022220000c22b0002099bb00210aa2001ff0c220",
+      "0fff2222f0ff22220ff22210000221ff000f1ff00000f00f0000000000000000"
+     ]
+    },
+    {
+     "x": 7,
+     "y": 1,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "f00000001f000000f00000000000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 31,
+   "symbol": "SPFnostick+31",
+   "kind": "body",
+   "name": "reach",
+   "facing": "SE",
+   "from": 263,
+   "angle": null,
+   "file": "frames/nostick-se-reach.png",
+   "tiles": 9,
+   "sprites": [
+    {
+     "x": 5,
+     "y": -26,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "00000000000000000000000000000000000000000000dcc0000dccbb000bcbbd",
+      "d8abbbdd8aabb7269aa777769aa707709aaa0000c9aaa000b9aa8000cc99b000",
+      "9ccb0000a9c00000cc000000cc200000cc2200002222000082220000acc00000",
+      "cc00000022200000222200002222200012222f00ff11ff0000fff0000f000f00"
+     ]
+    },
+    {
+     "x": -3,
+     "y": -18,
+     "w": 1,
+     "h": 3,
+     "sizeIndex": 2,
+     "palette": 2,
+     "tiles": [
+      "0000000000000ddd0000ddcc000ccccc0ccccccc8bcccccb9bbcccbd89bbcbd9",
+      "a88bbd9aa898bdb984498dbc855443bc8545044b5540004b540000090000000a",
+      "000000020000000200000002000000f200000f0fff0000f0f0000000ff000000"
+     ]
+    },
+    {
+     "x": -11,
+     "y": -10,
+     "w": 1,
+     "h": 2,
+     "sizeIndex": 1,
+     "palette": 2,
+     "tiles": [
+      "00000004000000440000004a0000004a0000004a00000ca800008cc50000a9cc",
+      "0000ca980002cca000022220000222200ff2222200ff22220000f22200000f1f"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 32,
+   "symbol": "SPFnostick+32",
+   "kind": "body",
+   "name": "glide",
+   "facing": "S",
+   "from": 21,
+   "angle": null,
+   "file": "frames/nostick-s-glide.png",
+   "tiles": 8,
+   "sprites": [
+    {
+     "x": -7,
+     "y": -21,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "009990000c9aa99d0b9aaabb09b9abbc0adbabdd099dbdd60bbbdb7d00bbdb67",
+      "00cbdbb60002228b008222280082222300842224008444000085440000d55422",
+      "00dddd22009bbd220da998220bbaa000bbdd00002d22000022220000222ff000",
+      "f1f000000f0ff000000000000000000000000000000000000000000000000000",
+      "00000000bc000000ccc00000cccb0000ddbb000077dba0006d7aa900677aaa90",
+      "778aaa90bbb9999088dbbbc03d8bcc0043a9cc00549a9a000cc9a500bbcc5500",
+      "22c555002255580020888a0000daab00002dbb000022d200000222000ff22200",
+      "00ff1ff00fffff00000ff0000000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 33,
+   "symbol": "SPFnostick+33",
+   "kind": "body",
+   "name": "stride1",
+   "facing": "S",
+   "from": 22,
+   "angle": null,
+   "file": "frames/nostick-s-stride1.png",
+   "tiles": 8,
+   "sprites": [
+    {
+     "x": -7,
+     "y": -19,
+     "w": 2,
+     "h": 3,
+     "sizeIndex": 6,
+     "palette": 2,
+     "tiles": [
+      "0c990000c9aa9c0099aaacccab9acccc9dbacddd0bdcd7770bdc7d6d0bdb6767",
+      "0c25b67703c223bb0322223303222233833220034334500bbd55552bcbbdd222",
+      "99bb22220a9922200caaa0000ccb200002b22000022220002222200022221f00",
+      "0000000000000000d0000000cd000000cd900000dca9c0007daa9c007baaa900",
+      "bd9aa900bdb99b008dbcca003a99ba00b9aa8800bb983380bcc33da0bbddd8b2",
+      "b0028a220000222200000022000000ff0000ff00000000000000000000000000"
+     ]
+    },
+    {
+     "x": 9,
+     "y": -3,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "200000002000000020000000f000000000000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": -7,
+     "y": 5,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "0111ff000ffff0000000f0000000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 34,
+   "symbol": "SPFnostick+34",
+   "kind": "body",
+   "name": "stride2",
+   "facing": "S",
+   "from": 23,
+   "angle": null,
+   "file": "frames/nostick-s-stride2.png",
+   "tiles": 8,
+   "sprites": [
+    {
+     "x": -6,
+     "y": -22,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "0000000c00c9aacb08c9aacd8a8b9ad7c9dbc97dccdddb670cbdbcb60ccbdbc8",
+      "00cb22cb0022d2cc0002222c0082222800824433008244430843332b08443222",
+      "055542220b5552220cbbd22209988aa800aaabb3002cc222002222220f222200",
+      "fff11f0f000fff00000000000000000000000000000000000000000000000000",
+      "cbd00000bbbd0000ddbb000077dd00006d7d0000677aa00077aaa000899aaa00",
+      "bbb99800bdcbbb00bdcccb008a9cbb00d9a98800bc9aa000bcb83000bbd33000",
+      "b33330003335000088bb0000aa0000003b0000002220000022200000222f0000",
+      "f11ff0000f000000000000000000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 35,
+   "symbol": "SPFnostick+35",
+   "kind": "body",
+   "name": "stride3",
+   "facing": "S",
+   "from": 24,
+   "angle": null,
+   "file": "frames/nostick-s-stride3.png",
+   "tiles": 7,
+   "sprites": [
+    {
+     "x": -8,
+     "y": -19,
+     "w": 2,
+     "h": 3,
+     "sizeIndex": 6,
+     "palette": 2,
+     "tiles": [
+      "0000000c000000cc00009acd0009aad7000c9a7d00a9c967009a9dc600cbddbc",
+      "000cbddc000cbbdc0000cbd8000002d2000082220009342200a9d44402cadd42",
+      "222da02222220022222ff022ffff000000f0ff00000000000000000000000000",
+      "ccd00000cccd0000ddcd900077dca9006d7da9b0677aaa9b77b9aaabbbbc999b",
+      "cbbdcbbbcbddcccbbd8dbccb98da9bb03db9a9803ccb9350cccb34532bb34533",
+      "2b3333332033bdd020ca88d0002caa000022b20000222200000222200ff1222f"
+     ]
+    },
+    {
+     "x": 0,
+     "y": 5,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "00ff11ff000ffff00000000f0000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 36,
+   "symbol": "SPFnostick+36",
+   "kind": "body",
+   "name": "stride4",
+   "facing": "S",
+   "from": 25,
+   "angle": null,
+   "file": "frames/nostick-s-stride4.png",
+   "tiles": 6,
+   "sprites": [
+    {
+     "x": -5,
+     "y": -14,
+     "w": 2,
+     "h": 3,
+     "sizeIndex": 6,
+     "palette": 2,
+     "tiles": [
+      "00ccbd000cbbbbdb0cdddbb9bd777ddab7d6d7dab67677aa0b677aaa0bd9aaaa",
+      "002b9aaa002db99a002dddda0033dcc9033349cc03334a99033349aa00334cc9",
+      "0022ccbb022222bd0222222b0f22222200222f220000f0f1000000ff00000000",
+      "00000000b0000000bb0000009bb000009cbb00009bcb00009bcc00009bcc0000",
+      "a9cb0000a9d80000a9d800009bd40000c4480000c45800009580000045000000",
+      "88000000aa000000b200000022000000220000001fff0000f0f0000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 37,
+   "symbol": "SPFnostick+37",
+   "kind": "body",
+   "name": "stop1",
+   "facing": "S",
+   "from": 153,
+   "angle": null,
+   "file": "frames/nostick-s-stop1.png",
+   "tiles": 8,
+   "sprites": [
+    {
+     "x": 6,
+     "y": 3,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 0,
+     "tiles": [
+      "2000000000000000000000000000000000000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": -5,
+     "y": -25,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "0000000000000000000000000ccd0000cccbd000ccbbd0002627da8076767aa8",
+      "07777aa9000aaa9c000aa9cc00099cdb000ccbb80002c99a00029aa80002299b",
+      "00003ccc0000cccb0002cbb500022b58002222580022255502222bbb01122fc9",
+      "0ff0ff9a00000ffc00000f2b000f22220002222200011111000fffff0000f000"
+     ]
+    },
+    {
+     "x": 3,
+     "y": -17,
+     "w": 1,
+     "h": 3,
+     "sizeIndex": 2,
+     "palette": 2,
+     "tiles": [
+      "b0000000bb000000cbb00000ccb00000bcb00000db890000d898000089850000",
+      "98a5000058a500008a550000a5500000a50000008a000000b00000008a000000",
+      "ab000000cbf00000b2ff000022ff000022f0000011ff0000fff00000000f0000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 38,
+   "symbol": "SPFnostick+38",
+   "kind": "body",
+   "name": "stop2",
+   "facing": "S",
+   "from": 154,
+   "angle": null,
+   "file": "frames/nostick-s-stop2.png",
+   "tiles": 8,
+   "sprites": [
+    {
+     "x": 5,
+     "y": -2,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 0,
+     "tiles": [
+      "0100000020000000010000000000000000000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": -5,
+     "y": -25,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "0000000000000000000000000ccd0000cccbd000ccbbd0002627da8076767aa8",
+      "07777aa9000aaa9c000aa9cc00099cdb000ccbb80002c99a00029aa80002299b",
+      "00003ccc0000cccb0002cbb500022b58002222580022255502222bbb01122fc9",
+      "0ff0ff9a00000ffc00000f2b000f22220002222200011111000fffff0000f000"
+     ]
+    },
+    {
+     "x": 3,
+     "y": -17,
+     "w": 1,
+     "h": 3,
+     "sizeIndex": 2,
+     "palette": 2,
+     "tiles": [
+      "b0000000bb000000cbb00000ccb00000bcb00000db890000d898000089850000",
+      "98a5000058a500008a550000a5500000a50000008a000000b00000008a000000",
+      "ab000000cbf00000b2ff000022ff000022f0000011ff0000fff00000000f0000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 39,
+   "symbol": "SPFnostick+39",
+   "kind": "body",
+   "name": "reach",
+   "facing": "S",
+   "from": 265,
+   "angle": null,
+   "file": "frames/nostick-s-reach.png",
+   "tiles": 9,
+   "sprites": [
+    {
+     "x": -8,
+     "y": -16,
+     "w": 2,
+     "h": 3,
+     "sizeIndex": 6,
+     "palette": 2,
+     "tiles": [
+      "000000cc00000ccb0000ccbd000ccb8b000cb9ad00cb9aad00c8aaa6008a999b",
+      "04bbadbb04cbbb33044cbb20004cb22000d2b222022222222222222222211f22",
+      "f11ff0ff0ff0000000000000000000000000000f000000000000000000000000",
+      "bbbb0000dddbbc00ccbd899cccbdaaa9ddddaaaa777daa99262799cc767bbbba",
+      "bb334448034444580044558a00455580204554b020bbbbb020ccbbb000ccb800",
+      "00089a00000aab00002cb2000f022200ff022200022222ff02222ffff2222f00"
+     ]
+    },
+    {
+     "x": 8,
+     "y": -16,
+     "w": 1,
+     "h": 2,
+     "sizeIndex": 1,
+     "palette": 2,
+     "tiles": [
+      "0000000000000000c0000000cc0000009c900000c8ab0000cabb0000dbb20000",
+      "0222000022220000222200000220000000000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": 0,
+     "y": 8,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "0ff10ff0000f0000000000000000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 40,
+   "symbol": "SPFnostick+40",
+   "kind": "body",
+   "name": "glide",
+   "facing": "SW",
+   "from": 26,
+   "angle": null,
+   "file": "frames/nostick-sw-glide.png",
+   "tiles": 8,
+   "sprites": [
+    {
+     "x": -4,
+     "y": -23,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "00ccbd000cccbdd00cdddddb07777dd90d6d7da907676aa900777aa90000daaa",
+      "0000baaa0000baaa0000b9a900000b9b00000bbc000339980033b9a30033cb93",
+      "00b22c330022223400222b4322222bb92222110a0111f0000fff0fff000ff022",
+      "00000f22000000f10000000f0000000000000000000000000000000000000000",
+      "000000000000000000000000b0000000bc000000bcc00000bccc00009bccc000",
+      "9bccc0009bcccc00bbbccb00bdbbba00ddd38a003338a400338a400038a40000",
+      "8a4500008a5000008a90000099a00000aab00000bbbb00002222000022220000",
+      "2211f00011fff000ff0f0f0000f0000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 41,
+   "symbol": "SPFnostick+41",
+   "kind": "body",
+   "name": "stride1",
+   "facing": "SW",
+   "from": 27,
+   "angle": null,
+   "file": "frames/nostick-sw-stride1.png",
+   "tiles": 8,
+   "sprites": [
+    {
+     "x": -9,
+     "y": -19,
+     "w": 2,
+     "h": 3,
+     "sizeIndex": 6,
+     "palette": 2,
+     "tiles": [
+      "00ccbd000ccbbbda0cdddbda07777dda0d6d77da076767aa00777aaa00000aaa",
+      "000009aa00003b99000333bb0033339c03333aa993333b9aa9322bb9ca222bb0",
+      "0c222b000002220002222200222222f0221111ff0ffffff00000ffff00000000",
+      "ddd00000dddd00009bbb00009bccb0009bcccc009bcccc009bcccc809bcccb93",
+      "9dbbb983bbdb89a3cbd838a3cb3338a0b33348a0903458a0000358a30003548a",
+      "0000553800000bb90000009a0000000000000000000000ff000000ff000000f0"
+     ]
+    },
+    {
+     "x": -17,
+     "y": -3,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "00000000000000000000000000000000000000f20000000f0000000000000000"
+     ]
+    },
+    {
+     "x": 7,
+     "y": -3,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "b90000009ab00000acb20000c2220000222200002222ff002222f000f221ff00"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 42,
+   "symbol": "SPFnostick+42",
+   "kind": "body",
+   "name": "stride2",
+   "facing": "SW",
+   "from": 28,
+   "angle": null,
+   "file": "frames/nostick-sw-stride2.png",
+   "tiles": 6,
+   "sprites": [
+    {
+     "x": -11,
+     "y": -18,
+     "w": 2,
+     "h": 3,
+     "sizeIndex": 6,
+     "palette": 2,
+     "tiles": [
+      "0ccbd000ccbbbd00cdddbd8b7777dda8d6d77da976767aa90777aaa90000aaa9",
+      "000aaa9b000aaa9b000aa9bd00099bcd000cc98d00099aa8000aa98200099cc3",
+      "0002ccb300222c0300222200000220020000000100000fff0000000f00000000",
+      "0000000000000000b00000008a000000bd000000bb000000bcc00000bccb0000",
+      "ccccb000cccc8900bcc89300db998a30d8838a30833384303348a43022584300",
+      "325830003358a2202248ad2222438d2211cd8b22ff8ab2220fff0222f0f0ff22"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 43,
+   "symbol": "SPFnostick+43",
+   "kind": "body",
+   "name": "stride3",
+   "facing": "SW",
+   "from": 29,
+   "angle": null,
+   "file": "frames/nostick-sw-stride3.png",
+   "tiles": 7,
+   "sprites": [
+    {
+     "x": -11,
+     "y": -20,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "0000000000000000000000000000000000ccbd000ccbbbd00cdddbd007777dda",
+      "0d6d77da076767aa00777aa900000aa90000aa9b0000a9bc00009bcc0000cccc",
+      "00009ccb0009a98b00cc9aa00cccc803022cb033222200552222004402200088",
+      "0000000a000000f20000ff2200000f22000000f10000000f0000000000000000"
+     ]
+    },
+    {
+     "x": -3,
+     "y": -12,
+     "w": 1,
+     "h": 3,
+     "sizeIndex": 2,
+     "palette": 2,
+     "tiles": [
+      "900000009b000000bcb00000bccb0000ccccb000cdbcb800bdcc8900bdcc9330",
+      "dc89a330d838a330348a430048a433d08a433d228a322222380222118affffff",
+      "ad000ff0220f000022f0000022ff00001ff000000f000000f0f0000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 44,
+   "symbol": "SPFnostick+44",
+   "kind": "body",
+   "name": "stride4",
+   "facing": "SW",
+   "from": 30,
+   "angle": null,
+   "file": "frames/nostick-sw-stride4.png",
+   "tiles": 7,
+   "sprites": [
+    {
+     "x": -10,
+     "y": -22,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "00000000000000000000000000000000000000000ccbd000ccbbbd00cdddbd00",
+      "7777dda8d6d77da976767aa90777aaa90000aaa9000aaa9b000aa9bc00099bcd",
+      "000bbbbd000bbb8d000999a0000aaa83000999b300ccbb330222cb3402222035",
+      "002200030000000b00000002000000f100000f0f000000f00000000f00000000"
+     ]
+    },
+    {
+     "x": -2,
+     "y": -14,
+     "w": 1,
+     "h": 3,
+     "sizeIndex": 2,
+     "palette": 2,
+     "tiles": [
+      "bb000000bdda8000bbbdd000bccbb000bccccb00cccccc80cccccc90ccccc980",
+      "bccc9830dbbc9330d8898a303338a3303348a300458a300058a3300048a30000",
+      "33822000d88d20002ba220001222200022222f002222f0f0ffffff000f0f0000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 45,
+   "symbol": "SPFnostick+45",
+   "kind": "body",
+   "name": "stop1",
+   "facing": "SW",
+   "from": 155,
+   "angle": null,
+   "file": "frames/nostick-sw-stop1.png",
+   "tiles": 9,
+   "sprites": [
+    {
+     "x": -1,
+     "y": 4,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 0,
+     "tiles": [
+      "2300000000000000000000000000000000000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": -9,
+     "y": -24,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "000000cc00000ccc00000ccb0000026200000767000000770000000a000000aa",
+      "000000aa0000008900000ccc00000ccb0000099b00000aa90000099a00000bb9",
+      "0000ccbd0000ccb40002c225002222580022228a0002258a00020c4800000ccb",
+      "0000099b00000ca800000cca00000c22000222220f222222f00111110000ffff",
+      "d0000000bd000000bd0000007d00000067aa80007aaa9d00aaa9bdc0aa9bcb80",
+      "99bccbd0bbcccbd0ccccccb0bbcccc00bdcccb00dbbcb8908bbb8980dbb89840",
+      "8899843058a453308a453300a4588000454ab000442b2000a2222f00b2222000",
+      "b1110ff08ffff000f00f0f000f00000000000000f0000000ff000000f0000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 46,
+   "symbol": "SPFnostick+46",
+   "kind": "body",
+   "name": "stop2",
+   "facing": "SW",
+   "from": 156,
+   "angle": null,
+   "file": "frames/nostick-sw-stop2.png",
+   "tiles": 9,
+   "sprites": [
+    {
+     "x": -1,
+     "y": 3,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 0,
+     "tiles": [
+      "0020000030000000003000000000000000000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": -9,
+     "y": -24,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "000000cc00000ccc00000ccb0000026200000767000000770000000a000000aa",
+      "000000aa0000008900000ccc00000ccb0000099b00000aa90000099a00000bb9",
+      "0000ccbd0000ccb40002c225002222580022228a0002258a00020c4800000ccb",
+      "0000099b00000ca800000cca00000c22000222220f222222f00111110000ffff",
+      "d0000000bd000000bd0000007d00000067aa80007aaa9d00aaa9bdc0aa9bcb80",
+      "99bccbd0bbcccbd0ccccccb0bbcccc00bdcccb00dbbcb8908bbb8980dbb89840",
+      "8899843058a453308a453300a4588000454ab000442b2000a2222f00b2222000",
+      "b1110ff08ffff000f00f0f000f00000000000000f0000000ff000000f0000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 47,
+   "symbol": "SPFnostick+47",
+   "kind": "body",
+   "name": "reach",
+   "facing": "SW",
+   "from": 267,
+   "angle": null,
+   "file": "frames/nostick-sw-reach.png",
+   "tiles": 8,
+   "sprites": [
+    {
+     "x": -14,
+     "y": -19,
+     "w": 3,
+     "h": 1,
+     "sizeIndex": 8,
+     "palette": 2,
+     "tiles": [
+      "00000000000000cc00000ccc00000cdd0000077700000d6d0000076700000077",
+      "008bbbbbbda8bbbcbbda9bccbbdaa9bbdbdaaa9b7ddaaa9b6dc8aaa970dc999c",
+      "00000000bb800000ccb90000bcb89000dbcb9400bdbb9400cbdb8a40cb984840"
+     ]
+    },
+    {
+     "x": -6,
+     "y": -11,
+     "w": 2,
+     "h": 2,
+     "sizeIndex": 5,
+     "palette": 2,
+     "tiles": [
+      "0dddcccc22bdd33c222b03342222003402220005022000250000022c0000022c",
+      "000ff2220000ffff000f00f00000000f000000f00000000f000000f00000000f",
+      "b9a48a509a8b8a00a8bba4004cbba000522220005222200055222200cbb22200",
+      "ccb8af00999abff0faabb200ffcc22000f2222f0f22222f022222ff022222f00"
+     ]
+    },
+    {
+     "x": 2,
+     "y": 5,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "222ff000fff00000000000000000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 48,
+   "symbol": "SPFnostick+48",
+   "kind": "body",
+   "name": "glide",
+   "facing": "W",
+   "from": 31,
+   "angle": null,
+   "file": "frames/nostick-w-glide.png",
+   "tiles": 8,
+   "sprites": [
+    {
+     "x": -9,
+     "y": -23,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "0ccd0000dbccd000ddbcb00077dbbaaa6d7ddaaa67677aa90770aaa9000aaa9b",
+      "000a99bc00a9bbcc009bbbcc00cb9dbc00c9addc00ca9d0800a9bd2d00bbd223",
+      "00bd2324002220380022248a0022058a0000048a00000b99000000aa0000000c",
+      "0000000c0000f22200ff2222000011110000ffff0000000f0000000000000000",
+      "0000000000000000000000009b9a00009bbab000bcbd8b00bccbdd00ccccdd00",
+      "ccccc000ccccc000ccccc800ccccc980cccc94409999854088a8454048a55440",
+      "8a544400a5444000444380004333a000903ab000a002b000c0222200c2222200",
+      "221111f022ffff0f22ff00f011f00000ffff0000f00f00000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 49,
+   "symbol": "SPFnostick+49",
+   "kind": "body",
+   "name": "stride1",
+   "facing": "W",
+   "from": 32,
+   "angle": null,
+   "file": "frames/nostick-w-stride1.png",
+   "tiles": 9,
+   "sprites": [
+    {
+     "x": -11,
+     "y": -27,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "00000000000000000ccd0000ccccd000cccbd00077dddaa96d7d7a9b6767aa9b",
+      "076aa9bc000a9bcc0009bbcc009bcbcc00cc9dbc0099adbb0b8a80380db80333",
+      "02dd3333222333332223333322283330000aaaa00000bbb00000222000022222",
+      "0022222200211111f0ffffff0f0fff0f00000000000000000000000000000000",
+      "0000000000000000000000000000000000000000bb9a0000cb9a9000cbd8c000",
+      "ccbdb000cccbdd00ccccbd00ccccbb00ccccb800bccb990089998a00d8888a00",
+      "3338a4003348a300358a3300058a33000558a30005438d000053bd800000c9ab",
+      "00000ccb000000c2f0000022f00f02220000f22200000011000000ff00000000"
+     ]
+    },
+    {
+     "x": 5,
+     "y": -3,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "200000002200000022000000210000001fff0000ff0000000ff00000f0000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 50,
+   "symbol": "SPFnostick+50",
+   "kind": "body",
+   "name": "stride2",
+   "facing": "W",
+   "from": 33,
+   "angle": null,
+   "file": "frames/nostick-w-stride2.png",
+   "tiles": 8,
+   "sprites": [
+    {
+     "x": -9,
+     "y": -23,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "00cbd0000ccbbd000cbbbd00077dbd0006d7ddaa067677aa00760aaa0000aaa9",
+      "0000aa9b000099bc000bccbb0009bbbd000a99bd00b9aa9d00cb990000ccb000",
+      "02bb000022220000222200000220000000000000000000000000000200000022",
+      "00000f110000f0f00000000f0000000000000000000000000000000000000000",
+      "00000000000000000000000000000000a9000000a9b900009cbda900bccb8bb0",
+      "cccbbdb0cccccdd0cccccb00bcccc900bc899800b98a3300d838a430038a5430",
+      "048a4430348a430038a4300038a43000348a8000dc99a0002daabb202ddbcb22",
+      "11100222fff02222f0ff222100f0f11f00000ff00000000f0000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 51,
+   "symbol": "SPFnostick+51",
+   "kind": "body",
+   "name": "stride3",
+   "facing": "W",
+   "from": 34,
+   "angle": null,
+   "file": "frames/nostick-w-stride3.png",
+   "tiles": 10,
+   "sprites": [
+    {
+     "x": -8,
+     "y": -24,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "000cbd0000cccbd000ccccb00077dbd0006d7dda006767aa00076aaa0000aaa9",
+      "000aaa9b000aa9bb00099bcc0009cccc000a99bc00c9aaab00cc998d00ccccd3",
+      "02bbc3380222338a222338a422238a4500038a33000bbdd80009999a0000aaab",
+      "f0f0f2bb00022222002222220011111100f0ffff000000000000000000000000",
+      "00000000000000000000000000000000a0000000aa900000a9bb00009bbdb000",
+      "bccb8800cccb8b00ccccdbb0cccccdb0cccccdd0cccc99808999833038a34430",
+      "8a3455333445543355554333500003bd000000c8000000220000002200000001",
+      "2f00000022ff000f22f0000011ff0000ff000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": 8,
+     "y": -8,
+     "w": 1,
+     "h": 2,
+     "sizeIndex": 1,
+     "palette": 2,
+     "tiles": [
+      "0000000000000000d0000000d90000009a000000acb000002cc200002222f000",
+      "0111ff00f0fff0000f0f0f000000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 52,
+   "symbol": "SPFnostick+52",
+   "kind": "body",
+   "name": "stride4",
+   "facing": "W",
+   "from": 35,
+   "angle": null,
+   "file": "frames/nostick-w-stride4.png",
+   "tiles": 8,
+   "sprites": [
+    {
+     "x": -7,
+     "y": -24,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "000bbd0000bbbbd000bbbbb00077dbd000627dda0067677a00076aaa0000aaaa",
+      "000aaa99000aa9bb000a9bcc00c9bccc00bcb8cc00999acc00aaa8bc0c9999db",
+      "0cbb000802bb0034222203482222348a222048a50000558a00000b8a00000998",
+      "000000aa00f00002000ff222000022220000111100000fff0000000000000000",
+      "0000000000000000000000000000000000000000aa900000a9bb00009bcb9000",
+      "bcd8a900ccbda8b0cccbdbd0ccccbdd0ccccbd00ccccc900cccc9800bc998300",
+      "998354008a555400a5543000554330005433300044d88000408aad00a222bbb0",
+      "bd222220bb122220222ffff0222f0f00111f00000ff0f000f0ff000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 53,
+   "symbol": "SPFnostick+53",
+   "kind": "body",
+   "name": "stop1",
+   "facing": "W",
+   "from": 157,
+   "angle": null,
+   "file": "frames/nostick-w-stop1.png",
+   "tiles": 10,
+   "sprites": [
+    {
+     "x": -9,
+     "y": 0,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 0,
+     "tiles": [
+      "0200000003000000220000000000001000000e20000000000000000000000000"
+     ]
+    },
+    {
+     "x": 0,
+     "y": -28,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "00000000000000000000dcc0000dbccc000dbccc000dbbcc00062cbc00067777",
+      "00097aaa00aaaaaa0aaaaa998aa99bbcc99ccccccccbbccc9bbdbccca9ddbccc",
+      "9a8dbcccbddbccbbd8ddbcbb5898bb998a899984a44444434544333055333300",
+      "4033330000088b00222ba800222bbb000222220f0f0222f000ffff0f0f0f0000"
+     ]
+    },
+    {
+     "x": -8,
+     "y": -20,
+     "w": 1,
+     "h": 3,
+     "sizeIndex": 2,
+     "palette": 2,
+     "tiles": [
+      "0000000000000000000000000000000000000000000000090000000a000000c9",
+      "000000bc000002db000002dd0000022d00000005000000580000058a0000c5a4",
+      "0000cca5000099b4f000aa800ff0cba00222cbb002222b000f2222ff000220f0"
+     ]
+    },
+    {
+     "x": 8,
+     "y": -20,
+     "w": 1,
+     "h": 2,
+     "sizeIndex": 1,
+     "palette": 2,
+     "tiles": [
+      "aa000000aaa80000999b0000cbbbb000cbdbb000cbdb8000bd89a000bdaa8000",
+      "bd89b000bbbb0000880000009000000030000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 54,
+   "symbol": "SPFnostick+54",
+   "kind": "body",
+   "name": "stop2",
+   "facing": "W",
+   "from": 158,
+   "angle": null,
+   "file": "frames/nostick-w-stop2.png",
+   "tiles": 10,
+   "sprites": [
+    {
+     "x": -11,
+     "y": -1,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 0,
+     "tiles": [
+      "203000000323000030320000030e0000300300000000000e0000000000000000"
+     ]
+    },
+    {
+     "x": 0,
+     "y": -28,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "00000000000000000000dcc0000dbccc000dbccc000dbbcc00062cbc00067777",
+      "00097aaa00aaaaaa0aaaaa998aa99bbcc99ccccccccbbccc9bbdbccca9ddbccc",
+      "9a8dbcccbddbccbbd8ddbcbb5898bb998a899984a44444434544333055333300",
+      "4033330000088b00222ba800222bbb000222220f0f0222f000ffff0f0f0f0000"
+     ]
+    },
+    {
+     "x": -8,
+     "y": -20,
+     "w": 1,
+     "h": 3,
+     "sizeIndex": 2,
+     "palette": 2,
+     "tiles": [
+      "0000000000000000000000000000000000000000000000090000000a000000c9",
+      "000000bc000002db000002dd0000022d00000005000000580000058a0000c5a4",
+      "0000cca5000099b4f000aa800ff0cba00222cbb002222b000f2222ff000222f0"
+     ]
+    },
+    {
+     "x": 8,
+     "y": -20,
+     "w": 1,
+     "h": 2,
+     "sizeIndex": 1,
+     "palette": 2,
+     "tiles": [
+      "aa000000aaa80000999b0000cbbbb000cbdbb000cbdb8000bd89a000bdaa8000",
+      "bd89b000bbbb0000880000009000000030000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 55,
+   "symbol": "SPFnostick+55",
+   "kind": "body",
+   "name": "reach",
+   "facing": "W",
+   "from": 269,
+   "angle": null,
+   "file": "frames/nostick-w-reach.png",
+   "tiles": 9,
+   "sprites": [
+    {
+     "x": -16,
+     "y": -20,
+     "w": 2,
+     "h": 3,
+     "sizeIndex": 6,
+     "palette": 2,
+     "tiles": [
+      "00ccd0000dbccd000ddbcba8077dbbaa06d7ddaa067677aa00770aa900000aa9",
+      "00000aa90000089c000002cc000022220002222200002220000000000000000c",
+      "0000000c0000000c0000000000000000000000000000000000000000000000ff",
+      "0000000000000000b00000009bc000009bccc0009bccccb0bccccccbbbbcccbb",
+      "bbdbccb8ccbdbbb9cc9adb98c9a9b8440a9cba4505cbb44555c2245058222400",
+      "ba222200cb222200c9a222000abbbb00000cc220002222202222222f1111111f"
+     ]
+    },
+    {
+     "x": 0,
+     "y": -12,
+     "w": 1,
+     "h": 2,
+     "sizeIndex": 1,
+     "palette": 2,
+     "tiles": [
+      "940000008400000045300000543400005334400033344000434bb00004bb9a00",
+      "00c9ab000022ccb0ff1222200ff1122f00f0f11ff00f0ff0000ff00ff0000000"
+     ]
+    },
+    {
+     "x": -8,
+     "y": 4,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "fffffff000000000000000000000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 56,
+   "symbol": "SPFnostick+56",
+   "kind": "body",
+   "name": "glide",
+   "facing": "NW",
+   "from": 36,
+   "angle": null,
+   "file": "frames/nostick-nw-glide.png",
+   "tiles": 8,
+   "sprites": [
+    {
+     "x": -8,
+     "y": -25,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "000cbd0000cccbd000cccbd0007dbbda0077dda9000aaaab00aaa99c0aa99bbc",
+      "0aabbccc099ccccc0cbbcccc0b99dccc09a9bccc009db89800bd2389000338a3",
+      "00058a440008a443008a5433008a433900bd330a00c988000008aa00000cbbb0",
+      "0f22cbb00022222ffff2222000ff11ff0000ff0f000000000000000000000000",
+      "0000000000000000000000009b000000bbb00000cccb0000ccbbb000cccbbb00",
+      "ccccbb00ccdbbb00cccdb000cccd9000cc898000c99330009833300033333000",
+      "43333000333300003333000088880000aaaa0000cccb00002ccc00002222f000",
+      "01120f000ff1f000f00ff000ff000f0000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 57,
+   "symbol": "SPFnostick+57",
+   "kind": "body",
+   "name": "stride1",
+   "facing": "NW",
+   "from": 37,
+   "angle": null,
+   "file": "frames/nostick-nw-stride1.png",
+   "tiles": 8,
+   "sprites": [
+    {
+     "x": -8,
+     "y": -26,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "000cbd0000cccbd000cccbd0007dbbd00077dda9000aaa9b00aaa9bc0aa99bbc",
+      "099bbcccbcccccccccbccccc998bccccaaabbccc9998bb99cccd88330cbdd38a",
+      "00b2038a002248a500248a540008a5430008a43300048a3b0000c99800000aaa",
+      "000000cc00000ffc0000f22200ff2222000f11110000ffff0000000000000000",
+      "00000000000000000000000000000000b0000000cc900000cc8a9000b8a8b000",
+      "cb8bb000cdbbb000ccdbd000ccdd000089980000933300003453000055430000",
+      "54330000433000003330000033a00000dab0000022200000a2200000cb000000",
+      "bb0000002200000022200000222f0000111ff0000f0f0000fffff00000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 58,
+   "symbol": "SPFnostick+58",
+   "kind": "body",
+   "name": "stride2",
+   "facing": "NW",
+   "from": 38,
+   "angle": null,
+   "file": "frames/nostick-nw-stride2.png",
+   "tiles": 7,
+   "sprites": [
+    {
+     "x": -9,
+     "y": -28,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "000000000000000000000000000000000000ccd0000ccccd000ccbbd0007ddbb",
+      "000777dd00007aaa0000aaa9000aaa9b000999bc000bbbcc000bbdbc0008bbdb",
+      "00aa98dd0b99aadd2bbb00032bbb0033222000380000008a0000008a0000008a",
+      "0000000c0000000000000000000000ff000000ff000000ff0000000f00000000"
+     ]
+    },
+    {
+     "x": -1,
+     "y": -20,
+     "w": 1,
+     "h": 3,
+     "sizeIndex": 2,
+     "palette": 2,
+     "tiles": [
+      "aaa00000aa98000099c8a000cbd8ab00ccbd8b00ccbdbb00ccbddd00ccb99800",
+      "bc9883308983443038a554308a554330a55422005432330043233000dd230000",
+      "88bd0000acb220000c222000f2221f0022212ff02212fff0f1ff00f00fffff00"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 59,
+   "symbol": "SPFnostick+59",
+   "kind": "body",
+   "name": "stride3",
+   "facing": "NW",
+   "from": 39,
+   "angle": null,
+   "file": "frames/nostick-nw-stride3.png",
+   "tiles": 8,
+   "sprites": [
+    {
+     "x": -7,
+     "y": -30,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "0000000000000000000000000000000000000000000ccd0000cccbd000cbbbd0",
+      "007ddbd000777daa0007aaaa000aaa9900aaa9bb009a9ccc00c9bccc00ccbccc",
+      "0a99bbcc09aa8bbb0c99a899ccbd838abbbd38a42dd8aa55228a4443228a3333",
+      "00a88dd0000aa800000cbb000222cb20f22222200f22222f00ff11f000000000"
+     ]
+    },
+    {
+     "x": 1,
+     "y": -22,
+     "w": 1,
+     "h": 3,
+     "sizeIndex": 2,
+     "palette": 2,
+     "tiles": [
+      "00000000a0000000aa90000099bb9000bbcca000cccc8b00ccccbdb0ccccbdb0",
+      "cccb9dd0bb898d00999830004433330055544330554433303333334300033353",
+      "0000333d000003db000000bc000000080000000000000000f00000ff0000000f"
+     ]
+    },
+    {
+     "x": 9,
+     "y": -6,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "b00000009a0000008ab00000abb20000ccb220000c222200f02222000ff211f0"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 60,
+   "symbol": "SPFnostick+60",
+   "kind": "body",
+   "name": "stride4",
+   "facing": "NW",
+   "from": 40,
+   "angle": null,
+   "file": "frames/nostick-nw-stride4.png",
+   "tiles": 9,
+   "sprites": [
+    {
+     "x": -7,
+     "y": -25,
+     "w": 2,
+     "h": 4,
+     "sizeIndex": 7,
+     "palette": 2,
+     "tiles": [
+      "00000ccd0000cccc0000ccbb00007ddb0000777d000007aa0000aaaa000aa999",
+      "00099bbb000cbccc00a9bbbc009a98bc00c9aabc02cb8ddb22bbb889222b0048",
+      "022000480000008a000008a4000008a5000008a400000cb3000000980000000a",
+      "000f022c0000f222000fff2200000fff0000000f000000000000000000000000",
+      "00000000d0000000b0000000d0000000aaa00000aaaa90009999bb00bbbbcc90",
+      "ccccbca0ccccd8a0ccccda90ccccbdb0cccc8dd0cc8998d099983300a3334300",
+      "a5544300554333005433300054333000433333003303b8808a0b8ab0ab00ab22",
+      "bbb00222b2202222222f221f222f0fffff0ff0f0f0f000000000000000000000"
+     ]
+    },
+    {
+     "x": 9,
+     "y": -1,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "2000000020000000fff00000fff0000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 61,
+   "symbol": "SPFnostick+61",
+   "kind": "body",
+   "name": "stop1",
+   "facing": "NW",
+   "from": 159,
+   "angle": null,
+   "file": "frames/nostick-nw-stop1.png",
+   "tiles": 9,
+   "sprites": [
+    {
+     "x": -9,
+     "y": -5,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 0,
+     "tiles": [
+      "0312000000212000130000000220000000200000000000000000000000000000"
+     ]
+    },
+    {
+     "x": 0,
+     "y": -24,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "00000000000000000000cdb0000ccbbb000ccbbb0007dbbb0007ddbb00aaaaaa",
+      "aaaaaaaa99aaaa99cb9999bbdbccccccdbccccbcbbccccbdbccccbbbbcccbbb0",
+      "bbbbbbbb8bbbb8988999998a4444544a3333454a3003445400003445f00acc50",
+      "000ca990f02cba000f222f00ff22f0ff00fffff00f00f0000000000000000000"
+     ]
+    },
+    {
+     "x": -8,
+     "y": -16,
+     "w": 1,
+     "h": 3,
+     "sizeIndex": 2,
+     "palette": 2,
+     "tiles": [
+      "000000090000000c000000cc000009cc00000a8d000008a800000c8d000000db",
+      "00000098000000390000054300005554f00094440ffca999002cbaa0002222ff",
+      "00222fff000fff00000000f00000000000000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": 8,
+     "y": -16,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "a00000009b000000cbb00000cbb00000cb9a0000b9a80000da9b0000c8b00000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 62,
+   "symbol": "SPFnostick+62",
+   "kind": "body",
+   "name": "stop2",
+   "facing": "NW",
+   "from": 160,
+   "angle": null,
+   "file": "frames/nostick-nw-stop2.png",
+   "tiles": 9,
+   "sprites": [
+    {
+     "x": -12,
+     "y": -8,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 0,
+     "tiles": [
+      "0000300000000000300000300000312003010210000030000000020000000200"
+     ]
+    },
+    {
+     "x": 0,
+     "y": -24,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "00000000000000000000cdb0000ccbbb000ccbbb0007dbbb0007ddbb00aaaaaa",
+      "aaaaaaaa99aaaa99cb9999bbdbccccccdbccccbcbbccccbdbccccbbbbcccbbb0",
+      "bbbbbbbb8bbbb8988999998a4444544a3333454a3003445400003445f00acc50",
+      "000ca990f02cba000f222f00ff22f0ff00fffff00f00f0000000000000000000"
+     ]
+    },
+    {
+     "x": -8,
+     "y": -16,
+     "w": 1,
+     "h": 3,
+     "sizeIndex": 2,
+     "palette": 2,
+     "tiles": [
+      "000000090000000c000000cc000009cc00000a8d000008a800000c8d000000db",
+      "00000098000000390000054300005554f00094440ffca999002cbaa0002222ff",
+      "00222fff000fff00000000f00000000000000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": 8,
+     "y": -16,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "a00000009b000000cbb00000cbb00000cb9a0000b9a80000da9b0000c8b00000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 63,
+   "symbol": "SPFnostick+63",
+   "kind": "body",
+   "name": "reach",
+   "facing": "NW",
+   "from": 271,
+   "angle": null,
+   "file": "frames/nostick-nw-reach.png",
+   "tiles": 9,
+   "sprites": [
+    {
+     "x": -11,
+     "y": -25,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "000000000000000000000000000000000cbd0000cccbd000cccbd0007dbbd0aa",
+      "77dd7aa80777aa9b00aaa9bb0aaa9bbc08a9bccc0c9bbdbc0cccb8db00cc9a8b",
+      "0009a9bd000c9cb3000cccba0002cb34000222450002222400f0222b000022ba",
+      "00ff122b000ff12200000f12000000f10000000f000000000000000000000000"
+     ]
+    },
+    {
+     "x": -3,
+     "y": -17,
+     "w": 1,
+     "h": 3,
+     "sizeIndex": 2,
+     "palette": 2,
+     "tiles": [
+      "b0000000bb000000cbb00000ccbb0000cccbb000ccccb800cccbb890bbbb8980",
+      "bbb8944a899944454443345554333455530444555000444580000444a00000cc",
+      "b00000082000000f20f00fffff000000f0f000ff000000000000000000000000"
+     ]
+    },
+    {
+     "x": 5,
+     "y": -9,
+     "w": 1,
+     "h": 2,
+     "sizeIndex": 1,
+     "palette": 2,
+     "tiles": [
+      "0000000000000000a0000000500000005500000055000000bb00000098a00000",
+      "aab00000cbb2000022222000f2222f000f221ff0f0fff0000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 64,
+   "symbol": "SPFloosestick+0",
+   "kind": "stick",
+   "name": "upright",
+   "facing": "N",
+   "from": null,
+   "angle": 100,
+   "file": "frames/loosestick-n-upright.png",
+   "tiles": 4,
+   "sprites": [
+    {
+     "x": -1,
+     "y": -26,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "e0000000e0000000e0000000e0000000e0000000e0000000e0000000e0000000",
+      "e0000000e0000000e0000000e0000000e0000000e00000000e0000000e000000",
+      "0e0000000e0000000e0000000e0000000e0000000e0000000e0000000e000000",
+      "0e0000000eeeee000eeeeef000fffff000f00000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 65,
+   "symbol": "SPFloosestick+1",
+   "kind": "stick",
+   "name": "falling",
+   "facing": "N",
+   "from": null,
+   "angle": 145,
+   "file": "frames/loosestick-n-falling.png",
+   "tiles": 4,
+   "sprites": [
+    {
+     "x": -8,
+     "y": -25,
+     "w": 1,
+     "h": 3,
+     "sizeIndex": 2,
+     "palette": 2,
+     "tiles": [
+      "000000000000000000e0000000e00000000e0000000e0000000e0000000e0000",
+      "0000e0000000e0000000e0000000e00000000e0000000e0000000e0000000e00",
+      "000000e0000000e0000000e00000f0e00000000e00000f0e0000000e000000fe"
+     ]
+    },
+    {
+     "x": 0,
+     "y": -1,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "eeeee000eeeeef000fffff000f00000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 66,
+   "symbol": "SPFloosestick+2",
+   "kind": "stick",
+   "name": "flat",
+   "facing": "N",
+   "from": null,
+   "angle": 180,
+   "file": "frames/loosestick-n-flat.png",
+   "tiles": 3,
+   "sprites": [
+    {
+     "x": -7,
+     "y": -11,
+     "w": 1,
+     "h": 2,
+     "sizeIndex": 1,
+     "palette": 2,
+     "tiles": [
+      "e00000000e0000000ef0000000e00000000e0000000ef0000000e0000000ef00",
+      "00000e00000000e0000000ef0000000e00000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": 1,
+     "y": -3,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "0000000000000000eeee0000eeeef000fffff000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 67,
+   "symbol": "SPFloosestick+3",
+   "kind": "stick",
+   "name": "upright",
+   "facing": "NE",
+   "from": null,
+   "angle": 100,
+   "file": "frames/loosestick-ne-upright.png",
+   "tiles": 4,
+   "sprites": [
+    {
+     "x": -4,
+     "y": -25,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "000000e0000000e0000000e0000000e0000000e0000000e0000000e000000e00",
+      "00000e0000000e0000000e0000000e0000000e0000000e0000000e0000000e00",
+      "00000e0000000e0000000e000000e0000000e0000000e0000000e0000000e000",
+      "eeeee000eeeee000fffff0f00000f00000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 68,
+   "symbol": "SPFloosestick+4",
+   "kind": "stick",
+   "name": "falling",
+   "facing": "NE",
+   "from": null,
+   "angle": 145,
+   "file": "frames/loosestick-ne-falling.png",
+   "tiles": 4,
+   "sprites": [
+    {
+     "x": 4,
+     "y": -21,
+     "w": 1,
+     "h": 3,
+     "sizeIndex": 2,
+     "palette": 2,
+     "tiles": [
+      "0000000000000000000000000000000e000000e0000000e000000e0000000e00",
+      "0000e000000e0000000e000000e0000000e000000e000000e0000000e0000000",
+      "000000000000000000000000000000f00000f00000f00000f000000000000000"
+     ]
+    },
+    {
+     "x": -4,
+     "y": -5,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "0000000e000000e0000000e000000e00eeee0e00eeeee000fffff0f00000f000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 69,
+   "symbol": "SPFloosestick+5",
+   "kind": "stick",
+   "name": "flat",
+   "facing": "NE",
+   "from": null,
+   "angle": 180,
+   "file": "frames/loosestick-ne-flat.png",
+   "tiles": 3,
+   "sprites": [
+    {
+     "x": -4,
+     "y": -5,
+     "w": 3,
+     "h": 1,
+     "sizeIndex": 8,
+     "palette": 2,
+     "tiles": [
+      "00000000000000000000000000000000eeee00eeeeeeeeffffffff0000000000",
+      "00000000000000ee000eeeffeeefff00fff00000000000000000000000000000",
+      "ee000000ff000000000000000000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 70,
+   "symbol": "SPFloosestick+6",
+   "kind": "stick",
+   "name": "upright",
+   "facing": "E",
+   "from": null,
+   "angle": 100,
+   "file": "frames/loosestick-e-upright.png",
+   "tiles": 5,
+   "sprites": [
+    {
+     "x": 0,
+     "y": -25,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "000000000000e0000000e0000000e0000000e000000e0000000e0000000e0000",
+      "000e0000000e0000000e000000e0000000e0000000e0000000e0000000e00000",
+      "00e000000e0000000e0000000e0000000e0000000e0000000e000000e0000000",
+      "e0000000e0000000f0000000f0f0f00000000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": -8,
+     "y": -1,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "0000eeee0000eeee0000ffff0000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 71,
+   "symbol": "SPFloosestick+7",
+   "kind": "stick",
+   "name": "falling",
+   "facing": "E",
+   "from": null,
+   "angle": 145,
+   "file": "frames/loosestick-e-falling.png",
+   "tiles": 6,
+   "sprites": [
+    {
+     "x": 11,
+     "y": -16,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "000000000000000e000000e00000ee00000e000000e000000e000000e0000000"
+     ]
+    },
+    {
+     "x": -5,
+     "y": -8,
+     "w": 2,
+     "h": 2,
+     "sizeIndex": 5,
+     "palette": 2,
+     "tiles": [
+      "0000000000000000000000000000000000000000000000000000000e0eeee0e0",
+      "0eeeee000fffff0000000f0f0000000000000000000000000000000000000000",
+      "000000ee00000e000000e000000e000000e00000ee0000000000000000000000",
+      "000000000000000f0f0f0f000000000000000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": 11,
+     "y": 0,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "000000000f0f0f0f000000000000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 72,
+   "symbol": "SPFloosestick+8",
+   "kind": "stick",
+   "name": "flat",
+   "facing": "E",
+   "from": null,
+   "angle": 180,
+   "file": "frames/loosestick-e-flat.png",
+   "tiles": 4,
+   "sprites": [
+    {
+     "x": -4,
+     "y": -1,
+     "w": 4,
+     "h": 1,
+     "sizeIndex": 12,
+     "palette": 2,
+     "tiles": [
+      "eeee0000eeeeeeeeffffffff0000000000000000000000000000000000000000",
+      "0000000eeeeeeeeffffffff00000000000000000000000000000000000000000",
+      "eeeeeeeeffffffff000000000000000000000000000000000000000000000000",
+      "eee00000fff00000000000000000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 73,
+   "symbol": "SPFloosestick+9",
+   "kind": "stick",
+   "name": "upright",
+   "facing": "SE",
+   "from": null,
+   "angle": 100,
+   "file": "frames/loosestick-se-upright.png",
+   "tiles": 4,
+   "sprites": [
+    {
+     "x": -4,
+     "y": -22,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "0000000e0000000e0000000e0000000e000000e0000000e0000000e0000000e0",
+      "000000e0000000e0000000e0000000e000000e0000000e0000000e0000000e00",
+      "00000e0000000e0000000e000000e0000000e000eeeee000eeeee000fffff000",
+      "0000f000000000f0000000000000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 74,
+   "symbol": "SPFloosestick+10",
+   "kind": "stick",
+   "name": "falling",
+   "facing": "SE",
+   "from": null,
+   "angle": 145,
+   "file": "frames/loosestick-se-falling.png",
+   "tiles": 5,
+   "sprites": [
+    {
+     "x": 11,
+     "y": -12,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "00000000000000000000000000000000000000000000ee0000ee0000ee000000"
+     ]
+    },
+    {
+     "x": -5,
+     "y": -4,
+     "w": 2,
+     "h": 1,
+     "sizeIndex": 4,
+     "palette": 2,
+     "tiles": [
+      "0000000000000000000000000eeee00e0eeeeee00fffff0000000f000000000f",
+      "00000eee000ee0000ee00000e000000000000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": 3,
+     "y": 4,
+     "w": 2,
+     "h": 1,
+     "sizeIndex": 4,
+     "palette": 2,
+     "tiles": [
+      "0f000000000f000000000f0f0000000000000000000000000000000000000000",
+      "0000000000000000000000000f000000000f000000000f000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 75,
+   "symbol": "SPFloosestick+11",
+   "kind": "stick",
+   "name": "flat",
+   "facing": "SE",
+   "from": null,
+   "angle": 180,
+   "file": "frames/loosestick-se-flat.png",
+   "tiles": 4,
+   "sprites": [
+    {
+     "x": -4,
+     "y": -1,
+     "w": 3,
+     "h": 1,
+     "sizeIndex": 8,
+     "palette": 2,
+     "tiles": [
+      "eeee0000eeeeee00ffffffee000000ff00000000000000000000000000000000",
+      "000000000000000000000000ee000000ffeee00000fffee000000ffe0000000f",
+      "000000000000000000000000000000000000000000000000ee000000ffee0000"
+     ]
+    },
+    {
+     "x": 12,
+     "y": 7,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "00ffee000000ffee000000ff0000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 76,
+   "symbol": "SPFloosestick+12",
+   "kind": "stick",
+   "name": "upright",
+   "facing": "S",
+   "from": null,
+   "angle": 100,
+   "file": "frames/loosestick-s-upright.png",
+   "tiles": 4,
+   "sprites": [
+    {
+     "x": 0,
+     "y": -20,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "0e0000000e0000000e0000000e0000000e0000000e0000000e0000000e000000",
+      "0e0000000e0000000e000000e0000000e0000000e0000000e0000000e0000000",
+      "e0000000ee000000eef00000eef00000eef000000ff000000f00000000000000",
+      "00f000000000000000f000000000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 77,
+   "symbol": "SPFloosestick+13",
+   "kind": "stick",
+   "name": "falling",
+   "facing": "S",
+   "from": null,
+   "angle": 145,
+   "file": "frames/loosestick-s-falling.png",
+   "tiles": 3,
+   "sprites": [
+    {
+     "x": 0,
+     "y": -3,
+     "w": 1,
+     "h": 3,
+     "sizeIndex": 2,
+     "palette": 2,
+     "tiles": [
+      "ee000000eef00000eef00000eef000000ee000000f0ee00000000e0000f00000",
+      "0000000000f0000000000000000f000000000000000f0000000000000000f000",
+      "0000000000000f000000000000000f0000000000000000f00000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 78,
+   "symbol": "SPFloosestick+14",
+   "kind": "stick",
+   "name": "flat",
+   "facing": "S",
+   "from": null,
+   "angle": 180,
+   "file": "frames/loosestick-s-flat.png",
+   "tiles": 4,
+   "sprites": [
+    {
+     "x": 0,
+     "y": -3,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "ee000000eef00000eef00000eef00000eff000000e0000000ef000000ef00000",
+      "0ef0000000e0000000ef000000ef0000000e0000000ef000000ef000000ef000",
+      "0000e0000000ef000000ef0000000e0000000ef000000ef000000ef0000000e0",
+      "000000ef0000000f000000000000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 79,
+   "symbol": "SPFloosestick+15",
+   "kind": "stick",
+   "name": "upright",
+   "facing": "SW",
+   "from": null,
+   "angle": 100,
+   "file": "frames/loosestick-sw-upright.png",
+   "tiles": 4,
+   "sprites": [
+    {
+     "x": -3,
+     "y": -22,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "e0000000e0000000e0000000e00000000e0000000e0000000e0000000e000000",
+      "0e0000000e0000000e0000000e00000000e0000000e0000000e0000000e00000",
+      "00e0000000e0000000e00000000e0000000e0000000eeeee000eeeee000fffff",
+      "000f00000f000000000000000000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 80,
+   "symbol": "SPFloosestick+16",
+   "kind": "stick",
+   "name": "falling",
+   "facing": "SW",
+   "from": null,
+   "angle": 145,
+   "file": "frames/loosestick-sw-falling.png",
+   "tiles": 4,
+   "sprites": [
+    {
+     "x": -13,
+     "y": -11,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "000000000000000000000000e00000000ee00000000ee00000000e00000000ee"
+     ]
+    },
+    {
+     "x": -5,
+     "y": -3,
+     "w": 2,
+     "h": 1,
+     "sizeIndex": 4,
+     "palette": 2,
+     "tiles": [
+      "e00000000ee00000000ee0ee00000eee00000fff00000f00000f00000f000000",
+      "0000000000000000ee000000ee000000ff000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": -13,
+     "y": 5,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "0000000f00000f00000f00000f00000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 81,
+   "symbol": "SPFloosestick+17",
+   "kind": "stick",
+   "name": "flat",
+   "facing": "SW",
+   "from": null,
+   "angle": 180,
+   "file": "frames/loosestick-sw-flat.png",
+   "tiles": 4,
+   "sprites": [
+    {
+     "x": -15,
+     "y": -1,
+     "w": 3,
+     "h": 1,
+     "sizeIndex": 8,
+     "palette": 2,
+     "tiles": [
+      "0000000000000000000000000000000000000000000000ee0000eeff00eeff00",
+      "00000000000000ee0000eeff00eeff00eeff0000ff0000000000000000000000",
+      "eeee0000eeee0000ffff00000000000000000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": -15,
+     "y": 7,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "eeff0000ff000000000000000000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 82,
+   "symbol": "SPFloosestick+18",
+   "kind": "stick",
+   "name": "upright",
+   "facing": "W",
+   "from": null,
+   "angle": 100,
+   "file": "frames/loosestick-w-upright.png",
+   "tiles": 5,
+   "sprites": [
+    {
+     "x": -4,
+     "y": -25,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "00000000e0000000e0000000e0000000e00000000e0000000e0000000e000000",
+      "0e0000000e0000000e00000000e0000000e0000000e0000000e0000000e00000",
+      "00e00000000e0000000e0000000e0000000e0000000e0000000e00000000e000",
+      "0000eeee0000eeeef0f0ffff0000f00000000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": 4,
+     "y": -1,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "e0000000e0000000f00000000000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 83,
+   "symbol": "SPFloosestick+19",
+   "kind": "stick",
+   "name": "falling",
+   "facing": "W",
+   "from": null,
+   "angle": 145,
+   "file": "frames/loosestick-w-falling.png",
+   "tiles": 6,
+   "sprites": [
+    {
+     "x": -18,
+     "y": -17,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "e00000000e00000000e00000000e00000000e00000000e00000000e00000000e"
+     ]
+    },
+    {
+     "x": -10,
+     "y": -9,
+     "w": 2,
+     "h": 2,
+     "sizeIndex": 5,
+     "palette": 2,
+     "tiles": [
+      "ee00000000e00000000e00000000e00000000e00000000e00000000e00000000",
+      "00000000f000000000f0f0f00000000000000000000000000000000000000000",
+      "00000000000000000000000000000000000000000000000000000000e0000000",
+      "0e0eeee000eeeee000fffff0f0f0000000000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": -18,
+     "y": -1,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "f0f000000000f0f0000000000000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 84,
+   "symbol": "SPFloosestick+20",
+   "kind": "stick",
+   "name": "flat",
+   "facing": "W",
+   "from": null,
+   "angle": 180,
+   "file": "frames/loosestick-w-flat.png",
+   "tiles": 4,
+   "sprites": [
+    {
+     "x": -22,
+     "y": -3,
+     "w": 4,
+     "h": 1,
+     "sizeIndex": 12,
+     "palette": 2,
+     "tiles": [
+      "eeee0000ffffeeee0000ffff0000000000000000000000000000000000000000",
+      "00000000eeee0000ffffeeee0000ffff00000000000000000000000000000000",
+      "0000000000000000eee0000efffeeeee000fffff000000000000000000000000",
+      "0000000000000000eee00000eee00000fff00000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 85,
+   "symbol": "SPFloosestick+21",
+   "kind": "stick",
+   "name": "upright",
+   "facing": "NW",
+   "from": null,
+   "angle": 100,
+   "file": "frames/loosestick-nw-upright.png",
+   "tiles": 4,
+   "sprites": [
+    {
+     "x": -3,
+     "y": -25,
+     "w": 1,
+     "h": 4,
+     "sizeIndex": 3,
+     "palette": 2,
+     "tiles": [
+      "e0000000e0000000e0000000e0000000e00000000e0000000e0000000e000000",
+      "0e0000000e0000000e0000000e0000000e00000000e0000000e0000000e00000",
+      "00e0000000e0000000e0000000e0000000e00000000e0000000e0000000e0000",
+      "000eeeee000eeeee0f0fffff000f000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 86,
+   "symbol": "SPFloosestick+22",
+   "kind": "stick",
+   "name": "falling",
+   "facing": "NW",
+   "from": null,
+   "angle": 145,
+   "file": "frames/loosestick-nw-falling.png",
+   "tiles": 6,
+   "sprites": [
+    {
+     "x": -14,
+     "y": -21,
+     "w": 1,
+     "h": 3,
+     "sizeIndex": 2,
+     "palette": 2,
+     "tiles": [
+      "e00000000e0000000e00000000e00000000e0000000e00000000e00000000e00",
+      "00000e00000000e00000000e0000000e000000000000000000000000f0000000",
+      "00f000000000f000000000f00000000000000000000000000000000000000000"
+     ]
+    },
+    {
+     "x": -6,
+     "y": -13,
+     "w": 1,
+     "h": 2,
+     "sizeIndex": 1,
+     "palette": 2,
+     "tiles": [
+      "00000000000000000000000000000000e00000000e0000000e00000000e00000",
+      "000e0000000e00000000e00000000e00f0000e0e00f000ee0000f0ff000000f0"
+     ]
+    },
+    {
+     "x": 2,
+     "y": -5,
+     "w": 1,
+     "h": 1,
+     "sizeIndex": 0,
+     "palette": 2,
+     "tiles": [
+      "00000000000000000000000000000000eee00000eee00000fff0000000000000"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 87,
+   "symbol": "SPFloosestick+23",
+   "kind": "stick",
+   "name": "flat",
+   "facing": "NW",
+   "from": null,
+   "angle": 180,
+   "file": "frames/loosestick-nw-flat.png",
+   "tiles": 4,
+   "sprites": [
+    {
+     "x": -17,
+     "y": -9,
+     "w": 2,
+     "h": 1,
+     "sizeIndex": 4,
+     "palette": 2,
+     "tiles": [
+      "e0000000fee000000ffee000000ffee000000ffe0000000f0000000000000000",
+      "00000000000000000000000000000000e0000000fee000000ffee000000ffee0"
+     ]
+    },
+    {
+     "x": -9,
+     "y": -1,
+     "w": 2,
+     "h": 1,
+     "sizeIndex": 4,
+     "palette": 2,
+     "tiles": [
+      "00000ffe0000000f000000000000000000000000000000000000000000000000",
+      "e0eeee00feeeee000fffff000000000000000000000000000000000000000000"
+     ]
+    }
+   ]
+  }
+ ],
+ "rows": [
+  {
+   "facing": "N",
+   "back": "S",
+   "heel": [
+    -1,
+    -24
+   ],
+   "grabAt": [
+    -10,
+    -40
+   ],
+   "steps": [
+    {
+     "step": "carry",
+     "vblanks": 10,
+     "player": {
+      "retail": 2
+     },
+     "at": [
+      0,
+      0
+     ],
+     "stick": null
+    },
+    {
+     "step": "catch",
+     "vblanks": 6,
+     "player": {
+      "new": 2,
+      "from": 3
+     },
+     "at": [
+      0,
+      -5
+     ],
+     "stick": {
+      "new": 64,
+      "angle": 100,
+      "at": [
+       -1,
+       -24
+      ]
+     }
+    },
+    {
+     "step": "vault",
+     "vblanks": 6,
+     "player": {
+      "new": 3,
+      "from": 4
+     },
+     "at": [
+      0,
+      -10
+     ],
+     "stick": {
+      "new": 65,
+      "angle": 145,
+      "at": [
+       -1,
+       -24
+      ]
+     }
+    },
+    {
+     "step": "clatter",
+     "vblanks": 8,
+     "player": {
+      "new": 4,
+      "from": 5
+     },
+     "at": [
+      0,
+      -15
+     ],
+     "stick": {
+      "new": 66,
+      "angle": 180,
+      "at": [
+       -1,
+       -24
+      ]
+     }
+    },
+    {
+     "step": "coast",
+     "vblanks": 10,
+     "player": {
+      "new": 0,
+      "from": 1
+     },
+     "at": [
+      0,
+      -30
+     ],
+     "stick": {
+      "new": 66,
+      "angle": 180,
+      "at": [
+       -1,
+       -24
+      ]
+     }
+    },
+    {
+     "step": "stop",
+     "vblanks": 4,
+     "player": {
+      "new": 5,
+      "from": 145
+     },
+     "at": [
+      0,
+      -44
+     ],
+     "stick": {
+      "new": 66,
+      "angle": 180,
+      "at": [
+       -1,
+       -24
+      ]
+     }
+    },
+    {
+     "step": "stop2",
+     "vblanks": 4,
+     "player": {
+      "new": 6,
+      "from": 146
+     },
+     "at": [
+      0,
+      -47
+     ],
+     "stick": {
+      "new": 66,
+      "angle": 180,
+      "at": [
+       -1,
+       -24
+      ]
+     }
+    },
+    {
+     "step": "pivot",
+     "vblanks": 6,
+     "player": {
+      "new": 21,
+      "from": 149
+     },
+     "at": [
+      0,
+      -47
+     ],
+     "stick": {
+      "new": 66,
+      "angle": 180,
+      "at": [
+       -1,
+       -24
+      ]
+     }
+    },
+    {
+     "step": "turned",
+     "vblanks": 6,
+     "player": {
+      "new": 32,
+      "from": 21
+     },
+     "at": [
+      0,
+      -47
+     ],
+     "stick": {
+      "new": 66,
+      "angle": 180,
+      "at": [
+       -1,
+       -24
+      ]
+     }
+    },
+    {
+     "step": "back1",
+     "vblanks": 10,
+     "player": {
+      "new": 33,
+      "from": 22
+     },
+     "at": [
+      -4,
+      -44
+     ],
+     "stick": {
+      "new": 66,
+      "angle": 180,
+      "at": [
+       -1,
+       -24
+      ]
+     }
+    },
+    {
+     "step": "back2",
+     "vblanks": 10,
+     "player": {
+      "new": 34,
+      "from": 23
+     },
+     "at": [
+      -8,
+      -41
+     ],
+     "stick": {
+      "new": 66,
+      "angle": 180,
+      "at": [
+       -1,
+       -24
+      ]
+     }
+    },
+    {
+     "step": "reach",
+     "vblanks": 6,
+     "player": {
+      "new": 39,
+      "from": 265
+     },
+     "at": [
+      -10,
+      -40
+     ],
+     "stick": {
+      "new": 66,
+      "angle": 180,
+      "at": [
+       -1,
+       -24
+      ]
+     }
+    },
+    {
+     "step": "grab",
+     "vblanks": 8,
+     "player": {
+      "retail": 265
+     },
+     "at": [
+      -10,
+      -40
+     ],
+     "stick": null
+    },
+    {
+     "step": "rise",
+     "vblanks": 10,
+     "player": {
+      "retail": 21
+     },
+     "at": [
+      -10,
+      -40
+     ],
+     "stick": null
+    },
+    {
+     "step": "away",
+     "vblanks": 10,
+     "player": {
+      "retail": 22
+     },
+     "at": [
+      -10,
+      -35
+     ],
+     "stick": null
+    }
+   ]
+  },
+  {
+   "facing": "NE",
+   "back": "SW",
+   "heel": [
+    23,
+    -10
+   ],
+   "grabAt": [
+    40,
+    -19
+   ],
+   "steps": [
+    {
+     "step": "carry",
+     "vblanks": 10,
+     "player": {
+      "retail": 7
+     },
+     "at": [
+      0,
+      0
+     ],
+     "stick": null
+    },
+    {
+     "step": "catch",
+     "vblanks": 6,
+     "player": {
+      "new": 10,
+      "from": 8
+     },
+     "at": [
+      4,
+      -4
+     ],
+     "stick": {
+      "new": 67,
+      "angle": 100,
+      "at": [
+       23,
+       -10
+      ]
+     }
+    },
+    {
+     "step": "vault",
+     "vblanks": 6,
+     "player": {
+      "new": 11,
+      "from": 9
+     },
+     "at": [
+      7,
+      -7
+     ],
+     "stick": {
+      "new": 68,
+      "angle": 145,
+      "at": [
+       23,
+       -10
+      ]
+     }
+    },
+    {
+     "step": "clatter",
+     "vblanks": 8,
+     "player": {
+      "new": 12,
+      "from": 10
+     },
+     "at": [
+      11,
+      -11
+     ],
+     "stick": {
+      "new": 69,
+      "angle": 180,
+      "at": [
+       23,
+       -10
+      ]
+     }
+    },
+    {
+     "step": "coast",
+     "vblanks": 10,
+     "player": {
+      "new": 8,
+      "from": 6
+     },
+     "at": [
+      22,
+      -22
+     ],
+     "stick": {
+      "new": 69,
+      "angle": 180,
+      "at": [
+       23,
+       -10
+      ]
+     }
+    },
+    {
+     "step": "stop",
+     "vblanks": 4,
+     "player": {
+      "new": 13,
+      "from": 147
+     },
+     "at": [
+      33,
+      -33
+     ],
+     "stick": {
+      "new": 69,
+      "angle": 180,
+      "at": [
+       23,
+       -10
+      ]
+     }
+    },
+    {
+     "step": "stop2",
+     "vblanks": 4,
+     "player": {
+      "new": 14,
+      "from": 148
+     },
+     "at": [
+      35,
+      -35
+     ],
+     "stick": {
+      "new": 69,
+      "angle": 180,
+      "at": [
+       23,
+       -10
+      ]
+     }
+    },
+    {
+     "step": "pivot",
+     "vblanks": 6,
+     "player": {
+      "new": 29,
+      "from": 151
+     },
+     "at": [
+      35,
+      -35
+     ],
+     "stick": {
+      "new": 69,
+      "angle": 180,
+      "at": [
+       23,
+       -10
+      ]
+     }
+    },
+    {
+     "step": "turned",
+     "vblanks": 6,
+     "player": {
+      "new": 40,
+      "from": 26
+     },
+     "at": [
+      35,
+      -35
+     ],
+     "stick": {
+      "new": 69,
+      "angle": 180,
+      "at": [
+       23,
+       -10
+      ]
+     }
+    },
+    {
+     "step": "back1",
+     "vblanks": 10,
+     "player": {
+      "new": 41,
+      "from": 27
+     },
+     "at": [
+      37,
+      -29
+     ],
+     "stick": {
+      "new": 69,
+      "angle": 180,
+      "at": [
+       23,
+       -10
+      ]
+     }
+    },
+    {
+     "step": "back2",
+     "vblanks": 10,
+     "player": {
+      "new": 42,
+      "from": 28
+     },
+     "at": [
+      39,
+      -22
+     ],
+     "stick": {
+      "new": 69,
+      "angle": 180,
+      "at": [
+       23,
+       -10
+      ]
+     }
+    },
+    {
+     "step": "reach",
+     "vblanks": 6,
+     "player": {
+      "new": 47,
+      "from": 267
+     },
+     "at": [
+      40,
+      -19
+     ],
+     "stick": {
+      "new": 69,
+      "angle": 180,
+      "at": [
+       23,
+       -10
+      ]
+     }
+    },
+    {
+     "step": "grab",
+     "vblanks": 8,
+     "player": {
+      "retail": 267
+     },
+     "at": [
+      40,
+      -19
+     ],
+     "stick": null
+    },
+    {
+     "step": "rise",
+     "vblanks": 10,
+     "player": {
+      "retail": 26
+     },
+     "at": [
+      40,
+      -19
+     ],
+     "stick": null
+    },
+    {
+     "step": "away",
+     "vblanks": 10,
+     "player": {
+      "retail": 27
+     },
+     "at": [
+      36,
+      -15
+     ],
+     "stick": null
+    }
+   ]
+  },
+  {
+   "facing": "E",
+   "back": "W",
+   "heel": [
+    21,
+    3
+   ],
+   "grabAt": [
+    51,
+    -1
+   ],
+   "steps": [
+    {
+     "step": "carry",
+     "vblanks": 10,
+     "player": {
+      "retail": 12
+     },
+     "at": [
+      0,
+      0
+     ],
+     "stick": null
+    },
+    {
+     "step": "catch",
+     "vblanks": 6,
+     "player": {
+      "new": 18,
+      "from": 13
+     },
+     "at": [
+      5,
+      0
+     ],
+     "stick": {
+      "new": 70,
+      "angle": 100,
+      "at": [
+       21,
+       3
+      ]
+     }
+    },
+    {
+     "step": "vault",
+     "vblanks": 6,
+     "player": {
+      "new": 19,
+      "from": 14
+     },
+     "at": [
+      10,
+      0
+     ],
+     "stick": {
+      "new": 71,
+      "angle": 145,
+      "at": [
+       21,
+       3
+      ]
+     }
+    },
+    {
+     "step": "clatter",
+     "vblanks": 8,
+     "player": {
+      "new": 20,
+      "from": 15
+     },
+     "at": [
+      15,
+      0
+     ],
+     "stick": {
+      "new": 72,
+      "angle": 180,
+      "at": [
+       21,
+       3
+      ]
+     }
+    },
+    {
+     "step": "coast",
+     "vblanks": 10,
+     "player": {
+      "new": 16,
+      "from": 11
+     },
+     "at": [
+      35,
+      0
+     ],
+     "stick": {
+      "new": 72,
+      "angle": 180,
+      "at": [
+       21,
+       3
+      ]
+     }
+    },
+    {
+     "step": "stop",
+     "vblanks": 4,
+     "player": {
+      "new": 21,
+      "from": 149
+     },
+     "at": [
+      55,
+      0
+     ],
+     "stick": {
+      "new": 72,
+      "angle": 180,
+      "at": [
+       21,
+       3
+      ]
+     }
+    },
+    {
+     "step": "stop2",
+     "vblanks": 4,
+     "player": {
+      "new": 22,
+      "from": 150
+     },
+     "at": [
+      58,
+      0
+     ],
+     "stick": {
+      "new": 72,
+      "angle": 180,
+      "at": [
+       21,
+       3
+      ]
+     }
+    },
+    {
+     "step": "pivot",
+     "vblanks": 6,
+     "player": {
+      "new": 37,
+      "from": 153
+     },
+     "at": [
+      58,
+      0
+     ],
+     "stick": {
+      "new": 72,
+      "angle": 180,
+      "at": [
+       21,
+       3
+      ]
+     }
+    },
+    {
+     "step": "turned",
+     "vblanks": 6,
+     "player": {
+      "new": 48,
+      "from": 31
+     },
+     "at": [
+      58,
+      0
+     ],
+     "stick": {
+      "new": 72,
+      "angle": 180,
+      "at": [
+       21,
+       3
+      ]
+     }
+    },
+    {
+     "step": "back1",
+     "vblanks": 10,
+     "player": {
+      "new": 49,
+      "from": 32
+     },
+     "at": [
+      55,
+      0
+     ],
+     "stick": {
+      "new": 72,
+      "angle": 180,
+      "at": [
+       21,
+       3
+      ]
+     }
+    },
+    {
+     "step": "back2",
+     "vblanks": 10,
+     "player": {
+      "new": 50,
+      "from": 33
+     },
+     "at": [
+      52,
+      -1
+     ],
+     "stick": {
+      "new": 72,
+      "angle": 180,
+      "at": [
+       21,
+       3
+      ]
+     }
+    },
+    {
+     "step": "reach",
+     "vblanks": 6,
+     "player": {
+      "new": 55,
+      "from": 269
+     },
+     "at": [
+      51,
+      -1
+     ],
+     "stick": {
+      "new": 72,
+      "angle": 180,
+      "at": [
+       21,
+       3
+      ]
+     }
+    },
+    {
+     "step": "grab",
+     "vblanks": 8,
+     "player": {
+      "retail": 269
+     },
+     "at": [
+      51,
+      -1
+     ],
+     "stick": null
+    },
+    {
+     "step": "rise",
+     "vblanks": 10,
+     "player": {
+      "retail": 31
+     },
+     "at": [
+      51,
+      -1
+     ],
+     "stick": null
+    },
+    {
+     "step": "away",
+     "vblanks": 10,
+     "player": {
+      "retail": 32
+     },
+     "at": [
+      46,
+      -1
+     ],
+     "stick": null
+    }
+   ]
+  },
+  {
+   "facing": "SE",
+   "back": "NW",
+   "heel": [
+    17,
+    14
+   ],
+   "grabAt": [
+    40,
+    22
+   ],
+   "steps": [
+    {
+     "step": "carry",
+     "vblanks": 10,
+     "player": {
+      "retail": 17
+     },
+     "at": [
+      0,
+      0
+     ],
+     "stick": null
+    },
+    {
+     "step": "catch",
+     "vblanks": 6,
+     "player": {
+      "new": 26,
+      "from": 18
+     },
+     "at": [
+      4,
+      4
+     ],
+     "stick": {
+      "new": 73,
+      "angle": 100,
+      "at": [
+       17,
+       14
+      ]
+     }
+    },
+    {
+     "step": "vault",
+     "vblanks": 6,
+     "player": {
+      "new": 27,
+      "from": 19
+     },
+     "at": [
+      7,
+      7
+     ],
+     "stick": {
+      "new": 74,
+      "angle": 145,
+      "at": [
+       17,
+       14
+      ]
+     }
+    },
+    {
+     "step": "clatter",
+     "vblanks": 8,
+     "player": {
+      "new": 28,
+      "from": 20
+     },
+     "at": [
+      11,
+      11
+     ],
+     "stick": {
+      "new": 75,
+      "angle": 180,
+      "at": [
+       17,
+       14
+      ]
+     }
+    },
+    {
+     "step": "coast",
+     "vblanks": 10,
+     "player": {
+      "new": 24,
+      "from": 16
+     },
+     "at": [
+      23,
+      23
+     ],
+     "stick": {
+      "new": 75,
+      "angle": 180,
+      "at": [
+       17,
+       14
+      ]
+     }
+    },
+    {
+     "step": "stop",
+     "vblanks": 4,
+     "player": {
+      "new": 29,
+      "from": 151
+     },
+     "at": [
+      34,
+      34
+     ],
+     "stick": {
+      "new": 75,
+      "angle": 180,
+      "at": [
+       17,
+       14
+      ]
+     }
+    },
+    {
+     "step": "stop2",
+     "vblanks": 4,
+     "player": {
+      "new": 30,
+      "from": 152
+     },
+     "at": [
+      36,
+      36
+     ],
+     "stick": {
+      "new": 75,
+      "angle": 180,
+      "at": [
+       17,
+       14
+      ]
+     }
+    },
+    {
+     "step": "pivot",
+     "vblanks": 6,
+     "player": {
+      "new": 45,
+      "from": 155
+     },
+     "at": [
+      36,
+      36
+     ],
+     "stick": {
+      "new": 75,
+      "angle": 180,
+      "at": [
+       17,
+       14
+      ]
+     }
+    },
+    {
+     "step": "turned",
+     "vblanks": 6,
+     "player": {
+      "new": 56,
+      "from": 36
+     },
+     "at": [
+      36,
+      36
+     ],
+     "stick": {
+      "new": 75,
+      "angle": 180,
+      "at": [
+       17,
+       14
+      ]
+     }
+    },
+    {
+     "step": "back1",
+     "vblanks": 10,
+     "player": {
+      "new": 57,
+      "from": 37
+     },
+     "at": [
+      38,
+      30
+     ],
+     "stick": {
+      "new": 75,
+      "angle": 180,
+      "at": [
+       17,
+       14
+      ]
+     }
+    },
+    {
+     "step": "back2",
+     "vblanks": 10,
+     "player": {
+      "new": 58,
+      "from": 38
+     },
+     "at": [
+      39,
+      25
+     ],
+     "stick": {
+      "new": 75,
+      "angle": 180,
+      "at": [
+       17,
+       14
+      ]
+     }
+    },
+    {
+     "step": "reach",
+     "vblanks": 6,
+     "player": {
+      "new": 63,
+      "from": 271
+     },
+     "at": [
+      40,
+      22
+     ],
+     "stick": {
+      "new": 75,
+      "angle": 180,
+      "at": [
+       17,
+       14
+      ]
+     }
+    },
+    {
+     "step": "grab",
+     "vblanks": 8,
+     "player": {
+      "retail": 271
+     },
+     "at": [
+      40,
+      22
+     ],
+     "stick": null
+    },
+    {
+     "step": "rise",
+     "vblanks": 10,
+     "player": {
+      "retail": 36
+     },
+     "at": [
+      40,
+      22
+     ],
+     "stick": null
+    },
+    {
+     "step": "away",
+     "vblanks": 10,
+     "player": {
+      "retail": 37
+     },
+     "at": [
+      36,
+      18
+     ],
+     "stick": null
+    }
+   ]
+  },
+  {
+   "facing": "S",
+   "back": "N",
+   "heel": [
+    1,
+    20
+   ],
+   "grabAt": [
+    9,
+    44
+   ],
+   "steps": [
+    {
+     "step": "carry",
+     "vblanks": 10,
+     "player": {
+      "retail": 22
+     },
+     "at": [
+      0,
+      0
+     ],
+     "stick": null
+    },
+    {
+     "step": "catch",
+     "vblanks": 6,
+     "player": {
+      "new": 34,
+      "from": 23
+     },
+     "at": [
+      0,
+      5
+     ],
+     "stick": {
+      "new": 76,
+      "angle": 100,
+      "at": [
+       1,
+       20
+      ]
+     }
+    },
+    {
+     "step": "vault",
+     "vblanks": 6,
+     "player": {
+      "new": 35,
+      "from": 24
+     },
+     "at": [
+      0,
+      10
+     ],
+     "stick": {
+      "new": 77,
+      "angle": 145,
+      "at": [
+       1,
+       20
+      ]
+     }
+    },
+    {
+     "step": "clatter",
+     "vblanks": 8,
+     "player": {
+      "new": 36,
+      "from": 25
+     },
+     "at": [
+      0,
+      15
+     ],
+     "stick": {
+      "new": 78,
+      "angle": 180,
+      "at": [
+       1,
+       20
+      ]
+     }
+    },
+    {
+     "step": "coast",
+     "vblanks": 10,
+     "player": {
+      "new": 32,
+      "from": 21
+     },
+     "at": [
+      0,
+      32
+     ],
+     "stick": {
+      "new": 78,
+      "angle": 180,
+      "at": [
+       1,
+       20
+      ]
+     }
+    },
+    {
+     "step": "stop",
+     "vblanks": 4,
+     "player": {
+      "new": 37,
+      "from": 153
+     },
+     "at": [
+      0,
+      48
+     ],
+     "stick": {
+      "new": 78,
+      "angle": 180,
+      "at": [
+       1,
+       20
+      ]
+     }
+    },
+    {
+     "step": "stop2",
+     "vblanks": 4,
+     "player": {
+      "new": 38,
+      "from": 154
+     },
+     "at": [
+      0,
+      51
+     ],
+     "stick": {
+      "new": 78,
+      "angle": 180,
+      "at": [
+       1,
+       20
+      ]
+     }
+    },
+    {
+     "step": "pivot",
+     "vblanks": 6,
+     "player": {
+      "new": 53,
+      "from": 157
+     },
+     "at": [
+      0,
+      51
+     ],
+     "stick": {
+      "new": 78,
+      "angle": 180,
+      "at": [
+       1,
+       20
+      ]
+     }
+    },
+    {
+     "step": "turned",
+     "vblanks": 6,
+     "player": {
+      "new": 0,
+      "from": 1
+     },
+     "at": [
+      0,
+      51
+     ],
+     "stick": {
+      "new": 78,
+      "angle": 180,
+      "at": [
+       1,
+       20
+      ]
+     }
+    },
+    {
+     "step": "back1",
+     "vblanks": 10,
+     "player": {
+      "new": 1,
+      "from": 2
+     },
+     "at": [
+      4,
+      48
+     ],
+     "stick": {
+      "new": 78,
+      "angle": 180,
+      "at": [
+       1,
+       20
+      ]
+     }
+    },
+    {
+     "step": "back2",
+     "vblanks": 10,
+     "player": {
+      "new": 2,
+      "from": 3
+     },
+     "at": [
+      7,
+      45
+     ],
+     "stick": {
+      "new": 78,
+      "angle": 180,
+      "at": [
+       1,
+       20
+      ]
+     }
+    },
+    {
+     "step": "reach",
+     "vblanks": 6,
+     "player": {
+      "new": 7,
+      "from": 257
+     },
+     "at": [
+      9,
+      44
+     ],
+     "stick": {
+      "new": 78,
+      "angle": 180,
+      "at": [
+       1,
+       20
+      ]
+     }
+    },
+    {
+     "step": "grab",
+     "vblanks": 8,
+     "player": {
+      "retail": 257
+     },
+     "at": [
+      9,
+      44
+     ],
+     "stick": null
+    },
+    {
+     "step": "rise",
+     "vblanks": 10,
+     "player": {
+      "retail": 1
+     },
+     "at": [
+      9,
+      44
+     ],
+     "stick": null
+    },
+    {
+     "step": "away",
+     "vblanks": 10,
+     "player": {
+      "retail": 2
+     },
+     "at": [
+      9,
+      39
+     ],
+     "stick": null
+    }
+   ]
+  },
+  {
+   "facing": "SW",
+   "back": "NE",
+   "heel": [
+    -13,
+    11
+   ],
+   "grabAt": [
+    -32,
+    18
+   ],
+   "steps": [
+    {
+     "step": "carry",
+     "vblanks": 10,
+     "player": {
+      "retail": 27
+     },
+     "at": [
+      0,
+      0
+     ],
+     "stick": null
+    },
+    {
+     "step": "catch",
+     "vblanks": 6,
+     "player": {
+      "new": 42,
+      "from": 28
+     },
+     "at": [
+      -4,
+      4
+     ],
+     "stick": {
+      "new": 79,
+      "angle": 100,
+      "at": [
+       -13,
+       11
+      ]
+     }
+    },
+    {
+     "step": "vault",
+     "vblanks": 6,
+     "player": {
+      "new": 43,
+      "from": 29
+     },
+     "at": [
+      -7,
+      7
+     ],
+     "stick": {
+      "new": 80,
+      "angle": 145,
+      "at": [
+       -13,
+       11
+      ]
+     }
+    },
+    {
+     "step": "clatter",
+     "vblanks": 8,
+     "player": {
+      "new": 44,
+      "from": 30
+     },
+     "at": [
+      -11,
+      11
+     ],
+     "stick": {
+      "new": 81,
+      "angle": 180,
+      "at": [
+       -13,
+       11
+      ]
+     }
+    },
+    {
+     "step": "coast",
+     "vblanks": 10,
+     "player": {
+      "new": 40,
+      "from": 26
+     },
+     "at": [
+      -19,
+      19
+     ],
+     "stick": {
+      "new": 81,
+      "angle": 180,
+      "at": [
+       -13,
+       11
+      ]
+     }
+    },
+    {
+     "step": "stop",
+     "vblanks": 4,
+     "player": {
+      "new": 45,
+      "from": 155
+     },
+     "at": [
+      -28,
+      28
+     ],
+     "stick": {
+      "new": 81,
+      "angle": 180,
+      "at": [
+       -13,
+       11
+      ]
+     }
+    },
+    {
+     "step": "stop2",
+     "vblanks": 4,
+     "player": {
+      "new": 46,
+      "from": 156
+     },
+     "at": [
+      -30,
+      30
+     ],
+     "stick": {
+      "new": 81,
+      "angle": 180,
+      "at": [
+       -13,
+       11
+      ]
+     }
+    },
+    {
+     "step": "pivot",
+     "vblanks": 6,
+     "player": {
+      "new": 61,
+      "from": 159
+     },
+     "at": [
+      -30,
+      30
+     ],
+     "stick": {
+      "new": 81,
+      "angle": 180,
+      "at": [
+       -13,
+       11
+      ]
+     }
+    },
+    {
+     "step": "turned",
+     "vblanks": 6,
+     "player": {
+      "new": 8,
+      "from": 6
+     },
+     "at": [
+      -30,
+      30
+     ],
+     "stick": {
+      "new": 81,
+      "angle": 180,
+      "at": [
+       -13,
+       11
+      ]
+     }
+    },
+    {
+     "step": "back1",
+     "vblanks": 10,
+     "player": {
+      "new": 9,
+      "from": 7
+     },
+     "at": [
+      -31,
+      25
+     ],
+     "stick": {
+      "new": 81,
+      "angle": 180,
+      "at": [
+       -13,
+       11
+      ]
+     }
+    },
+    {
+     "step": "back2",
+     "vblanks": 10,
+     "player": {
+      "new": 10,
+      "from": 8
+     },
+     "at": [
+      -32,
+      20
+     ],
+     "stick": {
+      "new": 81,
+      "angle": 180,
+      "at": [
+       -13,
+       11
+      ]
+     }
+    },
+    {
+     "step": "reach",
+     "vblanks": 6,
+     "player": {
+      "new": 15,
+      "from": 259
+     },
+     "at": [
+      -32,
+      18
+     ],
+     "stick": {
+      "new": 81,
+      "angle": 180,
+      "at": [
+       -13,
+       11
+      ]
+     }
+    },
+    {
+     "step": "grab",
+     "vblanks": 8,
+     "player": {
+      "retail": 259
+     },
+     "at": [
+      -32,
+      18
+     ],
+     "stick": null
+    },
+    {
+     "step": "rise",
+     "vblanks": 10,
+     "player": {
+      "retail": 6
+     },
+     "at": [
+      -32,
+      18
+     ],
+     "stick": null
+    },
+    {
+     "step": "away",
+     "vblanks": 10,
+     "player": {
+      "retail": 7
+     },
+     "at": [
+      -28,
+      14
+     ],
+     "stick": null
+    }
+   ]
+  },
+  {
+   "facing": "W",
+   "back": "E",
+   "heel": [
+    -20,
+    1
+   ],
+   "grabAt": [
+    -46,
+    -5
+   ],
+   "steps": [
+    {
+     "step": "carry",
+     "vblanks": 10,
+     "player": {
+      "retail": 32
+     },
+     "at": [
+      0,
+      0
+     ],
+     "stick": null
+    },
+    {
+     "step": "catch",
+     "vblanks": 6,
+     "player": {
+      "new": 50,
+      "from": 33
+     },
+     "at": [
+      -5,
+      0
+     ],
+     "stick": {
+      "new": 82,
+      "angle": 100,
+      "at": [
+       -20,
+       1
+      ]
+     }
+    },
+    {
+     "step": "vault",
+     "vblanks": 6,
+     "player": {
+      "new": 51,
+      "from": 34
+     },
+     "at": [
+      -10,
+      0
+     ],
+     "stick": {
+      "new": 83,
+      "angle": 145,
+      "at": [
+       -20,
+       1
+      ]
+     }
+    },
+    {
+     "step": "clatter",
+     "vblanks": 8,
+     "player": {
+      "new": 52,
+      "from": 35
+     },
+     "at": [
+      -15,
+      0
+     ],
+     "stick": {
+      "new": 84,
+      "angle": 180,
+      "at": [
+       -20,
+       1
+      ]
+     }
+    },
+    {
+     "step": "coast",
+     "vblanks": 10,
+     "player": {
+      "new": 48,
+      "from": 31
+     },
+     "at": [
+      -33,
+      0
+     ],
+     "stick": {
+      "new": 84,
+      "angle": 180,
+      "at": [
+       -20,
+       1
+      ]
+     }
+    },
+    {
+     "step": "stop",
+     "vblanks": 4,
+     "player": {
+      "new": 53,
+      "from": 157
+     },
+     "at": [
+      -50,
+      0
+     ],
+     "stick": {
+      "new": 84,
+      "angle": 180,
+      "at": [
+       -20,
+       1
+      ]
+     }
+    },
+    {
+     "step": "stop2",
+     "vblanks": 4,
+     "player": {
+      "new": 54,
+      "from": 158
+     },
+     "at": [
+      -53,
+      0
+     ],
+     "stick": {
+      "new": 84,
+      "angle": 180,
+      "at": [
+       -20,
+       1
+      ]
+     }
+    },
+    {
+     "step": "pivot",
+     "vblanks": 6,
+     "player": {
+      "new": 5,
+      "from": 145
+     },
+     "at": [
+      -53,
+      0
+     ],
+     "stick": {
+      "new": 84,
+      "angle": 180,
+      "at": [
+       -20,
+       1
+      ]
+     }
+    },
+    {
+     "step": "turned",
+     "vblanks": 6,
+     "player": {
+      "new": 16,
+      "from": 11
+     },
+     "at": [
+      -53,
+      0
+     ],
+     "stick": {
+      "new": 84,
+      "angle": 180,
+      "at": [
+       -20,
+       1
+      ]
+     }
+    },
+    {
+     "step": "back1",
+     "vblanks": 10,
+     "player": {
+      "new": 17,
+      "from": 12
+     },
+     "at": [
+      -50,
+      -2
+     ],
+     "stick": {
+      "new": 84,
+      "angle": 180,
+      "at": [
+       -20,
+       1
+      ]
+     }
+    },
+    {
+     "step": "back2",
+     "vblanks": 10,
+     "player": {
+      "new": 18,
+      "from": 13
+     },
+     "at": [
+      -47,
+      -4
+     ],
+     "stick": {
+      "new": 84,
+      "angle": 180,
+      "at": [
+       -20,
+       1
+      ]
+     }
+    },
+    {
+     "step": "reach",
+     "vblanks": 6,
+     "player": {
+      "new": 23,
+      "from": 261
+     },
+     "at": [
+      -46,
+      -5
+     ],
+     "stick": {
+      "new": 84,
+      "angle": 180,
+      "at": [
+       -20,
+       1
+      ]
+     }
+    },
+    {
+     "step": "grab",
+     "vblanks": 8,
+     "player": {
+      "retail": 261
+     },
+     "at": [
+      -46,
+      -5
+     ],
+     "stick": null
+    },
+    {
+     "step": "rise",
+     "vblanks": 10,
+     "player": {
+      "retail": 11
+     },
+     "at": [
+      -46,
+      -5
+     ],
+     "stick": null
+    },
+    {
+     "step": "away",
+     "vblanks": 10,
+     "player": {
+      "retail": 12
+     },
+     "at": [
+      -41,
+      -5
+     ],
+     "stick": null
+    }
+   ]
+  },
+  {
+   "facing": "NW",
+   "back": "SE",
+   "heel": [
+    -15,
+    -7
+   ],
+   "grabAt": [
+    -35,
+    -20
+   ],
+   "steps": [
+    {
+     "step": "carry",
+     "vblanks": 10,
+     "player": {
+      "retail": 37
+     },
+     "at": [
+      0,
+      0
+     ],
+     "stick": null
+    },
+    {
+     "step": "catch",
+     "vblanks": 6,
+     "player": {
+      "new": 58,
+      "from": 38
+     },
+     "at": [
+      -4,
+      -4
+     ],
+     "stick": {
+      "new": 85,
+      "angle": 100,
+      "at": [
+       -15,
+       -7
+      ]
+     }
+    },
+    {
+     "step": "vault",
+     "vblanks": 6,
+     "player": {
+      "new": 59,
+      "from": 39
+     },
+     "at": [
+      -7,
+      -7
+     ],
+     "stick": {
+      "new": 86,
+      "angle": 145,
+      "at": [
+       -15,
+       -7
+      ]
+     }
+    },
+    {
+     "step": "clatter",
+     "vblanks": 8,
+     "player": {
+      "new": 60,
+      "from": 40
+     },
+     "at": [
+      -11,
+      -11
+     ],
+     "stick": {
+      "new": 87,
+      "angle": 180,
+      "at": [
+       -15,
+       -7
+      ]
+     }
+    },
+    {
+     "step": "coast",
+     "vblanks": 10,
+     "player": {
+      "new": 56,
+      "from": 36
+     },
+     "at": [
+      -21,
+      -21
+     ],
+     "stick": {
+      "new": 87,
+      "angle": 180,
+      "at": [
+       -15,
+       -7
+      ]
+     }
+    },
+    {
+     "step": "stop",
+     "vblanks": 4,
+     "player": {
+      "new": 61,
+      "from": 159
+     },
+     "at": [
+      -30,
+      -30
+     ],
+     "stick": {
+      "new": 87,
+      "angle": 180,
+      "at": [
+       -15,
+       -7
+      ]
+     }
+    },
+    {
+     "step": "stop2",
+     "vblanks": 4,
+     "player": {
+      "new": 62,
+      "from": 160
+     },
+     "at": [
+      -33,
+      -33
+     ],
+     "stick": {
+      "new": 87,
+      "angle": 180,
+      "at": [
+       -15,
+       -7
+      ]
+     }
+    },
+    {
+     "step": "pivot",
+     "vblanks": 6,
+     "player": {
+      "new": 13,
+      "from": 147
+     },
+     "at": [
+      -33,
+      -33
+     ],
+     "stick": {
+      "new": 87,
+      "angle": 180,
+      "at": [
+       -15,
+       -7
+      ]
+     }
+    },
+    {
+     "step": "turned",
+     "vblanks": 6,
+     "player": {
+      "new": 24,
+      "from": 16
+     },
+     "at": [
+      -33,
+      -33
+     ],
+     "stick": {
+      "new": 87,
+      "angle": 180,
+      "at": [
+       -15,
+       -7
+      ]
+     }
+    },
+    {
+     "step": "back1",
+     "vblanks": 10,
+     "player": {
+      "new": 25,
+      "from": 17
+     },
+     "at": [
+      -34,
+      -28
+     ],
+     "stick": {
+      "new": 87,
+      "angle": 180,
+      "at": [
+       -15,
+       -7
+      ]
+     }
+    },
+    {
+     "step": "back2",
+     "vblanks": 10,
+     "player": {
+      "new": 26,
+      "from": 18
+     },
+     "at": [
+      -35,
+      -23
+     ],
+     "stick": {
+      "new": 87,
+      "angle": 180,
+      "at": [
+       -15,
+       -7
+      ]
+     }
+    },
+    {
+     "step": "reach",
+     "vblanks": 6,
+     "player": {
+      "new": 31,
+      "from": 263
+     },
+     "at": [
+      -35,
+      -20
+     ],
+     "stick": {
+      "new": 87,
+      "angle": 180,
+      "at": [
+       -15,
+       -7
+      ]
+     }
+    },
+    {
+     "step": "grab",
+     "vblanks": 8,
+     "player": {
+      "retail": 263
+     },
+     "at": [
+      -35,
+      -20
+     ],
+     "stick": null
+    },
+    {
+     "step": "rise",
+     "vblanks": 10,
+     "player": {
+      "retail": 16
+     },
+     "at": [
+      -35,
+      -20
+     ],
+     "stick": null
+    },
+    {
+     "step": "away",
+     "vblanks": 10,
+     "player": {
+      "retail": 17
+     },
+     "at": [
+      -31,
+      -16
+     ],
+     "stick": null
+    }
+   ]
+  }
+ ]
+}
