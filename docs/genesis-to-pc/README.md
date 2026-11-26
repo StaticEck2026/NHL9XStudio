@@ -1,32 +1,38 @@
 # Genesis fight and injury sprites at the NHL 94 / 95 PC colour standard
 
-Targets:
+![NHLPA 93 fights](nhlpa93-fight-sheet.png)
 
-- **NHLPA Hockey '93 (Genesis)**: the fight frames — gloves 353, fight 354–370, bloody fight injury 371–376 — and the bloody check injury 633–644.
-- **NHL Hockey '94 (Genesis)**: the injury frames — fight injury 371–376 and check injury 641–652 (8 frames later than in '93 because SPFgready grew). The builder compares each one with NHLPA '93's same picture and marks the ones whose pixels differ as '94's own.
+![NHL 94 injury](nhl94-injury-sheet.png)
 
-No NHL 92 data is read anywhere in this tool.
+| File | What it holds |
+|---|---|
+| `nhlpa93-fight-sheet.png` | **NHLPA Hockey '93's fighting sprites**: gloves on the ice (353), the fight (354–370) and the bloody fight injury (371–376). One column per frame; the rows are the Genesis original, then the PC-standard upgrade through six retail PC jerseys (Boston, Montreal, Chicago, home and away). |
+| `nhl94-injury-sheet.png` | **NHL Hockey '94's injury sprites**: the check injury (641–652), with the same rows plus NHL 95 PC's own version of each frame at the bottom for comparison. |
+| `nhlpa93-fight/`, `nhl94-injury/` | Every upgraded frame for each of those jerseys: an 8-bit PNG in **PC sprite colour space** (the pixel values a PC sheet stores, 255 transparent), with that jersey's 256-colour palette. |
+| `report.json` | Sources, how each frame was done, and the '93 / '94 comparison. |
+| `PC-PALETTE.md` | The PC palette structure, colour depth and shading, measured. |
+| `validation-skating.png` | The method on four retail skating frames next to NHL 94 PC's own versions. |
 
-## Status
+No NHL 92 data is read anywhere. Sources:
 
-**The Genesis frames are not in this repository.** They only exist in the two ROMs, which have not been available to the build yet. `report.json` lists what is still missing. What is here:
+- the retail NHLPA '93 (Rev 0) and NHL '94 Genesis ROMs;
+- the NHL 95 PC CD: player sheets `000_049.PPV` and the rest, plus `HOMEPALS.BIN` / `AWAYPALS.BIN`.
 
-- [`PC-PALETTE.md`](PC-PALETTE.md): the PC palette structure, colour depth and shading, measured from the retail data in the repo;
-- the converter, `tools/build-pc-upgrade.js` with `tools/pcupgrade/`;
-- `validation-skating.png`: the converter checked against retail NHL 94 PC art.
+These go in `roms/` and `pc95/`, both git-ignored.
 
-Run it with the files in place:
+## What "NHL '94's injury sprites" are
 
-```
-node tools/build-pc-upgrade.js --rom93 <NHLPA 93 ROM or folder> --rom94 <NHL 94 ROM or folder> [--pc <NHL 94 PC or 95 PC folder>]
-```
+- **No fight frames.** NHL '94 keeps the slots for the gloves, the fight and the fight injury (353–376) but blanks every one to a single pixel.
+- **The check injury is '94's own art.** These 12 frames (SPFinjury1) are redrawn from NHLPA '93's 633–644:
+  - all 12 differ, by 61–124 pixels each;
+  - the blood is gone: '93 has 13–52 red pixels a frame, '94 none, except two orange-brown pixels in 642 and 645.
 
-Defaults: ROMs in `roms/` (any name; each is checked against the retail checksums) and the PC folder in `pc94/` or `pc95/`. Other options: `--teams bos,mtl,chi`, `--shade pc|genesis`, `--out`.
+  `report.json` has the per-frame counts.
 
-## Method
+## How a Genesis frame is upgraded
 
-1. **Every Genesis pixel stays where it is.** Only its colour index is replaced, by a PC sprite index.
-2. **Fixed materials map one to one**, as measured on the aligned retail frames:
+1. **No pixel moves.** Only its colour index is replaced, by a PC sprite index.
+2. **Fixed materials** map one to one, as measured on the aligned retail frames:
 
    | Genesis | PC sprite index |
    |---|---|
@@ -34,24 +40,42 @@ Defaults: ROMs in `roms/` (any name; each is checked against the retail checksum
    | black | 0 |
    | skin | 134 / 136 |
    | eye | 140 |
-   | stick | 136 (its blade tape → 0) |
-   | shadow | 88 |
-   | other lines (e.g. blood) | nearest fixed PC colour, 0–127 |
-3. **Team colours get a jersey zone and a shade.** The Genesis team colours are shared tones used across the whole body, but the PC zones are body parts.
-   - **Check injury (where the PC sheet has the picture):** NHL 94 PC and 95 PC have it as frames 633–644. The PC frame is aligned with the Genesis one and each Genesis pixel takes the PC zone at its spot, when that PC pixel is the same material (`tools/pcupgrade/transfer.js`).
-   - **Everything else is segmented from the Genesis art** (`tools/pcupgrade/segment.js`). The body axis runs from the skates to the face. Height along that axis separates socks, pants, waist, jersey, yoke and helmet, using proportions measured on the PC frames. Bones from the shoulder to each glove or bare fist mark the arms. Trim bands along an arm, the yoke or the waist become stripes 3, 2, 1 counting out from the hand, neck or pants.
-4. **Shading.** `--shade pc` (default) re-shades each part the way the PC artists did: light on the edge facing the light, dark on the edge away from it, medium between. That pattern fits 51% of retail PC shades, against 42% for the Genesis tones (chance is 33%). `--shade genesis` keeps the Genesis tones (12/9/5 light, 11/10/4 medium, 13/8/3 dark).
-5. **Colour** comes from the retail HOMEPALS / AWAYPALS records: 6-bit VGA, the team's own stripe, yoke, helmet and sock colours. The records are taken from the PC folder, or the bundled NHL 94 PC files without one. Each frame is also written as an 8-bit PNG in PC sprite colour space (255 transparent), ready for a PC sheet.
+   | stick | 136, with the blade tape → 0 |
+   | ice shadow | 88 |
+   | blood and other rink-line pixels | the nearest fixed PC colour (0–127) |
+3. **Team colours get a jersey zone** (one of the PC's 48: helmet, yoke bands, sleeve stripes, forearm, waist bands, pants and their stripes, socks and their stripes):
+   - **NHL '94 check injury:** copied from NHL 95 PC's own frames 633–644 after aligning them (`tools/pcupgrade/transfer.js`). The PC frames line up at 88–93% overlap, and 94% of team pixels take the PC artist's zone and shade directly, team crest included. The rest take the model's answer.
+   - **NHLPA '93 fights:** no PC game has these pictures, so the zone comes from a model (`tools/pcupgrade/model.json`).
+     - **Inputs:** the segmenter's per-pixel geometry (`tools/pcupgrade/segment.js`): height along the skates-to-face axis, side of the spine, distance travelled from the hands, skates, face and pants, distance to the shoulder-to-hand bones, and the Genesis colour class and tone.
+     - **Model:** two decision trees, trained on all 345 retail NHL '94 Genesis / NHL 95 PC frame pairs (`export-features.js` then `train_model.py`).
+     - **Clean-up:** a majority filter removes single-pixel specks.
+4. **Shade:** the Genesis artist's own tone goes onto the PC's three-shade ramp: 12/9/5 light, 11/10/4 medium, 13/8/3 dark. `--shade model` uses the learned shade instead.
+5. **Colour** comes from the retail HOMEPALS / AWAYPALS records: 6-bit VGA, each team's own stripe, yoke, helmet and sock colours.
 
-## Validation
+## How well it matches the PC artists
 
-![Validation](validation-skating.png)
+Scored against the PC artist's own frames, team pixel by team pixel:
 
-The four retail NHL 94 Genesis skating frames were upgraded by the segmenter alone, with no PC data, and compared with NHL 94 PC's own versions:
+| Test | Body part | Exact zone | Shade (where the zone is right) |
+|---|---|---|---|
+| Held-out frames (4 folds of 16-frame blocks) | 78% | 59% | — |
+| **Unseen pose types:** model trained without the falls and injuries, scored on them | **76%** | **57%** | 50% with Genesis tones (48.5% learned, 40% always-medium) |
+| Hand rules alone, same unseen poses | 57% | 38% | — |
 
-- The drawings line up at 94–98% silhouette overlap.
-- **63% of team pixels land in the same body part as the PC artist's**: 469 of 740.
-- Stick, blade tape, skin, skates and shadow match by construction.
-- `test/pcupgrade.js` keeps this from regressing, and checks that no pixel moves.
+- **The fight frames are the "unseen pose types" case.** Expect about three in four team pixels in the body part the PC artist would choose, and about half in the exact stripe or band.
+- **The PC artists shaded by hand** with no consistent light direction. No rule recovers their shades much better than chance, so keeping the Genesis shading is both the most faithful to the source and the best predictor available.
+- **The check injury doesn't rely on the model.** It carries the PC artist's own zones.
 
-Expect the segmenter to do worse on fight and lying poses than on these upright frames. The check injury does not depend on it, because it is transferred from the PC frames. With the PC folder connected, those 12 frames also give a second, harder check of the segmenter: lying poses with PC ground truth.
+## Rebuild
+
+```
+node tools/build-pc-upgrade.js --pc pc95 [--rom93 …] [--rom94 …] [--teams bos,mtl,chi] [--shade genesis|model]
+node tools/pcupgrade/export-features.js --pc pc95 > features.json      # retrain the model (needs scikit-learn)
+python3 tools/pcupgrade/train_model.py features.json tools/pcupgrade/model.json
+```
+
+The ROMs are looked for in `roms/` (any file name; each is checked against the retail checksums), and the PC folder in `pc94/` or `pc95/`. `test/pcupgrade.js` checks:
+
+- that no pixel moves and the fixed materials map one to one;
+- the body-part scores on the skating frames;
+- with the ROM and the PC files present, the check-injury transfer.

@@ -17,14 +17,21 @@
  *   - skates: black next to steel; the feet are their centre. The head is the skin blob farthest from the feet.
  *     The body axis runs feet -> head; t is the height along it (0 feet, 1 face).
  *   - hands: black blobs that are not skates (gloves) and skin blobs that are not the face (bare fists).
- *   - helmet: main or second colour touching the face, not below its middle.
- *   - pants: the pants colours. Socks: team colours below the pants.
+ *   - helmet: main or second colour within 3 pixels of the face and not below its middle along the body axis.
+ *   - socks: team colours within a quarter of the body's height of the skates, measured along the leg (so spread
+ *     or raised legs read right). Pants: the pants colours above that.
  *   - arms: team colours reached from a hand through team pixels within an arm's length, away from the body axis.
  *     Along an arm, from the hand: forearm, then each trim band in turn (arm stripe 3, 2, 1), then upper arm.
  *   - waist: trim and second colour touching the top of the pants. Yoke: trim and second colour high on the back.
  *   - the rest of the main colour is the jersey.
- * Shade: opts.shade 'genesis' keeps the Genesis tone (12/9/5 light, 11/10/4 medium, 13/8/3 dark); 'pc' (default)
- * re-shades each part the way the retail PC frames do (see the end of segment()).
+ * The rules above give each team pixel a part, and the band logic a zone. When tools/pcupgrade/model.json is there
+ * (opts.model undefined: load it; null: rules only), two decision trees trained on all 345 retail NHL 94 Genesis /
+ * NHL 95 PC frame pairs decide the zone instead, from the same geometry (feature()). On pose types it never saw
+ * (trained without the falls and injuries, tested on them) 76% of team pixels land in the PC artist's body part and
+ * 57% in the exact zone, against 57% and 38% for the rules. A majority filter then removes single-pixel specks.
+ * Shade (opts.shade): 'genesis' (default) keeps the Genesis artist's tone on the PC ramp, 12/9/5 light, 11/10/4
+ * medium, 13/8/3 dark; on those unseen poses it matches the PC artist's shade 50% of the time, where always-medium
+ * gets 40% and the model's shade tree ('model') 48.5%.
  */
 'use strict';
 
@@ -45,6 +52,7 @@ const N8 = N4.concat([[1, 1], [1, -1], [-1, 1], [-1, -1]]);
 function segment(frame, opts = {}) {
   const { w, h, px } = frame;
   const lines = opts.lines || [2, 3];
+  const model = opts.model === undefined ? require('./model').load() : opts.model;
   const at = (x, y) => (x < 0 || y < 0 || x >= w || y >= h ? 0 : px[y * w + x]);
   const colourAt = (x, y) => { const v = at(x, y); return v && lines.includes(v >> 4) ? v & 15 : 0; };
   const cls = new Array(w * h).fill(null);
@@ -87,9 +95,21 @@ function segment(frame, opts = {}) {
   const steel = [];
   for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) if (C(x, y) === 'steel') steel.push([x, y]);
   let skates = blacks.filter((b) => steel.length && b.some(([x, y]) => near(steel, x, y, 2)));
-  if (!skates.length && blacks.length) skates = [blacks.slice().sort((a, b) => Math.max(...b.map((p) => p[1])) - Math.max(...a.map((p) => p[1])))[0]];
-  const skatePts = skates.flat().concat(steel);
   const skins = blobs((c) => c === 'skin').filter((b) => b.length >= 1);
+  // No steel in sight (skates in the air, seen from above): the face is the biggest skin blob, and the skates are
+  // the black blobs farthest from it; gloves are nearer.
+  if (!skates.length && blacks.length) {
+    const big = skins.slice().sort((a, b) => b.length - a.length)[0];
+    if (big) {
+      const fc = centre(big);
+      const dist = (b) => { const c = centre(b); return Math.hypot(c[0] - fc[0], c[1] - fc[1]); };
+      const far = Math.max(...blacks.map(dist));
+      skates = blacks.filter((b) => b.length >= 2 && dist(b) >= 0.75 * far);
+    } else {
+      skates = [blacks.slice().sort((a, b) => Math.max(...b.map((p) => p[1])) - Math.max(...a.map((p) => p[1])))[0]];
+    }
+  }
+  const skatePts = skates.flat().concat(steel);
   let feet = skatePts.length ? centre(skatePts) : [w / 2, h - 1];
   // The face: the biggest skin blob far from the feet (a bare fist is smaller or nearer).
   let face = null, faceScore = -1;
@@ -137,6 +157,27 @@ function segment(frame, opts = {}) {
       }
     }
   }
+  // Distance from the skates through team pixels: the socks are the first stretch of each leg, however the legs lie.
+  const dSkate = new Float32Array(w * h).fill(Infinity);
+  {
+    const queue = [];
+    for (const [x, y] of skatePts) for (const [dx, dy] of N8) {
+      const nx = x + dx, ny = y + dy;
+      if (isTeam(C(nx, ny)) && dSkate[idx(nx, ny)] > 1) { dSkate[idx(nx, ny)] = 1; queue.push([nx, ny]); }
+    }
+    for (let i = 0; i < queue.length; i++) {
+      const [x, y] = queue[i], d = dSkate[idx(x, y)];
+      for (const [dx, dy] of N4) {
+        const nx = x + dx, ny = y + dy;
+        if (!isTeam(C(nx, ny)) || dSkate[idx(nx, ny)] <= d + 1) continue;
+        dSkate[idx(nx, ny)] = d + 1; queue.push([nx, ny]);
+      }
+    }
+  }
+  // Tuned on the 16 frames that have a PC version (4 upright skating, 12 lying injury): socks are the first quarter
+  // of the height measured from the skates along the leg.
+  const SOCK = 0.25;
+
   // Proportions along the body axis, measured on the retail PC skating frames aligned with the Genesis ones
   // (docs/genesis-to-pc/PC-PALETTE.md): socks below 0.30 of the feet-to-face height, pants to 0.47, waist to 0.6,
   // jersey to about 0.8, then the yoke across the upper back; the helmet sits around the face.
@@ -165,10 +206,10 @@ function segment(frame, opts = {}) {
     if (!isTeam(c)) continue;
     const t = tOf(x, y), i = idx(x, y);
     const a = armDist(x, y), sp = spineDist(x, y);
-    if (face && (c === 'main' || c === 'second') && near(face, x, y, 3) && t >= tOf(head[0], head[1]) - 0.12) part[i] = 'helmet';
-    else if (t < KNEE) part[i] = 'socks';
+    if (face && (c === 'main' || c === 'second') && near(face, x, y, 3) && t >= tOf(head[0], head[1])) part[i] = 'helmet';
+    else if (dSkate[i] <= SOCK * L || (t < KNEE && dSkate[i] === Infinity)) part[i] = 'socks';
     else if (c === 'pants' && t < WAIST_TOP) part[i] = 'pants';
-    else if (t >= HIP - 0.05 && t < 0.9 && ((a <= ARM_W && a < sp) || front(x, y))) part[i] = 'arm';
+    else if (t >= HIP - 0.05 && ((a <= ARM_W && a < sp) || (t < 0.9 && front(x, y)))) part[i] = 'arm';
     else if (t < HIP) part[i] = c === 'pants' ? 'pants' : (c === 'main' ? 'pants' : 'waist');
     else if (t < WAIST_TOP) part[i] = 'waist';
     else if (t >= YOKE) part[i] = 'yoke';
@@ -184,6 +225,17 @@ function segment(frame, opts = {}) {
   }
   function CLASS_OF(i) { return cls[i]; }
 
+  // Per-pixel geometry, for the learned part model (tools/pcupgrade/model.js) and its training.
+  const feature = (x, y) => {
+    const i = idx(x, y), c = C(x, y), v = px[i] & 15;
+    const cap = (d) => (Number.isFinite(d) ? Math.min(d / L, 3) : 3);
+    let dFace = Infinity, dPants = Infinity;
+    if (face) for (const [fx, fy] of face) dFace = Math.min(dFace, Math.hypot(fx - x, fy - y));
+    for (const [qx, qy] of pantsPts) dPants = Math.min(dPants, Math.hypot(qx - x, qy - y));
+    return [tOf(x, y), sOf(x, y) * handSide / L, cap(dHand[i]), cap(dSkate[i]), cap(dFace), cap(dPants),
+      cap(armDist(x, y)), cap(spineDist(x, y)), c === 'pants' ? 1 : 0, c === 'trim' ? 1 : 0, c === 'second' ? 1 : 0, c === 'main' ? 1 : 0,
+      { 3: 0, 8: 0, 13: 0, 4: 1, 10: 1, 11: 1, 5: 2, 9: 2, 12: 2 }[v] ?? 1, hands.length];
+  };
   const blade = new Set();
   {
     const runs = [];
@@ -200,9 +252,20 @@ function segment(frame, opts = {}) {
       const ok = runs.some((o) => Math.abs(o.y - r.y) === 1 && Math.min(o.b, r.b) - Math.max(o.a, r.a) + 1 >= 2);
       if (ok) for (let x = r.a; x <= r.b; x++) blade.add(r.y * w + x);
     }
+    // A blade is one end of a stick, about six pixels: keep, for each stick, only the candidates within 6 pixels of
+    // the candidate farthest from that stick's middle (a stick lying flat overlaps itself all along).
+    for (const stick of blobs((c) => c === 'stick')) {
+      const cand = stick.filter(([x, y]) => blade.has(y * w + x));
+      if (!cand.length) continue;
+      const mid = centre(stick);
+      let end = cand[0], far = -1;
+      for (const p of cand) { const d = Math.hypot(p[0] - mid[0], p[1] - mid[1]); if (d > far) { far = d; end = p; } }
+      for (const [x, y] of cand) if (Math.max(Math.abs(x - end[0]), Math.abs(y - end[1])) > 6) blade.delete(y * w + x);
+    }
   }
   const out = new Uint8Array(w * h).fill(Zs.TRANSPARENT);
   const fam = new Array(w * h).fill(null);
+  const tones = new Array(w * h).fill(null);
   const set = (x, y, v) => { out[idx(x, y)] = v; };
   const armBands = bands('arm', (x, y) => dHand[idx(x, y)]);
   const armStripes = ['armStripe3', 'armStripe2', 'armStripe1'];
@@ -245,28 +308,40 @@ function segment(frame, opts = {}) {
     else if (p === 'waist') family = bandFamily.get(i) || 'waist1';
     else if (p === 'yoke') family = bandFamily.get(i) || (Math.hypot(x - head[0], y - head[1]) < 0.3 * L ? 'yoke1' : 'yoke2');
     else family = 'jersey';
+    let tone = shade;
+    if (model) {
+      const f = feature(x, y);
+      family = model.zone(f);
+      const z = Zs.Z[family];
+      if (z.light != null && z.medium != null && z.dark != null && opts.shade === 'model') tone = model.shade(f);
+    }
     fam[i] = family;
-    set(x, y, Zs.zoneIndex(family, shade));
+    tones[i] = tone;
+    set(x, y, Zs.zoneIndex(family, tone));
   }
-  // PC shading (opts.shade 'pc', the default): the retail PC frames light each part from one side. A part pixel whose
-  // edge faces the light is light, one whose edge faces away is dark, the rest medium (51% of the retail PC shades
-  // follow this, against 42% for the Genesis tones; the artists finished by hand). opts.light is the screen
-  // direction the light comes from, [1, 0] (screen right) on the retail east-facing frames.
-  if ((opts.shade || 'pc') === 'pc') {
-    const [lx, ly] = opts.light || [1, 0];
-    const other = (x, y, f) => (x < 0 || y < 0 || x >= w || y >= h) || fam[idx(x, y)] !== f;
+  // The PC zones are solid patches; a tree decides pixel by pixel. A team pixel whose zone none of its 8 neighbours
+  // of the same Genesis colour class share takes the zone most of them have.
+  if (model && opts.smooth !== false) {
+    const next = fam.slice();
     for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
       const i = idx(x, y), f = fam[i];
-      if (!f) continue;
-      const shades = Zs.Z[f];
-      if (!(shades.light != null || shades.dark != null) || shades.one != null) continue;
-      const lit = (lx && other(x + Math.sign(lx), y, f)) || (ly && other(x, y + Math.sign(ly), f));
-      const away = (lx && other(x - Math.sign(lx), y, f)) || (ly && other(x, y - Math.sign(ly), f));
-      const shade = lit && !away ? 'light' : away && !lit ? 'dark' : 'medium';
-      set(x, y, Zs.zoneIndex(f, shade));
+      if (!f || !Zs.Z[f]) continue;
+      const votes = new Map();
+      let same = 0;
+      for (const [dx, dy] of N8) {
+        const nx = x + dx, ny = y + dy;
+        if (nx < 0 || ny < 0 || nx >= w || ny >= h) continue;
+        const k = idx(nx, ny);
+        if (cls[k] !== cls[i] || !fam[k]) continue;
+        if (fam[k] === f) same++;
+        votes.set(fam[k], (votes.get(fam[k]) || 0) + 1);
+      }
+      if (same || !votes.size) continue;
+      next[i] = [...votes.entries()].sort((a, b) => b[1] - a[1])[0][0];
     }
+    for (let i = 0; i < w * h; i++) if (next[i] !== fam[i]) { fam[i] = next[i]; out[i] = Zs.zoneIndex(fam[i], tones[i]); }
   }
-  return { out, part, info: { feet, head, L, knee, hip, hands: hands.length, skates: skates.length, face: face ? face.length : 0 } };
+  return { out, part, feature, info: { feet, head, L, knee, hip, hands: hands.length, skates: skates.length, face: face ? face.length : 0 } };
 }
 
 module.exports = { segment, CLASS, SHADE };

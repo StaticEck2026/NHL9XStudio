@@ -1,15 +1,498 @@
 {
- "shade": "pc",
- "jerseys": "NHL 94 PC bundled HOMEPALS94 / AWAYPALS94",
- "sources": {},
+ "shade": "genesis",
+ "jerseys": "NHL 95 PC pc95",
+ "sources": {
+  "nhlpa93": {
+   "file": "nhlpa93.bin",
+   "rev": "0"
+  },
+  "nhl94": {
+   "file": "nhl94.bin"
+  }
+ },
  "validation": {
   "frames": 4,
-  "partAgreement": 0.634,
+  "partAgreement": 0.799,
   "teamPixels": 740
  },
- "missing": [
-  "NHLPA 93 Genesis ROM",
-  "NHL 94 Genesis ROM",
-  "NHL 94 PC or 95 PC game folder (optional: exact zones for the check injury)"
- ]
+ "nhlpa93": [
+  {
+   "n": 353,
+   "method": "segmented",
+   "size": [
+    100,
+    23
+   ]
+  },
+  {
+   "n": 354,
+   "method": "segmented",
+   "size": [
+    32,
+    40
+   ]
+  },
+  {
+   "n": 355,
+   "method": "segmented",
+   "size": [
+    40,
+    41
+   ]
+  },
+  {
+   "n": 356,
+   "method": "segmented",
+   "size": [
+    16,
+    40
+   ]
+  },
+  {
+   "n": 357,
+   "method": "segmented",
+   "size": [
+    24,
+    40
+   ]
+  },
+  {
+   "n": 358,
+   "method": "segmented",
+   "size": [
+    32,
+    32
+   ]
+  },
+  {
+   "n": 359,
+   "method": "segmented",
+   "size": [
+    32,
+    40
+   ]
+  },
+  {
+   "n": 360,
+   "method": "segmented",
+   "size": [
+    25,
+    40
+   ]
+  },
+  {
+   "n": 361,
+   "method": "segmented",
+   "size": [
+    24,
+    40
+   ]
+  },
+  {
+   "n": 362,
+   "method": "segmented",
+   "size": [
+    24,
+    40
+   ]
+  },
+  {
+   "n": 363,
+   "method": "segmented",
+   "size": [
+    25,
+    40
+   ]
+  },
+  {
+   "n": 364,
+   "method": "segmented",
+   "size": [
+    32,
+    40
+   ]
+  },
+  {
+   "n": 365,
+   "method": "segmented",
+   "size": [
+    31,
+    39
+   ]
+  },
+  {
+   "n": 366,
+   "method": "segmented",
+   "size": [
+    24,
+    40
+   ]
+  },
+  {
+   "n": 367,
+   "method": "segmented",
+   "size": [
+    20,
+    32
+   ]
+  },
+  {
+   "n": 368,
+   "method": "segmented",
+   "size": [
+    24,
+    32
+   ]
+  },
+  {
+   "n": 369,
+   "method": "segmented",
+   "size": [
+    32,
+    32
+   ]
+  },
+  {
+   "n": 370,
+   "method": "segmented",
+   "size": [
+    32,
+    32
+   ]
+  },
+  {
+   "n": 371,
+   "method": "segmented",
+   "size": [
+    43,
+    24
+   ]
+  },
+  {
+   "n": 372,
+   "method": "segmented",
+   "size": [
+    41,
+    27
+   ]
+  },
+  {
+   "n": 373,
+   "method": "segmented",
+   "size": [
+    47,
+    24
+   ]
+  },
+  {
+   "n": 374,
+   "method": "segmented",
+   "size": [
+    45,
+    24
+   ]
+  },
+  {
+   "n": 375,
+   "method": "segmented",
+   "size": [
+    40,
+    27
+   ]
+  },
+  {
+   "n": 376,
+   "method": "segmented",
+   "size": [
+    47,
+    24
+   ]
+  }
+ ],
+ "nhl94Removed": {
+  "frames": "353-376",
+  "note": "NHL 94 keeps the fight and fight-injury slots but blanks them (one pixel each)",
+  "blank": 6
+ },
+ "nhl94Exclusive": [
+  {
+   "n": 641,
+   "from93": 633,
+   "same": 369,
+   "recoloured": 30,
+   "added": 27,
+   "removed": 4,
+   "blood93": 13,
+   "blood94": 0,
+   "exclusive": true
+  },
+  {
+   "n": 642,
+   "from93": 634,
+   "same": 329,
+   "recoloured": 73,
+   "added": 27,
+   "removed": 19,
+   "blood93": 36,
+   "blood94": 2,
+   "exclusive": true
+  },
+  {
+   "n": 643,
+   "from93": 635,
+   "same": 360,
+   "recoloured": 47,
+   "added": 25,
+   "removed": 24,
+   "blood93": 48,
+   "blood94": 0,
+   "exclusive": true
+  },
+  {
+   "n": 644,
+   "from93": 636,
+   "same": 359,
+   "recoloured": 52,
+   "added": 23,
+   "removed": 20,
+   "blood93": 48,
+   "blood94": 0,
+   "exclusive": true
+  },
+  {
+   "n": 645,
+   "from93": 637,
+   "same": 326,
+   "recoloured": 82,
+   "added": 21,
+   "removed": 21,
+   "blood93": 48,
+   "blood94": 2,
+   "exclusive": true
+  },
+  {
+   "n": 646,
+   "from93": 638,
+   "same": 360,
+   "recoloured": 47,
+   "added": 25,
+   "removed": 24,
+   "blood93": 48,
+   "blood94": 0,
+   "exclusive": true
+  },
+  {
+   "n": 647,
+   "from93": 639,
+   "same": 418,
+   "recoloured": 22,
+   "added": 38,
+   "removed": 16,
+   "blood93": 16,
+   "blood94": 0,
+   "exclusive": true
+  },
+  {
+   "n": 648,
+   "from93": 640,
+   "same": 450,
+   "recoloured": 23,
+   "added": 34,
+   "removed": 27,
+   "blood93": 28,
+   "blood94": 0,
+   "exclusive": true
+  },
+  {
+   "n": 649,
+   "from93": 641,
+   "same": 413,
+   "recoloured": 30,
+   "added": 29,
+   "removed": 47,
+   "blood93": 52,
+   "blood94": 0,
+   "exclusive": true
+  },
+  {
+   "n": 650,
+   "from93": 642,
+   "same": 401,
+   "recoloured": 39,
+   "added": 38,
+   "removed": 37,
+   "blood93": 52,
+   "blood94": 0,
+   "exclusive": true
+  },
+  {
+   "n": 651,
+   "from93": 643,
+   "same": 445,
+   "recoloured": 28,
+   "added": 34,
+   "removed": 48,
+   "blood93": 52,
+   "blood94": 0,
+   "exclusive": true
+  },
+  {
+   "n": 652,
+   "from93": 644,
+   "same": 413,
+   "recoloured": 30,
+   "added": 29,
+   "removed": 47,
+   "blood93": 52,
+   "blood94": 0,
+   "exclusive": true
+  }
+ ],
+ "nhl94": [
+  {
+   "n": 641,
+   "method": "from PC frame 633",
+   "overlap": 0.924,
+   "fromPc": 322,
+   "teamPixels": 336,
+   "segmenterAgreement": "165 / 187",
+   "size": [
+    27,
+    51
+   ]
+  },
+  {
+   "n": 642,
+   "method": "from PC frame 634",
+   "overlap": 0.92,
+   "fromPc": 283,
+   "teamPixels": 300,
+   "segmenterAgreement": "158 / 175",
+   "size": [
+    29,
+    51
+   ]
+  },
+  {
+   "n": 643,
+   "method": "from PC frame 635",
+   "overlap": 0.908,
+   "fromPc": 319,
+   "teamPixels": 341,
+   "segmenterAgreement": "156 / 187",
+   "size": [
+    32,
+    55
+   ]
+  },
+  {
+   "n": 644,
+   "method": "from PC frame 636",
+   "overlap": 0.923,
+   "fromPc": 320,
+   "teamPixels": 336,
+   "segmenterAgreement": "164 / 187",
+   "size": [
+    32,
+    55
+   ]
+  },
+  {
+   "n": 645,
+   "method": "from PC frame 637",
+   "overlap": 0.931,
+   "fromPc": 283,
+   "teamPixels": 300,
+   "segmenterAgreement": "160 / 177",
+   "size": [
+    29,
+    51
+   ]
+  },
+  {
+   "n": 646,
+   "method": "from PC frame 638",
+   "overlap": 0.914,
+   "fromPc": 323,
+   "teamPixels": 341,
+   "segmenterAgreement": "165 / 192",
+   "size": [
+    32,
+    55
+   ]
+  },
+  {
+   "n": 647,
+   "method": "from PC frame 639",
+   "overlap": 0.902,
+   "fromPc": 314,
+   "teamPixels": 341,
+   "segmenterAgreement": "131 / 179",
+   "size": [
+    28,
+    48
+   ]
+  },
+  {
+   "n": 648,
+   "method": "from PC frame 640",
+   "overlap": 0.907,
+   "fromPc": 337,
+   "teamPixels": 361,
+   "segmenterAgreement": "156 / 206",
+   "size": [
+    30,
+    48
+   ]
+  },
+  {
+   "n": 649,
+   "method": "from PC frame 641",
+   "overlap": 0.91,
+   "fromPc": 333,
+   "teamPixels": 353,
+   "segmenterAgreement": "162 / 197",
+   "size": [
+    32,
+    48
+   ]
+  },
+  {
+   "n": 650,
+   "method": "from PC frame 642",
+   "overlap": 0.888,
+   "fromPc": 314,
+   "teamPixels": 341,
+   "segmenterAgreement": "131 / 178",
+   "size": [
+    28,
+    48
+   ]
+  },
+  {
+   "n": 651,
+   "method": "from PC frame 643",
+   "overlap": 0.884,
+   "fromPc": 334,
+   "teamPixels": 361,
+   "segmenterAgreement": "162 / 205",
+   "size": [
+    30,
+    48
+   ]
+  },
+  {
+   "n": 652,
+   "method": "from PC frame 644",
+   "overlap": 0.911,
+   "fromPc": 335,
+   "teamPixels": 353,
+   "segmenterAgreement": "158 / 196",
+   "size": [
+    32,
+    48
+   ]
+  }
+ ],
+ "missing": []
 }

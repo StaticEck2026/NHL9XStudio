@@ -15,7 +15,7 @@ node tools/build-dropstick.js [path/to/nhl94.bin] [--team Bruinsv.pal] [--out do
 
 The builder reads the retail **NHL Hockey '94** ROM when there is one in `roms/` (`nhl94.bin`, `.md` or `.gen`), or at the path you give it. It checks the ROM is the retail one (`lib/rom94.js`) and reads the player sheet with the same profile Studio uses (`lib/games.js`).
 
-**The files committed here were built without that ROM.** No NHL '94 ROM was available when they were made, so they come from the NHL 92 `Sprites.anim` bundled in `test/fixtures/ANIM-To-BMP`. That is the sheet NHL '94's player art grew out of, and every frame this animation uses has the same number in both games: `frames94.asm` and `frames.asm` agree on SPFskatewp (1), SPFstop (145), SPFsweep (257) and every other skater group up to SPFfight (354). The two sheets part ways at 371, where '94 inserts SPFfinjury. Every output names its source. If EA retouched any of these frames for '94, run the builder against the '94 ROM to get the exact '94 pixels. The recipe is defined by frame numbers and colour indices, so it applies unchanged.
+**The files committed here come from the retail NHL '94 ROM.** A first version had to be built from the NHL 92 `Sprites.anim` bundled in `test/fixtures`, because no '94 ROM was available then. Rebuilt from the '94 ROM, all 88 new frames come out identical, index for index, to that first build. Only the embedded palette changed. The skater frames this animation uses are the same pixels in both games.
 
 ## 1. How the game stores and draws a skater
 

@@ -7,7 +7,8 @@ Sources used, all in this repo:
 - the NHL 94 PC and NHL 95 PC skater frames in `public/skaters-data.js` (SPAskatewp, facing east, 4 frames; both games carry identical pixels). That copy swaps indices 0 and 255 for the loading screen; the tables below use the retail meaning (`lib/pc95.js`: the blitter skips 255, 0 is equipment black);
 - the matching NHL '94 and NHLPA '93 Genesis frames in the same file (identical to each other);
 - the retail jersey files `test/fixtures/pc-jersey/HOMEPALS94.BIN`, `AWAYPALS94.BIN` and `HOMEPALS95.BIN`;
-- the sprite-space palettes `createjerseyShadowfixed.act` / `rinkpal*.act`, read through `lib/pc-jersey.js`.
+- the sprite-space palettes `createjerseyShadowfixed.act` / `rinkpal*.act`, read through `lib/pc-jersey.js`;
+- for section 3's wider measurements: the retail NHL 94 Genesis ROM and the NHL 95 PC CD. Every skater frame of the two sheets is paired by number (1–352, and the check injury 641–652 ↔ PC 633–644): 345 pairs, 66,184 team pixels.
 
 No NHL 92 data is used.
 
@@ -58,15 +59,19 @@ So the PC standard depends on each pixel's **body part**. Sleeve stripes, yoke b
 
 ## 3. Shading conventions on the PC frames
 
-Measured on the four retail PC skating frames, after aligning each one with its Genesis counterpart. The alignment confirms the PC art is **the same drawing**: silhouette overlap is 94–98% at a 0–5 pixel offset. The PC versions are recoloured, with small touch-ups. They are not redrawn.
+Each PC frame was aligned with its Genesis counterpart. The alignment confirms the PC art is **the same drawing**: silhouette overlap is 94–98% on the skating frames and 88–93% on the check injury, at a 0–5 pixel offset. The PC versions are recoloured, with small touch-ups. They are not redrawn.
 
-- **Three-shade ramps per part.** Zone pixels are 252 medium, 235 dark and 139 light. Shades sit in bands along each part, not dithered. The light band leans toward the side the player faces (mean offset +0.46 px in x from the part's centre, east-facing frames).
+- **Three-shade ramps per part, painted by hand.** Over all 345 pairs the zone pixels are 40% medium, 39% dark and 21% light. Shades sit in bands, not dithered. There is no fixed light direction: a rule that lights the edge facing one direction matches only 36–44% of shades, whichever direction is tried (chance is 33%). An earlier version of this note claimed a light from screen-right; that came from four east-facing frames and does not hold. Tendencies:
+  - helmets and pants are never light;
+  - jerseys lean light (42%);
+  - Genesis 13 and 3 (the darkest tones) end up dark 58% and 65% of the time.
+  The Genesis tone matches the PC shade 40% of the time over everything (50% on poses a model never trained on, in section 4).
 - **Black is a material, not an outline.** Index 0 covers skates, gloves and the black tape on the blade, which the Genesis draws in stick colour: 36 of the Genesis stick pixels become black. 141 of the silhouette's edge pixels are black and 91 are a dark shade. No pixel was added around the figure.
 - **Skin gets 4 of the 16 ramp steps** (133, 134, 136, 140). The Genesis has 2 skin tones plus the eye. The stick shares ramp step 136.
 - **Shadow is two fixed blues**: 88 for the ice shadow, and 8 under the skate blades and the blade. Genesis steel (colour 1) becomes 8.
 - **Crest**: a few crest-zone pixels (192–243) sit on the chest. The Genesis frame has nothing there.
 
-### Genesis colour → PC index on the same pixel (aligned skating frames)
+### Genesis colour → PC index on the same pixel (the four aligned skating frames)
 
 | Genesis line 2 colour | Becomes on the PC |
 |---|---|
@@ -83,15 +88,20 @@ Measured on the four retail PC skating frames, after aligning each one with its 
 Two conclusions follow:
 
 1. The fixed materials map one-to-one: black, steel, skin, stick, shadow.
-2. Every team-coloured pixel needs a **body-part decision** before it can get its PC zone. The Genesis tone then picks the shade.
+2. Every team-coloured pixel needs a **body-part decision** before it can get its PC zone. The Genesis tone is the best available guide to its shade.
 
 ## 4. Consequence for upgrading Genesis frames
 
 A faithful PC-standard upgrade has two parts:
 
 - keep every Genesis pixel where it is, and recolour only;
-- turn each pixel into a PC sprite index: the fixed materials by the table above, team pixels by **body part + shade**, then render through a real HOMEPALS / AWAYPALS record.
+- turn each pixel into a PC sprite index: the fixed materials by the table above, team pixels by **zone + shade**, then render through a real HOMEPALS / AWAYPALS record.
 
-The output is then 6-bit VGA colour with the team's real stripe, yoke, helmet and sock colours.
+The output is then 6-bit VGA colour with the team's real stripe, yoke, helmet, sock and crest colours.
 
-The body-part decision is where the frames themselves are needed. NHL 94 PC's player sheet numbers its 876 frames like the Genesis sheet. Where it holds PC versions of the same poses, those frames give the exact zone layout to transfer onto the Genesis pixels: the PC fight frames 354–370 (unused in '94), the fight injury 371–376 and the on-ice injury 641–652. Otherwise the parts have to be segmented from the Genesis art.
+Where the PC sheet holds the same picture, its zones are copied pixel by pixel. That covers NHL '94's check injury: PC 633–644, where the jersey crest also appears. Elsewhere, for NHLPA '93's fights, which no PC game has, the zones come from a model trained on the 345 pairs (`docs/genesis-to-pc/README.md`). How the zone choice scores against the PC artist on pose types the model never saw (falls and injuries held out):
+
+| | Body part | Exact zone |
+|---|---|---|
+| Model | 76% | 57% |
+| Hand rules | 57% | 38% |
