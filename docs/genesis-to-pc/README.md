@@ -4,11 +4,22 @@
 
 ![NHL 94 injury](nhl94-injury-sheet.png)
 
+| Fight (NHLPA '93), Boston home v Montreal away | Fight, Chicago home v Rangers away | Injury (NHL '94), both variants, three teams |
+|---|---|---|
+| ![](nhlpa93-fight-pc-bos-mtl.gif) | ![](nhlpa93-fight-pc-chi-nyr.gif) | ![](nhl94-injury-pc.gif) |
+
+The GIFs (`node tools/build-pc-gifs.js --pc pc95`) play the upgraded frames with the games' own animation tables, at game speed. Holds longer than 2 seconds are cut so the GIFs loop.
+
+- **The fight** is a bout staged entirely from NHLPA '93's own fight animations: gloves off (the dropped gloves and sticks of frame 353 land on the ice), grab, an exchange of high and low punches with their hit reactions, then the bloody fight injury.
+- **Mirroring:** every '93 fight frame faces right, so the right-hand fighter is mirrored with the Genesis sprite flip; his pixels are unchanged. The fighters' spacing is my staging.
+- **The injury** is NHL '94's own injury animation, the fall then the injury loop, in both variants.
+
 | File | What it holds |
 |---|---|
 | `nhlpa93-fight-sheet.png` | **NHLPA Hockey '93's fighting sprites**: gloves on the ice (353), the fight (354–370) and the bloody fight injury (371–376). One column per frame; the rows are the Genesis original, then the PC-standard upgrade through six retail PC jerseys (Boston, Montreal, Chicago, home and away). |
 | `nhl94-injury-sheet.png` | **NHL Hockey '94's injury sprites**: the check injury (641–652), with the same rows plus NHL 95 PC's own version of each frame at the bottom for comparison. |
 | `nhlpa93-fight/`, `nhl94-injury/` | Every upgraded frame for each of those jerseys: an 8-bit PNG in **PC sprite colour space** (the pixel values a PC sheet stores, 255 transparent), with that jersey's 256-colour palette. |
+| `*.gif` | The upgraded fight and injury animated at game speed (below). |
 | `report.json` | Sources, how each frame was done, and the '93 / '94 comparison. |
 | `PC-PALETTE.md` | The PC palette structure, colour depth and shading, measured. |
 | `validation-skating.png` | The method on four retail skating frames next to NHL 94 PC's own versions. |
