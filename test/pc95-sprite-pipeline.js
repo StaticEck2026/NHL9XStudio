@@ -58,7 +58,8 @@ function compare(frame, raw, act, pal, label) {
   return raw.length;
 }
 
-if (!TOOLS) { console.log('pc95-sprite-pipeline: no EA-NHL-Tools next to the checkout, skipped'); process.exit(0); }
+// Skip this check only: process.exit would also end every suite test.js runs after this one.
+if (!TOOLS) { console.log('pc95-sprite-pipeline: no EA-NHL-Tools next to the checkout, skipped'); return; }
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'pc95pipe-'));
 try {
   const teams = [['HOMEPALS', 'BOS'], ['AWAYPALS', 'CGY'], ['HOMEPALS', 'TOR'], ['AWAYPALS', 'ANA'], ['HOMEPALS', 'ASE']];
