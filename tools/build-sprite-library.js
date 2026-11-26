@@ -73,7 +73,7 @@ for (const f of frames) {
   }
   fs.writeFileSync(path.join(lib, 'cut', id, 'parts.json'), JSON.stringify(cuts));
   out.push({ id: f.id, game: f.game, n: f.n, group: f.group, facing: f.facing, step: f.step, space: f.space, w: f.w, h: f.h, x0: f.x0, y0: f.y0,
-    labelSource: f.labelSource, prop: a.prop, hands: a.hands, skates: a.skates, counts: a.counts, keypoints: a.keypoints });
+    labelSource: f.labelSource, sameAs: f.sameAs || null, prop: a.prop, hands: a.hands, skates: a.skates, counts: a.counts, keypoints: a.keypoints });
 }
 const meta = { sources, parts: A.PARTS, partColours: PART_PAL, spaces: { genesis: 'palette line * 16 + colour, 0 empty', pc: 'NHL 94/95 PC sprite index, 255 empty' }, frames: out };
 fs.writeFileSync(path.join(lib, 'frames.json'), JSON.stringify(meta));

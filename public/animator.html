@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Animation Builder · NHL9X Studio</title>
+  <link rel="stylesheet" href="animator.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <a href="./" class="back" title="Back to the Studio">← Studio</a>
+      <h1>Animation Builder</h1>
+      <p class="sub">Pose the skeleton of a retail skater, get all eight facings, build a sequence. Every pixel is the game's own.</p>
+    </div>
+    <label class="field">Game
+      <select id="year">
+        <option value="94g">NHL Hockey '94 (Genesis)</option>
+        <option value="93g">NHLPA Hockey '93 (Genesis)</option>
+        <option value="95pc">NHL Hockey 95 (PC)</option>
+      </select>
+    </label>
+  </header>
+
+  <div id="missing" class="missing" hidden>
+    <h2>The sprite library is not built yet</h2>
+    <p>The builder works on the games' own frames, built from your own copies. Put the retail NHLPA '93 and NHL '94 Genesis ROMs in <code>roms/</code> and the NHL 95 PC files in <code>pc95/</code>, then run:</p>
+    <pre>node tools/build-sprite-layers.js --pc pc95
+node server.js</pre>
+    <p>and reload this page. See <code>docs/sprite-library/README.md</code>.</p>
+  </div>
+
+  <main id="app" class="app" hidden>
+    <aside class="panel browser" aria-label="Frames">
+      <h2>Start from a frame</h2>
+      <label class="field">Animation <select id="group"></select></label>
+      <label class="field">Facing <select id="facing-filter"><option value="">All</option></select></label>
+      <div id="thumbs" class="thumbs" role="listbox" aria-label="Frames of this animation"></div>
+    </aside>
+
+    <section class="panel stage-wrap" aria-label="Pose">
+      <div class="toolbar">
+        <span id="pose-title" class="pose-title">—</span>
+        <label class="field inline">As facing <select id="as-facing"></select></label>
+        <label class="check"><input type="checkbox" id="show-skeleton" checked> Skeleton</label>
+        <label class="field inline">Zoom <input type="range" id="zoom" min="3" max="10" value="6"></label>
+        <button type="button" id="reset">Reset pose</button>
+      </div>
+      <canvas id="stage" width="576" height="480" aria-label="The pose; drag the joints"></canvas>
+      <p class="hint">Drag a hand, elbow, skate, knee or the stick's ends: the limb is swapped for the retail limb of this facing that best matches. Drag a shoulder, hip or the head to move that part.</p>
+      <div id="swaps" class="swaps" aria-live="polite"></div>
+    </section>
+
+    <aside class="panel side" aria-label="Layers and facings">
+      <h2>Layers <small>(top first)</small></h2>
+      <ul id="layers" class="layers"></ul>
+      <h2>All eight facings</h2>
+      <div id="facings" class="facings"></div>
+      <p id="facings-note" class="note"></p>
+      <button type="button" id="add" class="primary">Add to sequence</button>
+    </aside>
+
+    <section class="panel timeline" aria-label="Sequence">
+      <div class="toolbar">
+        <h2>Sequence</h2>
+        <label class="field inline">Play facing <select id="play-facing"></select></label>
+        <button type="button" id="play">Play</button>
+        <label class="field inline">Hold (vblanks) <input type="number" id="hold" min="1" max="999" value="8"></label>
+        <button type="button" id="left" title="Move the selected frame earlier">◀</button>
+        <button type="button" id="right" title="Move the selected frame later">▶</button>
+        <button type="button" id="remove">Remove</button>
+        <span class="spacer"></span>
+        <button type="button" id="export-png">Export sheet (PNG)</button>
+        <button type="button" id="export-json">Export data (JSON)</button>
+      </div>
+      <div id="strip" class="strip"></div>
+      <canvas id="player" width="192" height="160" aria-label="Sequence preview"></canvas>
+    </section>
+  </main>
+
+  <script src="lib/sprite-rig.js"></script>
+  <script src="animator.js"></script>
+</body>
+</html>

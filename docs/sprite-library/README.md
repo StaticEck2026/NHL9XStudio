@@ -2,18 +2,19 @@
 
 A pose and part library for building new animations (grabs, tussles, anything) out of the retail art, without redrawing a pixel.
 
-It covers **every skater frame** of three sheets: 1,117 frames in 40 animation groups.
+It covers **every skater frame** of three game years: 1,511 frames in 40 animation groups.
 
 | Source | Frames | Body-part labels from |
 |---|---|---|
 | NHL '94 Genesis (retail ROM) | 440 | NHL 95 PC's own version of the same frame (416), the zone model (24) |
-| NHLPA '93 Genesis (retail Rev 0), only where it differs from '94 | 65 | NHL 95 PC (40), the zone model (25): the fight, the fight injury |
+| NHLPA '93 Genesis (retail Rev 0) | 459 | 394 are identical to '94's frame (`sameAs`) and share its labels; the 65 that differ use NHL 95 PC (40) or the zone model (25): the fight, the fight injury |
 | NHL 95 PC (CD) | 612 | its own pixels, which *are* zone labels |
 
 - **What 95 PC adds:** animations the Genesis never had — cross-checks (16 frames), board checks (70), bench checks (11), shot blocks (56), face-offs, anthem, line changes and the Cup.
 - **What's left out:** goalies, referees and UI.
 - **No NHL 92 data is read.**
-- **Props:** 11 frames are props rather than skaters (the dropped gloves and sticks, glass panels) and are marked as such.
+- **Props:** 12 frames are props rather than skaters (the dropped gloves and sticks, glass panels) and are marked as such.
+- **Pose search skips duplicates:** it leaves out NHLPA '93's `sameAs` frames unless asked (`open(dir, { duplicates: true })`).
 
 ## What every frame gets
 
@@ -36,18 +37,15 @@ It covers **every skater frame** of three sheets: 1,117 frames in 40 animation g
   A joint is left empty when it isn't visible: a hand behind the body, no stick in a fight.
 - **The animation it belongs to:** source, frame number, SPF group, facing (0 north, clockwise, for the 8-facing groups) and step.
 
-Coverage over the 1,106 skater frames:
+Coverage over the 1,499 skater frames:
 
 | Point | Frames that have it |
 |---|---|
-| head | all |
-| neck | 1,099 |
-| hip midpoint | 1,100 |
-| a skate | 1,100 |
-| a hand | 988 |
-| both hands | 670 |
-| a knee | 1,005 |
-| a stick | 949 |
+| head | 1,492 |
+| a skate | 1,491 |
+| a hand | 1,321 |
+| both hands | 840 |
+| a stick | 1,335 |
 
 Missing points are mostly genuinely hidden: a hand behind the back, no stick while fighting or holding the Cup. `overview-94g.png`, `overview-93g.png` and `overview-95pc.png` show every frame with its parts and skeleton drawn in.
 
@@ -101,11 +99,63 @@ const cel = C.compose([
 ], lib, { space: 'zones' });                                                                  // cel.px, cel.owner per pixel
 ```
 
+## Layers for each game year
+
+`node tools/build-sprite-layers.js --pc pc95` writes every frame of each year as an **OpenRaster** file, which GIMP, Krita and MyPaint open as layers:
+
+- `library/layers/93g/` — NHLPA Hockey '93 (Genesis);
+- `library/layers/94g/` — NHL Hockey '94 (Genesis);
+- `library/layers/95pc/` — NHL Hockey 95 (PC).
+
+Each part is its own layer, at its place, in that year's colours. From bottom to top:
+
+1. shadow
+2. stick shadow
+3. far leg and skate
+4. near leg and skate
+5. far arm and hand
+6. torso
+7. head
+8. stick
+9. near arm and hand
+
+A hidden "skeleton" layer sits on top. Of each pair of limbs, the one hanging from the joint lower on screen is the near one, as in the game's top-down view. The stick's shadow is split from the body's (shadow more than 3 pixels from the legs belongs to the stick), so it moves with the stick. The layers of every frame rebuild it exactly; `test/spritelib.js` checks all 1,511.
+
+## The rig and eight facings from one
+
+`lib/sprite-rig.js` runs the same way in Node and in the browser. It does three things, and never redraws a pixel:
+
+- **Draws a pose.** It starts from a base frame. Each limb whose joints you moved is swapped for the closest retail limb of that game and facing, hung from its shoulder, hip or the hand holding the stick. A part whose root joint moved goes with it.
+- **Works out all eight facings from one.** The games draw 151 animation steps in all eight facings, which is how a pose changes as the player turns. From them it learns, for every pair of facings and every joint, how the joint moves. The pose for each other facing averages that learned turn with the closest three steps' poses in that facing. Each facing is then drawn on the closest step's frame of that facing, with limbs swapped to fit.
+  - **Accuracy**, recreating facings of steps it never saw (`tools/sprites/eval-directions.js`): joints land 6.4 pixels from the real frames' on average. The closest step's pose alone lands 6.9 pixels away, and copying the source pose 8.9.
+  - **What the error means:** the games' facings are not exact rotations of one pose (each was drawn separately), so expect a few pixels of difference.
+  - **Your facing is kept:** the facing you posed is your pose itself.
+  - **Sticks:** a stick-less pose (a fight) stays stick-less.
+  - **Props:** animations with a prop, the Stanley Cup, are never used.
+
+![Eight facings from one](demo-directions.png)
+
+## The Animator
+
+`public/animator.html` is a Studio page (header button **Animator**, under `node server.js`). It reads `library/bundle-<year>.json` from your own build:
+
+1. Pick the year and a frame.
+2. Drag the joints. Hands, elbows, skates, knees and the stick's ends swap in the best-matching retail limb; shoulders, hips and the head move their part. On release, the skeleton snaps to where the swapped limb's joints really are.
+3. Hide layers to see behind them.
+4. Click any of the eight facings to keep editing in that facing.
+5. Add poses to a sequence with a hold in vblanks, and play it in any facing.
+6. Export the sequence as an 8-row sprite sheet (PNG), or as JSON: each facing's pixels in the game's own indices, its base frame, the limbs swapped in, and its skeleton.
+
+A frame the game draws in one facing only (NHLPA '93's fight) is given a facing with **As facing**.
+
 ## Files and rebuilding
 
 ```
-node tools/build-sprite-library.js --pc pc95     # about 10 s
-node tools/sprites/demo.js --pc pc95
+node tools/build-sprite-library.js --pc pc95     # frames, parts, skeletons, overviews (about 10 s)
+node tools/build-sprite-layers.js --pc pc95      # layered .ora per year, and the Animator's bundles (about 10 s)
+node tools/sprites/demo.js --pc pc95             # demo-retrieval.png, demo-compose.png
+node tools/sprites/demo-directions.js --pc pc95  # demo-directions.png
+node tools/sprites/eval-directions.js --pc pc95  # the eight-facing accuracy check
 ```
 
 The builder needs the retail ROMs in `roms/` and the NHL 95 PC files in `pc95/`.
@@ -120,6 +170,8 @@ The builder needs the retail ROMs in `roms/` and the NHL 95 PC files in `pc95/`.
 | `zones/<id>.png` | PC zone indices |
 | `cut/<id>/<part>.png` | every part cropped on its own |
 | `cut/<id>/parts.json` | each part's box and the joints it carries |
+| `layers/<year>/<id>.ora` | each frame as layers (OpenRaster) |
+| `bundle-<year>.json` | what the Animator loads |
 
 **This folder** holds only things that aren't the art itself:
 

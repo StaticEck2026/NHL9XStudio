@@ -30,6 +30,8 @@ const PAL_DIRS = {
 };
 const PAL_DIR = PAL_DIRS['92'];
 const ROM_DIR = path.join(ROOT, 'roms');
+// The skater sprite library (node tools/build-sprite-layers.js): the games' art, built from the user's own files.
+const LIBRARY = path.join(ROOT, 'library');
 const cueSheet = require('./lib/cue');
 const PC_DIRS = {
   // NHL_PC95_DIR / NHL_PC94_DIR / NHL_PC96_DIR point at an installed game folder instead of pc95/ / pc94/ / pc96/ here.
@@ -832,6 +834,12 @@ const server = http.createServer((req, res) => {
     serveFile(res, path.join(DATA, 'frames.asm'), req);
     return;
   }
+  if (pathname.startsWith('/library/')) {
+    const file = safeFile(LIBRARY, pathname.slice('/library/'.length));
+    if (!file || !/\.(json|ora|png)$/i.test(file)) { send(res, 404, 'Not found', 'text/plain; charset=utf-8'); return; }
+    serveFile(res, file, req);
+    return;
+  }
   if (pathname.startsWith('/lib/')) {
     const file = safeFile(LIB, pathname.slice('/lib/'.length));
     if (!file) { send(res, 400, 'Bad path', 'text/plain; charset=utf-8'); return; }
@@ -853,7 +861,7 @@ const server = http.createServer((req, res) => {
     serveFile(res, file, req);
     return;
   }
-  if (pathname === '/viewer.js' || pathname === '/about.js' || pathname === '/button-icons.js' || pathname === '/loader.js' || pathname === '/skaters-data.js' || pathname === '/changelog.json' || pathname === '/viewer.css' || pathname === '/jed.html' || pathname === '/jed.js' || pathname === '/ice.js' || pathname === '/fight.js' || pathname === '/jed.css' || pathname === '/jim.html' || pathname === '/jim.js' || pathname === '/jim.css' || /^\/jed-pals\/[a-zA-Z]+\.act$/.test(pathname) || pathname === '/audio-engine.js' ||
+  if (pathname === '/viewer.js' || pathname === '/about.js' || pathname === '/button-icons.js' || pathname === '/loader.js' || pathname === '/skaters-data.js' || pathname === '/changelog.json' || pathname === '/viewer.css' || pathname === '/jed.html' || pathname === '/jed.js' || pathname === '/ice.js' || pathname === '/fight.js' || pathname === '/jed.css' || pathname === '/jim.html' || pathname === '/jim.js' || pathname === '/jim.css' || pathname === '/animator.html' || pathname === '/animator.js' || pathname === '/animator.css' || /^\/jed-pals\/[a-zA-Z]+\.act$/.test(pathname) || pathname === '/audio-engine.js' ||
       pathname === '/chip-lab.html' || pathname === '/chip-lab.js' || pathname === '/chip-lab.css' ||
       pathname === '/sound-test-view.js' || pathname === '/sound-test-pc94.js' || pathname === '/sound-instruments.js' || pathname === '/sound-roll-snes.js' || pathname === '/sound-test-snes.js' || pathname === '/sound-test-snes93.js' ||
       pathname === '/sound-roll.js' || pathname === '/sound-tools.js' || pathname === '/sound-tools-nx.js' || pathname === '/sound-editor-extras.js' || pathname === '/sound-patch-editor.js' || pathname === '/sound-tools-snes.js' || pathname === '/sound-snes-inst-editor.js') {

@@ -1,16 +1,17 @@
 {
- "frames": 1117,
- "props": 11,
+ "frames": 1511,
+ "props": 12,
  "byGame": {
   "94g": 440,
-  "93g": 65,
+  "93g": 459,
   "95pc": 612
  },
  "labelSource": {
   "pc": 1068,
-  "model": 49
+  "model": 49,
+  "same": 394
  },
- "bothHands": 670,
- "bothSkates": 978,
- "stick": 949
+ "bothHands": 840,
+ "bothSkates": 1318,
+ "stick": 1335
 }

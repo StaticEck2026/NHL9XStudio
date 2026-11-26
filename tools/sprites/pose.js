@@ -16,44 +16,15 @@
 const fs = require('fs');
 const path = require('path');
 
-const JOINTS = ['head', 'neck', 'shoulder0', 'elbow0', 'hand0', 'shoulder1', 'elbow1', 'hand1', 'hip0', 'knee0', 'skate0',
-  'hip1', 'knee1', 'skate1', 'stickButt', 'stickBlade'];
-const WEIGHT = { head: 1.5, neck: 1, hand0: 1.5, hand1: 1.5, skate0: 1.2, skate1: 1.2, stickBlade: 0.7, stickButt: 0.5 };
+// The pose maths is lib/sprite-rig.js's, shared with the animation builder.
+const R = require('../../lib/sprite-rig');
+const { JOINTS, normalise, distance } = R;
+const mirror = R.mirrorPose;
 
-function normalise(kp) {
-  const mid = kp.hipMid || [0, -10];
-  const feet = [kp.skate0, kp.skate1].filter(Boolean);
-  const footMid = feet.length ? [feet.reduce((a, p) => a + p[0], 0) / feet.length, feet.reduce((a, p) => a + p[1], 0) / feet.length] : null;
-  const tall = kp.head && footMid ? Math.hypot(kp.head[0] - footMid[0], kp.head[1] - footMid[1]) : 30;
-  const scale = Math.max(tall, 10);
-  const v = {};
-  for (const j of JOINTS) v[j] = kp[j] ? [(kp[j][0] - mid[0]) / scale, (kp[j][1] - mid[1]) / scale] : null;
-  return v;
-}
-
-/** Mirror a normalised pose left to right; limb numbers swap so they stay left-to-right. */
-function mirror(v) {
-  const out = {};
-  for (const j of JOINTS) out[j] = v[j] ? [-v[j][0], v[j][1]] : null;
-  const swap = (a, b) => { const t = out[a]; out[a] = out[b]; out[b] = t; };
-  for (const p of ['shoulder', 'elbow', 'hand', 'hip', 'knee', 'skate']) swap(p + '0', p + '1');
-  return out;
-}
-
-/** Mean weighted distance over the joints both poses show; a joint only one shows costs 0.35. */
-function distance(a, b) {
-  let sum = 0, wsum = 0;
-  for (const j of JOINTS) {
-    const w = WEIGHT[j] || 1;
-    if (a[j] && b[j]) { sum += w * Math.hypot(a[j][0] - b[j][0], a[j][1] - b[j][1]); wsum += w; }
-    else if (a[j] || b[j]) { sum += w * 0.35; wsum += w; }
-  }
-  return wsum ? sum / wsum : Infinity;
-}
-
-function open(dir) {
+/** opts.duplicates: also search NHLPA 93 frames identical to NHL 94's (sameAs); left out by default. */
+function open(dir, opts = {}) {
   const meta = JSON.parse(fs.readFileSync(path.join(dir, 'frames.json'), 'utf8'));
-  const frames = meta.frames.filter((f) => !f.prop);
+  const frames = meta.frames.filter((f) => !f.prop && (opts.duplicates || !f.sameAs));
   const vecs = new Map(frames.map((f) => [f.id, normalise(f.keypoints)]));
   return {
     meta,

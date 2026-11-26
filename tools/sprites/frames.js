@@ -4,8 +4,9 @@
  * Sources (tools/pcupgrade/sources.js; nothing from NHL 92):
  *  - NHL 94 Genesis: the skater groups of frames94.asm (1-352, the penalty-box jump 377-383, catch, hook, stumble,
  *    flip, injury and glass bang 577-657).
- *  - NHLPA 93 Genesis: the frames that differ from NHL 94's same picture (the fight 353-376, the bloody check
- *    injury, and the handful of skater frames 93 drew differently).
+ *  - NHLPA 93 Genesis: all its skater frames. Those identical to NHL 94's same picture take that frame's labels
+ *    and say so (sameAs); the rest (the fight 353-376, the bloody check injury, the handful of frames 93 drew
+ *    differently) are labelled on their own.
  *  - NHL 95 PC: its skater frames, including the animations 95 added (cup, face-off, anthem, line change, bench
  *    check, cheer, cross-check, board checks, shot blocks). Referees, goalies and UI are left out.
  *
@@ -91,7 +92,11 @@ function loadAll(opts = {}) {
     const as94 = m.n >= 569 && m.n <= 644 ? m.n + 8 : m.n;      // 93 numbers SPFcatch .. SPFinjury1 8 lower (SPFgready grew)
     const g = rom93.frame(m.n);
     if (!g) continue;
-    if (seen94.has(as94) && seen94.get(as94) === key(g)) continue;   // the same picture as 94's
+    if (seen94.has(as94) && seen94.get(as94) === key(g)) {         // the same picture as 94's: same labels
+      const twin = frames.find((x) => x.id === '94g:' + as94);
+      frames.push(Object.assign({}, twin, m, { id: '93g:' + m.n, game: '93g', n: m.n, labelSource: 'same as ' + twin.id, sameAs: twin.id }));
+      continue;
+    }
     const f = genesis('93g', rom93, m.n, m, pal93, m.n <= 352 ? m.n : (m.n >= 569 && m.n <= 644 ? m.n : null));
     if (f) frames.push(f);
   }
