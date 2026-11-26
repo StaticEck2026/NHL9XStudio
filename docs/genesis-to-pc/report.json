@@ -1,0 +1,15 @@
+{
+ "shade": "pc",
+ "jerseys": "NHL 94 PC bundled HOMEPALS94 / AWAYPALS94",
+ "sources": {},
+ "validation": {
+  "frames": 4,
+  "partAgreement": 0.634,
+  "teamPixels": 740
+ },
+ "missing": [
+  "NHLPA 93 Genesis ROM",
+  "NHL 94 Genesis ROM",
+  "NHL 94 PC or 95 PC game folder (optional: exact zones for the check injury)"
+ ]
+}

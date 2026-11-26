@@ -4,7 +4,7 @@ This is groundwork for upgrading Genesis player frames (the NHL '94 injury frame
 
 Sources used, all in this repo:
 
-- the NHL 94 PC and NHL 95 PC skater frames in `public/skaters-data.js` (SPAskatewp, facing east, 4 frames; both games carry identical pixels);
+- the NHL 94 PC and NHL 95 PC skater frames in `public/skaters-data.js` (SPAskatewp, facing east, 4 frames; both games carry identical pixels). That copy swaps indices 0 and 255 for the loading screen; the tables below use the retail meaning (`lib/pc95.js`: the blitter skips 255, 0 is equipment black);
 - the matching NHL '94 and NHLPA '93 Genesis frames in the same file (identical to each other);
 - the retail jersey files `test/fixtures/pc-jersey/HOMEPALS94.BIN`, `AWAYPALS94.BIN` and `HOMEPALS95.BIN`;
 - the sprite-space palettes `createjerseyShadowfixed.act` / `rinkpal*.act`, read through `lib/pc-jersey.js`.
@@ -27,13 +27,13 @@ A PC sprite pixel names **what the pixel is**, not a colour. The team record tur
 
 | Sprite index | Meaning | Colour comes from |
 |---|---|---|
-| 0 | transparent (drawn magenta 252,0,252 in the sheets) | — |
+| 0 | equipment black: skates, gloves, blade tape | fixed |
 | 1–127 | fixed art: 8 = blade-side dark blue (0,64,128), 88 = ice shadow (64,160,224) | rink palette, the same for all teams (map bytes 192–319: identity except 8→16, 82/88→99) |
 | 128–143 | skin, eyes and stick: a 16-step skin ramp from (252,212,180) to (44,20,0); the stick reuses 136 | rink palette through map bytes 320–335 |
 | 144–191 | **48 jersey zones** (below) | the team's 64 colours (record bytes 0–191, 6-bit RGB, game palette 128–191) through map bytes 336–383 |
 | 192–196, 208–212, 224–228, 240–244 | the 5×4 jersey crest | team colours |
 | 197–202, 213–218, 229–234, 245–250 | scoreboard crest | team colours |
-| 255 | black: skates, gloves, blade tape, outline darks | fixed |
+| 255 | transparent (the blitter skips it) | — |
 
 The 48 zones are 16 body parts. Most have three shades (light / medium / dark):
 
@@ -61,7 +61,7 @@ So the PC standard depends on each pixel's **body part**. Sleeve stripes, yoke b
 Measured on the four retail PC skating frames, after aligning each one with its Genesis counterpart. The alignment confirms the PC art is **the same drawing**: silhouette overlap is 94–98% at a 0–5 pixel offset. The PC versions are recoloured, with small touch-ups. They are not redrawn.
 
 - **Three-shade ramps per part.** Zone pixels are 252 medium, 235 dark and 139 light. Shades sit in bands along each part, not dithered. The light band leans toward the side the player faces (mean offset +0.46 px in x from the part's centre, east-facing frames).
-- **Black is a material, not an outline.** Index 255 covers skates, gloves and the black tape on the blade, which the Genesis draws in stick colour: 36 of the Genesis stick pixels become black. 141 of the silhouette's edge pixels are black and 91 are a dark shade. No pixel was added around the figure.
+- **Black is a material, not an outline.** Index 0 covers skates, gloves and the black tape on the blade, which the Genesis draws in stick colour: 36 of the Genesis stick pixels become black. 141 of the silhouette's edge pixels are black and 91 are a dark shade. No pixel was added around the figure.
 - **Skin gets 4 of the 16 ramp steps** (133, 134, 136, 140). The Genesis has 2 skin tones plus the eye. The stick shares ramp step 136.
 - **Shadow is two fixed blues**: 88 for the ice shadow, and 8 under the skate blades and the blade. Genesis steel (colour 1) becomes 8.
 - **Crest**: a few crest-zone pixels (192–243) sit on the chest. The Genesis frame has nothing there.
@@ -71,13 +71,13 @@ Measured on the four retail PC skating frames, after aligning each one with its 
 | Genesis line 2 colour | Becomes on the PC |
 |---|---|
 | 1 steel | 8 (40/40) |
-| 2 black | 255 (181/183) |
+| 2 black | 0 (181/183) |
 | 3, 4, 5 pants | 177 pants dark, 180 pants medium, 178/179 pants stripes, 182–186 socks |
 | 6 skin light | 134 (12/12) |
 | 7 skin shade | 136 (27), 133 (8) |
 | 8, 9 trim | arm stripes 147–155, yoke 161/163, pants stripe 179, socks stripe 185/188 |
 | 10–13 jersey tones | jersey 165–167, upper arm 156–158, forearm 144–146, yoke 161–163, helmet 190/191, socks 181–183 |
-| 14 stick | 136 (69), 255 tape (36) |
+| 14 stick | 136 (69), 0 tape (36) |
 | 15 shadow | 88 (109/109) |
 
 Two conclusions follow:
