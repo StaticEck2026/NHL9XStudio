@@ -3,9 +3,9 @@
  * Animated GIFs of the PC-standard fight (NHLPA 93) and injury (NHL 94) sprites, played with the games' own SPA
  * tables (frames93.asm, frames94.asm) at game speed: a step of N vblanks shows for N + 1 (README, updateanim).
  *
- *   node tools/build-pc-gifs.js [--pc pc95] [--out docs/genesis-to-pc]
+ *   node tools/build-pc-gifs.js [--pc folder] [--out docs/genesis-to-pc]
  *
- * Needs the same files as build-pc-upgrade.js (roms/, pc95/). Frames are upgraded the same way: the PC sheet's own
+ * Needs the same files as build-pc-upgrade.js (the ROMs and the NHL 95 PC CD image in roms/). Frames are upgraded the same way: the PC sheet's own
  * version where it has one (the injury and the fall into it), the learned zones otherwise (the fight).
  *
  * The fight: every NHLPA 93 fight frame faces right. Facings 0-2 use 357-361 and facings 3-7 use 362-366, so the
@@ -32,7 +32,7 @@ const args = process.argv.slice(2);
 const opt = (name, def) => { const i = args.indexOf(name); return i >= 0 ? args[i + 1] : def; };
 const outDir = path.resolve(ROOT, opt('--out', path.join('docs', 'genesis-to-pc')));
 const rom93 = S.load93(opt('--rom93')), rom94 = S.load94(opt('--rom94')), pc = S.loadPc(opt('--pc'));
-if (!rom93 || !rom94 || !pc) { console.error('needs roms/ (NHLPA 93, NHL 94) and a PC folder (pc95/)'); process.exit(1); }
+if (!rom93 || !rom94 || !pc) { console.error('needs the NHLPA 93 and NHL 94 Genesis ROMs and the NHL 95 PC CD image in roms/ (or the PC files in pc95/)'); process.exit(1); }
 const base = S.pcBase();
 const ICE = [216, 236, 244], INK = [24, 32, 48];
 const SC = 2, HOLD_CAP = 120;           // long holds (200, 400, 900 vblanks) are cut to 2 s so the GIF loops

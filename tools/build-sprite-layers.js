@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 /**
  * Every skater frame of each game year, split into layers, and the data the animation builder (public/animator.html)
- * loads. Needs the retail ROMs in roms/ and the NHL 95 PC files in pc95/ (tools/sprites/frames.js; no NHL 92 data).
+ * loads. Needs the retail NHLPA 93 and NHL 94 Genesis ROMs and the NHL 95 PC CD image in roms/ (or the PC files in
+ * pc95/, or a folder given with --pc; tools/sprites/frames.js). No NHL 92 data.
  *
- *   node tools/build-sprite-layers.js [--pc pc95] [--out library]
+ *   node tools/build-sprite-layers.js [--pc folder] [--out library]
  *
  * Writes into library/ (git-ignored: it is the games' art, rebuilt from your own files):
  *   layers/<year>/<frame>.ora   OpenRaster (GIMP, Krita, MyPaint): one layer per part, stacked far to near (the

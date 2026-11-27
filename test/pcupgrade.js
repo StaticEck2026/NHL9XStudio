@@ -1,7 +1,7 @@
 /** Genesis -> PC colour upgrade (tools/pcupgrade): pixels never move, fixed materials map one to one, and the body
  *  parts agree with NHL 94 PC's own skating frames: the rules alone as well as when they were tuned, the learned
  *  model (trained on these frames among 345 others) better. With the NHL 94 ROM in roms/ and the NHL 95 PC files in
- *  pc95/, the check injury also transfers from the PC frames. */
+ *  the NHL 95 PC CD image (or pc95/), the check injury also transfers from the PC frames. */
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
@@ -54,8 +54,8 @@ assert.ok(agreeModel / total >= 0.75, 'model: body-part agreement fell to ' + ag
 const root = path.join(__dirname, '..');
 const S = require('../tools/pcupgrade/sources');
 let injury = '';
-if (fs.existsSync(path.join(root, 'roms')) && fs.existsSync(path.join(root, 'pc95'))) {
-  const rom = S.load94(), pc = S.loadPc(path.join(root, 'pc95'));
+{
+  const rom = S.load94(), pc = rom ? S.loadPc() : null;
   if (rom && pc) {
     let from = 0, all = 0;
     for (let n = 641; n <= 652; n++) {

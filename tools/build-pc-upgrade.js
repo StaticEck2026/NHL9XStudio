@@ -10,7 +10,8 @@
  *                                  [--shade genesis|model] [--out docs/genesis-to-pc]
  *
  * ROMs are looked for in roms/ by default (any file name; each is checked against the retail checksums), the PC
- * game folder in pc94/ then pc95/. No NHL 92 data is read.
+ * game in pc94/ or pc95/, else the NHL 95 PC CD image in roms/ (.iso, .img, .mdf: found by its contents). No NHL 92
+ * data is read.
  *
  * Every Genesis pixel keeps its place. Each becomes a PC sprite index (docs/genesis-to-pc/PC-PALETTE.md): fixed
  * materials one to one, team colours a jersey zone and shade. A frame the PC sheet also has (the check injury) takes

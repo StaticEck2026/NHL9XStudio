@@ -2,7 +2,7 @@
 /**
  * What the sprite library is for, shown on real frames (writes docs/sprite-library/demo-*.png).
  *
- *   node tools/sprites/demo.js [--pc pc95]           (after node tools/build-sprite-library.js)
+ *   node tools/sprites/demo.js [--pc folder]           (after node tools/build-sprite-library.js)
  *
  *  - demo-retrieval.png: for a few poses, the nearest poses anywhere else in the three sheets (other animations,
  *    other games, mirrored where the Genesis flip would do), by skeleton (tools/sprites/pose.js).

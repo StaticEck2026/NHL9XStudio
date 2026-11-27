@@ -2,7 +2,7 @@
 /**
  * The skater sprite library, for building new animations out of the retail art.
  *
- *   node tools/build-sprite-library.js [--pc pc95] [--out library] [--docs docs/sprite-library]
+ *   node tools/build-sprite-library.js [--pc folder] [--out library] [--docs docs/sprite-library]
  *
  * Reads every skater frame of the NHL 94 and NHLPA 93 Genesis sheets and the NHL 95 PC sheet (tools/sprites/frames.js;
  * no NHL 92 data), gives each pixel a body part and each frame a skeleton (tools/sprites/anatomy.js), and writes:

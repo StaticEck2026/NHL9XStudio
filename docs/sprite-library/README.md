@@ -92,7 +92,7 @@ The demo makes two frames that exist in no game:
 
 ```js
 const C = require('./tools/sprites/compose');
-const lib = C.source(require('./tools/sprites/frames').loadAll({ pc: 'pc95' }));
+const lib = C.source(require('./tools/sprites/frames').loadAll());
 const cel = C.compose([
   { id: '93g:362', flip: true, anchor: ['neck', [0, 0]] },                                   // opponent, mirrored
   { id: '93g:358', anchor: ['hand0', { id: '93g:362', joint: 'neck', flip: true }], nudge: [-1, 4] }  // fist on his chest
@@ -101,7 +101,7 @@ const cel = C.compose([
 
 ## Layers for each game year
 
-`node tools/build-sprite-layers.js --pc pc95` writes every frame of each year as an **OpenRaster** file, which GIMP, Krita and MyPaint open as layers:
+`node tools/build-sprite-layers.js` writes every frame of each year as an **OpenRaster** file, which GIMP, Krita and MyPaint open as layers:
 
 - `library/layers/93g/` — NHLPA Hockey '93 (Genesis);
 - `library/layers/94g/` — NHL Hockey '94 (Genesis);
@@ -151,14 +151,14 @@ A frame the game draws in one facing only (NHLPA '93's fight) is given a facing 
 ## Files and rebuilding
 
 ```
-node tools/build-sprite-library.js --pc pc95     # frames, parts, skeletons, overviews (about 10 s)
-node tools/build-sprite-layers.js --pc pc95      # layered .ora per year, and the Animator's bundles (about 10 s)
-node tools/sprites/demo.js --pc pc95             # demo-retrieval.png, demo-compose.png
-node tools/sprites/demo-directions.js --pc pc95  # demo-directions.png
-node tools/sprites/eval-directions.js --pc pc95  # the eight-facing accuracy check
+node tools/build-sprite-library.js        # frames, parts, skeletons, overviews (about 10 s)
+node tools/build-sprite-layers.js         # layered .ora per year, and the Animator's bundles (about 10 s)
+node tools/sprites/demo.js                # demo-retrieval.png, demo-compose.png
+node tools/sprites/demo-directions.js     # demo-directions.png
+node tools/sprites/eval-directions.js     # the eight-facing accuracy check
 ```
 
-The builder needs the retail ROMs in `roms/` and the NHL 95 PC files in `pc95/`.
+The builder needs the retail NHLPA '93 and NHL '94 Genesis ROMs and the NHL 95 PC CD image in `roms/`. Any file names work: each is found by its contents. The CD image can be an `.iso`, `.img` or `.mdf` (archive.org's `HOCKEYPC.mdf` works as it is). An installed NHL 95 PC folder in `pc95/`, or given with `--pc`, also works.
 
 **`library/`** is git-ignored. It holds the games' art, so it is rebuilt from your own files:
 

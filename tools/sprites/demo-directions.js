@@ -4,7 +4,7 @@
  *   - Steps the games do draw in all eight facings, hidden from the search: recreated from facing 2, the real frames
  *     underneath for comparison.
  *   - A frame drawn in one facing only (NHLPA 93's jersey grab, 358): all eight facings made from it.
- *   node tools/sprites/demo-directions.js [--pc pc95]
+ *   node tools/sprites/demo-directions.js [--pc folder]
  */
 'use strict';
 const fs = require('fs');

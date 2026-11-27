@@ -8,7 +8,7 @@
 |---|---|---|
 | ![](nhlpa93-fight-pc-bos-mtl.gif) | ![](nhlpa93-fight-pc-chi-nyr.gif) | ![](nhl94-injury-pc.gif) |
 
-The GIFs (`node tools/build-pc-gifs.js --pc pc95`) play the upgraded frames with the games' own animation tables, at game speed. Holds longer than 2 seconds are cut so the GIFs loop.
+The GIFs (`node tools/build-pc-gifs.js`) play the upgraded frames with the games' own animation tables, at game speed. Holds longer than 2 seconds are cut so the GIFs loop.
 
 - **The fight** is a bout staged entirely from NHLPA '93's own fight animations: gloves off (the dropped gloves and sticks of frame 353 land on the ice), grab, an exchange of high and low punches with their hit reactions, then the bloody fight injury.
 - **Mirroring:** every '93 fight frame faces right, so the right-hand fighter is mirrored with the Genesis sprite flip; his pixels are unchanged. The fighters' spacing is my staging.
@@ -29,7 +29,7 @@ No NHL 92 data is read anywhere. Sources:
 - the retail NHLPA '93 (Rev 0) and NHL '94 Genesis ROMs;
 - the NHL 95 PC CD: player sheets `000_049.PPV` and the rest, plus `HOMEPALS.BIN` / `AWAYPALS.BIN`.
 
-These go in `roms/` and `pc95/`, both git-ignored.
+These all go in `roms/` (git-ignored): the CD image as `.iso`, `.img` or `.mdf`, any file names.
 
 ## What "NHL '94's injury sprites" are
 
@@ -80,12 +80,12 @@ Scored against the PC artist's own frames, team pixel by team pixel:
 ## Rebuild
 
 ```
-node tools/build-pc-upgrade.js --pc pc95 [--rom93 …] [--rom94 …] [--teams bos,mtl,chi] [--shade genesis|model]
-node tools/pcupgrade/export-features.js --pc pc95 > features.json      # retrain the model (needs scikit-learn)
+node tools/build-pc-upgrade.js [--rom93 …] [--rom94 …] [--pc folder] [--teams bos,mtl,chi] [--shade genesis|model]
+node tools/pcupgrade/export-features.js > features.json      # retrain the model (needs scikit-learn)
 python3 tools/pcupgrade/train_model.py features.json tools/pcupgrade/model.json
 ```
 
-The ROMs are looked for in `roms/` (any file name; each is checked against the retail checksums), and the PC folder in `pc94/` or `pc95/`. `test/pcupgrade.js` checks:
+Everything is looked for in `roms/`, any file names. Each ROM is checked against the retail checksums, and the PC CD image is recognised by its files. A PC folder in `pc94/` or `pc95/`, or given with `--pc`, is used instead when present. `test/pcupgrade.js` checks:
 
 - that no pixel moves and the fixed materials map one to one;
 - the body-part scores on the skating frames;

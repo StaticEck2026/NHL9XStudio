@@ -5,8 +5,8 @@
  *    injury (371-376) and the check injury (633-644, SPFinjury1). Team colours from its own TeamList.
  *  - NHL 94 Genesis ROM (lib/rom94.js retail check, lib/sheet.js player sheet): the fight injury (371-376) and the
  *    check injury (641-652, SPFinjury1; 8 later than in 93 because SPFgready grew). Team colours from TeamList.
- *  - NHL 94 PC or NHL 95 PC game folder (lib/pc95.js): the player sheet (PPV, 50 frames a file) and the jersey files
- *    HOMEPALS.BIN / AWAYPALS.BIN. Both PC sheets hold the check injury at 633-644 (frames94pc.asm / frames95pc.asm
+ *  - NHL 94 PC or NHL 95 PC game folder, or the NHL 95 PC CD image in roms/ (lib/pc95.js, lib/iso9660.js): the
+ *    player sheet (PPV, 50 frames a file) and the jersey files HOMEPALS.BIN / AWAYPALS.BIN. Both PC sheets hold the check injury at 633-644 (frames94pc.asm / frames95pc.asm
  *    SPAinjury1), the PC versions of the Genesis frames above. Neither holds fight frames.
  *
  * A Genesis frame comes back as { n, w, h, x0, y0, px } with px[i] = palette line * 16 + colour (0 empty) and the
@@ -43,6 +43,10 @@ function findRom(candidates, open) {
     try { files = fs.statSync(c).isDirectory() ? fs.readdirSync(c).map((n) => path.join(c, n)) : [c]; } catch (e) { continue; }
     for (const f of files) {
       if (!/\.(bin|md|gen|smd)$/i.test(f)) continue;
+      // A cartridge is 512 KB or 1 MB (plus a 512-byte copier header): skip anything else, such as a CD image's .bin.
+      let size = 0;
+      try { size = fs.statSync(f).size; } catch (e) { continue; }
+      if (![0x80000, 0x80200, 0x100000, 0x100200].includes(size)) continue;
       try { const rom = open(fs.readFileSync(f)); return { file: f, rom }; } catch (e) { /* not this one */ }
     }
   }
@@ -86,27 +90,59 @@ function load94(where) {
   };
 }
 
-/** A PC game folder: { game: '94' | '95', frame(n), jersey: { home, away }, base } or null. */
+/**
+ * The PC game: a folder (the one given, pc94/, pc95/) or, failing that, an NHL 94 / 95 PC disc image in roms/
+ * (.iso, .img, .mdf, or a CD .bin: any name, found by its contents). Needs the player sheets (000_049.PPV ...) and
+ * HOMEPALS.BIN / AWAYPALS.BIN. Returns { dir, game: '94' | '95', frame(n), jersey: { home, away } } or null.
+ */
 function loadPc(dir) {
-  const dirs = [dir, path.join(ROOT, 'pc94'), path.join(ROOT, 'pc95')].filter(Boolean);
-  for (const d of dirs) {
-    let names;
-    try { names = walk(d); } catch (e) { continue; }
-    const sheets = names.filter((f) => { const r = Pc.rangeOf ? Pc.rangeOf(path.basename(f)) : null; return r ? r.kind === 'players' : /^\d{3}_\d{3}\.ppv$/i.test(path.basename(f)); });
-    const home = names.find((f) => /^homepals\.bin$/i.test(path.basename(f)));
-    const away = names.find((f) => /^awaypals\.bin$/i.test(path.basename(f)));
-    if (!sheets.length || !home || !away) continue;
-    const jersey = { home: J.openFile(fs.readFileSync(home), 'home'), away: J.openFile(fs.readFileSync(away), 'away') };
+  const fromFiles = (where, files) => {
+    const sheets = files.filter((f) => { const r = Pc.rangeOf ? Pc.rangeOf(f.name) : null; return r ? r.kind === 'players' : /^\d{3}_\d{3}\.ppv$/i.test(f.name); });
+    const home = files.find((f) => /^homepals\.bin$/i.test(f.name));
+    const away = files.find((f) => /^awaypals\.bin$/i.test(f.name));
+    if (!sheets.length || !home || !away) return null;
+    const jersey = { home: J.openFile(home.read(), 'home'), away: J.openFile(away.read(), 'away') };
     const game = jersey.home.game;
-    const bank = Pc.buildSpriteBank(sheets.map((f) => ({ name: path.basename(f), data: fs.readFileSync(f) })), 'players', game === '94' ? 'nhl94pc' : 'nhl95pc');
+    const bank = Pc.buildSpriteBank(sheets.map((f) => ({ name: f.name, data: f.read() })), 'players', game === '94' ? 'nhl94pc' : 'nhl95pc');
     return {
-      dir: d, game, jersey,
+      dir: where, game, jersey,
       frame: (n) => {
         const f = bank.renderFrame(n);
         if (!f || !f.width) return null;
         return { n, w: f.width, h: f.height, x0: f.minX, y0: f.minY, px: Uint8Array.from(f.pixels) };
       }
     };
+  };
+  for (const d of [dir, path.join(ROOT, 'pc94'), path.join(ROOT, 'pc95')].filter(Boolean)) {
+    let names;
+    try { names = walk(d); } catch (e) { continue; }
+    const got = fromFiles(d, names.map((f) => ({ name: path.basename(f), read: () => fs.readFileSync(f) })));
+    if (got) return got;
+  }
+  const disc = findPcDisc();
+  if (disc) {
+    const got = fromFiles(path.relative(ROOT, disc.file), disc.iso.names().map((n) => ({ name: n.split('/').pop(), read: () => Buffer.from(disc.iso.read(n)) })));
+    if (got) return got;
+  }
+  return null;
+}
+
+/** An NHL 94 / 95 PC disc image in roms/ (the data track: .iso, .img, .mdf, or a CD .bin), by its contents. */
+function findPcDisc() {
+  const roms = path.join(ROOT, 'roms');
+  let names = [];
+  try { names = fs.readdirSync(roms); } catch (e) { return null; }
+  const iso9660 = require(path.join(ROOT, 'lib', 'iso9660'));
+  for (const name of names) {
+    if (!/\.(iso|img|mdf|bin)$/i.test(name)) continue;
+    const file = path.join(roms, name);
+    try { if (fs.statSync(file).size < 20 * 1024 * 1024) continue; } catch (e) { continue; }
+    let iso = null;
+    try { iso = iso9660.openFile(file); } catch (e) { iso = null; }
+    if (!iso) continue;
+    const list = iso.names().map((n) => n.split('/').pop().toUpperCase());
+    if (list.includes('HOMEPALS.BIN') && list.includes('000_049.PPV')) return { file, iso };
+    if (iso.close) iso.close();
   }
   return null;
 }

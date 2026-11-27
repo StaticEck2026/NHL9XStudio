@@ -57,7 +57,7 @@ function hints(px) {
 /** Load everything. Returns { frames: [...], sources }. */
 function loadAll(opts = {}) {
   const rom93 = S.load93(opts.rom93), rom94 = S.load94(opts.rom94), pc = S.loadPc(opts.pc);
-  if (!rom94 || !rom93 || !pc) throw new Error('needs the NHL 94 and NHLPA 93 ROMs (roms/) and the NHL 95 PC files (pc95/)');
+  if (!rom94 || !rom93 || !pc) throw new Error('needs the NHL 94 and NHLPA 93 Genesis ROMs and the NHL 95 PC CD image in roms/ (or the PC files in pc95/)');
   const frames = [];
   const fixedFor = (genPal) => {
     const pal = require('../../lib/pc-jersey').spritePalette(pc.jersey.home, 0, S.pcBase(), 'home');

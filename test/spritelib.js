@@ -1,5 +1,5 @@
 /** The skater sprite library (tools/sprites): pose maths always; with the ROMs in roms/ and the NHL 95 PC files in
- *  pc95/, the anatomy of every frame and the composer. */
+ *  the NHL 95 PC CD image (or pc95/), the anatomy of every frame and the composer. */
 const assert = require('assert');
 const fs = require('fs');
 const path = require('path');
@@ -24,9 +24,9 @@ assert.ok(R.depthOf('arm' + nearArm, kp) > R.depthOf('torso', kp) && R.depthOf('
 
 const root = path.join(__dirname, '..');
 let more = '';
-if (fs.existsSync(path.join(root, 'roms')) && fs.existsSync(path.join(root, 'pc95'))) {
+if (fs.existsSync(path.join(root, 'roms'))) {
   let loaded = null;
-  try { loaded = require('../tools/sprites/frames').loadAll({ pc: path.join(root, 'pc95') }); } catch (e) { loaded = null; }
+  try { loaded = require('../tools/sprites/frames').loadAll(); } catch (e) { loaded = null; }
   if (loaded) {
     const A = require('../tools/sprites/anatomy');
     const C = require('../tools/sprites/compose');
@@ -55,7 +55,7 @@ if (fs.existsSync(path.join(root, 'roms')) && fs.existsSync(path.join(root, 'pc9
     more = ', ' + skaters + ' skater frames: head ' + head + ', a hand ' + hand + ', a skate ' + skates;
 
     // The rig: layers rebuild every frame exactly; an untouched pose draws the frame unchanged; eight facings.
-    const { lib: rl } = require('../tools/sprites/rig-load').load({ pc: path.join(root, 'pc95') });
+    const { lib: rl } = require('../tools/sprites/rig-load').load();
     for (const f of rl.frames) {
       const flat = new Uint8Array(f.w * f.h).fill(f.empty);
       for (const L of R.orderedLayers(f)) for (let i = 0; i < L.w * L.h; i++) if (L.px[i] !== f.empty) {

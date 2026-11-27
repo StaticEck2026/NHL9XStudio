@@ -5,7 +5,8 @@
       "date": "2026-11-26",
       "changes": [
         "New Animator page (header button): pose a retail skater from NHLPA 93, NHL 94 Genesis or NHL 95 PC by dragging its skeleton joints, see all eight facings worked out from the one you pose, build a sequence and export it as a sprite sheet or data; every pixel is the game's own (limbs are swapped for the best-matching retail limbs, never redrawn)",
-        "The Animator reads the sprite library you build from your own ROMs and NHL 95 PC files (node tools/build-sprite-layers.js); the same tool writes every frame of each game year as a layered OpenRaster file (head, torso, arms, hands, legs, skates, stick and its shadow) for GIMP or Krita"
+        "The Animator reads the sprite library you build from your own ROMs and NHL 95 PC CD image (node tools/build-sprite-layers.js); the same tool writes every frame of each game year as a layered OpenRaster file (head, torso, arms, hands, legs, skates, stick and its shadow) for GIMP or Krita",
+        "NHL 95 PC also loads from a .mdf CD image in roms/ (such as archive.org's HOCKEYPC.mdf), not only .iso and .img; everything can sit in roms/ under any file name"
       ]
     },
     {

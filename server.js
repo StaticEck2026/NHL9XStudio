@@ -361,7 +361,7 @@ function findPcIso(kind) {
   const wantYear = kind === 'pc97' ? 97 : (kind === 'pc96' ? 96 : (kind === 'pc95' ? 95 : 0));
   if (!wantYear) return null;
   for (const name of names) {
-    if (!/\.(iso|img)$/i.test(name)) continue;
+    if (!/\.(iso|img|mdf)$/i.test(name)) continue;   // .mdf: a raw (2352-byte sector) image such as archive.org's HOCKEYPC.mdf
     const full = path.join(ROM_DIR, name);
     let iso = null;
     try { iso = iso9660.openFile(full); } catch (err) { iso = null; }
@@ -555,7 +555,7 @@ function gameStatus(game) {
       ? { images: game.images || [], sheet: game.sheet || null, banks: game.kind === 'sheet' ? sheetGameBanks(game.images || []) : game.banks }
       : null,
     snes: game.snes || null,
-    romHint: game.kind === 'pc95' ? 'pc95/ or roms/nhl95.iso' : (game.kind === 'pc94' ? 'pc94/' : (game.kind === 'pc96' ? 'pc96/ or roms/nhl96.iso' : (game.kind === 'pc97' ? 'pc97/ or roms/nhl97.iso' : (game.disc ? 'roms/' + game.disc.names[0] : (game.romNames.length ? 'roms/' + game.romNames[0] : null))))),
+    romHint: game.kind === 'pc95' ? 'pc95/ or the CD image in roms/ (.iso, .img, .mdf)' : (game.kind === 'pc94' ? 'pc94/' : (game.kind === 'pc96' ? 'pc96/ or roms/nhl96.iso' : (game.kind === 'pc97' ? 'pc97/ or roms/nhl97.iso' : (game.disc ? 'roms/' + game.disc.names[0] : (game.romNames.length ? 'roms/' + game.romNames[0] : null))))),
     pcAudio: pc && pc.audio ? pc.audio : (game.id === 'nhl94cd' && rom ? { songs: [], tim: [], pat: [], extra: [], dig: '', segaCdPcm: segaCdPcmFiles(game), rate: segaCdPcm.RATE, cdTracks: segaCdTrackList(), segaDisc: segaCdDiscInfo(), cdRate: segaCdda.RATE, segaSfx: (segaCdSfxMain(game) || { list: [] }).list } : undefined)
   };
 }

@@ -4,7 +4,7 @@
  * turn (its own step left out of the search and the turn model), recreated from its facings 0, 3 and 6, and each
  * recreated facing's skeleton compared with the real frame's. Baselines: the nearest other step's skeleton as it is,
  * and the source skeleton copied unchanged. Mean joint error in pixels.
- *   node tools/sprites/eval-directions.js [--pc pc95]
+ *   node tools/sprites/eval-directions.js [--pc folder]
  */
 'use strict';
 const path = require('path');
