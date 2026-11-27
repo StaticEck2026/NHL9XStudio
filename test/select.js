@@ -66,7 +66,7 @@ const RULES = [
   // Genesis -> PC colour upgrade, and the skater sprite library built on it.
   { re: /^tools\/(build-pc-upgrade\.js|build-pc-gifs\.js|pcupgrade\/)/, tests: ['pcupgrade', 'spritelib'], why: 'Genesis to PC colour upgrade' },
   { re: /^tools\/(build-sprite-library\.js|build-sprite-layers\.js|sprites\/)/, tests: ['spritelib'], why: 'sprite library' },
-  { re: /^lib\/sprite-rig\.js$/, tests: ['spritelib', 'browser:load-errors'], why: 'sprite rig (Animator)' },
+  { re: /^lib\/(sprite-rig|pixel-art)\.js$/, tests: ['spritelib', 'browser:load-errors'], why: 'sprite rig (Animator)' },
   { re: /^public\/animator\.(html|js|css)$/, tests: ['browser:load-errors'], why: 'Animator page' },
   // Everything else in sound: all sound suites, the core checks (they read the audio catalogue) and the sound pages.
   { re: /^(lib\/audio\/|data\/audio\/|tools\/(build|extract|render|run|scan|vendor)-)/, tests: ['core', ...SOUND, ...SOUND_BROWSER.map((b) => 'browser:' + b)], why: 'sound code / data' },

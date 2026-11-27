@@ -47,7 +47,7 @@ node server.js</pre>
         <button type="button" id="reset">Reset pose</button>
       </div>
       <canvas id="stage" width="576" height="480" aria-label="The pose; drag the joints"></canvas>
-      <p class="hint">Drag a hand, elbow, skate, knee or the stick's ends: the limb is swapped for the retail limb of this facing that best matches. Drag a shoulder, hip or the head to move that part.</p>
+      <p class="hint">Drag any joint and the body follows. A hand or skate reaches there, bending the elbow or knee. A shoulder leans the upper body, a hip crouches over planted skates, the head turns on the neck. The stick stays in the hands: drag its blade to swing it about the top hand, drag a hand to carry or lever it.</p>
       <div id="swaps" class="swaps" aria-live="polite"></div>
     </section>
 
@@ -78,6 +78,7 @@ node server.js</pre>
     </section>
   </main>
 
+  <script src="lib/pixel-art.js"></script>
   <script src="lib/sprite-rig.js"></script>
   <script src="animator.js"></script>
 </body>

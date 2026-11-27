@@ -88,7 +88,8 @@
     }
   }
   function drawLayersPanel() {
-    $('layers').innerHTML = S.cel.layers.slice().reverse().map((L) => '<li><label><input type="checkbox" data-part="' + L.part + '"' + (S.hidden.has(L.part) ? '' : ' checked') + '> ' + (LABEL[L.part] || L.part) +
+    const BONE = { upper: L0 => (L0.part.startsWith('leg') ? 'thigh' : 'upper arm'), lower: L0 => (L0.part.startsWith('leg') ? 'shin' : 'forearm') };
+    $('layers').innerHTML = S.cel.layers.slice().reverse().map((L) => '<li><label><input type="checkbox" data-part="' + L.part + '"' + (S.hidden.has(L.part) ? '' : ' checked') + '> ' + (LABEL[L.part] || L.part) + (BONE[L.bone] ? ' · ' + BONE[L.bone](L) : '') +
       '</label><span class="src">' + (L.from || '') + '</span></li>').join('');
   }
   function drawFacings() {
@@ -105,9 +106,10 @@
     });
     $('facings-note').textContent = 'Turn learned from ' + S.dirs.set.split('|').slice(1).join(' step ') + ' and its neighbours.';
   }
+  const NAME = { arm0: 'arm A', arm1: 'arm B', legs: 'legs', stick: 'stick blade' };
   function showSwaps() {
     const sw = Object.entries(S.cel.swaps || {});
-    $('swaps').textContent = sw.length ? 'Swapped: ' + sw.map(([limb, h]) => limb + ' ← ' + h.id + ' ' + h.limb).join(', ') : '';
+    $('swaps').textContent = sw.length ? 'Drawn from: ' + sw.map(([limb, h]) => (NAME[limb] || limb) + ' ← ' + h.id + (h.turn && h.turn.some(Boolean) ? ' turned ' + h.turn.map((a) => a + '°').join('/') : '')).join(', ') : '';
   }
 
   // ---- state -----------------------------------------------------------------------------------------------
@@ -162,18 +164,18 @@
     let best = null, bd = 2.2;
     for (const j of DRAG) { const p = S.cur.kp[j]; if (!p) continue; const d = Math.hypot(p[0] - x, p[1] - y); if (d < bd) { bd = d; best = j; } }
     if (!best) return;
-    S.drag = best; $('stage').setPointerCapture(ev.pointerId); drawStage();
+    // What the body is made of at the start of the drag: bone lengths, reach, how the stick is held.
+    S.drag = best; S.rig = R.rigOf(S.lib, S.cur.kp, S.year, S.cur.grip);
+    S.cur.grip = S.rig.grip;
+    $('stage').setPointerCapture(ev.pointerId); drawStage();
   });
   let raf = 0;
   $('stage').addEventListener('pointermove', (ev) => {
     if (!S.drag) return;
-    const [x, y] = toGame(ev), j = S.drag, kp = S.cur.kp, old = kp[j];
-    const d = [x - old[0], y - old[1]];
-    kp[j] = [x, y];
-    // Moving a root moves what hangs from it with it; moving the head moves the neck too.
-    const carry = { shoulder0: ['elbow0', 'hand0'], shoulder1: ['elbow1', 'hand1'], hip0: ['knee0', 'skate0'], hip1: ['knee1', 'skate1'], stickButt: ['stickBlade'], head: ['neck'] }[j] || [];
-    for (const c of carry) if (kp[c]) kp[c] = [kp[c][0] + d[0], kp[c][1] + d[1]];
-    if (j === 'hip0' || j === 'hip1') { const h = [kp.hip0, kp.hip1].filter(Boolean); kp.hipMid = [h.reduce((a, p) => a + p[0], 0) / h.length, h.reduce((a, p) => a + p[1], 0) / h.length]; }
+    const [x, y] = toGame(ev);
+    // The joint goes where it is put and the body follows (lib/sprite-rig.js drag): arms and legs bend at their
+    // own lengths, the hips crouch over planted skates, the shoulders lean the upper body, the stick stays in the hands.
+    S.cur.kp = R.drag(S.cur.kp, S.drag, [x, y], S.rig);
     S.cur.label = S.cur.label.replace(/ \(edited\)$/, '') + ' (edited)';
     cancelAnimationFrame(raf); raf = requestAnimationFrame(() => refresh(false));
   });

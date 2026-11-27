@@ -1,6 +1,15 @@
 {
   "releases": [
     {
+      "version": "1.60.0",
+      "date": "2026-11-27",
+      "changes": [
+        "Animator: dragging a joint now moves the body with it. A hand or skate reaches there and the elbow or knee bends; a shoulder leans the upper body, a hip crouches over planted skates, the head turns on the neck",
+        "Animator: the stick behaves like a hockey stick. It stays in both hands at its own length, swings about the top hand when you drag the blade, stays planted on the ice when you move the hands, and levers or slides through the bottom hand",
+        "Animator: poses look hand-drawn in each game's style. Limbs are the closest retail limbs, turned the last few degrees with a pixel-art rotation that keeps the outlines; moved sticks are drawn as the game draws them (a clean shaft in the stick colour with a retail blade); the chest is filled in where an arm moves off it, and no new colours are added"
+      ]
+    },
+    {
       "version": "1.59.0",
       "date": "2026-11-26",
       "changes": [

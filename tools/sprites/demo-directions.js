@@ -30,7 +30,7 @@ for (const [id, label] of [['94g:12', 'NHL 94 SKATING (HIDDEN)'], ['93g:186', 'N
 }
 const cv = new Canvas(8 * CW * SC + 40, rows.length * (CH * SC + 34) + 60, [244, 246, 248]);
 cv.text(14, 12, 'EIGHT FACINGS FROM ONE', INK, 2);
-cv.text(14, 34, 'EACH FACING IS A RETAIL FRAME OF THAT FACING WITH LIMBS SWAPPED FOR RETAIL LIMBS OF THAT FACING, POSED BY THE LEARNED TURN. NO PIXEL REDRAWN.', DIM, 1);
+cv.text(14, 34, 'EACH FACING IS A RETAIL FRAME OF THAT FACING, ITS LIMBS RETAIL LIMBS OF THAT FACING TURNED ONTO THE LEARNED POSE; MOVED STICKS DRAWN AS THE GAME DRAWS THEM.', DIM, 1);
 rows.forEach((r, ri) => {
   const y = 56 + ri * (CH * SC + 34);
   cv.text(14, y, r.label + (r.note ? '   (' + r.note.toUpperCase() + ')' : ''), r.real ? DIM : INK, 1);

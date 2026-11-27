@@ -82,7 +82,7 @@ lib.nearest({ keypoints: { head: [8, -24], hand0: [16, -18], /* ... */ } }, { fa
 `tools/sprites/compose.js` assembles frames from parts:
 
 - Each layer names a frame and the parts it contributes. It's placed by an anchor: one of its joints moved onto a point, or onto another frame's joint. Layers can be mirrored like the hardware flip.
-- Pixels are copied, never redrawn, scaled or rotated.
+- Pixels are copied, never redrawn, scaled or rotated (the rig below turns limbs; the composer only places them).
 - Output in **native** colours (the Genesis palette lines, when all parts come from Genesis frames) or **PC zones**, which mixes Genesis and PC parts and colours each player with any PC jersey.
 
 The demo makes two frames that exist in no game:
@@ -123,14 +123,44 @@ A hidden "skeleton" layer sits on top. Of each pair of limbs, the one hanging fr
 
 ## The rig and eight facings from one
 
-`lib/sprite-rig.js` runs the same way in Node and in the browser. It does three things, and never redraws a pixel:
+`lib/sprite-rig.js` runs the same way in Node and in the browser, with `lib/pixel-art.js` for the pixel work. It moves a skeleton the way a body moves, then draws the pose from the game's own art.
 
-- **Draws a pose.** It starts from a base frame. Each limb whose joints you moved is swapped for the closest retail limb of that game and facing, hung from its shoulder, hip or the hand holding the stick. A part whose root joint moved goes with it.
+![The rig's drags on retail frames](demo-rig.png)
+
+- **Moves joints as a body** (`drag`). Bone lengths, reach and grip are measured from the pose when a drag starts:
+
+  | Drag | What follows |
+  |---|---|
+  | hand, skate | reaches there by two-bone IK at the arm's or leg's own lengths; the elbow or knee bends on its side |
+  | elbow, knee | changes the bend; a hand on the stick and a skate on the ice stay put |
+  | shoulder | leans the upper body about the hips, up to about 35°; head, arms and a held stick go with it |
+  | hip | moves the body; the skates stay planted and the knees bend, as far as the legs reach |
+  | head | turns on the neck, up to about 35° from where it started |
+  | stick blade | swings the stick about the top hand, at a length the game's own sticks have (foreshortened sticks included) |
+  | top hand, stick butt | carries the butt; a blade on the ice stays planted and the shaft slides through the hands |
+  | bottom hand | levers the stick about the top hand, sliding along the shaft; hands together at the butt carry it between them |
+
+  The bottom hand follows the shaft after every move, sliding to a grip it can reach. The hands keep their roles from one drag to the next.
+- **Draws a pose** (`render`). It starts from a base frame:
+  - **Torso and head:** the torso leans about the hips and the head turns on the neck, by RotSprite (below).
+  - **Arms:** each moved arm is the retail arm (this game and facing; the base's own first) whose shape best fits once turned. It hangs from the shoulder and is turned bone by bone onto the elbow and hand. A small turn of the right drawing beats a big turn of a near one.
+  - **Gloves and skates** are set at the end of the limb unturned: a three-pixel glove turned breaks up.
+  - **Legs:** the games often draw both legs as one shape, so the lower body is taken whole from the retail frame whose stance fits. It's set down on the pose's skates. The torso may come down over the top of the legs, the way the games' artists crouch a player a pixel or two, but never leaves a gap above them.
+  - **The stick** is drawn the way the game draws one wherever it moved:
+    - the shaft is a clean pixel line in the game's own stick colour;
+    - the blade is copied from the retail stick nearest in angle (same facing first, and mirrored as the hardware flip would), turned the last few degrees;
+    - its shadow is dithered on the ice below it.
+  - **Clean-up:** where an arm moves off the chest, the chest is filled in from the torso's own pixels. Lone specks and pinholes the re-assembly leaves are cleaned, only where something moved.
+- **Pixel work** (`lib/pixel-art.js`):
+  - **RotSprite:** Scale2x three times, rotate at 8x, read back at 1x. It keeps the artist's outlines and shading through a turn, where plain rotation leaves broken, doubled edges.
+  - **Clean lines:** a line steps in a repeating pattern (1:0, 5:1, 4:1, 3:1, 2:1, 3:2, 1:1), as a pixel artist draws one.
+  - **No new colours:** every pixel written is a value the game already uses. `test/spritelib.js` checks this, along with the drag rules and that a moved stick is drawn in one piece.
 - **Works out all eight facings from one.** The games draw 151 animation steps in all eight facings, which is how a pose changes as the player turns. From them it learns, for every pair of facings and every joint, how the joint moves. The pose for each other facing averages that learned turn with the closest three steps' poses in that facing. Each facing is then drawn on the closest step's frame of that facing, with limbs swapped to fit.
   - **Accuracy**, recreating facings of steps it never saw (`tools/sprites/eval-directions.js`): joints land 6.4 pixels from the real frames' on average. The closest step's pose alone lands 6.9 pixels away, and copying the source pose 8.9.
   - **What the error means:** the games' facings are not exact rotations of one pose (each was drawn separately), so expect a few pixels of difference.
   - **Your facing is kept:** the facing you posed is your pose itself.
-  - **Sticks:** a stick-less pose (a fight) stays stick-less.
+  - **Sticks:** each facing's stick is put back in the hands: the butt at the top hand and the shaft through the bottom hand, held as that facing's frame holds it. A stick-less pose (a fight) stays stick-less.
+  - **Reach:** predicted hands are kept within the arms' reach.
   - **Props:** animations with a prop, the Stanley Cup, are never used.
 
 ![Eight facings from one](demo-directions.png)
@@ -140,11 +170,11 @@ A hidden "skeleton" layer sits on top. Of each pair of limbs, the one hanging fr
 `public/animator.html` is a Studio page (header button **Animator**, under `node server.js`). It reads `library/bundle-<year>.json` from your own build:
 
 1. Pick the year and a frame.
-2. Drag the joints. Hands, elbows, skates, knees and the stick's ends swap in the best-matching retail limb; shoulders, hips and the head move their part. On release, the skeleton snaps to where the swapped limb's joints really are.
+2. Drag the joints and the body follows, as in the table above. On release, the skeleton snaps to where the drawn limbs put the joints. Under the stage, **Drawn from** lists the retail frames each arm, the legs and the blade came from, and how far each was turned.
 3. Hide layers to see behind them.
 4. Click any of the eight facings to keep editing in that facing.
 5. Add poses to a sequence with a hold in vblanks, and play it in any facing.
-6. Export the sequence as an 8-row sprite sheet (PNG), or as JSON: each facing's pixels in the game's own indices, its base frame, the limbs swapped in, and its skeleton.
+6. Export the sequence as an 8-row sprite sheet (PNG), or as JSON: each facing's pixels in the game's own indices, its base frame, the retail limbs it was drawn from, and its skeleton.
 
 A frame the game draws in one facing only (NHLPA '93's fight) is given a facing with **As facing**.
 
@@ -155,6 +185,7 @@ node tools/build-sprite-library.js        # frames, parts, skeletons, overviews 
 node tools/build-sprite-layers.js         # layered .ora per year, and the Animator's bundles (about 10 s)
 node tools/sprites/demo.js                # demo-retrieval.png, demo-compose.png
 node tools/sprites/demo-directions.js     # demo-directions.png
+node tools/sprites/demo-rig.js            # demo-rig.png: each drag on retail frames (after build-sprite-layers.js)
 node tools/sprites/eval-directions.js     # the eight-facing accuracy check
 ```
 
