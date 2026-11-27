@@ -5,7 +5,7 @@
 > [!WARNING]
 > **This software is unfinished and unstable.** It is being rapidly developed and is not mature yet, so expect bugs, missing features and breaking changes.
 
-Browse sprite frames and the animations that play them for NHL 92, NHLPA 93, NHL 94, NHL 95, and NHL 96 on the Genesis, NHLPA 93 and NHL 94 on the SNES, and NHL 94, NHL 95, and NHL 96 on PC. Product requirements: [`docs/DESIGN.md`](docs/DESIGN.md). Implementation notes: [`docs/IMPLEMENTATION.md`](docs/IMPLEMENTATION.md). Genesis `.map.jim` editor: [`docs/nhl9x-studio-requirements.md`](docs/nhl9x-studio-requirements.md). Agent handoff: [`docs/AGENT-HANDOFF.md`](docs/AGENT-HANDOFF.md). Sound sequencer editors (all five sound games): [`docs/SEQUENCER-EDITOR.md`](docs/SEQUENCER-EDITOR.md). **Syncing with disasm / EA-NHL-Tools:** [`docs/sync.md`](docs/sync.md).
+Browse sprite frames and the animations that play them for NHL 92, NHLPA 93, NHL 94, NHL 95, and NHL 96 on the Genesis, NHLPA 93 and NHL 94 on the SNES, and NHL 94, NHL 95, and NHL 96 on PC. Product requirements: [`docs/DESIGN.md`](docs/DESIGN.md). Implementation notes: [`docs/IMPLEMENTATION.md`](docs/IMPLEMENTATION.md). Genesis `.map.jim` editor: [`docs/nhl9x-studio-requirements.md`](docs/nhl9x-studio-requirements.md). Agent handoff: [`docs/AGENT-HANDOFF.md`](docs/AGENT-HANDOFF.md). Sound sequencer editors (all five sound games): [`docs/SEQUENCER-EDITOR.md`](docs/SEQUENCER-EDITOR.md). **Syncing with disasm / EA-NHL-Tools:** [`docs/sync.md`](docs/sync.md). NHL 92 HD sprites (PixelLab, skeleton-posed): [`docs/HD-SPRITES.md`](docs/HD-SPRITES.md).
 
 ## 🎮 Live Demo
 

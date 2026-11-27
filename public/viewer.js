@@ -94,6 +94,8 @@ const state = {
   spin: false,
   spinMs: 700,
   minGap: true,
+  hd: readHdPref(),
+  rig: false,
   transparentOverride: null,
   sort: 'group',
   game: 'nhl92',
@@ -115,6 +117,8 @@ const state = {
 
 const banks = new Map();
 const looseMaps = new Map();
+let hdData = null; // PixelLab 2x NHL 92 frames (lib/hd-sprites.js), loaded when HD is first switched on
+let hdLoading = null;
 const paletteFiles = new Map();
 let ensuringOpposite = false;
 const bitmaps = new Map();
@@ -486,12 +490,12 @@ function bitmapFor(frame, colors) {
   const override = state.mode === 'image' ? state.transparentOverride : null;
   const key = pending
     ? ''
-    : state.game + ':' + spriteBank() + ':' + frame.frame + ':' + (own ? 'own' : (named || 'embedded')) + ':' + (override == null ? 'd' : override ? 't' : 'o');
+    : state.game + ':' + spriteBank() + ':' + frame.frame + ':' + (own ? 'own' : (named || 'embedded')) + ':' + (override == null ? 'd' : override ? 't' : 'o') + (frame.hd ? ':hd' : '');
   let canvas = key && bitmaps.get(key);
   if (!canvas) {
     canvas = document.createElement('canvas');
-    canvas.width = Math.max(1, frame.width);
-    canvas.height = Math.max(1, frame.height);
+    canvas.width = Math.max(1, frame.bitmapWidth || frame.width);
+    canvas.height = Math.max(1, frame.bitmapHeight || frame.height);
     const ctx = canvas.getContext('2d');
     const image = ctx.createImageData(canvas.width, canvas.height);
     const data = image.data;
@@ -572,7 +576,7 @@ function exportTransparent(frame, palette) {
 function indexedPng(frame, colors) {
   if (typeof NhlIndexedImage === 'undefined' || !NhlIndexedImage.encodePng8) throw new Error('indexed PNG encoder missing');
   const palette = exportPalette(frame, colors);
-  return NhlIndexedImage.encodePng8(frame.width, frame.height, frame.pixels, palette, {
+  return NhlIndexedImage.encodePng8(frame.bitmapWidth || frame.width, frame.bitmapHeight || frame.height, frame.pixels, palette, {
     transparent: exportTransparent(frame, palette)
   });
 }
@@ -615,7 +619,59 @@ function renderedFrame(frameNumber) {
   const anim = currentAnim();
   if (!anim || frameNumber < 1 || frameNumber > anim.numFrames) return null;
   if (anim.renderFrame) return anim.renderFrame(frameNumber);
-  return Nhl92Anim.renderFrame(anim, frameNumber);
+  const frame = Nhl92Anim.renderFrame(anim, frameNumber);
+  const hd = hdActive() && hdData.frames.get(frameNumber);
+  return hd ? NhlHdSprites.hdFrame(frame, hd, hdData.scale) : frame;
+}
+
+function readHdPref() {
+  try { return localStorage.getItem('nhl9x-hd') === '1'; } catch (e) { return false; }
+}
+
+/** HD applies to the NHL 92 player sheet only: the PixelLab frames are redrawn from Sprites.anim. */
+function hdAvailable() {
+  return state.game === 'nhl92' && state.mode !== 'image' && state.mode !== 'audio' && spriteBank() === 'Sprites.anim' && !soundPanel();
+}
+
+function hdActive() {
+  return state.hd && Boolean(hdData) && hdAvailable();
+}
+
+function loadHd() {
+  if (hdData || hdLoading) return hdLoading;
+  hdLoading = fetch(resolveUrl('/data/hd/nhl92-sprites-hd.json'))
+    .then((res) => { if (!res.ok) throw new Error('HTTP ' + res.status); return res.json(); })
+    .then((json) => NhlHdSprites.load(json))
+    .then((data) => { hdData = data; hdRefresh(); return data; })
+    .catch((err) => { hdLoading = null; state.hd = false; renderTransport(); alert('HD sprites failed to load: ' + err.message); });
+  return hdLoading;
+}
+
+function hdRefresh() {
+  bitmaps.clear();
+  fitCache.clear();
+  renderFilmstrip();
+  renderMeta();
+  renderTransport();
+  paintStage();
+}
+
+function strokeRig(ctx, frame, dx, dy, scale) {
+  const bones = NhlHdSprites.bones(hdData, frame.frame);
+  if (!bones.length) return;
+  const ox = dx - frame.minX * scale;
+  const oy = dy - frame.minY * scale;
+  ctx.save();
+  ctx.lineWidth = 2;
+  ctx.lineCap = 'round';
+  ctx.strokeStyle = 'rgba(57, 255, 136, 0.85)';
+  ctx.beginPath();
+  for (const [x0, y0, x1, y1] of bones) {
+    ctx.moveTo(ox + x0 * scale, oy + y0 * scale);
+    ctx.lineTo(ox + x1 * scale, oy + y1 * scale);
+  }
+  ctx.stroke();
+  ctx.restore();
 }
 
 function paintInto(ctx, cssW, cssH, frame, colors, scaleCap, opts) {
@@ -639,9 +695,10 @@ function paintInto(ctx, cssW, cssH, frame, colors, scaleCap, opts) {
   const originY = (cssH - padBottom) / 2 + (pan ? pan.y : 0);
   const dx = originX - place.ax * scale;
   const dy = originY - place.ay * scale;
-  ctx.imageSmoothingEnabled = scale < 1.25;
+  ctx.imageSmoothingEnabled = scale / (frame.hd || 1) < 1.25;
   ctx.drawImage(bmp, dx, dy, frame.width * scale, frame.height * scale);
   strokeCanvas(ctx, dx, dy, box.width * scale, box.height * scale);
+  if (mark && frame.hd && state.rig && hdData) strokeRig(ctx, frame, dx, dy, scale);
   if (mark) {
     const originPxX = -(frame.minX || 0);
     const originPxY = -(frame.minY || 0);
@@ -763,7 +820,7 @@ function viewScale(cssW, cssH, padBottom, scaleCap) {
   const fitKey = [
     state.mode,
     state.mode === 'frame' ? state.bank + ':' + state.frame : state.mode === 'spa' ? state.spa : state.mode === 'image' ? state.image : state.spf,
-    state.pin, cssW, cssH, padBottom, scaleCap
+    state.pin, cssW, cssH, padBottom, scaleCap, hdActive() ? 'hd' : ''
   ].join(':');
   if (fitCache.has(fitKey)) return fitCache.get(fitKey);
   const frames = [];
@@ -1823,6 +1880,11 @@ function renderTransport() {
   el('play').textContent = state.playing ? 'Pause' : 'Play';
   el('loop').checked = state.loop;
   el('min-gap').checked = state.minGap;
+  el('hd').checked = state.hd;
+  el('rig').checked = state.rig;
+  el('hd-field').classList.toggle('is-hidden', !hdAvailable());
+  el('rig-field').classList.toggle('is-hidden', !hdAvailable() || !state.hd);
+  if (state.hd && !hdData && hdAvailable()) loadHd();
   const transparent = el('transparent');
   const showTransparent = state.mode === 'image';
   el('transparent-field').classList.toggle('is-hidden', !showTransparent);
@@ -2105,6 +2167,16 @@ function wire() {
     state.minGap = el('min-gap').checked;
     state.holdKey = '';
     state.acc = 0;
+  });
+  el('hd').addEventListener('change', () => {
+    state.hd = el('hd').checked;
+    try { localStorage.setItem('nhl9x-hd', state.hd ? '1' : '0'); } catch (e) { /* private window */ }
+    if (state.hd && !hdData) loadHd();
+    else hdRefresh();
+  });
+  el('rig').addEventListener('change', () => {
+    state.rig = el('rig').checked;
+    paintStage();
   });
   el('export-frame').addEventListener('click', () => { try { exportFrame(); } catch (e) { alert('Export failed: ' + e.message); } });
   if (el('edit-image')) {

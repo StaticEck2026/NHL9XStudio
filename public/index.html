@@ -116,6 +116,8 @@
           </select>
         </label>
         <label class="check" title="Matches updateanim: the expiring vblank still shows this picture, and a new picture cannot appear until 4 vblanks after the last change."><input id="min-gap" type="checkbox" checked> Game timing</label>
+        <label class="check" id="hd-field" title="Show the detailed 2x player and goalie frames redrawn with PixelLab: a base drawing per facing, posed by a skeleton rig read from each original frame, so they follow the game's own animations. Colors stay the game's palette indices, so team jerseys still apply. NHL 92 player sheet only."><input id="hd" type="checkbox"> HD sprites</label>
+        <label class="check" id="rig-field" title="Draw the skeleton rig PixelLab read from the original frame and used to pose the HD frame."><input id="rig" type="checkbox"> Rig</label>
         <label class="check" id="transparent-field" title="Screens start solid: pal 1+ color 0 is often the same ice as the VDP backdrop. Check this to punch those VDP holes (the studio stage shows through). Sprites still skip color 0 on export."><input id="transparent" type="checkbox"> Transparency</label>
         <button type="button" id="edit-image" title="Open this picture in the Image Editor">Edit image</button>
         <button type="button" id="export-frame" title="Save the shown frame as an 8-bit PNG at 1:1 size. The selected palette is stored in the file (PLTE). Sprites skip color 0. Pictures follow the Transparency checkbox.">Export frame (PNG)</button>
@@ -174,6 +176,7 @@
   <script src="lib/open-asset.js"></script>
   <script src="lib/parse-frames.js"></script>
   <script src="lib/anim.js"></script>
+  <script src="lib/hd-sprites.js"></script>
   <script src="lib/playback.js"></script>
   <script src="lib/sheet.js"></script>
   <script src="lib/labels.js"></script>

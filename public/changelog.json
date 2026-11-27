@@ -1,6 +1,14 @@
 {
   "releases": [
     {
+      "version": "1.59.0",
+      "date": "2026-11-27",
+      "changes": [
+        "NHL 92: HD sprites shows the skaters and goalies redrawn at twice the detail with PixelLab, posed from each original frame by a skeleton rig so every animation keeps the game's own motion",
+        "HD frames keep the game's palette, so team jerseys still recolor them, and Rig draws the skeleton each frame was posed with"
+      ]
+    },
+    {
       "version": "1.58.1",
       "date": "2026-11-25",
       "changes": [
