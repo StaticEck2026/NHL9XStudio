@@ -1,6 +1,6 @@
 # HD sprites (PixelLab)
 
-**HD sprites** on the transport bar swaps the NHL 92 player sheet (`Sprites.anim`) for frames redrawn at twice the resolution with [PixelLab](https://www.pixellab.ai). It covers the skaters (frames 1–377) and the goalies (400–511). The arrows, star, puck, nets, logos and goal light stay as they are. **Rig** draws the skeleton each HD frame was posed with.
+**HD sprites** on the transport bar swaps the NHL 92 player sheet (`Sprites.anim`) for frames redrawn at twice the resolution with [PixelLab](https://www.pixellab.ai). It covers the skaters (frames 1–377) and the goalies (400–511). The arrows, star, puck, nets, logos and goal light stay as they are. **Rig** draws the skeleton each HD frame was posed with (nothing on a frame redrawn from itself, see below). The frame details list the HD size and how the frame was made.
 
 The HD frames are meant to be the same sprites with more detail, not new art:
 
@@ -23,6 +23,8 @@ The SPA facing is the direction of travel, but in checks, falls, shots and backw
 
 The Stanley Cup frames (217–224) and the dropped gloves (353) are props rather than body poses, and each is a single still. They are redrawn at 2x by `/resize` from the frame itself, with the frame's own colors as the forced palette.
 
+**Fidelity floor.** Every rig-posed frame is scored against its original (`tools/pixellab/score.js`): the HD frame is reduced to game pixels, then compared on silhouette overlap (intersection over union) and on how often the colors agree. A frame under 0.55 overlap or 0.27 color agreement is redrawn by `/resize` from the original frame instead. These are mostly bodies lying flat on the ice, goalie stacks and saves, and checks where the rig read the stick the wrong way, which a 2D rig cannot sort out. On a resize frame the original's ice spray wins, and nothing is drawn more than 2 HD pixels outside the original body, since `/resize` tends to add a drop shadow. Of the 489 HD frames, 363 are posed by the rig and 126 are redrawn from the frame (the 9 props and 117 below the floor). The floor is set for faithfulness: about half the frames just under it looked fine, but the other half had the stick or body wrong. Each frame's `method` in the JSON says which.
+
 ## Rebuilding
 
 ```
@@ -34,12 +36,12 @@ node tools/pixellab/preview.js out.png skater:4                    # original ov
 
 Set `PIXELLAB_API_TOKEN`, or run where a proxy adds the token for `api.pixellab.ai`. Every response is cached in `.pixellab-cache/` (ignored by git), keyed by the request, so a rerun only pays for requests it has not made before. A `--only` run merges into the existing JSON.
 
-A full build cost about 270 PixelLab generations: about 40 for the bases, 16 for the rigs, about 200 to place the rigs and animate, and 9 for the props.
+A full build costs about 380 PixelLab generations: 40 for the bases, 16 for the rigs, about 200 to place the rigs and animate, and 126 for the frames redrawn by `/resize`.
 
 ## File format
 
 `data/hd/nhl92-sprites-hd.json`, read by `lib/hd-sprites.js`:
 
-- `frames[n]`: `x`, `y` (top-left in 2x pixels from the frame's 0,0), `w`, `h`, and `data` (palette indices, 0 transparent, zlib then base64).
+- `frames[n]`: `x`, `y` (top-left in 2x pixels from the frame's 0,0), `w`, `h`, `method` (`rig` or `resize`), and `data` (palette indices, 0 transparent, zlib then base64).
 - `skeletons[n]`: the pose read from original frame `n`: `character`, `body` (the facing of the base it was posed from), and `keypoints` (`label`, `x`, `y` in 2x pixels from 0,0, `z`).
 - `rigs["skater:4"]`: the joints and their parents for that character and facing.

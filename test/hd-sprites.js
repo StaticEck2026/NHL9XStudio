@@ -33,9 +33,10 @@ const Hd = require('../lib/hd-sprites.js');
   let posed = 0;
   for (const [n, s] of Object.entries(data.skeletons)) {
     assert.ok(data.rigs[s.character + ':' + s.body], 'rig for frame ' + n);
+    if (data.frames.get(Number(n)).method !== 'rig') continue;
     assert.ok(Hd.bones(data, Number(n)).length >= 10, 'frame ' + n + ' skeleton has bones');
     posed++;
   }
-  assert.ok(posed >= 470, 'posed frames: ' + posed);
+  assert.ok(posed >= 340, 'posed frames: ' + posed);
   console.log('hd-sprites ok (' + data.frames.size + ' frames, ' + posed + ' posed by rig)');
 })().catch((err) => { console.error(err); process.exitCode = 1; });

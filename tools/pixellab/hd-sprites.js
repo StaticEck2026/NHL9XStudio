@@ -31,6 +31,7 @@ const zlib = require('zlib');
 const { PixelLab, b64png } = require('./client.js');
 const png = require('./png.js');
 const sp = require('./sprites.js');
+const { score } = require('./score.js');
 
 const ROOT = path.join(__dirname, '..', '..');
 const OUT_DIR = path.join(ROOT, 'data', 'hd');
@@ -47,6 +48,12 @@ const SKIN = new Set([38, 39]);
 // overhead, gloves and sticks on the ice): one still each, so they are
 // redrawn at 2x by /resize from the frame itself instead of a rig.
 const RESIZE_FRAMES = [217, 218, 219, 220, 221, 222, 223, 224, 353];
+// A rig-posed frame whose silhouette overlaps the original's less than this
+// (or whose colours mostly disagree) went wrong, usually a body lying flat
+// on the ice or a goalie stack the rig cannot read: it is redrawn by /resize
+// from the original frame instead.
+const MIN_IOU = 0.55;
+const MIN_COLOR = 0.27;
 
 const CHARACTERS = {
   skater: {
@@ -131,6 +138,29 @@ function despeckle(img) {
       }
       if (n < 2) out[y * W + x] = 0;
     }
+  }
+  return { width: W, height: H, indices: out };
+}
+
+/**
+ * For a frame redrawn from itself: the original's ice spray wins where it is,
+ * and nothing is drawn more than 2 HD pixels outside the original body
+ * (/resize likes to add a drop shadow the game does not have).
+ */
+function clipToBody(img, hint) {
+  const { width: W, height: H } = img;
+  const out = Uint8Array.from(img.indices);
+  const body = (i) => hint.indices[i] && !SPRAY.has(hint.indices[i]);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const i = y * W + x;
+    if (!out[i]) continue;
+    if (SPRAY.has(hint.indices[i])) { out[i] = 0; continue; }
+    let near = false;
+    for (let dy = -2; dy <= 2 && !near; dy++) for (let dx = -2; dx <= 2 && !near; dx++) {
+      const xx = x + dx, yy = y + dy;
+      if (xx >= 0 && yy >= 0 && xx < W && yy < H && body(yy * W + xx)) near = true;
+    }
+    if (!near) out[i] = 0;
   }
   return { width: W, height: H, indices: out };
 }
@@ -282,34 +312,50 @@ async function main() {
     });
   });
 
-  // Props: redrawn at 2x straight from the frame.
-  if (!only) {
-    await pool(RESIZE_FRAMES, 4, async (n) => {
+  // Score the rig-posed frames; the ones that went wrong are redrawn from the frame itself.
+  const method = {};
+  for (const n of Object.keys(hd)) method[n] = 'rig';
+  const fallback = [];
+  for (const [n, c] of Object.entries(hd)) {
+    const sc = score(sheet, Number(n), { x: c.x, y: c.y, w: c.w, h: c.h, pixels: c.data });
+    if (sc.iou < MIN_IOU || sc.color < MIN_COLOR) fallback.push(Number(n));
+  }
+  if (fallback.length) console.error(`${fallback.length} rig frames below the fidelity floor, redrawn from the frame: ${fallback.join(' ')}`);
+
+  // Props, and the fallbacks: redrawn at 2x straight from the frame.
+  {
+    const redraw = [...(only ? [] : RESIZE_FRAMES), ...fallback];
+    await pool(redraw, 4, async (n) => {
       const f = sheet.frame(n);
-      const box = sp.unionBox([sp.bounds(f)], 2);
+      // /resize takes at most 200 pixels a side: no margin for the 100-wide gloves frame.
+      const box = sp.unionBox([sp.bounds(f)], f.width + 4 > 100 ? 0 : 2);
       const one = sp.indicesOnCanvas(f, box, 1);
       const two = sp.indicesOnCanvas(f, box, 2);
       const used = usedIndices([one]);
       const swatch = [...used];
       const sw = new Uint8Array(swatch.length * 4);
       swatch.forEach((c, i) => sw.set([...sheet.palette[c], 255], i * 4));
-      const look = n === 353 ? 'two hockey gloves and two wooden hockey sticks dropped on the ice' : CHARACTERS.skater.look.replace('holding a wooden hockey stick', 'holding the silver Stanley Cup trophy over his head');
+      const t = table.get(n);
+      const look = n === 353 ? 'two hockey gloves and two wooden hockey sticks dropped on the ice'
+        : RESIZE_FRAMES.includes(n) ? CHARACTERS.skater.look.replace('holding a wooden hockey stick', 'holding the silver Stanley Cup trophy over his head')
+          : CHARACTERS[t.character].look;
+      const facing = RESIZE_FRAMES.includes(n) ? (n === 353 ? null : n - 217) : t.facing;
       const res = await pl.post('/resize', {
         description: look,
         reference_image: b64png(toPng(sheet, one)),
         reference_image_size: { width: one.width, height: one.height },
         target_size: { width: two.width, height: two.height },
         view: VIEW,
-        direction: n === 353 ? undefined : DIRS[n - 217],
+        direction: facing == null ? undefined : DIRS[facing],
         no_background: true,
         init_image: b64png(toPng(sheet, two)),
         init_image_strength: 300,
         color_image: b64png(png.encodeRgba(swatch.length, 1, sw)),
         seed: SEED
       }, { label: 'resize frame ' + n });
-      const q = addSpray(despeckle(sp.quantize(png.decode(stripB64(res.image)), sheet.palette, used, two)), two);
+      const q = addSpray(clipToBody(despeckle(sp.quantize(png.decode(stripB64(res.image)), sheet.palette, used, two)), two), two);
       const c = crop(q, box);
-      if (c) hd[n] = c;
+      if (c) { hd[n] = c; method[n] = 'resize'; }
     });
   }
 
@@ -327,7 +373,7 @@ async function main() {
     skeletons: { ...prev.skeletons },
     rigs: { ...prev.rigs }
   };
-  for (const [n, c] of Object.entries(hd)) out.frames[n] = { x: c.x, y: c.y, w: c.w, h: c.h, data: zlib.deflateSync(Buffer.from(c.data), { level: 9 }).toString('base64') };
+  for (const [n, c] of Object.entries(hd)) out.frames[n] = { x: c.x, y: c.y, w: c.w, h: c.h, method: method[n], data: zlib.deflateSync(Buffer.from(c.data), { level: 9 }).toString('base64') };
   for (const [n, s] of Object.entries(skeletons)) out.skeletons[n] = s;
   for (const [k, r] of Object.entries(rigs)) out.rigs[k] = r.rig.map((j) => ({ name: j.name, parent: j.parent }));
   const sorted = (o) => Object.fromEntries(Object.entries(o).sort((a, b) => (+a[0] || 0) - (+b[0] || 0) || a[0].localeCompare(b[0])));

@@ -65,6 +65,8 @@
     loop: P('M17 3l3 3-3 3M4 11V9.5A3.5 3.5 0 0 1 7.5 6H20M7 21l-3-3 3-3M20 13v1.5a3.5 3.5 0 0 1-3.5 3.5H4'),
     clock: P('M12 7v5l3 2M3.5 12a8.5 8.5 0 1 0 17 0 8.5 8.5 0 1 0-17 0'),
     checker: P('M4 4h16v16H4zM12 4v16M4 12h16M4 4h8v8H4zM12 12h8v8h-8z'),
+    sparkle: P('M12 3.5l1.9 5.1 5.1 1.9-5.1 1.9L12 17.5l-1.9-5.1L5 10.5l5.1-1.9zM18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z'),
+    rig: P('M12 4.5v.01M12 7v6M8 9.5l4-1.5 4 1.5M12 13l-3 6.5M12 13l3 6.5M8 9.5L6.5 13M16 9.5l1.5 3.5'),
     more: P('M5 12v.01M12 12v.01M19 12v.01'),
     refresh: P('M20 11A8 8 0 1 0 18 17M20 4v7h-7'),
   };
@@ -85,6 +87,8 @@
     [/^loop$/, 'loop', 'Repeat the sequence when it ends'],
     [/^game timing/, 'clock', 'Use the game\'s own timing'],
     [/^transparency/, 'checker', 'Show transparent holes'],
+    [/^hd sprites/, 'sparkle', 'Show the detailed PixelLab frames'],
+    [/^rig$/, 'rig', 'Draw the skeleton rig of the HD frame'],
     [/^(spin)/, 'spin', 'Spin through facings'],
     [/^(play)\b/, 'play', 'Play'],
     [/^(resume)/, 'play', 'Resume playback'],

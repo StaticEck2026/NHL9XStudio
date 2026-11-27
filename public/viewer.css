@@ -628,6 +628,7 @@ select:focus, input:focus, button:focus-visible {
   vertical-align: baseline;
 }
 .transport label.check { position: relative; background: var(--raise); }
+.transport label.check.is-hidden { display: none; }
 .transport label.check input { position: absolute; opacity: 0; pointer-events: none; }
 .transport label.check:has(input:checked) { background: var(--text); color: var(--bg); border-color: var(--text); }
 .transport label.check:has(input:focus-visible) { outline: 2px solid var(--amber); }

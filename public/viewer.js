@@ -1571,7 +1571,9 @@ function renderMeta() {
     const box = canvasSize(frame);
     rows.push(['Canvas', box.width + '×' + box.height]);
     if (box.width !== frame.width || box.height !== frame.height) {
-      rows.push(['Art', frame.width + '×' + frame.height]);
+      rows.push(['Art', frame.hd
+        ? frame.bitmapWidth + '×' + frame.bitmapHeight + ' (HD ' + frame.hd + 'x, ' + (hdData.frames.get(frame.frame).method === 'rig' ? 'posed by rig' : 'redrawn from the frame') + ')'
+        : frame.width + '×' + frame.height]);
     }
     rows.push(['Hotspot', frame.hotspotX + ', ' + frame.hotspotY]);
     if (frame.tag) rows.push(['Tag', frame.tag]);
