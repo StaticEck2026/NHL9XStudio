@@ -49,7 +49,9 @@ const DRAGS = [
   ['TOP HAND UP', (kp) => ['hand' + topHand(kp), add(kp['hand' + topHand(kp)], [-1, -5])]],
   ['LEAN FORWARD', (kp) => { const s = kp.shoulder0 ? 'shoulder0' : 'shoulder1'; return [s, turn(kp[s], kp.hipMid, kp.head[0] > kp.hipMid[0] ? 14 : -14)]; }],
   ['CROUCH', (kp) => [kp.hip0 ? 'hip0' : 'hip1', add(kp.hip0 || kp.hip1, [0, 3])]],
-  ['HEAD UP', (kp) => ['head', turn(kp.head, kp.neck, kp.head[0] > kp.neck[0] ? -25 : 25)]]
+  ['HEAD UP', (kp) => ['head', turn(kp.head, kp.neck, kp.head[0] > kp.neck[0] ? -25 : 25)]],
+  ['STICK MOVED WHOLE', (kp) => ['stickMid', add([(kp.stickButt[0] + kp.stickBlade[0]) / 2, (kp.stickButt[1] + kp.stickBlade[1]) / 2], [-3, 3])]],
+  ['OTHER SKATE OUT', (kp, syn) => { const s = syn.find((j) => /^skate/.test(j)) || 'skate1'; return [s, add(kp[s], [kp.head[0] > kp.hipMid[0] ? -5 : 5, 1])]; }]
 ];
 const POSES = opt('--poses', '94g:347,94g:12,93g:358,95pc:347,95pc:12').split(',');
 const ONLY = opt('--drags', null);
@@ -63,11 +65,13 @@ POSES.forEach((id, r) => {
   const f = L.byId.get(id);
   const y = 32 + r * (CH * SC + 22);
   const cels = [['RETAIL ' + id, { x0: f.x0, y0: f.y0, w: f.w, h: f.h, px: f.px }, f.kp]];
+  const full = R.fullSkeleton ? R.fullSkeleton(L, f) : { kp: f.kp, synthetic: [] };
   for (const [label, how] of DRAGS) {
-    if ((label.startsWith('BLADE') || label.startsWith('TOP')) && !f.kp.stickButt) continue;
+    if ((label.startsWith('BLADE') || label.startsWith('TOP') || label.startsWith('STICK')) && !f.kp.stickButt) continue;
     if (ONLY && !ONLY.split(',').some((w) => label.includes(w))) continue;
-    const [j, to] = how(f.kp);
-    const kp = R.drag ? R.drag(f.kp, j, to, R.rigOf(L, f.kp, f.game)) : oldDrag(f.kp, j, to);
+    const [j, to] = how(full.kp, full.synthetic);
+    if (!full.kp[j] && j !== 'stickMid') continue;
+    const kp = R.drag ? R.drag(full.kp, j, to, R.rigOf(L, full.kp, f.game)) : oldDrag(full.kp, j, to);
     const cel = R.render(L, id, kp, { facing: f.facing });
     cels.push([label, cel, cel.kp || kp]);
   }

@@ -127,6 +127,7 @@ A hidden "skeleton" layer sits on top. Of each pair of limbs, the one hanging fr
 
 ![The rig's drags on retail frames](demo-rig.png)
 
+- **Has the full skeleton** (`fullSkeleton`). Every frame gets every joint of both sides. Many frames mark one arm or one leg only, the other hidden behind the body or drawn as one shape with it. The missing joints are placed where the three nearest retail frames of the same facing that show them have them (scaled to this body), so both arms and both legs can be posed. The Animator shows these joints as hollow handles.
 - **Moves joints as a body** (`drag`). Bone lengths, reach and grip are measured from the pose when a drag starts:
 
   | Drag | What follows |
@@ -136,20 +137,25 @@ A hidden "skeleton" layer sits on top. Of each pair of limbs, the one hanging fr
   | shoulder | leans the upper body about the hips, up to about 35°; head, arms and a held stick go with it |
   | hip | moves the body; the skates stay planted and the knees bend, as far as the legs reach |
   | head | turns on the neck, up to about 35° from where it started |
-  | stick blade | swings the stick about the top hand, at a length the game's own sticks have (foreshortened sticks included) |
-  | top hand, stick butt | carries the butt; a blade on the ice stays planted and the shaft slides through the hands |
+  | stick blade | swings the stick about its butt (the top hand) |
+  | stick butt | in hand: the top hand takes it there; free: the stick swings about its blade |
+  | middle of the stick | moves the whole stick; in hand, the hands come with it |
+  | top hand | carries the butt; a blade on the ice stays planted and the stick pivots on it |
   | bottom hand | levers the stick about the top hand, sliding along the shaft; hands together at the butt carry it between them |
 
-  The bottom hand follows the shaft after every move, sliding to a grip it can reach. The hands keep their roles from one drag to the next.
+  **The stick is one rigid object.** Its length never changes and it never bends. It's drawn as the frame's own stick (shaft and blade) turned and moved whole. In hand (the default), the hands hold it: the bottom hand follows the shaft after every move, sliding to a grip it can reach, and the hands keep their roles from one drag to the next. Let go of (`rigOf(..., { free: true })`, **Stick in hands** off in the Animator), the stick and the hands move apart.
 - **Draws a pose** (`render`). It starts from a base frame:
   - **Torso and head:** the torso leans about the hips and the head turns on the neck, by RotSprite (below).
   - **Arms:** each moved arm is the retail arm (this game and facing; the base's own first) whose shape best fits once turned. It hangs from the shoulder and is turned bone by bone onto the elbow and hand. A small turn of the right drawing beats a big turn of a near one.
   - **Gloves and skates** are set at the end of the limb unturned: a three-pixel glove turned breaks up.
-  - **Legs:** the games often draw both legs as one shape, so the lower body is taken whole from the retail frame whose stance fits. It's set down on the pose's skates. The torso may come down over the top of the legs, the way the games' artists crouch a player a pixel or two, but never leaves a gap above them.
-  - **The stick** is drawn the way the game draws one wherever it moved:
-    - the shaft is a clean pixel line in the game's own stick colour;
-    - the blade is copied from the retail stick nearest in angle (same facing first, and mirrored as the hardware flip would), turned the last few degrees;
+  - **Legs:** the games often draw both legs as one shape, so the frame's leg pixels are shared out between the two skeleton legs (each pixel to the nearer leg's bones). A moved skate or knee turns that leg alone, at the hip and the knee, by RotSprite; the other leg stays.
+  - **Crouch:** when only the hips move (the skates stay planted), the lower body is taken whole from the retail frame whose stance fits, set down on the skates. The torso may come down over the top of the legs, the way the games' artists crouch a player a pixel or two, but never leaves a gap above them.
+  - **The stick**, wherever it moved, is the frame's own stick turned whole, drawn the way the game draws one:
+    - the shaft is a clean pixel line in the game's own stick colour, at the stick's own length;
+    - the blade is the stick's own blade, turned with it by RotSprite;
     - its shadow is dithered on the ice below it.
+
+    A frame without a stick of its own borrows the retail stick nearest in angle (same facing first, mirrored as the hardware flip would).
   - **Clean-up:** where an arm moves off the chest, the chest is filled in from the torso's own pixels. Lone specks and pinholes the re-assembly leaves are cleaned, only where something moved.
 - **Pixel work** (`lib/pixel-art.js`):
   - **RotSprite:** Scale2x three times, rotate at 8x, read back at 1x. It keeps the artist's outlines and shading through a turn, where plain rotation leaves broken, doubled edges.
@@ -170,7 +176,7 @@ A hidden "skeleton" layer sits on top. Of each pair of limbs, the one hanging fr
 `public/animator.html` is a Studio page (header button **Animator**, under `node server.js`). It reads `library/bundle-<year>.json` from your own build:
 
 1. Pick the year and a frame.
-2. Drag the joints and the body follows, as in the table above. On release, the skeleton snaps to where the drawn limbs put the joints. Under the stage, **Drawn from** lists the retail frames each arm, the legs and the blade came from, and how far each was turned.
+2. Drag the joints and the body follows, as in the table above. Every joint of both sides has a handle: hollow ones are hidden behind the body in that frame. The square on the shaft moves the whole stick. Turn **Stick in hands** off to move the stick and the hands separately. On release, the skeleton snaps to where the drawn limbs put the joints. Under the stage, **Drawn from** lists the retail frames each arm, the legs and the blade came from, and how far each was turned.
 3. Hide layers to see behind them.
 4. Click any of the eight facings to keep editing in that facing.
 5. Add poses to a sequence with a hold in vblanks, and play it in any facing.

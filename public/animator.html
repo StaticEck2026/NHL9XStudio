@@ -43,11 +43,12 @@ node server.js</pre>
         <span id="pose-title" class="pose-title">—</span>
         <label class="field inline">As facing <select id="as-facing"></select></label>
         <label class="check"><input type="checkbox" id="show-skeleton" checked> Skeleton</label>
+        <label class="check" title="On: the hands hold the stick and move it. Off: the stick is a separate object you move on its own"><input type="checkbox" id="hold-stick" checked> Stick in hands</label>
         <label class="field inline">Zoom <input type="range" id="zoom" min="3" max="10" value="6"></label>
         <button type="button" id="reset">Reset pose</button>
       </div>
       <canvas id="stage" width="576" height="480" aria-label="The pose; drag the joints"></canvas>
-      <p class="hint">Drag any joint and the body follows. A hand or skate reaches there, bending the elbow or knee. A shoulder leans the upper body, a hip crouches over planted skates, the head turns on the neck. The stick stays in the hands: drag its blade to swing it about the top hand, drag a hand to carry or lever it.</p>
+      <p class="hint">Every joint of both sides can be dragged; hollow ones are hidden behind the body in this frame. A hand or skate reaches there, bending the elbow or knee; a shoulder leans the upper body; a hip crouches over planted skates; the head turns on the neck. The stick is one rigid piece: drag its blade to swing it about the butt, its butt to swing it about the blade, or the square on the shaft to move it whole. With <b>Stick in hands</b> on, the hands hold it and go with it.</p>
       <div id="swaps" class="swaps" aria-live="polite"></div>
     </section>
 

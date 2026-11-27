@@ -10,7 +10,9 @@
   const BONES = [['head', 'neck'], ['neck', 'shoulder0'], ['neck', 'shoulder1'], ['shoulder0', 'elbow0'], ['elbow0', 'hand0'], ['shoulder1', 'elbow1'],
     ['elbow1', 'hand1'], ['neck', 'hipMid'], ['hipMid', 'hip0'], ['hipMid', 'hip1'], ['hip0', 'knee0'], ['knee0', 'skate0'], ['hip1', 'knee1'],
     ['knee1', 'skate1'], ['stickButt', 'stickBlade']];
-  const DRAG = ['head', 'shoulder0', 'elbow0', 'hand0', 'shoulder1', 'elbow1', 'hand1', 'hip0', 'knee0', 'skate0', 'hip1', 'knee1', 'skate1', 'stickButt', 'stickBlade'];
+  const DRAG = ['head', 'shoulder0', 'elbow0', 'hand0', 'shoulder1', 'elbow1', 'hand1', 'hip0', 'knee0', 'skate0', 'hip1', 'knee1', 'skate1', 'stickButt', 'stickBlade', 'stickMid'];
+  /** Where a handle is: a joint, or the middle of the stick (which moves the whole stick). */
+  const handleAt = (kp, j) => (j === 'stickMid' ? (kp.stickButt && kp.stickBlade ? [(kp.stickButt[0] + kp.stickBlade[0]) / 2, (kp.stickButt[1] + kp.stickBlade[1]) / 2] : null) : kp[j]);
   const LABEL = { head: 'head', torso: 'torso', arm0: 'arm A', arm1: 'arm B', hand0: 'hand A', hand1: 'hand B', leg0: 'leg A', leg1: 'leg B',
     skate0: 'skate A', skate1: 'skate B', stick: 'stick', stickShadow: 'stick shadow', shadow: 'shadow', other: 'other' };
   const STAGE = { w: 96, h: 80, ox: 48, oy: 58 };       // game pixels; the player position sits at ox, oy
@@ -79,11 +81,18 @@
         ctx.strokeStyle = a === 'stickButt' ? 'rgba(200,0,200,.8)' : 'rgba(0,80,255,.75)';
         ctx.beginPath(); ctx.moveTo(...P(a)); ctx.lineTo(...P(b)); ctx.stroke();
       }
+      // Joints the frame shows are filled; joints hidden behind the body (filled in from other frames) are hollow;
+      // the square in the middle of the stick moves the whole stick.
+      const syn = new Set(S.cur.synthetic || []);
       for (const j of DRAG) {
-        if (!kp[j]) continue;
-        const [x, y] = P(j);
-        ctx.fillStyle = S.drag === j ? '#ffd66b' : '#fff'; ctx.strokeStyle = '#18202f'; ctx.lineWidth = 1.5;
-        ctx.beginPath(); ctx.arc(x, y, Math.max(4, z * 0.8), 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+        const at = handleAt(kp, j);
+        if (!at) continue;
+        const x = (STAGE.ox + at[0]) * z, y = (STAGE.oy + at[1]) * z, r = Math.max(4, z * 0.8);
+        ctx.strokeStyle = '#18202f'; ctx.lineWidth = 1.5;
+        ctx.fillStyle = S.drag === j ? '#ffd66b' : syn.has(j) ? 'rgba(255,255,255,.25)' : '#fff';
+        ctx.beginPath();
+        if (j === 'stickMid') ctx.rect(x - r, y - r, 2 * r, 2 * r); else ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.fill(); ctx.stroke();
       }
     }
   }
@@ -101,7 +110,7 @@
       b.type = 'button'; b.title = 'Edit facing ' + FACINGS[f.facing] + ' (base ' + f.base + ')';
       b.setAttribute('aria-selected', String(f.facing === S.cur.facing));
       b.append(miniCanvas(f.cel, 64, 60, 2), document.createTextNode(FACINGS[f.facing]));
-      b.onclick = () => { S.cur = { scaffold: f.base, kp: clone(f.kp), facing: f.facing, label: 'facing ' + FACINGS[f.facing] + ' of ' + S.cur.label }; refresh(true); };
+      b.onclick = () => { S.cur = Object.assign(poseOn(S.lib.byId.get(f.base), f.cel.kp || f.kp), { scaffold: f.base, facing: f.facing, label: 'facing ' + FACINGS[f.facing] + ' of ' + S.cur.label }); refresh(true); };
       box.append(b);
     });
     $('facings-note').textContent = 'Turn learned from ' + S.dirs.set.split('|').slice(1).join(' step ') + ' and its neighbours.';
@@ -114,10 +123,16 @@
 
   // ---- state -----------------------------------------------------------------------------------------------
   const clone = (kp) => JSON.parse(JSON.stringify(kp));
+  /** A pose on a frame: every joint of both sides (the hidden ones filled in), and the length of its stick. */
+  function poseOn(f, kp) {
+    const full = R.fullSkeleton(S.lib, f), st = R.stickOf(f);
+    const k = kp || full.kp;
+    return { kp: clone(k), synthetic: kp ? [] : full.synthetic.slice(), stickLen: st ? st.len : (k.stickButt && k.stickBlade ? Math.hypot(k.stickBlade[0] - k.stickButt[0], k.stickBlade[1] - k.stickButt[1]) : null) };
+  }
   function pick(id) {
     const f = S.lib.byId.get(id);
     const facing = f.facing != null ? f.facing : 2;
-    S.cur = { scaffold: id, kp: clone(f.kp), facing, label: id + ' ' + f.group, original: id };
+    S.cur = Object.assign(poseOn(f), { scaffold: id, facing, label: id + ' ' + f.group, original: id });
     $('as-facing').value = String(facing);
     $('as-facing').disabled = f.facing != null;
     for (const b of $('thumbs').children) b.setAttribute('aria-selected', String(b.dataset.id === id));
@@ -126,7 +141,7 @@
   let dirTimer = null;
   function refresh(withFacings) {
     const f = S.lib.byId.get(S.cur.scaffold);
-    const untouched = S.cur.original === S.cur.scaffold && JSON.stringify(S.cur.kp) === JSON.stringify(f.kp);
+    const untouched = S.cur.original === S.cur.scaffold && JSON.stringify(S.cur.kp) === JSON.stringify(R.fullSkeleton(S.lib, f).kp);
     S.cel = untouched ? { x0: f.x0, y0: f.y0, w: f.w, h: f.h, px: f.px, empty: f.empty, swaps: {}, layers: R.orderedLayers(f).map((L) => Object.assign(L, { from: f.id })) }
       : R.render(S.lib, S.cur.scaffold, S.cur.kp, { facing: f.facing != null ? f.facing : S.cur.facing, noStick: !S.cur.kp.stickButt && !S.cur.kp.stickBlade });
     $('pose-title').textContent = S.cur.label;
@@ -162,11 +177,14 @@
   $('stage').addEventListener('pointerdown', (ev) => {
     const [x, y] = toGame(ev);
     let best = null, bd = 2.2;
-    for (const j of DRAG) { const p = S.cur.kp[j]; if (!p) continue; const d = Math.hypot(p[0] - x, p[1] - y); if (d < bd) { bd = d; best = j; } }
+    for (const j of DRAG) { const p = handleAt(S.cur.kp, j); if (!p) continue; const d = Math.hypot(p[0] - x, p[1] - y); if (d < bd) { bd = d; best = j; } }
     if (!best) return;
-    // What the body is made of at the start of the drag: bone lengths, reach, how the stick is held.
-    S.drag = best; S.rig = R.rigOf(S.lib, S.cur.kp, S.year, S.cur.grip);
-    S.cur.grip = S.rig.grip;
+    // What the body is made of at the start of the drag: bone lengths, reach, how the stick is held (or not), and
+    // the stick's one length (it is rigid).
+    const free = !$('hold-stick').checked;
+    S.drag = best; S.rig = R.rigOf(S.lib, S.cur.kp, S.year, free ? null : S.cur.grip, { stickLen: S.cur.stickLen, free });
+    if (!free) S.cur.grip = S.rig.grip;
+    S.cur.synthetic = (S.cur.synthetic || []).filter((q) => q !== best);
     $('stage').setPointerCapture(ev.pointerId); drawStage();
   });
   let raf = 0;

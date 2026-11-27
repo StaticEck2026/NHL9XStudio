@@ -1,6 +1,14 @@
 {
   "releases": [
     {
+      "version": "1.61.0",
+      "date": "2026-11-27",
+      "changes": [
+        "Animator: the whole skeleton can be posed. Every joint of both arms and both legs has a handle, including the ones hidden behind the body in that frame (shown hollow), and each leg now turns on its own at the hip and knee",
+        "Animator: the stick is one rigid object. It keeps its own length and blade and turns and moves as a whole: drag the blade or butt to swing it, or the square on the shaft to move it. With Stick in hands on, the hands hold it and go with it; turn it off to move the stick and the hands separately"
+      ]
+    },
+    {
       "version": "1.60.0",
       "date": "2026-11-27",
       "changes": [

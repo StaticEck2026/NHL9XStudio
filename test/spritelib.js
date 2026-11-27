@@ -118,8 +118,7 @@ if (fs.existsSync(path.join(root, 'roms'))) {
       for (const to of [[f.kp.stickButt[0] + 9, f.kp.stickButt[1] + 12], [f.kp.stickButt[0] - 12, f.kp.stickButt[1] - 4]]) {
         const k = R.drag(f.kp, 'stickBlade', to, rig);
         assert.deepStrictEqual(k.stickButt, f.kp.stickButt, id + ': the blade swings about the top hand');
-        const L = len(k, 'stickButt', 'stickBlade');
-        assert.ok(L >= rig.stats.stickMin - 1e-6 && L <= rig.stats.stickMax + 1e-6, id + ': the stick keeps a retail length');
+        assert.ok(Math.abs(len(k, 'stickButt', 'stickBlade') - len(f.kp, 'stickButt', 'stickBlade')) < 1e-6, id + ': the stick is rigid (blade drag)');
         const cel = R.render(rl, id, k, { facing: f.facing });
         // The stick is drawn whole: its pixels are one piece, in the game's own colours.
         const pts = [];
@@ -134,7 +133,41 @@ if (fs.existsSync(path.join(root, 'roms'))) {
       // The top hand carries the butt; a blade on the ice stays where it is.
       const up = R.drag(f.kp, top, [f.kp[top][0] - 1, f.kp[top][1] - 4], R.rigOf(rl, f.kp, f.game));
       assert.ok(Math.hypot(up.stickButt[0] - up[top][0] - rig.grip.buttOffset[0], up.stickButt[1] - up[top][1] - rig.grip.buttOffset[1]) < 1e-6, id + ': the butt stays in the top hand');
-      if (rig.grip.bladeOnIce) assert.ok(Math.hypot(up.stickBlade[0] - f.kp.stickBlade[0], up.stickBlade[1] - f.kp.stickBlade[1]) < 3, id + ': the blade stays on the ice');
+      if (rig.grip.bladeOnIce) assert.ok(Math.hypot(up.stickBlade[0] - f.kp.stickBlade[0], up.stickBlade[1] - f.kp.stickBlade[1]) < 1e-6, id + ': the blade stays on the ice');
+      const L0 = len(f.kp, 'stickButt', 'stickBlade');
+      assert.ok(Math.abs(len(up, 'stickButt', 'stickBlade') - L0) < 1e-6, id + ': the stick is rigid (hand drag)');
+      // Moved whole by its middle: same length, same angle; in hand, the top hand comes along.
+      const mid = [(f.kp.stickButt[0] + f.kp.stickBlade[0]) / 2 + 2, (f.kp.stickButt[1] + f.kp.stickBlade[1]) / 2 - 1];
+      const moved = R.drag(f.kp, 'stickMid', mid, R.rigOf(rl, f.kp, f.game));
+      assert.ok(Math.abs(len(moved, 'stickButt', 'stickBlade') - L0) < 1e-6, id + ': the stick is rigid (moved whole)');
+      assert.ok(Math.abs(Math.atan2(moved.stickBlade[1] - moved.stickButt[1], moved.stickBlade[0] - moved.stickButt[0]) - Math.atan2(f.kp.stickBlade[1] - f.kp.stickButt[1], f.kp.stickBlade[0] - f.kp.stickButt[0])) < 1e-9, id + ': moved whole, not turned');
+      // Let go of: the stick moves on its own and the hands stay.
+      const free = R.rigOf(rl, f.kp, f.game, null, { free: true });
+      const loose = R.drag(f.kp, 'stickButt', [f.kp.stickButt[0] - 4, f.kp.stickButt[1] + 3], free);
+      assert.deepStrictEqual([loose.hand0, loose.hand1], [f.kp.hand0, f.kp.hand1], id + ': a free stick leaves the hands');
+      assert.deepStrictEqual(loose.stickBlade, f.kp.stickBlade, id + ': a free stick swings about its blade');
+      assert.ok(Math.abs(len(loose, 'stickButt', 'stickBlade') - L0) < 1e-6, id + ': the free stick is rigid');
+      // Drawn as the frame's own stick turned whole: the same blade pixels (turned) and no other stick's.
+      const turned = R.render(rl, id, R.drag(f.kp, 'stickBlade', [f.kp.stickButt[0] + 8, f.kp.stickButt[1] + 10], R.rigOf(rl, f.kp, f.game)), { facing: f.facing });
+      if (R.stickOf(f)) assert.ok(!turned.swaps.stick && turned.layers.filter((x) => x.part === 'stick').every((x) => x.from === id), id + ': the stick is its own, turned');
+    }
+    // The full skeleton: both sides of every frame, the hidden joints filled in; the untouched frame draws unchanged.
+    for (const id of ['94g:347', '94g:12', '95pc:12', '93g:358']) {
+      const f = rl.byId.get(id), full = R.fullSkeleton(rl, f);
+      for (const j of R.JOINTS) if (!/^stick/.test(j)) assert.ok(full.kp[j], id + ': ' + j + ' in the full skeleton');
+      for (const j of R.JOINTS) if (f.kp[j]) assert.deepStrictEqual(full.kp[j], f.kp[j], id + ': ' + j + ' kept');
+      const cel = R.render(rl, id, full.kp);
+      assert.deepStrictEqual(Object.keys(cel.swaps), [], id + ': the full skeleton draws the frame as it is');
+      for (let i = 0; i < f.w * f.h; i++) if (f.px[i] !== f.empty) assert.strictEqual(cel.px[(f.y0 - cel.y0 + ((i / f.w) | 0)) * cel.w + (f.x0 - cel.x0 + (i % f.w))], f.px[i], id + ': pixel ' + i);
+      // A hidden leg moves: the skate goes there and the lower body is redrawn.
+      const hid = full.synthetic.find((j) => /^skate/.test(j));
+      if (hid) {
+        const k = R.drag(full.kp, hid, [full.kp[hid][0] + 3, full.kp[hid][1]], R.rigOf(rl, full.kp, f.game));
+        const cel = R.render(rl, id, k), leg = 'leg' + hid.slice(-1);
+        assert.ok(cel.swaps[leg] && cel.swaps[leg].turn.some(Boolean), id + ': the hidden leg turns on its own');
+        assert.ok(Math.hypot(cel.kp[hid][0] - k[hid][0], cel.kp[hid][1] - k[hid][1]) < 2.5, id + ': its skate goes where it was put');
+        for (const s of ['skate0', 'skate1']) if (s !== hid) assert.ok(Math.hypot(cel.kp[s][0] - full.kp[s][0], cel.kp[s][1] - full.kp[s][1]) < 1e-6, id + ': the other skate stays');
+      }
     }
     more += '; rig: ' + rl.frames.length + ' frames layered exactly, turn ' + (ours / n).toFixed(2) + ' px vs ' + (near / n).toFixed(2);
   }
