@@ -1,0 +1,395 @@
+{
+ "game": "NHL Hockey 94 (Genesis)",
+ "frames": 426,
+ "reference": {
+  "animation": "SPFskate step 0",
+  "frames": [
+   "94g:41",
+   "94g:46",
+   "94g:51",
+   "94g:56",
+   "94g:61",
+   "94g:66",
+   "94g:71",
+   "94g:76"
+  ]
+ },
+ "hardware": {
+  "colours": "15 + transparent per sprite (one 16-colour palette line); the team line is line 2",
+  "pixel": "1:1, Genesis 320x224",
+  "maxSprite": "up to 4x4 tiles (32x32) per hardware sprite; a frame is several"
+ },
+ "palette": {
+  "roles": {
+   "1": {
+    "role": "ice shadow core",
+    "share": 0.0159
+   },
+   "2": {
+    "role": "black (skates, gloves)",
+    "share": 0.1257
+   },
+   "3": {
+    "role": "pants dark",
+    "share": 0.0351
+   },
+   "4": {
+    "role": "pants medium",
+    "share": 0.0514
+   },
+   "5": {
+    "role": "pants light",
+    "share": 0.0351
+   },
+   "6": {
+    "role": "skin light",
+    "share": 0.0053
+   },
+   "7": {
+    "role": "skin shade",
+    "share": 0.0203
+   },
+   "8": {
+    "role": "trim dark (stripes, socks)",
+    "share": 0.0491
+   },
+   "9": {
+    "role": "trim light (stripes, socks)",
+    "share": 0.0569
+   },
+   "10": {
+    "role": "second colour (stripes, socks)",
+    "share": 0.0807
+   },
+   "11": {
+    "role": "main colour medium (jersey, sleeves, helmet)",
+    "share": 0.1339
+   },
+   "12": {
+    "role": "main colour light",
+    "share": 0.1272
+   },
+   "13": {
+    "role": "main colour dark",
+    "share": 0.0504
+   },
+   "14": {
+    "role": "stick",
+    "share": 0.0732
+   },
+   "15": {
+    "role": "ice shadow",
+    "share": 0.1398
+   }
+  },
+  "teams": {
+   "BOS HOME": {
+    "1": "#242424",
+    "2": "#000000",
+    "3": "#000000",
+    "4": "#240024",
+    "5": "#492424",
+    "6": "#db9292",
+    "7": "#b66d6d",
+    "8": "#db9200",
+    "9": "#ff9200",
+    "10": "#dbdbdb",
+    "11": "#b6b6b6",
+    "12": "#dbdbdb",
+    "13": "#929292",
+    "14": "#db9249",
+    "15": "#4992b6"
+   },
+   "MTL AWAY": {
+    "1": "#242424",
+    "2": "#000000",
+    "3": "#242449",
+    "4": "#24246d",
+    "5": "#244992",
+    "6": "#db9292",
+    "7": "#b66d6d",
+    "8": "#929292",
+    "9": "#dbdbdb",
+    "10": "#24246d",
+    "11": "#920000",
+    "12": "#b60024",
+    "13": "#490000",
+    "14": "#db9249",
+    "15": "#4992b6"
+   },
+   "CHI HOME": {
+    "1": "#242424",
+    "2": "#000000",
+    "3": "#000000",
+    "4": "#000024",
+    "5": "#242424",
+    "6": "#db9292",
+    "7": "#b66d6d",
+    "8": "#000000",
+    "9": "#242424",
+    "10": "#920000",
+    "11": "#dbdbdb",
+    "12": "#ffffff",
+    "13": "#b6b6b6",
+    "14": "#db9249",
+    "15": "#4992b6"
+   }
+  },
+  "shading": "three tones per team colour: main 12 light / 11 medium / 13 dark; pants 5 / 4 / 3; trim 9 / 8; second colour 10 is one tone"
+ },
+ "outline": {
+  "note": "colour of silhouette-edge pixels (not the ice shadow), share",
+  "all": {
+   "stick": 0.217,
+   "black (skates, gloves)": 0.175,
+   "main colour medium (jersey, sleeves, helmet)": 0.136,
+   "main colour light": 0.102,
+   "second colour (stripes, socks)": 0.076,
+   "main colour dark": 0.061,
+   "trim dark (stripes, socks)": 0.053,
+   "pants medium": 0.047,
+   "pants dark": 0.044,
+   "trim light (stripes, socks)": 0.034,
+   "pants light": 0.024,
+   "skin shade": 0.019,
+   "other lines": 0.008,
+   "skin light": 0.006
+  }
+ },
+ "facings": {
+  "N": {
+   "frames": 51,
+   "size": {
+    "w": 22,
+    "h": 32,
+    "maxW": 32,
+    "maxH": 55
+   },
+   "bones": {
+    "head-neck": 3.4,
+    "neck-hips": 10.4,
+    "upper arm": 2.42,
+    "forearm": 4.1,
+    "shoulder-hand": 5.81,
+    "thigh": 5.08,
+    "shin": 4.73,
+    "height": 23.44
+   },
+   "light": {
+    "towards": [
+     -1.85,
+     -1.02
+    ],
+    "note": "pixels from the jersey's dark tone to its light tone, median over frames (x right, y down)"
+   },
+   "helmets": 37,
+   "gloves": 41
+  },
+  "NE": {
+   "frames": 51,
+   "size": {
+    "w": 26,
+    "h": 31,
+    "maxW": 40,
+    "maxH": 51
+   },
+   "bones": {
+    "head-neck": 3.62,
+    "neck-hips": 10.34,
+    "upper arm": 1.75,
+    "forearm": 4.16,
+    "shoulder-hand": 5.74,
+    "thigh": 4.83,
+    "shin": 4.96,
+    "height": 22.88
+   },
+   "light": {
+    "towards": [
+     -1.17,
+     -1.84
+    ],
+    "note": "pixels from the jersey's dark tone to its light tone, median over frames (x right, y down)"
+   },
+   "helmets": 40,
+   "gloves": 51
+  },
+  "E": {
+   "frames": 51,
+   "size": {
+    "w": 29,
+    "h": 30,
+    "maxW": 65,
+    "maxH": 57
+   },
+   "bones": {
+    "head-neck": 4.11,
+    "neck-hips": 10.7,
+    "upper arm": 1.43,
+    "forearm": 4.41,
+    "shoulder-hand": 5.08,
+    "thigh": 5.6,
+    "shin": 4.96,
+    "height": 23.67
+   },
+   "light": {
+    "towards": [
+     -0.86,
+     -2.08
+    ],
+    "note": "pixels from the jersey's dark tone to its light tone, median over frames (x right, y down)"
+   },
+   "helmets": 39,
+   "gloves": 75
+  },
+  "SE": {
+   "frames": 51,
+   "size": {
+    "w": 27,
+    "h": 32,
+    "maxW": 54,
+    "maxH": 57
+   },
+   "bones": {
+    "head-neck": 3.42,
+    "neck-hips": 9.63,
+    "upper arm": 1.8,
+    "forearm": 4.84,
+    "shoulder-hand": 5.63,
+    "thigh": 5.1,
+    "shin": 5.34,
+    "height": 22.23
+   },
+   "light": {
+    "towards": [
+     -0.33,
+     -1.07
+    ],
+    "note": "pixels from the jersey's dark tone to its light tone, median over frames (x right, y down)"
+   },
+   "helmets": 43,
+   "gloves": 67
+  },
+  "S": {
+   "frames": 51,
+   "size": {
+    "w": 21,
+    "h": 35,
+    "maxW": 44,
+    "maxH": 55
+   },
+   "bones": {
+    "head-neck": 2.85,
+    "neck-hips": 8.4,
+    "upper arm": 2.41,
+    "forearm": 4.78,
+    "shoulder-hand": 6.04,
+    "thigh": 4.92,
+    "shin": 5.41,
+    "height": 18.4
+   },
+   "light": {
+    "towards": [
+     0,
+     -0.58
+    ],
+    "note": "pixels from the jersey's dark tone to its light tone, median over frames (x right, y down)"
+   },
+   "helmets": 37,
+   "gloves": 58
+  },
+  "SW": {
+   "frames": 51,
+   "size": {
+    "w": 26,
+    "h": 32,
+    "maxW": 49,
+    "maxH": 58
+   },
+   "bones": {
+    "head-neck": 3.83,
+    "neck-hips": 9.87,
+    "thigh": 5.18,
+    "shin": 5.12,
+    "height": 18.91,
+    "upper arm": 1.84,
+    "forearm": 4.63,
+    "shoulder-hand": 6.44
+   },
+   "light": {
+    "towards": [
+     0.21,
+     -1.86
+    ],
+    "note": "pixels from the jersey's dark tone to its light tone, median over frames (x right, y down)"
+   },
+   "helmets": 42,
+   "gloves": 48
+  },
+  "W": {
+   "frames": 50,
+   "size": {
+    "w": 29,
+    "h": 31,
+    "maxW": 67,
+    "maxH": 64
+   },
+   "bones": {
+    "head-neck": 4.16,
+    "neck-hips": 11.16,
+    "thigh": 5.82,
+    "shin": 4.8,
+    "height": 23,
+    "upper arm": 2.42,
+    "forearm": 4.33,
+    "shoulder-hand": 6.8
+   },
+   "light": {
+    "towards": [
+     0.19,
+     -0.78
+    ],
+    "note": "pixels from the jersey's dark tone to its light tone, median over frames (x right, y down)"
+   },
+   "helmets": 38,
+   "gloves": 47
+  },
+  "NW": {
+   "frames": 51,
+   "size": {
+    "w": 25,
+    "h": 31,
+    "maxW": 52,
+    "maxH": 51
+   },
+   "bones": {
+    "head-neck": 3.55,
+    "neck-hips": 11.18,
+    "upper arm": 3.11,
+    "forearm": 4.2,
+    "shoulder-hand": 7.34,
+    "thigh": 4.65,
+    "shin": 4.55,
+    "height": 23.25
+   },
+   "light": {
+    "towards": [
+     -0.64,
+     0.05
+    ],
+    "note": "pixels from the jersey's dark tone to its light tone, median over frames (x right, y down)"
+   },
+   "helmets": 34,
+   "gloves": 43
+  }
+ },
+ "stick": {
+  "length": {
+   "median": 17.27,
+   "min": 6.11,
+   "max": 28.58
+  },
+  "shaftWidth": 1,
+  "colour": 14,
+  "blade": "last 3 px, colour 14, no tape on the Genesis"
+ }
+}
